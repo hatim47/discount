@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('admin.layout.layout')
 @php
     $title='Tooltip & Popover';
     $subTitle = 'Components / Tooltip & Popover';

@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('admin.layout.layout')
 @php
     $title='Voice Generator';
     $subTitle = 'Voice Generator';

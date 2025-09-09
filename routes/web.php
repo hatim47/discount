@@ -1,23 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController\HomeController;
-use App\Http\Controllers\AdminController\AiapplicationController;
-use App\Http\Controllers\AdminController\AuthenticationController;
-use App\Http\Controllers\AdminController\ChartController;
-use App\Http\Controllers\AdminController\ComponentpageController;
-use App\Http\Controllers\AdminController\DashboardController;
-use App\Http\Controllers\AdminController\FormsController;
-use App\Http\Controllers\AdminController\InvoiceController;
-use App\Http\Controllers\AdminController\SettingsController;
-use App\Http\Controllers\AdminController\TableController;
-use App\Http\Controllers\AdminController\UsersController;
-use App\Http\Controllers\AdminController\BlogController;
-use App\Http\Controllers\AdminController\RoleandaccessController;
-use App\Http\Controllers\AdminController\CryptocurrencyController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AiapplicationController;
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ComponentpageController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormsController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TableController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\RoleandaccessController;
+use App\Http\Controllers\CryptocurrencyController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.welcome');
 });
 
 Route::controller(DashboardController::class)->group(function () {

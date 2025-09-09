@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('admin.layout.layout')
 @php
     $title='POS & Inventory';
     $subTitle = 'POS & Inventory';

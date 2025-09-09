@@ -12,7 +12,7 @@
                 <a href="{{ route('index') }}" class="">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="">
                 </a>
-                <a href="{{ route('index') }}" class="btn btn-outline-primary-600 text-sm"> Go To Home </a>
+                <a href="{{ route('index') }}" class="btn btn-outline-primary-600 text-sm">Go To Home </a>
             </div>
 
             <div class="py-res-120">
