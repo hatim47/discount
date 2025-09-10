@@ -1,9 +1,7 @@
 <!-- meta tags and other links -->
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <x-head />
-
 <body>
 
     <div class="custom-bg">
