@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
-    $table->id();
+     Schema::create('regions', function (Blueprint $table) {
+     $table->id();
     $table->string('code')->unique(); // us, eu, asia
     $table->string('title');
      $table->integer('status')->default(0); // active, inactive
     $table->timestamps();
-});
+    });
     }
 
     /**

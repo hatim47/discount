@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-          Schema::create('store', function (Blueprint $table) {
+          Schema::create('stores', function (Blueprint $table) {
     $table->id();
     $table->string('name');
     $table->string('slug');
@@ -29,7 +29,6 @@ return new class extends Migration
     $table->integer('relat_cate')->default(0);
     $table->integer('like_store')->default(0);
     $table->integer('view')->default(0);
-    $table->string('logo')->nullable();
     // active, inactive
     $table->timestamps();
 
