@@ -1,0 +1,55 @@
+<aside class="sidebar">
+    <button type="button" class="sidebar-close-btn">
+        <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+    </button>
+    <div>
+        <a href="{{ route('index') }}" class="sidebar-logo">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="site logo" class="light-logo">
+            <img src="{{ asset('assets/images/logo-light.png') }}" alt="site logo" class="dark-logo">
+            <img src="{{ asset('assets/images/logo-icon.png') }}" alt="site logo" class="logo-icon">
+        </a>
+    </div>
+    <div class="sidebar-menu-area">
+
+         <ul class="sidebar-menu" id="sidebar-menu">
+          
+           
+            <li>
+                  <a href="{{ route('categories.index') }}">
+                    <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
+                    <span>
+                    Category ADD </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('chatMessage') }}">
+                    <iconify-icon icon="bi:chat-dots" class="menu-icon"></iconify-icon>
+                    <span>Chat</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('calendar') }}">
+                    <iconify-icon icon="solar:calendar-outline" class="menu-icon"></iconify-icon>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kanban') }}">
+                    <iconify-icon icon="material-symbols:map-outline" class="menu-icon"></iconify-icon>
+                    <span>Kanban</span>
+                </a>
+            </li>
+  
+            <li>
+                <a  href="{{ route('gallery') }}">
+                    <iconify-icon icon="solar:gallery-wide-linear" class="menu-icon"></iconify-icon>
+                    <span>Gallery</span>
+                </a>
+            </li>
+           
+            
+      
+       
+        </ul>
+    </div>
+</aside>
