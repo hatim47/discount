@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StoreController;
+
+
 use App\Http\Controllers\AiapplicationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartController;
@@ -19,11 +23,18 @@ use App\Http\Controllers\CryptocurrencyController;
 Route::get('/', function () {
     return view('admin.welcome');
 });
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/admin', 'index')->name('index');
 });
-
+Route::controller(CategoryController::class)->group(function () {
+Route::get('/admin/cate','add')->name('cate.add');
+Route::get('/admin/categories/show/{id}','show')->name('cate.show');
+});
+Route::resource('/admin/categories', CategoryController::class);
+Route::resource('/admin/store', StoreController::class);
 Route::controller(HomeController::class)->group(function () {
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');
@@ -78,6 +89,8 @@ Route::prefix('chart')->group(function () {
         Route::get('/piechart', 'pieChart')->name('pieChart');
     });
 });
+
+
 
 // Componentpage
 Route::prefix('componentspage')->group(function () {
