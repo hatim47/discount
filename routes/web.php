@@ -29,12 +29,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], funct
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/admin', 'index')->name('index');
 });
-Route::controller(CategoryController::class)->group(function () {
-Route::get('/admin/cate','add')->name('cate.add');
-Route::get('/admin/categories/show/{id}','show')->name('cate.show');
-});
-Route::resource('/admin/categories', CategoryController::class);
-Route::resource('/admin/store', StoreController::class);
+
 Route::controller(HomeController::class)->group(function () {
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');
