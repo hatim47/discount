@@ -35,6 +35,8 @@ Route::get('/admin/categories/show/{id}','show')->name('cate.show');
 });
 Route::resource('/admin/categories', CategoryController::class);
 Route::resource('/admin/store', StoreController::class);
+
+
 Route::controller(HomeController::class)->group(function () {
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');
