@@ -120,6 +120,8 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
+                         <form action="{{ route('categories.store') }}" method="POST">
+                                         @csrf
                         <div class="d-flex justify-content-between " >
                          <div class="" >
                             <h6 class="mb-4 text-xl">category adding</h6>
@@ -127,15 +129,18 @@
                             </div>
  <div class="form-switch switch-primary d-flex align-items-center gap-3">
                          <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">Hide</label>
+<input type="hidden" name="status" value="0">
 
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switch1" checked>
+<!-- Checkbox overrides hidden value when checked -->
+<input class="form-check-input" type="checkbox" role="switch" 
+       name="status" id="switch1" value="1" checked>
+                                    
                                     <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1"> Show / Active</label>
                                 </div>
                              </div>
                             <!-- Form Wizard Start -->
                             <div class="form-wizard">
-                               <form action="{{ route('categories.store') }}" method="POST">
-                                         @csrf
+                              
                                     <div class="form-wizard-header overflow-x-auto scroll-sm pb-8 my-32">
                                         <ul class="list-unstyled form-wizard-list style-two">
                                             <li class="form-wizard-list__item active">
@@ -283,21 +288,19 @@
                                             <button type="submit" class="form-wizard-submit btn btn-primary-600 px-32">Publish</button>
                                         </div>
                                     </fieldset>
-                                </form>
+                              
                             </div>
                             <!-- Form Wizard End -->
+                              </form>   
                         </div>
                     </div>
                 </div>
             </div>
-
 @endsection
-
 @push('scripts')
-
 <script>
    // Initialize CKEditor instances (call after HTML is injected)
-     function initEditor(selector) {
+   function initEditor(selector) {
         ClassicEditor
             .create(document.querySelector(selector), {
                 toolbar: [

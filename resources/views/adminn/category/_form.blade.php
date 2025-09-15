@@ -23,7 +23,7 @@
     </div>
     <div id="logo-holder" style="margin-top:15px;max-height:100px;">
         @if($category->logo)
-            <img src="{{ asset('storage/'.$category->logo) }}" width="80" class="mt-2">
+            <img src="{{ $category->logo }}" width="80" class="mt-2">
         @endif
     </div>
 </div>

@@ -63,33 +63,36 @@ class StoreController extends Controller
     {
         $store = Store::findOrFail($id);
         $categories = Category::all(); // Fetch categories for the dropdown
-        return view('adminn.store.edit', compact('store', 'categories'));               
+        return view('adminn.store._form', compact('store', 'categories'));               
     }
     public function update(Request $request, $id)
     {
     $store = Store::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:stores,slug,'.$store->id,
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'promo_text' => 'nullable|string|max:255',
-            'status' => 'required|in:active,inactive',
-            'trend' => 'nullable|boolean',
-            'feature' => 'nullable|boolean',
-            'recom' => 'nullable|boolean',
-            'heading' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'link' => 'nullable|url|max:255',
-            'relat_store' => 'nullable|string|max:255',
-            'relat_cate' => 'nullable|string|max:255',
-            'like_store' => 'nullable|integer|min:0',
-            'view' => 'nullable|integer|min:0',
-            'store_region' => 'nullable|integer|exists:regions,id',
-            'category_id' => 'required|integer|exists:categories,id',
+try {
+        $validated = $request->validate([
+        
+           'name' => 'required|string|max:255',
+            'slug' => 'required',
+            'logo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',           
+            // 'heading' => 'required',
+            // 'description' => 'nullable|string',
+            // 'link' => 'nullable|string|max:255',           
+            // 'category_id' => 'required|exists:categories,id',
         ]);
+ } catch (\Illuminate\Validation\ValidationException $e) {
+        dd($e->errors()); // show validation errors directly
+    }
 
+
+if ($request->hasFile('logo')) {
+        $data['logo'] = $request->file('logo')->store('logos', 'public');
+    }
+
+    // ✅ Handle image upload
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('images', 'public');
+    }
         $store->update($request->all());
 
         return redirect()->route('store.index')

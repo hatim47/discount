@@ -62,7 +62,7 @@
                                     </a>
                                 </td>
                             </tr>
-                               @foreach ($stores as $store)
+                               @foreach ($coupon as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
                     <td>{{ $store->name }}</td>
@@ -87,9 +87,7 @@
                             @method('DELETE')
                             <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
                         </form>
-
-
-                    </td>
+                        </td>
                 </tr>
                 @endforeach
                         </tbody>
