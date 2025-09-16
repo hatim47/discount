@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Use Link for internal navigation
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-md sticky top-0 z-10">
+    <header className="bg-[#FAF9F5] border-b-2 border-[#1EC27E] sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         {/* Logo/Brand Name */}
         <Link to="/" className="text-3xl font-extrabold text-primary-700 hover:text-primary-600 transition">
@@ -19,7 +19,7 @@ const Header = () => {
         </nav>
         
         {/* Action Button */}
-        <button className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition duration-200 shadow-md">
+        <button className="bg-primary-600 text-black px-4 py-2 rounded-lg hover:bg-primary-700 transition duration-200 shadow-md">
           Login / Sign Up
         </button>
       </div>

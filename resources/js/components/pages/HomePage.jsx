@@ -12,11 +12,16 @@ const HomePage = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary-700 text-white py-16">
+      <section className="bg-[#FAF9F5] text-[#0F0F0F] py-16 ">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h1 className="text-5xl font-extrabold mb-4">Find the Best Deals Today</h1>
-          <p className="text-xl opacity-80 mb-8">Exclusive coupons updated daily.</p>
+          <h1 className="text-5xl font-bold mb-4 capitalize">Tired of searching for discounts online?</h1>
+          <p className="text-xl mb-8">Exclusive Coupons Updated Daily.</p>
         </div>
+ <div className="max-w-4xl mx-auto text-center px-4">
+    <input type="text" className='h-14 w-full px-4 rounded-full border-2 border-[#1EC27E] bg-white' />
+    <div className="bg-[#1EC27E]"> </div>
+ </div>
+
       </section>
 
       {/* Featured Coupons Grid */}

@@ -5,7 +5,7 @@ import Footer from './Footer'; // Correct relative import
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
       {/* Main content area wrapped */}
