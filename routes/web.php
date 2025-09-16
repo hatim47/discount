@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\EventController;
+
 use App\Http\Controllers\AiapplicationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartController;
@@ -31,9 +33,23 @@ Route::controller(DashboardController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
 Route::get('admin/cate','add')->name('cate.add');
 Route::get('admin/categories/show/{id}','show')->name('cate.show');});
+
+
 Route::resource('admin/categories', CategoryController::class);
 Route::resource('admin/store', StoreController::class);
 Route::resource('admin/coupon', CouponController::class);
+Route::resource('admin/event', EventController::class);
+
+
+
+
+
+
+
+
+
+
+
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('calendar','calendar')->name('calendar');

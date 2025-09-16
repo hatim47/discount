@@ -105,7 +105,7 @@ if ($request->hasFile('logo')) {
         $store = Store::findOrFail($id);
         $store->delete();
 
-        return redirect()->route('store.index')
+        return redirect()->route('adminn.store.index')
                          ->with('success', 'Store deleted successfully.');
     }
 
