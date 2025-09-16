@@ -22,7 +22,7 @@ use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 
 Route::get('/', function () {
-    return view('admin.welcome');
+    return view('website.home');
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();

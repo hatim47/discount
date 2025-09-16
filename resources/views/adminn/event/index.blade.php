@@ -65,11 +65,11 @@
                                @foreach ($events as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
-                    <td>{{ $store->name }}</td>
+                    <td>{{ $store->title }}</td>
                     <td>{{ $store->slug }}</td>
                     <td>
-                        @if($store->logo)
-                            <img src="{{$store->logo}}" alt="Logo" width="40">
+                        @if($store->banner)
+                            <img src="{{$store->banner}}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
- let url = "{{ route('store.edit', ':id') }}";
+ let url = "{{ route('event.edit', ':id') }}";
         url = url.replace(':id', id);
                 fetch(url)
                 .then(res => res.text())

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Store;
 use App\Models\Coupon;
+use App\Models\Event;
 
 
 use Illuminate\Http\Request;
@@ -12,13 +13,14 @@ class CouponController extends Controller
 {
     public function index()
     {
-       $Coupon = Coupon::all(); // fetch from DB
-        return view('adminn.category.index', compact('Coupon'));
+       $coupon = Coupon::all(); 
+        return view('adminn.coupon.index', compact('coupon'));
     }
     public function create()
     {
-        $stores = Store::all(); // fetch from DB
-        return view('adminn.coupon.create', compact('stores'));
+        $stores = Store::all(); 
+        $event = Event::all();
+        return view('adminn.coupon.add', compact('stores','event'));
     }
     public function store(Request $request)
     {     

@@ -13,8 +13,8 @@
 
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Store Datatables</h5>
-                    <a href="{{ route('store.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Store</a>
+                    <h5 class="card-title mb-0">Coupon Datatables</h5>
+                    <a href="{{ route('coupon.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Coupon</a>
                 </div> 
                 <div class="card-body">
                     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
- let url = "{{ route('store.edit', ':id') }}";
+ let url = "{{ route('coupon.edit', ':id') }}";
         url = url.replace(':id', id);
                 fetch(url)
                 .then(res => res.text())

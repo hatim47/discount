@@ -48,23 +48,18 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $request->validate([
            'title' => 'required',
-           'heading' => 'required',
-           'description' => 'required',
-           'slug' => 'required|unique:events,slug',
-           'banner' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-           'start_date' => 'required|date',
-           'end_date' => 'required|date|after_or_equal:start',
+           'slug' => 'required',
+           'banner.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $event->update($request->all());
-        return redirect()->route('adminn.event.index')
-                         ->with('success', 'Event updated successfully.');
+        return redirect()->route('event.index')->with('success', 'Event updated successfully.');
     }
 
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
-        return redirect()->route('adminn.event.index')
+        return redirect()->route('event.index')
                          ->with('success', 'Event deleted successfully.');
     }
 

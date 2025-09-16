@@ -121,11 +121,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                         <form action="{{ route('store.store') }}" method="POST" enctype="multipart/form-data">
+                         <form action="{{ route('coupon.store') }}" method="POST" enctype="multipart/form-data">
                                          @csrf
                         <div class="d-flex justify-content-between " >
                          <div class="" >
-                            <h6 class="mb-4 text-xl">Store adding</h6>
+                            <h6 class="mb-4 text-xl">Coupon adding</h6>
                             <p class="text-neutral-500">Fill up your details and proceed next steps.</p>
                             </div>
  <div class="form-switch switch-primary d-flex align-items-center gap-3">
@@ -147,7 +147,7 @@
                                                 <div class="form-wizard-list__line">
                                                     <span class="count">1</span>
                                                 </div>
-                                                <span class="text text-xs fw-semibold">Store start </span>
+                                                <span class="text text-xs fw-semibold">Coupon start </span>
                                             </li>
                                             <li class="form-wizard-list__item">
                                                 <div class="form-wizard-list__line">
@@ -173,22 +173,51 @@
                                         <h6 class="text-md text-neutral-500">Category Information</h6>
                                         <div class="row gy-3">
                                             <div class="col-sm-6">
-                                                <label class="form-label">Store Name*</label>
+                                                <label class="form-label">Coupon Name*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="name" placeholder="Enter Category Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="title" placeholder="Enter Coupon Name" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Coupon Code*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="code" placeholder="Enter Coupon Code" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Coupon Link*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter Coupon link" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                      <div class="col-sm-6">
-                                                <label class="form-label">Category Name*</label>
+                                                <label class="form-label">Select Store Name*</label>
                                                 <div class="position-relative">
                                                     
-                                            <select name="category_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($categories as $category)
-        <option value="{{ $category->id }}">
-            {{ $category->name }}
-        </option>
-    @endforeach
+                                            <select name="store_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
+                                                 @foreach($stores as $category)
+                                                       <option value="{{ $category->id }}">
+                                                            {{ $category->name }}
+                                                         </option>
+                                                     @endforeach
+                                            </select>                                      
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            
+                                              <div class="col-sm-6">
+                                                <label class="form-label">Select Event Name*</label>
+                                                <div class="position-relative">
+                                                    
+                                            <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
+                                                 @foreach($event as $category)
+                                                       <option value="{{ $category->id }}">
+                                                            {{ $category->title }}
+                                                         </option>
+                                                     @endforeach
                                             </select>                                      
                                                     <div class="wizard-form-error"></div>
                                                 </div>
@@ -201,7 +230,7 @@
                                               <div class="mb-3">
   
     <div class="input-group">
-        <input id="logo" class="form-control wizard-required" type="text" name="logo" required>
+        <input id="logo" class="form-control wizard-required" type="text" name="image" required>
         <span class="input-group-btn">
             <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
                 Choose
@@ -215,22 +244,17 @@
                                                     
                                                 </div>
                                             </div>
-                                               <div class="col-sm-6">
-                                                <label class="form-label">Cover Image *</label>
-                                                <div class="position-relative"> 
-                                              <div class="mb-3">
-  
-    <div class="input-group">
-        <input id="image" class="form-control" type="text" name="image">
-        <span class="input-group-btn">
-            <button id="lfms" data-input="image" data-preview="holder" class="btn btn-primary">
-                Choose
-            </button>
-        </span>
-    </div>
-    <img id="holder" style="margin-top:15px;max-height:100px;">
-</div>
-                                                    {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Start Date*</label>
+                                                <div class="position-relative">
+                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">End Date*</label>
+                                                <div class="position-relative">
+                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -245,33 +269,37 @@
                                     <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
-                                         <div class="col-12">
-                                                <label class="form-label">Heading *</label>
-                                                <div class="position-relative">   
-                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Category Name" required>
-                                                        <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-12">
-                                                <label class="form-label">Short Content*</label>
-                                                <div class="position-relative">   
-                                 <textarea id="editor1" name="shrt_content" class="form-control" rows="4"> </textarea>
-                                                        <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div> --}}
+                                         <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
+
+                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    
+                                    <input type="checkbox" class="btn-check" id="btncheck1">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
+                       
+                        <input type="checkbox" class="btn-check" id="btncheck11">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
+                        
+                        <input type="checkbox" class="btn-check" id="btncheck12">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+                       
+                        <input type="checkbox" class="btn-check" id="btncheck2">
+                        <label class="btn btn-outline-primary-600 px-20 py-11" for="btncheck2">Deals </label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck3">Verified </label>
+                        
+                        <input type="checkbox" class="btn-check" id="btncheck31">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck31">Exclusive </label>
+
+                    </div>
                                             <div class="col-12">
-                                                <label class="form-label">Description Content*</label>
+                                                <label class="form-label">Terms Conditions</label>
                                                 <div class="position-relative">
                                                         <textarea id="editor2" name="description" class="form-control" rows="8"></textarea>
-
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div>
-        
+                                            </div>       
 
-   
-                                            
-                                         
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
