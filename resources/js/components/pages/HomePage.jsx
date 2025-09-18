@@ -114,7 +114,7 @@ const DealCard = ({ deal }) => {
     alt={`${deal.brand} logo`}
   
     loading="lazy"
-    className="w-10 h-10 rounded-full absolute -bottom-5 left-4 border-2 border-white shadow-md"
+    className="w-14 h-14 rounded-full absolute -bottom-5 left-4 border-2 border-white shadow-md"
   />
 </div>
 

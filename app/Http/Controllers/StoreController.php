@@ -95,8 +95,10 @@ if ($request->hasFile('logo')) {
     }
         $store->update($request->all());
 
-        return redirect()->route('store.index')
-                         ->with('success', 'Store updated successfully.');
+      return response()->json([
+        'success' => true,
+        'store'   => $store,
+    ]);
     }
 
 

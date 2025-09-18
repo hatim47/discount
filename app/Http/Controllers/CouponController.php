@@ -38,7 +38,7 @@ class CouponController extends Controller
     public function edit($id){
         $coupon = Coupon::findOrFail($id);
         $stores = Store::all(); // fetch from DB
-        return view('adminn.coupon.edit', compact('coupon','stores'));
+        return view('adminn.coupon._form', compact('coupon','stores'));
     }
     public function update(Request $request, $id){
         $coupon = Coupon::findOrFail($id);
@@ -60,6 +60,8 @@ class CouponController extends Controller
                          ->with('success', 'Coupon deleted successfully.');
     }
 
+
+    
 
 
 }

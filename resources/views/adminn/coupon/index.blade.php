@@ -65,11 +65,11 @@
                                @foreach ($coupon as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
-                    <td>{{ $store->name }}</td>
-                    <td>{{ $store->slug }}</td>
+                    <td>{{ $store->title }}</td>
+                    <td>{{ $store->code }}</td>
                     <td>
-                        @if($store->logo)
-                            <img src="{{$store->logo}}" alt="Logo" width="40">
+                        @if($store->image)
+                            <img src="{{$store->image}}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif

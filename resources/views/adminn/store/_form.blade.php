@@ -1,4 +1,4 @@
-<form action="{{ route('store.update', $store->id) }}" method="POST">
+<form action="{{ route('store.update', $store->id) }}" id="editStoreForm" method="POST">
     @csrf
     @method('PUT')
 

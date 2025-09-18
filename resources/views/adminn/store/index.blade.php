@@ -4,6 +4,7 @@
     $subTitle = 'Basic Table';
     $script = '<script>
                     let table = new DataTable("#dataTable");
+                   
                </script>
 <script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
                ';
@@ -130,22 +131,76 @@ function initLfmButtons() {
     $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-            let id = this.getAttribute("data-id");
- let url = "{{ route('store.edit', ':id') }}";
-        url = url.replace(':id', id);
-                fetch(url)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById("editCategoryBody").innerHTML = html;
-                    initLfmButtons();
-                    new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
-                })
-                .catch(err => console.error(err));
-        });
-    });
+$(document).on("click", ".edit-btn", function () {
+    let id = $(this).data("id");
+    let url = "{{ route('store.edit', ':id') }}".replace(":id", id);
+
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            $("#editCategoryBody").html(html);
+            initLfmButtons();
+            new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
+        })
+        .catch(err => console.error(err));
 });
+
+$(document).on("submit", "#editStoreForm", function (e) {
+    e.preventDefault();
+
+    let form = $(this);
+    let url = form.attr("action");
+    let table = $('#yourTableId').DataTable(); // <-- your table id
+
+    fetch(url, {
+        method: "POST",
+        body: new FormData(form[0]),
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            // Hide modal
+            bootstrap.Modal.getInstance(document.getElementById("editCategoryModal")).hide();
+
+            let store = data.store;
+
+            // Find row in DataTable
+            let row = table.row($(`a.edit-btn[data-id='${store.id}']`).closest("tr"));
+
+            // Update row data
+            row.data([
+                store.id,
+                store.name,
+                store.slug,
+                store.logo 
+                    ? `<img src="${store.logo}" alt="Logo" width="40">` 
+                    : "No Image",
+                store.status == 1 ? "Active" : "Inactive",
+                store.created_at,
+                `
+                <a href="javascript:void(0)" 
+                   data-id="${store.id}" 
+                   class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <iconify-icon icon="lucide:edit"></iconify-icon>
+                </a>
+                <form action="/categories/${store.id}" method="POST" class="delete-form d-inline">
+                    <input type="hidden" name="_token" value="${form.find("input[name=_token]").val()}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center">
+                        <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+                    </button>
+                </form>
+                `
+            ]).draw(false); // ✅ redraw without resetting page
+        }
+    })
+    .catch(err => console.error(err));
+});
+
+
+
+
+
+
 </script>
 @endpush
