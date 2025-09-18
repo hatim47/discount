@@ -14,6 +14,7 @@ class Coupon extends Model
         'title',
         'description',
         'link',
+        'discount',
         'start_date',
         'end_date',
         'trend',

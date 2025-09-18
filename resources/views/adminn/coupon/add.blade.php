@@ -172,14 +172,21 @@
                                     <fieldset class="wizard-fieldset show">
                                         <h6 class="text-md text-neutral-500">Category Information</h6>
                                         <div class="row gy-3">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <label class="form-label">Coupon Name*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="title" placeholder="Enter Coupon Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="title" placeholder="Enter Coupon Title" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
+                                                <label class="form-label">Coupon Discount*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="discount" placeholder="Enter Coupon Discount" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
                                                 <label class="form-label">Coupon Code*</label>
                                                 <div class="position-relative">
                                                     <input type="text" class="form-control wizard-required" name="code" placeholder="Enter Coupon Code" required>
@@ -193,35 +200,7 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                     <div class="col-sm-6">
-                                                <label class="form-label">Select Store Name*</label>
-                                                <div class="position-relative">
-                                                    
-                                            <select name="store_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($stores as $category)
-                                                       <option value="{{ $category->id }}">
-                                                            {{ $category->name }}
-                                                         </option>
-                                                     @endforeach
-                                            </select>                                      
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            
-                                              <div class="col-sm-6">
-                                                <label class="form-label">Select Event Name*</label>
-                                                <div class="position-relative">
-                                                    
-                                            <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($event as $category)
-                                                       <option value="{{ $category->id }}">
-                                                            {{ $category->title }}
-                                                         </option>
-                                                     @endforeach
-                                            </select>                                      
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
+                                    
                                         
 
                                             <div class="col-sm-6">
@@ -267,6 +246,7 @@
                                     </fieldset>
 
                                     <fieldset class="wizard-fieldset">
+
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
                                          <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
@@ -298,7 +278,50 @@
                                                         <textarea id="editor2" name="description" class="form-control" rows="8"></textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div>       
+                                            </div> 
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Select Store Name*</label>
+                                                <div class="position-relative">
+                                                    
+                                            <select name="store_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
+                                                 @foreach($stores as $category)
+                                                       <option value="{{ $category->id }}">
+                                                            {{ $category->name }}
+                                                         </option>
+                                                     @endforeach
+                                            </select>                                      
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            
+                                              <div class="col-sm-6">
+                                                <label class="form-label">Select Event Name*</label>
+                                                <div class="position-relative">
+                                                    
+                                            <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
+                                                 @foreach($event as $category)
+                                                       <option value="{{ $category->id }}">
+                                                            {{ $category->title }}
+                                                         </option>
+                                                     @endforeach
+                                            </select>                                      
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                                   <div class="col-sm-6">
+                                                <label class="form-label">Store Sort [  '0' consider to be first ] </label>
+                                                <div class="position-relative">
+                                                    <input type="number" class="form-control wizard-required" name="sort_store" placeholder="Enter Coupon Name" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Category Sort [ '0' consider to be first ]</label>
+                                                <div class="position-relative">
+                                                    <input type="number" class="form-control wizard-required" name="sort_cate" placeholder="Enter Coupon Code" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>  
 
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>

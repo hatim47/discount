@@ -8,7 +8,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         {/* Logo/Brand Name */}
         <Link to="/" className="text-3xl font-extrabold text-primary-700 hover:text-primary-600 transition">
-          CouponFinder
+         FindsCoupon
         </Link>
         
         {/* Navigation Links */}
