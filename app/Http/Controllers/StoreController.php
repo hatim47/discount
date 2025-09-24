@@ -29,7 +29,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+       // dd($request->all());
       try {
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
@@ -169,7 +169,9 @@ class StoreController extends Controller
     }
     public function update(Request $request, $id)
     {
-       $store = Store::findOrFail($id);
+       dd($request->all());
+       
+        $store = Store::findOrFail($id);
 
     // ----------------------------
     // 1) VALIDATION
