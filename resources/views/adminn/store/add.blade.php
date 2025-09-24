@@ -262,7 +262,26 @@
 
                             <fieldset class="wizard-fieldset">
                                 <h6 class="text-md text-neutral-500">Website Information</h6>
+                        
+
+
                                 <div class="row gy-3">
+                                                 <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
+
+                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    
+                                    <input type="checkbox" name="trend" class="btn-check" id="btncheck1">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
+                       
+                        <input type="checkbox" class="btn-check" name="feature" id="btncheck11">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
+                        
+                        <input type="checkbox" class="btn-check" name="recom" id="btncheck12">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+                       
+                
+
+                    </div>
                                     <div class="col-12">
                                         <label class="form-label">Heading *</label>
                                         <div class="position-relative">
@@ -301,7 +320,7 @@
 
                                     <div class="col-md-4">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"
+                                            <input type="checkbox" name="relat_store" class="form-check-input"
                                                 onchange="toggleDropdown(this, 'dropdown1')">
                                             Related Stores
                                         </label>
@@ -333,7 +352,7 @@
     <!-- Store list -->
     <ul id="store-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
     
-      <!-- more li with checkboxes... -->
+    
     </ul>
 
   </ul>
@@ -343,7 +362,7 @@
                                         <!-- Second Column -->
                                         <div class="col-md-4">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
+                                                <input type="checkbox" name="relat_cate" class="form-check-input"
                                                     onchange="toggleDropdown(this, 'dropdown2')">
                                                 Related Categories
                                             </label>
@@ -375,7 +394,7 @@
     <ul id="dropdown2-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($categories as $index => $category)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $category->id }}">
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="relat_cate_options[]" value="{{ $category->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $category->name }}</label>
         </div>
       </li>
@@ -395,7 +414,7 @@
                                         <!-- Third Column -->
                                         <div class="col-md-4">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
+                                                <input type="checkbox" name="like_store" class="form-check-input"
                                                     onchange="toggleDropdown(this, 'dropdown3')">
                                                 shoppers also like
                                             </label>
@@ -427,7 +446,7 @@
     <ul id="dropdown3-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($stores as $index => $store)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $store->id }}">
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="like_store_options[]" value="{{ $store->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $store->name }}</label>
         </div>
       </li>
@@ -440,7 +459,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
+                                                <input type="checkbox" name="trend_store" class="form-check-input"
                                                     onchange="toggleDropdown(this, 'dropdown4')">
                                                 Trending Brands
                                             </label>
@@ -472,7 +491,7 @@
     <ul id="dropdown4-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($trends as $index => $trend)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $trend->id }}">
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="trend_store_options[]" value="{{ $trend->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $trend->name }}</label>
         </div>
       </li>
@@ -489,10 +508,10 @@
                                             <div id="input-wrapper">
                                                 <!-- First Block -->
                                                 <div class="input-block mb-3 p-3 border rounded">
-                                                    <input type="text" name="name[]" class="form-control mb-2"
+                                                    <input type="text" name="dy_heading[]" class="form-control mb-2"
                                                         placeholder="Enter name">
 
-                                                    <textarea class="editor form-control" name="description[]" rows="5"></textarea>
+                                                    <textarea class="editor form-control" name="dy_description[]" rows="5"></textarea>
 
                                                     <button type="button"
                                                         class="btn btn-danger btn-sm mt-2 d-flex align-items-center justify-content-center remove-block w-50-px h-50-px ">
@@ -796,8 +815,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const block = document.createElement('div');
             block.classList.add('input-block', 'mb-3', 'p-3', 'border', 'rounded');
             const editorId = generateId();
-            block.innerHTML = `<input type="text" name="name[]" class="form-control mb-2" placeholder="Enter name">
-            <textarea id="${editorId}" class="editor form-control" name="description[]" rows="5"></textarea>
+            block.innerHTML = `<input type="text" name="dy_heading[]" class="form-control mb-2" placeholder="Enter name">
+            <textarea id="${editorId}" class="editor form-control" name="dy_description[]" rows="5"></textarea>
             <button type="button" class="btn btn-danger btn-sm mt-2 remove-block w-50-px h-50-px">  
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37zM6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2"/></svg>
             </button>`;

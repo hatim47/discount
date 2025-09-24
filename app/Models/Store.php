@@ -54,4 +54,23 @@ class Store extends Model
     {
         return $this->hasMany(Event::class);
     }
+    public function dynacontents()
+{
+    return $this->hasMany(Dynacontent::class, 'store_id');
+}
+
+    public function trendingWith()
+    {
+        return $this->hasMany(StoreTrend::class, 'store_id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(StoreRelatedCategory::class, 'store_id');
+    }
+
+    public function relatedStores()
+    {
+        return $this->hasMany(StoreRelated::class, 'store_id');
+    }
 }

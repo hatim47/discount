@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Dynacontent;
+use App\Models\StoreLike;
+use App\Models\StoreRelated;
+use App\Models\StoreRelatedCategory;
+use App\Models\StoreTrend;
 use App\Models\Store;
 use Illuminate\Support\Str;
+
 class StoreController extends Controller
 {
     public function index()
@@ -23,20 +29,102 @@ class StoreController extends Controller
     public function store(Request $request)
     {
 
-    //    dd($request->all());
-    try {
+        dd($request->all());
+      try {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:stores,slug',
-            'logo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',           
-            'heading' => 'required',
-            'description' => 'nullable|string',
-            'link' => 'nullable|string|max:255',           
+            'name'        => 'required|string|max:255',
+            'slug'        => 'required|string|max:255',
+            'logo'        => 'nullable|string',
+            'image'       => 'nullable|string',
+            'heading'     => 'nullable|string',   // single heading (goes to stores table)
+            'description' => 'nullable|string',   // single description
+            'link'        => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
+
+            // toggle fields (on/off)
+            'trend'       => 'nullable',
+            'recom'       => 'nullable',
+            'relat_store' => 'nullable',
+            'relat_cate'  => 'nullable',
+            'like_store'  => 'nullable',
+
+            // dynamic content
+            'dy_heading'     => 'nullable|array',
+            'dy_heading.*'   => 'nullable|string',
+            'dy_description' => 'nullable|array',
+            'dy_description.*'=> 'nullable|string',
+
+            // relations
+            'stores'             => 'nullable|array',
+            'stores.*'           => 'nullable|integer|exists:stores,id',
+            'relat_cate_options' => 'nullable|array',
+            'relat_cate_options.*'=> 'nullable|integer|exists:categories,id',
+            'like_store_options' => 'nullable|array',
+            'like_store_options.*'=> 'nullable|integer|exists:stores,id',
         ]);
     } catch (\Illuminate\Validation\ValidationException $e) {
         dd($e->errors()); // show validation errors directly
+    }
+
+  //  ✅ Create main store
+    $store = Store::create([
+        'name'        => $request->name,
+        'slug'        => $request->slug,
+        'logo'        => $request->logo,
+        'image'       => $request->image,
+        'heading'     => $request->heading,
+        'description' => $request->description,
+        'link'        => $request->link,
+        'category_id' => $request->category_id,
+        'status'      => $request->status ?? 1,
+
+        // on/off toggles
+        'trend'       => $request->has('trend'),
+        'recom'       => $request->has('recom'),
+        'relat_store' => $request->has('relat_store'),
+        'relat_cate'  => $request->has('relat_cate'),
+        'like_store'  => $request->has('like_store'),
+    ]);
+
+    // ✅ Save dynamic content into dynacontent table
+    if ($request->dy_heading && is_array($request->dy_heading)) {
+        foreach ($request->dy_heading as $index => $heading) {
+            Dynacontent::create([
+                'store_id'    => $store->id,
+                'heading'     => $heading,
+                'description' => $request->dy_description[$index] ?? null,
+            ]);
+        }
+    }
+
+    // ✅ Save related stores
+    if ($request->stores && is_array($request->stores)) {
+        foreach ($request->stores as $relatedStoreId) {
+            StoreRelated::create([
+                'store_id'         => $store->id,
+                'related_store_id' => $relatedStoreId,
+            ]);
+        }
+    }
+
+    // ✅ Save related categories
+    if ($request->relat_cate_options && is_array($request->relat_cate_options)) {
+        foreach ($request->relat_cate_options as $categoryId) {
+            StoreRelatedCategory::create([
+                'store_id'   => $store->id,
+                'category_id'=> $categoryId,
+            ]);
+        }
+    }
+
+    // ✅ Save liked stores
+    if ($request->like_store_options && is_array($request->like_store_options)) {
+        foreach ($request->like_store_options as $likeStoreId) {
+            StoreLike::create([
+                'store_id'      => $store->id,
+                'like_store_id' => $likeStoreId,
+            ]);
+        }
     }
       $data = $request->all();
 
@@ -48,13 +136,11 @@ class StoreController extends Controller
     // ✅ Handle image upload
     if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('images', 'public');
-    }
-
-    Store::create($data);
-
-    // dd('Validation passed ✅', $validated);
-
-      $categories = Category::all(); // Fetch categories for the dropdown
+    } 
+     $stores = Store::all();
+        $trends = Store::where('trend', true)->get();
+    
+    $categories = Category::all(); // Fetch categories for the dropdown
         return view('adminn.store.add', compact('categories'));
     }
     public function show($id)
@@ -65,7 +151,17 @@ class StoreController extends Controller
     }
     public function edit($id)
     {
-        $store = Store::findOrFail($id);
+
+         $store = Store::with([
+        'dynacontents',
+        'trendingWith',      // related stores
+        'categories',
+        'relatedStores',        // related categories
+        'likes',             // liked stores
+    ])->findOrFail($id);
+
+    // For dropdowns/multiselects
+        // dd($store);
          $stores = Store::all();
         $categories = Category::all(); // Fetch categories for the dropdown
         $trends = Store::where('trend', true)->get();        
@@ -73,38 +169,104 @@ class StoreController extends Controller
     }
     public function update(Request $request, $id)
     {
-    $store = Store::findOrFail($id);
-try {
-        $validated = $request->validate([
-        
-           'name' => 'required|string|max:255',
-            'slug' => 'required',
-            'logo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',           
-            // 'heading' => 'required',
-            // 'description' => 'nullable|string',
-            // 'link' => 'nullable|string|max:255',           
-            // 'category_id' => 'required|exists:categories,id',
-        ]);
- } catch (\Illuminate\Validation\ValidationException $e) {
-        dd($e->errors()); // show validation errors directly
-    }
+       $store = Store::findOrFail($id);
 
+    // ----------------------------
+    // 1) VALIDATION
+    // ----------------------------
+    $validated = $request->validate([
+        'name'        => 'required|string|max:255',
+        'slug'        => 'required|string|max:255|unique:stores,slug,' . $store->id,
+        'logo'        => 'nullable|string', // since LFM returns URL
+        'image'       => 'nullable|string',
+        'link'        => 'nullable|string|max:255',
+        'category_id' => 'required|exists:categories,id',
 
-if ($request->hasFile('logo')) {
-        $data['logo'] = $request->file('logo')->store('logos', 'public');
-    }
-
-    // ✅ Handle image upload
-    if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('images', 'public');
-    }
-        $store->update($request->all());
-
-      return response()->json([
-        'success' => true,
-        'store'   => $store,
+        // Dynamic content
+        'name'        => 'nullable|array',
+        'name.*'      => 'nullable|string|max:255',
+        'description' => 'nullable|array',
+        'description.*'=> 'nullable|string',
     ]);
+
+    // ----------------------------
+    // 2) UPDATE STORE CORE FIELDS
+    // ----------------------------
+    $store->update($request->only([
+        'name',
+        'slug',
+        'logo',
+        'image',
+        'link',
+        'category_id',
+        'status',
+        'trend',
+        'recom',
+        'relat_store',
+        'relat_cate',
+        'like_store',
+    ]));
+
+    // ----------------------------
+    // 3) SYNC PIVOT RELATIONSHIPS
+    // ----------------------------
+
+    // Related Categories
+    if ($request->has('relat_cate_options')) {
+        $store->relatedCategories()->sync($request->relat_cate_options);
+    } else {
+        $store->relatedCategories()->sync([]);
+    }
+
+    // Related Stores
+    if ($request->has('stores')) {
+        $store->relatedStores()->sync($request->stores);
+    } else {
+        $store->relatedStores()->sync([]);
+    }
+
+    // Liked Stores
+    if ($request->has('like_store_options')) {
+        $store->likes()->sync($request->like_store_options);
+    } else {
+        $store->likes()->sync([]);
+    }
+
+    // Trending With Stores
+    if ($request->has('trending_with')) {
+        $store->trendingWith()->sync($request->trending_with);
+    } else {
+        $store->trendingWith()->sync([]);
+    }
+
+    // ----------------------------
+    // 4) DYNAMIC CONTENT
+    // ----------------------------
+    $store->dynacontents()->delete(); // remove old
+
+    if ($request->has('name')) {
+        foreach ($request->name as $i => $heading) {
+            if (!empty($heading) || !empty($request->description[$i])) {
+                $store->dynacontents()->create([
+                    'name'        => $heading,
+                    'description' => $request->description[$i] ?? null,
+                ]);
+            }
+        }
+    }
+// if ($request->hasFile('logo')) {
+//         $data['logo'] = $request->file('logo')->store('logos', 'public');
+//     }
+
+//     // ✅ Handle image upload
+//     if ($request->hasFile('image')) {
+//         $data['image'] = $request->file('image')->store('images', 'public');
+//     }
+       return redirect()
+        ->route('store.index')
+        ->with('success', 'Store updated successfully!');
+
+    
     }
 
 

@@ -21,28 +21,33 @@
 
 @section('content')
 <form action="{{ route('store.update', $store->id) }}" id="editStoreForm" method="POST">
-      <div class="row gy-3">
     @csrf
+
     @method('PUT')
+      <div class="row gy-3">
+      <h1>{{ old('id', $store->id) }} </h1>
+
 <div class="col-sm-2">
+
     <div class="mb-3">
-        <label class="form-label">Store Name</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $store->name) }}" required>
+        <label class="form-label">Store Name  </label>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $store->name) }}" >
     </div>
 </div>               <div class="col-sm-3">
                                         <label class="form-label">Category Name*</label>
                                         <div class="position-relative">
 
                                             <select name="category_id"
-                                                class="form-control radius-8 form-select wizard-required" id="depart"
-                                                required>
+                                                class="form-control radius-8 form-select " id="depart"
+                                                >
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">
+                                                    <option value="{{ $category->id }}"
+                                                         {{ $store->category_id == $category->id ? 'selected' : '' }}>
                                                         {{ $category->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <div class="wizard-form-error"></div>
+                                            <div class="form-error"></div>
                                         </div>
                                     </div>
 
@@ -52,7 +57,7 @@
     <div class="input-group">
         <input id="logo" class="form-control" type="hidden" name="logo" value="{{ old('logo', $store->logo) }}">
         <span class="input-group-btn">
-         <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
+         <button type="button" id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
                 Choose
             </button>
         </span>
@@ -73,7 +78,7 @@
                                                     <input id="image" class="form-control" type="hidden"
                                                         name="image" value="{{ old('image', $store->image) }}">
                                                     <span class="input-group-btn">
-                                                        <button id="lfms" data-input="image" data-preview="holder"
+                                                        <button type="button" id="lfms" data-input="image" data-preview="holder"
                                                             class="btn btn-primary">
                                                             Choose
                                                         </button>
@@ -83,8 +88,8 @@
             <img src="{{ $store->image }}" id="holder" class="border border-4" width="80" class="mt-2">
         @endif
                                             </div>
-                                            {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
-                                            <div class="wizard-form-error"></div>
+                                            {{-- <input  class="form-control " type="file" placeholder="Enter Last Name" > --}}
+                                            <div class="form-error"></div>
                                         </div>
                                     </div>
 </div>
@@ -97,8 +102,8 @@
                                         <label class="form-label">Heading *</label>
                                         <div class="position-relative">
                                             <div class="d-flex text-nowrap align-items-center">
-                                                <input type="text" class="form-control wizard-required" name="heading"
-                                                    placeholder="Enter Category Name" required>
+                                                <input type="text" class="form-control " name="heading"
+                                                  value="{{ old('heading', $store->heading) }}"  placeholder="Enter Category Name" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
                                                     viewBox="0 0 24 24">
                                                     <g fill="none" stroke="currentColor" stroke-dasharray="16"
@@ -116,27 +121,28 @@
                                                 </svg>
                                                 <h5>{{ \Carbon\Carbon::now()->format('F Y') }}</h5>
                                             </div>
-                                            <div class="wizard-form-error"></div>
+                                            <div class="form-error"></div>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label">Description Content*</label>
                                         <div class="position-relative">
-                                            <textarea id="editor2" name="description" class="form-control" rows="8"></textarea>
+                                            <textarea id="editor2" name="description" class="form-control" rows="8">{{ old('description', $store->description) }}</textarea>
 
-                                            <div class="wizard-form-error"></div>
+                                            <div class="form-error"></div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"
-                                                onchange="toggleDropdown(this, 'dropdown1')">
+                                            <input type="checkbox" name="relat_store" class="form-check-input"
+                                                onchange="toggleDropdown(this, 'dropdown1')"
+                                                {{ $store->relat_store ? 'checked' : '' }}>
                                             Related Stores
                                         </label>
 
-                                       <div class="dropdown w-100" style="display:none" id="dropdown1">
+                                       <div class="dropdown w-100" style="{{ $store->relat_store ? '' : 'display:none;' }}" id="dropdown1">
   <!-- Button -->
   <button 
     class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" 
@@ -169,15 +175,15 @@
   </ul>
 </div>
 </div>
-
-                                        <!-- Second Column -->
-                                        <div class="col-md-4">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
-                                                    onchange="toggleDropdown(this, 'dropdown2')">
-                                                Related Categories
-                                            </label>
-<div class="dropdown w-100 mt-3" id="dropdown2" style="display:none;">
+ <!-- Second Column -->
+<div class="col-md-4">
+    <label class="form-check-label">
+        <input type="checkbox" name="relat_cate" class="form-check-input"
+            onchange="toggleDropdown(this, 'dropdown2')"
+               {{ $store->relat_cate ? 'checked' : '' }}>
+        Related Categories
+    </label>
+<div class="dropdown w-100 mt-3" id="dropdown2" style="{{ $store->relat_cate ? '' : 'display:none;' }}">
   <!-- Button -->
   <button 
     class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" 
@@ -205,13 +211,11 @@
     <ul id="dropdown2-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($categories as $index => $category)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $category->id }}">
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $category->id }}" {{ $store->categories->pluck('category_id')->contains($category->id) ? 'checked' : '' }}>
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $category->name }}</label>
         </div>
       </li>
-     @endforeach
-     
-    
+     @endforeach  
     </ul>
   </ul>
 </div>
@@ -225,11 +229,12 @@
                                         <!-- Third Column -->
                                         <div class="col-md-4">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
-                                                    onchange="toggleDropdown(this, 'dropdown3')">
+                                                <input type="checkbox" name="like_store" class="form-check-input"
+                                                    onchange="toggleDropdown(this, 'dropdown3')"
+                                                    {{ $store->like_store ? 'checked' : '' }}>
                                                 shoppers also like
                                             </label>
-                                           <div class="dropdown w-100 mt-3" id="dropdown3" style="display:none;">
+                                           <div class="dropdown w-100 mt-3"   id="dropdown3" style="{{ $store->like_store ? '' : 'display:none;' }}">
   <!-- Button -->
   <button 
     class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" 
@@ -255,10 +260,10 @@
 
     <!-- Options list -->
     <ul id="dropdown3-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
-      @foreach ($stores as $index => $store)<li> 
+      @foreach ($stores as $index => $storesa)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $store->id }}">
-          <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $store->name }}</label>
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $storesa->id }}" {{ $store->likes->pluck('like_store_id')->contains($storesa->id) ? 'checked' : '' }}>
+          <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $storesa->name }}</label>
         </div>
       </li>
      @endforeach
@@ -267,15 +272,14 @@
     </ul>
   </ul>
 </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"
-                                                    onchange="toggleDropdown(this, 'dropdown4')">
-                                                Trending Brands
-                                            </label>
-                                           <div class="dropdown w-100 mt-3" id="dropdown4" style="display:none;">
-  <!-- Button -->
+</div>
+<div class="col-md-4">
+    <label class="form-check-label">
+        <input type="checkbox" name="trend_store"  class="form-check-input"
+            onchange="toggleDropdown(this, 'dropdown4')"{{ $store->trend_store ? 'checked' : '' }}>
+        Trending Brands
+    </label>
+<div class="dropdown w-100 mt-3" id="dropdown4" style="{{ $store->trend_store ? '' : 'display:none;' }}">
   <button 
     class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" 
     type="button" 
@@ -302,7 +306,7 @@
     <ul id="dropdown4-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($trends as $index => $trend)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $trend->id }}">
+          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="options[]" value="{{ $trend->id }}" {{ $store->trendingWith->pluck('trend_store_id')->contains($trend->id) ? 'checked' : '' }}>
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $trend->name }}</label>
         </div>
       </li>
@@ -314,50 +318,47 @@
 </div>
                                         </div>
 
-                                        <div class="col-md-12">
-                                            <h4>Dynamic Sections below stores Coupons </h4>
-                                            <div id="input-wrapper">
-                                                <!-- First Block -->
-                                                <div class="input-block mb-3 p-3 border rounded">
-                                                    <input type="text" name="name[]" class="form-control mb-2"
-                                                        placeholder="Enter name">
+                                      <div class="col-md-12">
+    <h4>Dynamic Sections below stores Coupons</h4>
 
-                                                    <textarea class="editor form-control" name="description[]" rows="5"></textarea>
+    <div id="input-wrapper">
+        @foreach ($store->dynacontents as $dynacontent)
+            <div class="input-block mb-3 p-3 border rounded">
+                <input type="text" name="dy_heading[]" class="form-control mb-2"
+                       placeholder="Enter name" value="{{ $dynacontent->heading }}">
 
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-sm mt-2 d-flex align-items-center justify-content-center remove-block w-50-px h-50-px ">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24">
-                                                            <path fill="currentColor"
-                                                                d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37zM6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <hr>
-                                                <br />
-                                            </div>
+                <textarea id="editor{{ $loop->index }}" class="editor form-control"
+                          name="dy_description[]" rows="5">{{ $dynacontent->description }}</textarea>
 
-                                            <button type="button" id="add-block"
-                                                class="btn btn-primary mt-3 w-50-px h-50-px"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 48 48">
-                                                    <g fill="none" stroke="currentColor" stroke-linejoin="round"
-                                                        stroke-width="4">
-                                                        <rect width="36" height="36" x="6" y="6" rx="3" />
-                                                        <path stroke-linecap="round" d="M24 16v16m-8-8h16" />
-                                                    </g>
-                                                </svg></button>
-                                        </div>
+                <button type="button"
+                        class="btn btn-danger btn-sm mt-2 d-flex align-items-center justify-content-center remove-block w-50-px h-50-px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                              d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37zM6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2" />
+                    </svg>
+                </button>
+            </div>
+        @endforeach
+    </div>
 
-
-                                     
-                                    </div>
+    <button type="button" id="add-block"
+            class="btn btn-primary mt-3 w-50-px h-50-px">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+             viewBox="0 0 48 48">
+            <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
+                <rect width="36" height="36" x="6" y="6" rx="3"/>
+                <path stroke-linecap="round" d="M24 16v16m-8-8h16"/>
+            </g>
+        </svg>
+    </button>
+</div>
 
 
       <div class="row gy-3">
     <div class="mb-3">
         <label class="form-label">Slug</label>
-        <input type="text" name="slug" class="form-control" value="{{ old('slug', $store->slug) }}" required>
+        <input type="text" name="slug" class="form-control" value="{{ old('slug', $store->slug) }}" >
     </div>
 
 
@@ -378,6 +379,10 @@
     const badge = document.getElementById("dropdown1-count");
     const searchInput = document.getElementById("store-search");
     const toggleBtn = document.getElementById("select-all-toggle");
+     const selectedStores = @json($store->relatedStores->pluck('related_store_id')->toArray());
+    const storew = @json($store);
+    //console.log(selectedStores);
+    console.log(storew);
    function renderStores(categoryId) {
         storeList.innerHTML = "";
 
@@ -390,6 +395,7 @@
         }
 
         filtered.forEach(store => {
+            const isChecked = selectedStores.includes(store.id);
             storeList.insertAdjacentHTML("beforeend", `
                 <li>
                     <div class="form-check d-flex align-items-center">
@@ -397,7 +403,8 @@
                                type="checkbox" 
                                id="store${store.id}" 
                                name="stores[]" 
-                               value="${store.id}">
+                               value="${store.id}"
+                                ${isChecked ? "checked" : ""}>
                         <label class="form-check-label" for="store${store.id}">
                             ${store.name}
                         </label>
@@ -453,6 +460,10 @@
             updateCount();
         }
     });
+
+     if (categorySelect.value) {
+        renderStores(categorySelect.value);
+    }
 });
 
 function initMultiSelect(config) {
@@ -554,9 +565,9 @@ document.addEventListener("DOMContentLoaded", function() {
         initEditor('#editor2');
 
         function toggleDropdown(checkbox, dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.style.display = checkbox.checked ? 'block' : 'none';
-        }
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.style.display = checkbox.checked ? 'block' : 'none';
+}
 
         function initAllEditors() {
             document.querySelectorAll('.editor').forEach(function(el) {
@@ -567,44 +578,51 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        // Generate unique IDs for editors
-        function generateId(prefix = "editor") {
-            return prefix + Math.floor(Math.random() * 1000000);
-        }
+       function generateId() {
+    return 'editor-' + Math.random().toString(36).substr(2, 9);
+}
 
-        // Add new block
-        document.getElementById('add-block').addEventListener('click', function() {
-            const wrapper = document.getElementById('input-wrapper');
+document.getElementById('add-block').addEventListener('click', function () {
+    const wrapper = document.getElementById('input-wrapper');
 
-            const block = document.createElement('div');
-            block.classList.add('input-block', 'mb-3', 'p-3', 'border', 'rounded');
-            const editorId = generateId();
-            block.innerHTML = `<input type="text" name="name[]" class="form-control mb-2" placeholder="Enter name">
-            <textarea id="${editorId}" class="editor form-control" name="description[]" rows="5"></textarea>
-            <button type="button" class="btn btn-danger btn-sm mt-2 remove-block w-50-px h-50-px">  
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37zM6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2"/></svg>
-            </button>`;
-            wrapper.appendChild(block);
-            // Init editor for new textarea
-            setTimeout(() => initEditor('#' + editorId), 100);
-        });
-        // Remove block
-        document.addEventListener('click', function(e) {
-            const btn = e.target.closest('.remove-block');
-            if (btn) {
-                e.preventDefault();
-                btn.closest('.input-block').remove();
-            }
-        });
+    const block = document.createElement('div');
+    block.classList.add('input-block', 'mb-3', 'p-3', 'border', 'rounded');
+    const editorId = generateId();
 
-        // Initialize the first one
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.editor').forEach((el, i) => {
-                if (!el.id) el.id = generateId();
-                setTimeout(() => initEditor('#' + el.id), 100);
-                el.dataset.initialized = true;
-            });
-        });
+    block.innerHTML = `
+        <input type="text" name="name[]" class="form-control mb-2" placeholder="Enter name">
+        <textarea id="${editorId}" class="editor form-control" name="description[]" rows="5"></textarea>
+        <button type="button" class="btn btn-danger btn-sm mt-2 remove-block w-50-px h-50-px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                 viewBox="0 0 24 24">
+                <path fill="currentColor"
+                      d="m20.37 8.91l-1 1.73l-12.13-7l1-1.73l3.04 1.75l1.36-.37l4.33 2.5l.37 1.37zM6 19V7h5.07L18 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2"/>
+            </svg>
+        </button>
+    `;
+
+    wrapper.appendChild(block);
+
+    // Initialize editor for new textarea
+    setTimeout(() => initEditor('#' + editorId), 100);
+});
+
+// Remove block
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.remove-block');
+    if (btn) {
+        e.preventDefault();
+        btn.closest('.input-block').remove();
+    }
+});
+
+// Initialize existing editors
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.editor').forEach((el) => {
+        if (!el.id) el.id = generateId();
+        setTimeout(() => initEditor('#' + el.id), 100);
+    });
+});
 
 
 

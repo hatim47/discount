@@ -4,20 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StoreRelated extends Model
+class StoreTrend extends Model
 {
     protected $fillable = [
         'store_id',
-        'related_store_id',
+        'trend_store_id',
     ];
 
+    // Parent store
     public function store()
     {
         return $this->belongsTo(Store::class, 'store_id');
-    }
-
-    public function likeStore()
-    {
-        return $this->belongsTo(Store::class, 'related_store_id');
     }
 }
