@@ -1,118 +1,14 @@
 @extends('adminn.layout.layout')
 @php
-    $title = 'Wizard';
-    $subTitle = 'Wizard';
-    $script = ' <script>
-        // =============================== Wizard Step Js Start ================================
-        $(document).ready(function() {
-            // click on next button
-            $(".form-wizard-next-btn").on("click", function() {
-                var parentFieldset = $(this).parents(".wizard-fieldset");
-                var currentActiveStep = $(this).parents(".form-wizard").find(".form-wizard-list .active");
-                var next = $(this);
-                var nextWizardStep = true;
-                parentFieldset.find(".wizard-required").each(function() {
-                    var thisValue = $(this).val();
-
-                    if (thisValue == "") {
-                        $(this).siblings(".wizard-form-error").show();
-                        nextWizardStep = false;
-                    } else {
-                        $(this).siblings(".wizard-form-error").hide();
-                    }
-                });
-                if (nextWizardStep) {
-                    next.parents(".wizard-fieldset").removeClass("show", "400");
-                    currentActiveStep.removeClass("active").addClass("activated").next().addClass("active",
-                        "400");
-                    next.parents(".wizard-fieldset").next(".wizard-fieldset").addClass("show", "400");
-                    $(document).find(".wizard-fieldset").each(function() {
-                        if ($(this).hasClass("show")) {
-                            var formAtrr = $(this).attr("data-tab-content");
-                            $(document).find(".form-wizard-list .form-wizard-step-item").each(
-                                function() {
-                                    if ($(this).attr("data-attr") == formAtrr) {
-                                        $(this).addClass("active");
-                                        var innerWidth = $(this).innerWidth();
-                                        var position = $(this).position();
-                                        $(document).find(".form-wizard-step-move").css({
-                                            "left": position.left,
-                                            "width": innerWidth
-                                        });
-                                    } else {
-                                        $(this).removeClass("active");
-                                    }
-                                });
-                        }
-                    });
-                }
-            });
-            //click on previous button
-            $(".form-wizard-previous-btn").on("click", function() {
-                var counter = parseInt($(".wizard-counter").text());;
-                var prev = $(this);
-                var currentActiveStep = $(this).parents(".form-wizard").find(".form-wizard-list .active");
-                prev.parents(".wizard-fieldset").removeClass("show", "400");
-                prev.parents(".wizard-fieldset").prev(".wizard-fieldset").addClass("show", "400");
-                currentActiveStep.removeClass("active").prev().removeClass("activated").addClass("active",
-                    "400");
-                $(document).find(".wizard-fieldset").each(function() {
-                    if ($(this).hasClass("show")) {
-                        var formAtrr = $(this).attr("data-tab-content");
-                        $(document).find(".form-wizard-list .form-wizard-step-item").each(
-                            function() {
-                                if ($(this).attr("data-attr") == formAtrr) {
-                                    $(this).addClass("active");
-                                    var innerWidth = $(this).innerWidth();
-                                    var position = $(this).position();
-                                    $(document).find(".form-wizard-step-move").css({
-                                        "left": position.left,
-                                        "width": innerWidth
-                                    });
-                                } else {
-                                    $(this).removeClass("active");
-                                }
-                            });
-                    }
-                });
-            });
-            //click on form submit button
-            $(document).on("click", ".form-wizard .form-wizard-submit", function() {
-                var parentFieldset = $(this).parents(".wizard-fieldset");
-                var currentActiveStep = $(this).parents(".form-wizard").find(".form-wizard-list .active");
-                parentFieldset.find(".wizard-required").each(function() {
-                    var thisValue = $(this).val();
-                    if (thisValue == "") {
-                        $(this).siblings(".wizard-form-error").show();
-                    } else {
-                        $(this).siblings(".wizard-form-error").hide();
-                    }
-                });
-            });
-            // focus on input field check empty or not
-            $(".form-control").on("focus", function() {
-                var tmpThis = $(this).val();
-                if (tmpThis == "") {
-                    $(this).parent().addClass("focus-input");
-                } else if (tmpThis != "") {
-                    $(this).parent().addClass("focus-input");
-                }
-            }).on("blur", function() {
-                var tmpThis = $(this).val();
-                if (tmpThis == "") {
-                    $(this).parent().removeClass("focus-input");
-                    $(this).siblings(".wizard-form-error").show();
-                } else if (tmpThis != "") {
-                    $(this).parent().addClass("focus-input");
-                    $(this).siblings(".wizard-form-error").hide();
-                }
-            });
-        });
-        // =============================== Wizard Step Js End ================================
-    </script>
-             <script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
-   <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-    <script>
+    $title='Basic Table';
+    $subTitle = 'Basic Table';
+    $script = '<script>
+                    let table = new DataTable("#dataTable");
+                   
+               </script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+<script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
+                <script>
         var route_prefix = "'. url('/laravel-filemanager') .'";
         $("#lfm").filemanager("image", {
             prefix: route_prefix
@@ -121,76 +17,19 @@
             prefix: route_prefix
         });
     </script>';
-
 @endphp
 
 @section('content')
-    <div class="row gy-4 justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('store.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="d-flex justify-content-between ">
-                            <div class="">
-                                <h6 class="mb-4 text-xl">Store adding</h6>
-                                <p class="text-neutral-500">Fill up your details and proceed next steps.</p>
-                            </div>
-                            <div class="form-switch switch-primary d-flex align-items-center gap-3">
-                                <label class="form-check-label line-height-1 fw-medium text-secondary-light"
-                                    for="switch1">Hide</label>
-                                <input type="hidden" name="status" value="0">
-
-                                <!-- Checkbox overrides hidden value when checked -->
-                                <input class="form-check-input" type="checkbox" role="switch" name="status" id="switch1"
-                                    value="1" checked>
-
-                                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">
-                                    Show / Active</label>
-                            </div>
-                        </div>
-                        <!-- Form Wizard Start -->
-                        <div class="form-wizard">
-                            <div class="form-wizard-header overflow-x-auto scroll-sm pb-8 my-32">
-                                <ul class="list-unstyled form-wizard-list style-two">
-                                    <li class="form-wizard-list__item active">
-                                        <div class="form-wizard-list__line">
-                                            <span class="count">1</span>
-                                        </div>
-                                        <span class="text text-xs fw-semibold">Store start </span>
-                                    </li>
-                                    <li class="form-wizard-list__item">
-                                        <div class="form-wizard-list__line">
-                                            <span class="count">2</span>
-                                        </div>
-                                        <span class="text text-xs fw-semibold">Website Data </span>
-                                    </li>
-                                    <li class="form-wizard-list__item">
-                                        <div class="form-wizard-list__line">
-                                            <span class="count">3</span>
-                                        </div>
-                                        <span class="text text-xs fw-semibold">Seo Date </span>
-                                    </li>
-                                    <li class="form-wizard-list__item">
-                                        <div class="form-wizard-list__line">
-                                            <span class="count">4</span>
-                                        </div>
-                                        <span class="text text-xs fw-semibold">Completed</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <fieldset class="wizard-fieldset show">
-                                <h6 class="text-md text-neutral-500">Category Information</h6>
-                                <div class="row gy-3">
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Store Name*</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control wizard-required" name="name"
-                                                placeholder="Enter Category Name" required>
-                                            <div class="wizard-form-error"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
+<form action="{{ route('store.update', $store->id) }}" id="editStoreForm" method="POST">
+      <div class="row gy-3">
+    @csrf
+    @method('PUT')
+<div class="col-sm-2">
+    <div class="mb-3">
+        <label class="form-label">Store Name</label>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $store->name) }}" required>
+    </div>
+</div>               <div class="col-sm-3">
                                         <label class="form-label">Category Name*</label>
                                         <div class="position-relative">
 
@@ -207,37 +46,32 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Logo *</label>
-                                        <div class="position-relative">
-                                            <div class="mb-3">
-
-                                                <div class="input-group">
-                                                    <input id="logo" class="form-control wizard-required"
-                                                        type="text" name="logo" required>
-                                                    <span class="input-group-btn">
-                                                        <button id="lfm" data-input="logo" data-preview="holder"
-                                                            class="btn btn-primary">
-                                                            Choose
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                                <div class="wizard-form-error"></div>
-                                                <img id="holder" style="margin-top:15px;max-height:100px;">
-                                            </div>
-                                            {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
+<div class="col-sm-2">
+    <label class="form-label">Logo</label>
+<div class="mb-3 d-flex">
+    <div class="input-group">
+        <input id="logo" class="form-control" type="hidden" name="logo" value="{{ old('logo', $store->logo) }}">
+        <span class="input-group-btn">
+         <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
+                Choose
+            </button>
+        </span>
+    </div>
+    <div id="logo-holder " style="max-height:100px;">
+        @if($store->logo)
+            <img src="{{ $store->logo }}" class="border border-4" width="80" class="mt-2">
+        @endif
+    </div>
+</div>
+</div>
+<div class="col-sm-5">
                                         <label class="form-label">Cover Image *</label>
                                         <div class="position-relative">
                                             <div class="mb-3">
 
                                                 <div class="input-group">
-                                                    <input id="image" class="form-control" type="text"
-                                                        name="image">
+                                                    <input id="image" class="form-control" type="hidden"
+                                                        name="image" value="{{ old('image', $store->image) }}">
                                                     <span class="input-group-btn">
                                                         <button id="lfms" data-input="image" data-preview="holder"
                                                             class="btn btn-primary">
@@ -245,24 +79,20 @@
                                                         </button>
                                                     </span>
                                                 </div>
-                                                <img id="holder" style="margin-top:15px;max-height:100px;">
+                                                 @if($store->image)
+            <img src="{{ $store->image }}" id="holder" class="border border-4" width="80" class="mt-2">
+        @endif
                                             </div>
                                             {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
                                             <div class="wizard-form-error"></div>
                                         </div>
                                     </div>
+</div>
+        <hr>
+      
 
-
-                                    <div class="form-group text-end">
-                                        <button type="button"
-                                            class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="wizard-fieldset">
-                                <h6 class="text-md text-neutral-500">Website Information</h6>
-                                <div class="row gy-3">
+<div class="row gy-3">
+ <label class="form-label">Website Information</label>
                                     <div class="col-12">
                                         <label class="form-label">Heading *</label>
                                         <div class="position-relative">
@@ -520,74 +350,27 @@
                                         </div>
 
 
-                                        <div class="form-group d-flex align-items-center justify-content-end gap-8">
-                                            <button type="button"
-                                                class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
-                                            <button type="button"
-                                                class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
-                                        </div>
+                                     
                                     </div>
-                            </fieldset>
 
-                            <fieldset class="wizard-fieldset">
-                                <h6 class="text-md text-neutral-500">SEO Information</h6>
-                                <div class="row gy-3">
-                                    <div class="col-sm-6">
-                                        <label class="form-label">URL SLUG*</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control wizard-required" name="slug"
-                                                placeholder="Enter Slug" required>
-                                            <div class="wizard-form-error"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Store URL (Website)*</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control wizard-required" name="link"
-                                                placeholder="Enter url" required>
-                                            <div class="wizard-form-error"></div>
-                                        </div>
-                                    </div>
-                                
 
-                                    <div class="form-group d-flex align-items-center justify-content-end gap-8">
-                                        <button type="button"
-                                            class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
-                                        <button type="button"
-                                            class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="wizard-fieldset">
-                                <div class="text-center mb-40">
-                                    <img src="{{ asset('assets/images/gif/success-img3.gif') }}" alt=""
-                                        class="gif-image mb-24">
-                                    <h6 class="text-md text-neutral-600">Congratulations </h6>
-                                    <p class="text-neutral-400 text-sm mb-0">Well done! You have successfully completed.
-                                    </p>
-                                </div>
-                                <div class="form-group d-flex align-items-center justify-content-end gap-8">
-                                    <button type="button"
-                                        class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
-                                    <button type="submit"
-                                        class="form-wizard-submit btn btn-primary-600 px-32">Publish</button>
-                                </div>
-                            </fieldset>
-
-                        </div>
-                        <!-- Form Wizard End -->
-
-                    </form>
-                </div>
-            </div>
-        </div>
+      <div class="row gy-3">
+    <div class="mb-3">
+        <label class="form-label">Slug</label>
+        <input type="text" name="slug" class="form-control" value="{{ old('slug', $store->slug) }}" required>
     </div>
-@endsection
 
+
+
+    <button type="submit" class="btn btn-success">Save</button>
+</div>
+</form>
+@endsection
 @push('scripts')
-    <script>
-        const allStores = @json($stores);
+
+<script>
+
+    const allStores = @json($stores);
         document.addEventListener("DOMContentLoaded", function() {
              const categorySelect = document.getElementById("depart");
     const storeList = document.getElementById("store-list");
@@ -822,5 +605,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 el.dataset.initialized = true;
             });
         });
-    </script>
+
+
+
+</script>
 @endpush

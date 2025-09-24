@@ -3,12 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    
+
+    <title>{{ config('app.name', 'My Marketing Site') }}</title>
+
+    {{-- Tailwind & Vite --}}
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+
+    {{-- Custom CSS per page --}}
+    @stack('styles')
 </head>
-<body>
-    <div id="root"><div class="flex items-center justify-center min-h-screen text-2xl text-gray-700">Loading...</div></div>
+<body class="bg-white flex flex-col min-h-screen">
+
+    {{-- Header --}}
+    @include('website.layouts.header')
+
+    {{-- Main content --}}
+    <main class="flex-grow">
+        @yield('content')
+    </main>
+
+    {{-- Footer --}}
+    @include('website.layouts.footer')
+
+    {{-- Custom JS per page --}}
+    @stack('scripts')
 </body>
 </html>

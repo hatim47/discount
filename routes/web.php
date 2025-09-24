@@ -21,9 +21,10 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 
-Route::get('/', function () {
-    return view('website.home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
 });
@@ -35,6 +36,9 @@ Route::get('admin/cate','add')->name('cate.add');
 Route::get('admin/categories/show/{id}','show')->name('cate.show');});
 
 
+// Route::get('slug',[StoreController::class, 'slug'])->name('calendar');
+// Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
+Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
 Route::resource('admin/categories', CategoryController::class);
 Route::resource('admin/store', StoreController::class);
 Route::resource('admin/coupon', CouponController::class);
@@ -52,6 +56,8 @@ Route::resource('admin/event', EventController::class);
 
 
 Route::controller(HomeController::class)->group(function () {
+ 
+
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');
     Route::get('chatempty','chatempty')->name('chatempty');

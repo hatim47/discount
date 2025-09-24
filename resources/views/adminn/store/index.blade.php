@@ -5,9 +5,7 @@
     $script = '<script>
                     let table = new DataTable("#dataTable");
                    
-               </script>
-<script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
-               ';
+               </script> ';
 @endphp
 
 @section('content')
@@ -78,8 +76,8 @@
                    <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
                     <td> {{ $store->created_at->format('d M Y') }} </td>
                     <td>
-                    <a href="javascript:void(0)" 
-           data-id="{{ $store->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <a href="{{ route('store.edit', $store->id) }}" 
+           data-id="{{ $store->id }}" class=" w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
         </a>
@@ -98,19 +96,7 @@
                 </div>
             </div>
 <!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="editCategoryBody">
-                <!-- The edit form will be loaded here -->
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 @push('scripts')
 

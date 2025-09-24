@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Store;
+use Illuminate\Support\Str;
 class StoreController extends Controller
 {
     public function index()
@@ -14,8 +15,10 @@ class StoreController extends Controller
     }
     public function create()
     {
+        $stores = Store::all();
+        $trends = Store::where('trend', true)->get();
         $categories = Category::all(); // Fetch categories for the dropdown
-        return view('adminn.store.add', compact('categories'));
+        return view('adminn.store.add', compact('categories', 'stores','trends'));
     }
     public function store(Request $request)
     {
@@ -57,13 +60,16 @@ class StoreController extends Controller
     public function show($id)
     {
         $store = Store::findOrFail($id);
+        
         return response()->json($store);
     }
     public function edit($id)
     {
         $store = Store::findOrFail($id);
+         $stores = Store::all();
         $categories = Category::all(); // Fetch categories for the dropdown
-        return view('adminn.store._form', compact('store', 'categories'));               
+        $trends = Store::where('trend', true)->get();        
+        return view('adminn.store.edit', compact('store', 'categories','trends','stores'));               
     }
     public function update(Request $request, $id)
     {
@@ -106,10 +112,17 @@ if ($request->hasFile('logo')) {
     {
         $store = Store::findOrFail($id);
         $store->delete();
-
         return redirect()->route('adminn.store.index')
                          ->with('success', 'Store deleted successfully.');
     }
 
-
+    public function website($slug)
+    {
+       
+        $store = Store::where('slug', $slug)->firstOrFail();
+        $coupons = $store->coupons;
+    return view('website.store', compact('store','coupons'));
+        // return view('website.store');
+    }
+    
 }
