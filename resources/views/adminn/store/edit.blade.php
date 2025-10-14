@@ -19,7 +19,7 @@
 @endphp
 
 @section('content')
-    <form action="{{ route('store.update', $store->id) }}" id="editStoreForm" method="POST">
+    <form action="{{ route('store.update', $store->id) }}" id="editStoreForm" method="POST" enctype="multipart/form-data">
         @csrf
 
         @method('PUT')
@@ -93,13 +93,35 @@
                     <div class="form-error"></div>
                 </div>
             </div>
+        <hr class=" border-4 ">
+         <hr class=" border-4 ">
         </div>
-        <hr>
+           
 
 
         <div class="row gy-3">
-            <label class="form-label">Website Information</label>
-            <div class="col-12">
+            <h4 class="form-label ">Website Information</h4>
+            
+               <hr class=" border-4 ">
+              <hr class=" border-4 ">
+            <div class="col-md-12  d-flex flex-column">
+ <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
+
+                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    
+                        <input type="checkbox" name="trend" class="btn-check" id="btncheck1" value="1" {{ old('trend', $store->trend) ? 'checked' : '' }}>                       
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
+                       
+                        <input type="checkbox" class="btn-check" name="feature" id="btncheck11" value="1" {{ old('feature', $store->feature) ? 'checked' : '' }}>
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
+                        
+                        <input type="checkbox" class="btn-check" name="recom" id="btncheck12" value="1" {{ old('recom', $store->recom) ? 'checked' : '' }}>                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+                       
+                
+</div>
+                    </div>
+  <div class="col-12">
                 <label class="form-label">Heading *</label>
                 <div class="position-relative">
                     <div class="d-flex text-nowrap align-items-center">
@@ -206,8 +228,8 @@
                                 <li>
                                     <div class="form-check d-flex align-items-center">
                                         <input class="form-check-input multi-option" type="checkbox"
-                                            id="opt{{ $index + 1 }}" name="options[]" value="{{ $category->id }}"
-                                            {{ $store->categories->pluck('category_id')->contains($category->id) ? 'checked' : '' }}>
+                                            id="opt{{ $index + 1 }}" name="relat_cate_options[]" value="{{ $category->id }}"
+                                            {{ $store->categories->contains($category->id) ? 'checked' : '' }}>
                                         <label class="form-check-label"
                                             for="opt{{ $index + 1 }}">{{ $category->name }}</label>
                                     </div>
@@ -258,8 +280,8 @@
                                 <li>
                                     <div class="form-check d-flex align-items-center">
                                         <input class="form-check-input multi-option" type="checkbox"
-                                            id="opt{{ $index + 1 }}" name="options[]" value="{{ $storesa->id }}"
-                                            {{ $store->likes->pluck('like_store_id')->contains($storesa->id) ? 'checked' : '' }}>
+                                            id="opt{{ $index + 1 }}" name="like_store_options[]" value="{{ $storesa->id }}"
+                                            {{ $store->likes->contains($storesa->id) ? 'checked' : '' }}>
                                         <label class="form-check-label"
                                             for="opt{{ $index + 1 }}">{{ $storesa->name }}</label>
                                     </div>
@@ -305,8 +327,8 @@
                                 <li>
                                     <div class="form-check d-flex align-items-center">
                                         <input class="form-check-input multi-option" type="checkbox"
-                                            id="opt{{ $index + 1 }}" name="options[]" value="{{ $trend->id }}"
-                                            {{ $store->trendingWith->pluck('trend_store_id')->contains($trend->id) ? 'checked' : '' }}>
+                                            id="opt{{ $index + 1 }}" name="trend_store_options[]" value="{{ $trend->id }}"
+                                            {{ $store->trendingWith->contains($trend->id) ? 'checked' : '' }}>
                                         <label class="form-check-label"
                                             for="opt{{ $index + 1 }}">{{ $trend->name }}</label>
                                     </div>
@@ -375,15 +397,16 @@
             const badge = document.getElementById("dropdown1-count");
             const searchInput = document.getElementById("store-search");
             const toggleBtn = document.getElementById("select-all-toggle");
-            const selectedStores = @json($store->relatedStores->pluck('related_store_id')->toArray());
+            const selectedStores = @json($store->relatedStores->toArray());
             const storew = @json($store);
-            //console.log(selectedStores);
-            console.log(storew);
+            console.log(selectedStores);
+            //console.log(storew);
 
             function renderStores(categoryId) {
                 storeList.innerHTML = "";
 
                 const filtered = allStores.filter(s => s.category_id == categoryId);
+console.log(filtered);
 
                 if (filtered.length === 0) {
                     storeList.innerHTML = '<li class="text-muted small fst-italic">No stores found</li>';
@@ -392,7 +415,8 @@
                 }
 
                 filtered.forEach(store => {
-                    const isChecked = selectedStores.includes(store.id);
+                  const isChecked = selectedStores.some(s => s.id === store.id);
+                    console.log(isChecked);
                     storeList.insertAdjacentHTML("beforeend", `
                 <li>
                     <div class="form-check d-flex align-items-center">
@@ -588,8 +612,8 @@
             const editorId = generateId();
 
             block.innerHTML = `
-        <input type="text" name="name[]" class="form-control mb-2" placeholder="Enter name">
-        <textarea id="${editorId}" class="editor form-control" name="description[]" rows="5"></textarea>
+        <input type="text" name="dy_heading[]" class="form-control mb-2" placeholder="Enter name">
+        <textarea id="${editorId}" class="editor form-control" name="dy_description[]" rows="5"></textarea>
         <button type="button" class="btn btn-danger btn-sm mt-2 remove-block w-50-px h-50-px">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                  viewBox="0 0 24 24">

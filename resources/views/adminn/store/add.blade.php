@@ -266,8 +266,9 @@
 
 
                                 <div class="row gy-3">
-                                                 <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
-
+<label class="form-label">Select one or more tags to highlight this coupon 
+(e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
+                            
                                           <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                     
                                     <input type="checkbox" name="trend" class="btn-check" id="btncheck1">                        

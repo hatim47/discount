@@ -10,6 +10,7 @@ use App\Models\StoreRelated;
 use App\Models\StoreRelatedCategory;
 use App\Models\StoreTrend;
 use App\Models\Store;
+use App\Models\Coupon;
 use Illuminate\Support\Str;
 
 class StoreController extends Controller
@@ -161,7 +162,7 @@ class StoreController extends Controller
     ])->findOrFail($id);
 
     // For dropdowns/multiselects
-        // dd($store);
+         //dd($store);
          $stores = Store::all();
         $categories = Category::all(); // Fetch categories for the dropdown
         $trends = Store::where('trend', true)->get();        
@@ -169,55 +170,61 @@ class StoreController extends Controller
     }
     public function update(Request $request, $id)
     {
-       dd($request->all());
-       
+       //dd($request->all());
         $store = Store::findOrFail($id);
 
     // ----------------------------
     // 1) VALIDATION
     // ----------------------------
-    $validated = $request->validate([
-        'name'        => 'required|string|max:255',
-        'slug'        => 'required|string|max:255|unique:stores,slug,' . $store->id,
+   try {
+     $validated = $request->validate([
+        'name'        => 'required|string|max:255',       
         'logo'        => 'nullable|string', // since LFM returns URL
         'image'       => 'nullable|string',
         'link'        => 'nullable|string|max:255',
         'category_id' => 'required|exists:categories,id',
-
+        'heading'     => 'nullable|string',
+        'description' => 'nullable|string',
         // Dynamic content
-        'name'        => 'nullable|array',
-        'name.*'      => 'nullable|string|max:255',
-        'description' => 'nullable|array',
-        'description.*'=> 'nullable|string',
-    ]);
+        'dy_heading'        => 'nullable|array',
+        'dy_heading.*'      => 'nullable|string|max:255',
+        'dy_description' => 'nullable|array',
+        'dy_description.*'=> 'nullable|string',
+        ]);
+} catch (\Illuminate\Validation\ValidationException $e) {
+    dd($e->errors()); // 👈 see exactly what fails
+}
 
     // ----------------------------
     // 2) UPDATE STORE CORE FIELDS
     // ----------------------------
-    $store->update($request->only([
-        'name',
-        'slug',
-        'logo',
-        'image',
-        'link',
-        'category_id',
-        'status',
-        'trend',
-        'recom',
-        'relat_store',
-        'relat_cate',
-        'like_store',
-    ]));
+  $store->update([
+    'name'        => $request->name,
+    'slug'        => $request->slug,
+    'logo'        => $request->logo,
+    'image'       => $request->image,
+    'link'        => $request->link,
+    'heading'    => $request->heading,
+    'description'=> $request->description,
+    'category_id' => $request->category_id,
+    'status'      => $request->status ?? 0,
+    'trend'       => $request->has('trend') ? 1 : 0,
+    'recom'       => $request->has('recom') ? 1 : 0,
+    'relat_store' => $request->has('relat_store') ? 1 : 0,
+    'relat_cate'  => $request->has('relat_cate') ? 1 : 0,
+    'like_store'  => $request->has('like_store') ? 1 : 0,
+    'trend_store'  => $request->has('trend_store') ? 1 : 0,
+]);
 
     // ----------------------------
     // 3) SYNC PIVOT RELATIONSHIPS
     // ----------------------------
 
-    // Related Categories
+    //Related Categories
     if ($request->has('relat_cate_options')) {
-        $store->relatedCategories()->sync($request->relat_cate_options);
+        $store->categories()->sync($request->relat_cate_options);
     } else {
-        $store->relatedCategories()->sync([]);
+        $store->categories()->sync([]);
     }
 
     // Related Stores
@@ -235,8 +242,8 @@ class StoreController extends Controller
     }
 
     // Trending With Stores
-    if ($request->has('trending_with')) {
-        $store->trendingWith()->sync($request->trending_with);
+    if ($request->has('trend_store_options')) {
+        $store->trendingWith()->sync($request->trend_store_options);
     } else {
         $store->trendingWith()->sync([]);
     }
@@ -246,12 +253,12 @@ class StoreController extends Controller
     // ----------------------------
     $store->dynacontents()->delete(); // remove old
 
-    if ($request->has('name')) {
-        foreach ($request->name as $i => $heading) {
-            if (!empty($heading) || !empty($request->description[$i])) {
+    if ($request->has('dy_heading')) {
+        foreach ($request->dy_heading as $i => $heading) {
+            if (!empty($heading) || !empty($request->dy_description[$i])) {
                 $store->dynacontents()->create([
-                    'name'        => $heading,
-                    'description' => $request->description[$i] ?? null,
+                    'heading'        => $heading,
+                    'description' => $request->dy_description[$i] ?? null,
                 ]);
             }
         }
@@ -283,9 +290,33 @@ class StoreController extends Controller
     public function website($slug)
     {
        
-        $store = Store::where('slug', $slug)->firstOrFail();
-        $coupons = $store->coupons;
-    return view('website.store', compact('store','coupons'));
+        // $store = Store::where('slug', $slug)->firstOrFail();
+         $store = Store::with([
+        'dynacontents',
+        'trendingWith',      
+        'categories',
+        'relatedStores',        
+           'likes' => function ($q) {
+        $q->withCount([
+            'coupons as coupons_with_code_count' => function ($query) {
+                $query->whereNotNull('code')
+                      ->where('code', '!=', ''); // only coupons with a code
+            }
+        ]);
+    }
+              
+    ])->where('slug', $slug)->firstOrFail();
+
+    // For dropdowns/multiselects
+         //dd($store);
+        $stores = Store::all();
+        $categories = Category::all(); // Fetch categories for the dropdown
+        $trends = Store::where('trend', true)->get(); 
+        // $coupons = $store->coupons;
+          $coupons = Coupon::where('store_id', $store->id)
+        ->latest()
+        ->paginate(10);
+    return view('website.store', compact('store','coupons','categories','trends','stores'));
         // return view('website.store');
     }
     

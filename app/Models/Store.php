@@ -47,7 +47,11 @@ class Store extends Model
     // Optional: likes, related, events, etc.
     public function likes()
     {
-        return $this->hasMany(StoreLike::class);
+        return $this->belongsToMany(    Store::class,        
+        'store_likes',    
+        'store_id',          
+        'like_store_id'   
+    );
     }
 
     public function events()
@@ -61,16 +65,30 @@ class Store extends Model
 
     public function trendingWith()
     {
-        return $this->hasMany(StoreTrend::class, 'store_id');
+        return $this->belongsToMany(
+            Store::class,
+            'store_trends',
+            'store_id',
+            'trend_store_id'
+        );
     }
 
     public function categories()
     {
-        return $this->hasMany(StoreRelatedCategory::class, 'store_id');
+       return $this->belongsToMany(
+        Category::class,
+        'store_related_categories', 
+        'store_id',                 
+        'category_id'               
+    );
     }
 
     public function relatedStores()
     {
-        return $this->hasMany(StoreRelated::class, 'store_id');
+        return $this->belongsToMany(      Store::class,        
+        'store_related',    
+        'store_id',          
+        'related_store_id'   
+    );
     }
 }

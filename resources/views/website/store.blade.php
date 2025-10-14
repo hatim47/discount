@@ -2,6 +2,65 @@
 
 @section('title', 'Welcome to ' . config('website.company.name'))
 @section('meta_description', 'Best marketing platform to grow your business.')
+@push('styles')
+<style>
+ {
+    overflow-x: auto;
+}
+
+/* Base table styling */
+ table {
+    width: 100%;
+    border-collapse: collapse; /* Essential for clean borders */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Header row styling */
+ thead {
+    background-color: #FAF9F5; /* Light gray background */
+    border-bottom: 2px solid #1EC27E; /* Separator line below header */
+}
+
+/* Header cell styling */
+ th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+/* Data cell styling */
+ td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #1EC27E; /* Light separator line for rows */
+}
+
+/* Alternating row colors (zebra stripping) */
+ tbody tr:nth-child(even) {
+    background-color: #FAF9F5; /* Very light subtle contrast */
+}
+
+/* Hover effect for rows */
+ tbody tr:hover {
+   
+    cursor: default; /* Optional: indicates interactivity */
+}
+
+h4{
+    font-weight:600;
+font-size:22px;
+}
+
+h3{
+  font-weight:700;
+font-size:30px;
+
+}
+</style>
+@endpush
 
 @section('content')
     <section class="bg-[#FAF9F5] text-[#0F0F0F]">
@@ -72,114 +131,48 @@
  <section class="bg-[#F2F0E6] text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6  gap-6  grid grid-cols-1 lg:grid-cols-10">
      {{-- column one start  --}}
-    <div class="flex flex-col ms-3 gap-6 lg:col-span-7"> 
+    <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
+     <div id="coupon-list" class="flex flex-col ms-3 gap-6  lg:col-span-7"> 
+   
+
     @foreach($coupons as $coupon)
-<article class="w-full flex justify-between bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300">
-<div class="flex  items-center gap-3 sm:gap-6">
-<div class="flex flex-col items-center border-2 rounded-md 
-            {{ $coupon->deals == 0 ? 'border-yellow-300' : 'border-sky-300' }}"> 
-  <img src="{{ $coupon->store['logo'] }}" 
-       alt="{{ $coupon->store['name'] }}" 
-       loading="lazy" 
-       class="w-20 h-20 rounded-md shadow-md" />
+        @include('website.couponspart', ['coupon' => $coupon])
+    @endforeach
 
-  @if($coupon->deals == 0)
-    <span class="text-[#0f0f0f] bg-yellow-300 uppercase w-full text-center text-xs sm:text-sm">
-      Code
-    </span>
-  @else
-    <span class="text-[#0f0f0f] bg-sky-300 uppercase w-full text-center text-xs sm:text-sm">
-      Deal
-    </span>
-  @endif
-
-
-
-</div>
-  <div class="flex flex-col  items-start gap-3 sm:gap-6">
-
-   @if($coupon->verified)
-        <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl">Verified</span>
-        @else
-         <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
-    @endif
-     <div class="flex flex-col justify-between items-start gap-3">
-  <h2 class="text-[#0f0f0f] text-lg sm:text-xl">{{ $coupon['title']  }}</h2>
-
-
- <p class="text-xs sm:text-sm text-[#0f0f0f]">View Terms</p>
-
-</div>
-</div>
-</div>
- 
-
-
-
-  <div class="flex flex-col w-16 sm:w-48 items-end sm:items-center justify-between">
-<span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
- @if($coupon->deals == 0) 
-                        <button
-      aria-label="Reveal Code"
-      data-code="{{$coupon['code']}}"
-      data-text=" Reveal Code"
-      class="
-        relative z-10 overflow-hidden 
-       hidden md:inline-flex items-center justify-center 
-        w-full px-6 py-2 rounded-lg font-light text-white 
-        bg-[#1EC27E] shadow-md 
-        before:content-[attr(data-code)] before:tracking-widest before:inline-flex 
-        before:absolute before:top-0 before:right-0 before:h-full before:w-16 
-        before:items-center before:justify-end before:pr-3
-        before:border-2 before:border-dashed before:border-l-0 before:border-[#1EC27E]
-        before:rounded-r-lg before:bg-[#F2F0E6] before:text-[#0F0F0F] before:uppercase before:text-sm 
-         before:-z-1 after:content-[''] after:absolute after:top-0 after:right-[34px] after:h-[calc(100%+2px)] after:w-full
-        after:bg-[#1EC27E] after: after:transition-all after:duration-200 after:ease-in-out  after:-z-1
-        font-normal text-base  after:skew-x-[25deg] hover:after:right-[45px] hover:after:shadow-[5px_0_5px_0_rgba(0,0,0,0.25)]
-      "
-    > 
-      Reveal Code
-      <!-- Mobile Arrow -->
+    </div> 
     
-    </button>
-    <button 
-      aria-label="Reveal Code" 
-      class="md:hidden w-10 h-10 flex items-center justify-end 
-             rounded-full  text-[#1EC27E] text-xl "
-    >
-     <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 256 512"><path fill="currentColor" d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256L41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
-    </button>
-    @else
- <button onclick="copyCode('{{ $coupon->code }}')" 
-                    class="w-48 hidden md:inline-block  bg-[#1EC27E] text-white px-4 py-2 rounded hover:bg-[#1EC27E]">
-                Get Deal
-            </button>  
-            <button 
-      aria-label="Reveal Code" 
-      class="md:hidden w-10 h-10 flex items-center justify-end 
-             rounded-full  text-[#1EC27E] text-xl "
-    >
-     <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 256 512"><path fill="currentColor" d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256L41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
-    </button>            @endif
+     
+     @if ($coupons->hasMorePages())
+    <div class="text-center mt-6">
+        <button 
+            id="loadMore" 
+            data-next-page="{{ $coupons->nextPageUrl() }}" 
+            class="bg-[#1EC27E] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+        >
+            Load More
+        </button>
+    </div>
+@endif
 
-              @php
-    $views = $coupon->view;
-    if ($views >= 1000000) {
-        $views = round($views / 1000000, 1) . 'M';
-    } elseif ($views >= 1000) {
-        $views = round($views / 1000, 1) . 'k';
-    }
-@endphp
-   <p class="text-xs text-[#0f0f0f]/80"> {{ $views }} Used
-  </p>
-        </div>       
-    </article>
 
-       
-        @endforeach 
-      
-    
+<div class="card">
+  @foreach ($store->dynacontents as $index => $relateds)
+ <div class="bg-white rounded-xl w-full my-5 shadow overflow-hidden" id="{{$index}}">
+    <h3 class="border-gray-800/20 border-b px-8 text-xl py-4 font-bold text-[#0f0f0f0] ">{{$relateds->heading}} 
+</h3>
+    <div class="flex flex-col  text-[#0f0f0f0] p-8">
+        {{-- {{dd ($store->likes);}} --}}
+
+{!! $relateds->description !!}
+
+    </div>
+  </div>
+    @endforeach
+</div> 
+
      </div> 
+
+    
           {{-- column one end  --}}
 
           {{-- column two start --}}
@@ -202,7 +195,7 @@
   </div>
 
   <!-- Offer Summary -->
-  <div class="bg-white rounded-xl shadow p-4">
+  <div class="bg-white w-full rounded-xl shadow p-4">
     <h3 class="font-bold text-lg text-gray-900">
       Today's Hand Tested Discount Code
     </h3>
@@ -219,7 +212,7 @@
   </div>
 
   <!-- Filter Section -->
-  <div class="bg-white rounded-xl shadow p-4">
+  <div class="bg-white w-full rounded-xl shadow p-4">
     <h3 class="font-bold text-lg text-gray-900 mb-2">Filter by</h3>
 
     <div class="flex flex-col gap-2 text-sm text-gray-700">
@@ -239,18 +232,73 @@
   </div>
 
   <!-- Quick Links -->
-  <div class="bg-white rounded-xl shadow overflow-hidden">
+  <div class="bg-white w-full rounded-xl shadow overflow-hidden">
     <div class="bg-green-100 px-4 py-2 font-semibold text-gray-900">Quick Links</div>
     <ul class="divide-y divide-gray-200 text-sm text-gray-700">
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">About 1800 Battery</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">Hints and Tips</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">FAQs</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">1800 Battery Discount Codes</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">More About 1800 Battery</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-gray-50">How to avail 1800 Battery promo codes?</a></li>
-    </ul>
+  @foreach ($store->dynacontents as $index => $relateds)
+      <li><a href="#{{$index}}" class="block px-4 py-2 hover:bg-gray-50">{{$relateds->heading }}</a></li>
+      @endforeach
+  
   </div>
 
+
+  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Stores</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+        {{-- {{dd ($store->relatedStores);}} --}}
+    @foreach ($store->relatedStores as $relateds )
+      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+      {{$relateds->name}}
+      </a></li>
+    @endforeach
+
+    </ul>
+  </div>
+  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Categories</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+        {{-- {{dd ($store->relatedStores);}} --}}
+    @foreach ($store->categories as $relateds )
+     <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+      {{$relateds->name}}
+      </a></li>
+    @endforeach
+
+    </ul>
+  </div>
+   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Trending Brands</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+        {{-- {{dd ($store->relatedStores);}} --}}
+    @foreach ($store->trendingWith as $relateds )
+      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+      {{$relateds->name}}
+      </a></li>
+    @endforeach
+
+    </ul>
+  </div>
+ <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">{{$store->name}} shoppers also like
+</div>
+    <ul class="flex flex-col  text-gray-700 py-2">
+        {{-- {{dd ($store->likes);}} --}}
+    @foreach ($store->likes as $relateds )
+    <li><a href="#" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
+    
+      <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" />
+       <div class="flex flex-col items-start  " >
+        <p>{{$relateds->name}}</p>
+        <span class="font-bold text-[#1EC27E]">{{$relateds->coupons_with_code_count}} Discount Available</span>
+        </div>
+      </a></li>
+    @endforeach
+
+    </ul>
+  </div>
 
     
       </div> 
@@ -267,4 +315,39 @@
 
 @endsection
 @push('scripts')
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let loadMoreBtn = document.getElementById("loadMore");
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", function () {
+            let url = this.getAttribute("data-next-page");
+
+            if (!url) return;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    let parser = new DOMParser();
+                    let html = parser.parseFromString(data, "text/html");
+
+                    let newCoupons = html.querySelectorAll("#coupon-list article");
+                    newCoupons.forEach(coupon => {
+                        document.getElementById("coupon-list").appendChild(coupon);
+                    });
+
+                    // Update next page URL
+                    let newBtn = html.querySelector("#loadMore");
+                    if (newBtn) {
+                        loadMoreBtn.setAttribute("data-next-page", newBtn.getAttribute("data-next-page"));
+                    } else {
+                        loadMoreBtn.remove(); // remove button if no more pages
+                    }
+                })
+                .catch(error => console.error(error));
+        });
+    }
+});
+</script>
 @endpush
