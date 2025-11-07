@@ -13,62 +13,60 @@
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->
             <div class="flex items-center gap-4 ms-3">
-                <!-- Logo -->
-                <div
-                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
-                    <img src="{{ $store->logo }}" alt="Clarks" class="w-full h-full object-contain p-2" />
-                </div>
+              
                 <!-- Text Content -->
                 <div>
                     <!-- Breadcrumb -->
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
-                        <span class=" sm:mx-2">&gt;</span>
-                        <a href="/brands" class="hover:underline">All Brands</a>
-                        <span class=" sm:mx-2">&gt;</span>
-                        <span class="text-[#1ec27e] font-medium">{{ $store->name }}</span>
+                        <span class="sm:mx-2">&gt;</span>
+                        <a href="Categories"  class="text-[#1ec27e] hover:font-medium hover:underline">Categories</a>
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
-                        Clarks UK Discount Code September 2025
+                       Browse By Categories
                     </h1>
-                    <!-- Description -->
-                    <p class="text-gray-600 text-sm mt-1">
-                        Save money with these 6 Clarks UK voucher codes &amp; deals
-                    </p>
                 </div>
             </div>
-
-            <!-- Right Section -->
-            <div class="hidden sm:flex flex-col items-end gap-2 me-3">
-                <!-- Popularity -->
-                <div class="flex items-center bg-green-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-green-600" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 20h5v-2a3 3 0 00-3-3h-4a9 9 0 00-9 9v1h6v-1a3 3 0 013-3h2a3 3 0 013 3v1h2v-4z" />
-                    </svg>
-                    65.6K
-                </div>
-                <!-- Visit Button -->
-                <a href="#"
-                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                    Visit Site
-                </a>
-            </div>
-
         </div>
-
     </section>
+ <section class="bg-[#F2F0E6] py-10 text-[#0F0F0F]">
+        <div
+            class="max-w-7xl mx-auto bg-white flex flex-col rounded-2xl">
 
+@foreach ($categories as $category )
 
+ <div class="flex flex-col items-start border-b border-gray-300 text-gray-700 text-sm font-medium p-6">
+ <div class="flex justify-between w-full ">
+ <h1 class="text-2xl font-bold text-[#0F0F0F]">{{$category->name}}</h1>
+<a href="{{route('categ.page', $category->slug)}}"class="text-lg font-bold text-[#0F0F0F]" >View All </a>
+   </div>
+<div class="flex flex-col  px-3 py-6 ">
 
-    
-
+    <div class="flex flex-wrap gap-4 mb-6">
+        @foreach ($category->stores as $store)
+            @if ($store->ismenu === 1)
+                <div class="flex flex-col items-center justify-center w-20 h-20 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <img src="{{ $store->logo }}" 
+                         alt="{{ $store->name }}" 
+                         loading="lazy"
+                         class="w-20 h-20 rounded-lg object-contain">
+                </div>
+            @endif
+        @endforeach
+    </div>
+     <div class="grid grid-cols-2 sm:grid-cols-3 auto-cols-min md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-y-3 gap-x-9">
+        @foreach ($category->stores->take(56) as $store)
+            <a  href="{{route('store.website', $store->slug)}}"  class="text-sm text-gray-700 hover:text-[#1ec27e] cursor-pointer">
+                {{ $store->name }}
+            </a>
+        @endforeach
+    </div>
+</div>
+    </div>
+@endforeach
+       </div> 
+    </section>
 
 
 

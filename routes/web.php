@@ -6,7 +6,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\EventController;
-
 use App\Http\Controllers\AiapplicationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartController;
@@ -23,8 +22,6 @@ use App\Http\Controllers\CryptocurrencyController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
 });
@@ -35,14 +32,22 @@ Route::controller(CategoryController::class)->group(function () {
 Route::get('admin/cate','add')->name('cate.add');
 Route::get('admin/categories/show/{id}','show')->name('cate.show');});
 
+ Route::get('admin/stores/category/{category}', [StoreController::class, 'index_cat'])
+        ->name('stores.index');
 
-// Route::get('slug',[StoreController::class, 'slug'])->name('calendar');
-// Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
-Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
-Route::resource('admin/categories', CategoryController::class);
-Route::resource('admin/store', StoreController::class);
-Route::resource('admin/coupon', CouponController::class);
-Route::resource('admin/event', EventController::class);
+    // Coupons filtered by category
+    Route::get('admin/coupons/category/{category}', [CouponController::class, 'index_cat'])
+        ->name('coupons.index');
+          Route::get('admin/coupons/store/{category}', [CouponController::class, 'index_Store'])
+        ->name('coupons.index_store');
+Route::get('store/{slug}',[StoreController::class,'website'])->name('store.website');
+Route::get('all-store/{slug}',[StoreController::class,'menu'])->name('store.menu');
+Route::get('categories',[CategoryController::class,'categmenu'])->name('categ.menu');
+Route::get('categories/{slug}',[CategoryController::class,'page'])->name('categ.page');
+Route::resource('admin/categories',CategoryController::class);
+Route::resource('admin/store',StoreController::class);
+Route::resource('admin/coupon',CouponController::class);
+Route::resource('admin/event',EventController::class);
 
 
 

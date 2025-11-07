@@ -27,7 +27,6 @@ class Category extends Model
         'cate_region',
     ];
 
-    // ✅ Relationships
     public function region()
     {
         return $this->belongsTo(Region::class, 'cate_region');

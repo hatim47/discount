@@ -17,9 +17,24 @@ class StoreController extends Controller
 {
     public function index()
     {
-       $stores = Store::latest()->get(); // fetch from DB
+       $query = Store::with(['category'])  // eager load category
+                  ->withCount('coupons'); // count coupons per store
+
+    // optional category filter if needed
+  
+
+    $stores = $query->latest()->get();
         return view('adminn.store.index', compact('stores'));
     }
+
+public function index_cat($categoryId = null)
+{
+    $query = Store::query();
+    if ($categoryId) {  $query->where('category_id', $categoryId);    }
+    $stores = $query->latest()->get();
+    return view('adminn.store.index_cat', compact('stores'));
+}
+
     public function create()
     {
         $stores = Store::all();
@@ -134,7 +149,7 @@ class StoreController extends Controller
         $data['logo'] = $request->file('logo')->store('logos', 'public');
     }
 
-    // ✅ Handle image upload
+    
     if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('images', 'public');
     } 
@@ -210,6 +225,7 @@ class StoreController extends Controller
     'status'      => $request->status ?? 0,
     'trend'       => $request->has('trend') ? 1 : 0,
     'recom'       => $request->has('recom') ? 1 : 0,
+    'ismenu'      => $request->has('ismenu') ? 1 : 0,
     'relat_store' => $request->has('relat_store') ? 1 : 0,
     'relat_cate'  => $request->has('relat_cate') ? 1 : 0,
     'like_store'  => $request->has('like_store') ? 1 : 0,
@@ -319,5 +335,12 @@ class StoreController extends Controller
     return view('website.store', compact('store','coupons','categories','trends','stores'));
         // return view('website.store');
     }
+    
+         public function menu($slug){
+
+            $slug;
+       $categories = Store::where('name', 'like', $slug . '%')->get();
+             return view('website.store_menu', compact('categories','slug'));   
+         }
     
 }

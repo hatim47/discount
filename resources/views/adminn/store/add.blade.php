@@ -359,14 +359,13 @@
   </ul>
 </div>
 </div>
-
-                                        <!-- Second Column -->
-                                        <div class="col-md-4">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" name="relat_cate" class="form-check-input"
-                                                    onchange="toggleDropdown(this, 'dropdown2')">
-                                                Related Categories
-                                            </label>
+ <!-- Second Column -->
+<div class="col-md-4">
+    <label class="form-check-label">
+        <input type="checkbox" name="relat_cate" class="form-check-input"
+            onchange="toggleDropdown(this, 'dropdown2')">
+        Related Categories
+    </label>
 <div class="dropdown w-100 mt-3" id="dropdown2" style="display:none;">
   <!-- Button -->
   <button 

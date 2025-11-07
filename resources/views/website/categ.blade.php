@@ -64,7 +64,6 @@ font-size:30px;
 @section('content')
     <section class="bg-[#FAF9F5] text-[#0F0F0F]">
 
-
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
 
@@ -84,44 +83,16 @@ font-size:30px;
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
                         <span class=" sm:mx-2">&gt;</span>
-                        <a href="/brands" class="hover:underline">All Brands</a>
+                        <a href="Categories"  class=" hover:underline">Categories</a>
                         <span class=" sm:mx-2">&gt;</span>
-                        <span class="text-[#1ec27e] font-medium">{{ $store->name }}</span>
+                        <span class="text-[#1ec27e] hover:font-medium hover:underline">{{ $store->name }}</span>
                     </nav>
 
-                    <!-- Title -->
-                    <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
-                        Clarks UK Discount Code September 2025
-                    </h1>
-                    <!-- Description -->
-                    <p class="text-gray-600 text-sm mt-1">
-                        Save money with these 6 Clarks UK voucher codes &amp; deals
-                    </p>
+                    
                 </div>
             </div>
 
-            <!-- Right Section -->
-            <div class="hidden sm:flex flex-col items-end gap-2 me-3">
-                <!-- Popularity -->
-                <div class="flex items-center bg-green-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-green-600" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 20h5v-2a3 3 0 00-3-3h-4a9 9 0 00-9 9v1h6v-1a3 3 0 013-3h2a3 3 0 013 3v1h2v-4z" />
-                    </svg>
-                    65.6K
-                </div>
-
-                <!-- Visit Button -->
-                <a href="#"
-                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                    Visit Site
-                </a>
-            </div>
+         
 
         </div>
 
@@ -131,9 +102,10 @@ font-size:30px;
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6  gap-6  grid grid-cols-1 lg:grid-cols-10">
      {{-- column one start  --}}
     <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
-     <div id="coupon-list" class="flex flex-col ms-3 gap-6  lg:col-span-7"> 
+     <div id="coupon-list"  class="flex flex-col ms-3 gap-6  lg:col-span-7"> 
    
 
+   
     @foreach($coupons as $coupon)
         @include('website.couponspart', ['coupon' => $coupon])
     @endforeach
@@ -155,18 +127,18 @@ font-size:30px;
 
 
 <div class="card">
-  @foreach ($store->dynacontents as $index => $relateds)
+  {{-- @foreach ($store->dynacontents as $index => $relateds)
  <div class="bg-white rounded-xl w-full my-5 shadow overflow-hidden" id="{{$index}}">
     <h3 class="border-gray-800/20 border-b px-8 text-xl py-4 font-bold text-[#0f0f0f0] ">{{$relateds->heading}} 
 </h3>
     <div class="flex flex-col  text-[#0f0f0f0] p-8">
-        {{-- {{dd ($store->likes);}} --}}
+       
 
 {!! $relateds->description !!}
 
     </div>
   </div>
-    @endforeach
+    @endforeach --}}
 </div> 
 
      </div> 
@@ -179,36 +151,9 @@ font-size:30px;
     
     
 
-  <!-- Rating Card -->
-  <div class="bg-white rounded-xl shadow p-4">
-    <h3 class="font-bold text-lg text-gray-900">
-      How Did We Do? Rate 1800 Battery Vouchers Today!
-    </h3>
 
-    <!-- Stars -->
-    <div class="flex items-center text-red-500 text-xl mt-2">
-      ★★★★★
-    </div>
 
-    <p class="text-sm text-gray-600 mt-1">Rated 3 from 2 votes</p>
-  </div>
-
-  <!-- Offer Summary -->
-  <div class="bg-white w-full rounded-xl shadow p-4">
-    <h3 class="font-bold text-lg text-gray-900">
-      Today's Hand Tested Discount Code
-    </h3>
-    <p class="text-xs text-gray-500 mt-1">Last updated: 22-Sep-2025</p>
-
-    <div class="mt-3 space-y-1 text-sm text-gray-700">
-      <p>Voucher Codes: <span class="font-semibold">2</span></p>
-      <p>Deals: <span class="font-semibold">4</span></p>
-    </div>
-
-    <div class="mt-3 bg-green-100 px-3 py-2 rounded-md font-semibold text-gray-900">
-      Total Offers: <span class="ml-1">6</span>
-    </div>
-  </div>
+  
 
   <!-- Filter Section -->
   <div class="bg-white w-full rounded-xl shadow p-4">
@@ -232,35 +177,39 @@ font-size:30px;
 
   <!-- Quick Links -->
   <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-semibold text-gray-900">Quick Links</div>
-    <ul class="divide-y divide-gray-200 text-sm text-gray-700">
-  @foreach ($store->dynacontents as $index => $relateds)
-      <li><a href="#{{$index}}" class="block px-4 py-2 hover:bg-gray-50">{{$relateds->heading }}</a></li>
-      @endforeach
-  
+    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">About {{$store->name}}</div>
+   <div class="flex flex-wrap text-sm text-gray-700 p-2">
+        {!! $store->shrt_content !!}
+     
   </div>
 
+  </div>
+
+@if ( $relatedStores->isNotEmpty() )
+    
 
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
     <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Stores</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
-        {{-- {{dd ($store->relatedStores);}} --}}
-    @foreach ($store->relatedStores as $relateds )
+       
+    @foreach ($relatedStores as $relateds )
       <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
-      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+  
       {{$relateds->name}}
       </a></li>
     @endforeach
 
     </ul>
   </div>
+@endif
+  
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
     <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Categories</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
-        {{-- {{dd ($store->relatedStores);}} --}}
-    @foreach ($store->categories as $relateds )
+       
+    @foreach ($categories as $relateds )
      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
-      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+     
       {{$relateds->name}}
       </a></li>
     @endforeach
@@ -268,37 +217,56 @@ font-size:30px;
     </ul>
   </div>
    <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Browse By Store</div>
+    @php
+    $letters = array_merge(range('A', 'Z'), ['0-9']);
+@endphp
+
+<ul class="flex flex-wrap text-sm text-gray-700 p-2">
+    @foreach ($letters as $letter)
+        <li>
+            <a href="{{route('store.menu', strtolower($letter))}}"
+               class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#1EC27E]/15 font-semibold">
+                {{ $letter }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
+  </div>
+  @if ( $trendingWith->isNotEmpty() )
+   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
     <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Trending Brands</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
-        {{-- {{dd ($store->relatedStores);}} --}}
-    @foreach ($store->trendingWith as $relateds )
+     
+    @foreach ($trendingWith as $relateds )
       <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
-      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
       {{$relateds->name}}
       </a></li>
     @endforeach
 
     </ul>
   </div>
+@endif
+
+  @if ( $likes->isNotEmpty() )
  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
     <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">{{$store->name}} shoppers also like
 </div>
     <ul class="flex flex-col  text-gray-700 py-2">
-        {{-- {{dd ($store->likes);}} --}}
-    @foreach ($store->likes as $relateds )
+    @foreach ($likes as $relateds )
     <li><a href="#" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
-    
-      <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" />
+      <img class="w-16 rounded-lg border border-[#1EC27E]" src="{{$relateds->logo}}" />
        <div class="flex flex-col items-start  " >
         <p>{{$relateds->name}}</p>
-        <span class="font-bold text-[#1EC27E]">{{$relateds->coupons_with_code_count}} Discount Available</span>
+        <span class="font-bold text-[#1EC27E]">{{$relateds->coupons_with_code_count}}Discount Available</span>
         </div>
       </a></li>
     @endforeach
 
     </ul>
   </div>
-
+@endif
     
       </div> 
     {{-- column two end --}} 

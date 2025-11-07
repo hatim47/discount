@@ -16,7 +16,30 @@ class CouponController extends Controller
        $coupon = Coupon::all(); 
         return view('adminn.coupon.index', compact('coupon'));
     }
-    public function create()
+
+
+public function index_cat($categoryId = null)
+{
+    $query = Coupon::query();
+
+    if ($categoryId) {
+        $query->whereHas('store', function ($q) use ($categoryId) {
+            $q->where('category_id', $categoryId);
+        });
+    }
+    $coupon = $query->latest()->get();
+
+    return view('adminn.coupon.index_cat', compact('coupon'));
+}
+
+public function index_Store($categoryId = null)
+{
+    $coupon = Coupon::where("store_id" ,$categoryId )->latest()->get();
+
+    return view('adminn.coupon.index_cat', compact('coupon'));
+}
+
+public function create()
     {
         $stores = Store::all(); 
         $event = Event::all();

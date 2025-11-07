@@ -25,6 +25,7 @@ class Store extends Model
         'like_store',
         'view',
         'store_region',
+        'ismenu',
         'category_id',
     ];
 
@@ -66,10 +67,10 @@ class Store extends Model
     public function trendingWith()
     {
         return $this->belongsToMany(
-            Store::class,
-            'store_trends',
-            'store_id',
-            'trend_store_id'
+        Store::class,
+        'store_trends',
+        'store_id',
+        'trend_store_id'
         );
     }
 
@@ -85,7 +86,8 @@ class Store extends Model
 
     public function relatedStores()
     {
-        return $this->belongsToMany(      Store::class,        
+        return $this->belongsToMany(
+        Store::class,        
         'store_related',    
         'store_id',          
         'related_store_id'   

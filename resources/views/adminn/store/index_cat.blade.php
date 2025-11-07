@@ -4,17 +4,16 @@
     $subTitle = 'Basic Table';
     $script = '<script>
                     let table = new DataTable("#dataTable");
-               </script>
-               <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-               ';
+                   
+               </script> ';
 @endphp
 
 @section('content')
 
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Category Datatables</h5>
-                    <a href="{{ route('cate.add') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Category</a>
+                    <h5 class="card-title mb-0">Store Datatables</h5>
+                    <a href="{{ route('categories.index') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Back</a>
                 </div> 
                 <div class="card-body">
                     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
@@ -24,16 +23,15 @@
                                     <div class="form-check style-check d-flex align-items-center">
                                         <input class="form-check-input" type="checkbox">
                                         <label class="form-check-label">
-                                           Id
+                                            S.L
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Name</th>
-                                <th scope="col">Stores Count</th>
-                                <th scope="col">copuns Count</th>
+                            <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Issued Date</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Status</th>
-                                 <th scope="col">date</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -49,7 +47,6 @@
                                     </div>
                                 </td>
                                 <td>25 Jan 2024</td>
-                                    <td>$200.00</td>
                                 <td>$200.00</td>
                                 <td> <span class="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Paid</span> </td>
                                 <td>
@@ -64,38 +61,28 @@
                                     </a>
                                 </td>
                             </tr>
-                               @foreach ($categories as $category)
+                               @foreach ($stores as $store)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->name }}</td>
-               <td>
-    <a href="{{ route('stores.index', ['category' => $category->id]) }}" class="text-decoration-none w-70-px text-black bg-warning-100  text-danger-main py-4 rounded-pill d-flex flex-row-reverse justify-content-center align-items-center flex-shrink-0">
-       <iconify-icon icon="lucide:store" class="ms-10 "></iconify-icon>
-       <span>{{ $category->stores_count }}</span>
-    </a>
-</td>
-    <td> 
-                      <a href="{{ route('coupons.index', ['category' => $category->id]) }}" class="text-decoration-none w-70-px text-white bg-danger-300 py-4 text-danger-main rounded-4 d-flex flex-row-reverse justify-content-center align-items-center flex-shrink-0">
-       <iconify-icon icon="lucide:tickets" class="ms-10"></iconify-icon>
-       <span>{{ $category->coupons_count }}</span>
-    </a>
-              </td>
+                
+                    <td>{{ $store->id }}</td>
+                    <td>{{ $store->name }}</td>
+                    <td>{{ $store->category->name}}</td>
                     <td>
-                        @if($category->logo)
-                            <img src="{{ Storage::url($category->logo) }}" alt="Logo" width="40">
+                        @if($store->logo)
+                            <img src="{{$store->logo}}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif
                     </td>
-                   <td> {{ $category->status == 1 ? 'Active' : 'Inactive' }} </td>
-                    <td> {{ $category->created_at->format('d M Y') }} </td>
+                   <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
+                    <td> {{ $store->created_at->format('d M Y') }} </td>
                     <td>
-                    <a href="javascript:void(0)" 
-           data-id="{{ $category->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <a href="{{ route('store.edit', $store->id) }}" 
+           data-id="{{ $store->id }}" class=" w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
         </a>
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                        <form action="{{ route('categories.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
@@ -110,24 +97,12 @@
                 </div>
             </div>
 <!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="editCategoryBody">
-                <!-- The edit form will be loaded here -->
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 @push('scripts')
 
 <script>
-var route_prefix = "/laravel-filemanager";
+var route_prefix = "{{ url('/laravel-filemanager') }}";
 
 function initLfmButtons() {
     if (typeof $ === "undefined") {
@@ -143,21 +118,76 @@ function initLfmButtons() {
     $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-            let id = this.getAttribute("data-id");
+$(document).on("click", ".edit-btn", function () {
+    let id = $(this).data("id");
+    let url = "{{ route('store.edit', ':id') }}".replace(":id", id);
 
-            fetch(`/discount/public/admin/categories/${id}/edit`)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById("editCategoryBody").innerHTML = html;
-                    initLfmButtons();
-                    new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
-                })
-                .catch(err => console.error(err));
-        });
-    });
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            $("#editCategoryBody").html(html);
+            initLfmButtons();
+            new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
+        })
+        .catch(err => console.error(err));
 });
+
+$(document).on("submit", "#editStoreForm", function (e) {
+    e.preventDefault();
+
+    let form = $(this);
+    let url = form.attr("action");
+    let table = $('#yourTableId').DataTable(); // <-- your table id
+
+    fetch(url, {
+        method: "POST",
+        body: new FormData(form[0]),
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            // Hide modal
+            bootstrap.Modal.getInstance(document.getElementById("editCategoryModal")).hide();
+
+            let store = data.store;
+
+            // Find row in DataTable
+            let row = table.row($(`a.edit-btn[data-id='${store.id}']`).closest("tr"));
+
+            // Update row data
+            row.data([
+                store.id,
+                store.name,
+                store.slug,
+                store.logo 
+                    ? `<img src="${store.logo}" alt="Logo" width="40">` 
+                    : "No Image",
+                store.status == 1 ? "Active" : "Inactive",
+                store.created_at,
+                `
+                <a href="javascript:void(0)" 
+                   data-id="${store.id}" 
+                   class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <iconify-icon icon="lucide:edit"></iconify-icon>
+                </a>
+                <form action="/categories/${store.id}" method="POST" class="delete-form d-inline">
+                    <input type="hidden" name="_token" value="${form.find("input[name=_token]").val()}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center">
+                        <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+                    </button>
+                </form>
+                `
+            ]).draw(false); // ✅ redraw without resetting page
+        }
+    })
+    .catch(err => console.error(err));
+});
+
+
+
+
+
+
 </script>
 @endpush

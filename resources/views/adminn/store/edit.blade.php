@@ -117,6 +117,9 @@
                         
                         <input type="checkbox" class="btn-check" name="recom" id="btncheck12" value="1" {{ old('recom', $store->recom) ? 'checked' : '' }}>                        
                         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+
+                          <input type="checkbox" class="btn-check" name="ismenu" id="btncheck134" value="1" {{ old('ismenu', $store->ismenu) ? 'checked' : '' }}>                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck134">Is Menu</label>
                        
                 
 </div>
@@ -380,7 +383,10 @@
                     <label class="form-label">Slug</label>
                     <input type="text" name="slug" class="form-control" value="{{ old('slug', $store->slug) }}">
                 </div>
-
+     <div class="mb-3">
+                    <label class="form-label">Link</label>
+                    <input type="text" name="link" class="form-control" value="{{ old('link', $store->link) }}">
+                </div>
 
 
                 <button type="submit" class="btn btn-success">Save</button>

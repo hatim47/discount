@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Store;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -15,9 +18,22 @@ class CategoryController extends Controller
 
     public function index()
     {
-       $categories = Category::latest()->get(); // fetch from DB
+    //    $categories = Category::latest()->get(); // fetch from DB
+
+  
+$categories = Category::withCount('stores')
+    ->addSelect([
+        'coupons_count' => DB::table('coupons')
+            ->join('stores', 'coupons.store_id', '=', 'stores.id')
+            ->whereColumn('stores.category_id', 'categories.id')
+            ->selectRaw('count(coupons.id)')
+    ])
+    ->latest()
+    ->get();
         return view('adminn.category.index', compact('categories'));
     }
+
+ 
   
 
     public function store(Request $request)
@@ -56,22 +72,18 @@ class CategoryController extends Controller
     }
    public function edit($id)
 {
-    $category = Category::findOrFail($id);
- 
+    $category = Category::findOrFail($id); 
         return view('adminn.category._form', compact('category'));
     }
 
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
-
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
             'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
         ]);
-
         $category->update($request->all());
-
         return redirect()->route('categories.index')
                          ->with('success', 'Category updated successfully.');
     }
@@ -80,8 +92,47 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-
         return redirect()->route('categories.index')
                          ->with('success', 'Category deleted successfully.');
     }
+
+    public function categmenu()
+    {
+        $categories = Category::with('stores')->get();
+        return view('website.categ_menu', compact('categories'));
+    }
+     public function categmenubar()
+    {
+        $categories = Category::with('stores')->get();
+        return view('website.layouts.header', compact('categories'));
+    }
+
+     public function page($slug)
+    {
+        // $store = Store::where('slug', $slug)->firstOrFail();
+         $store = Category::with([
+    'stores' => function ($q) {
+        $q->with('coupons');
+    },
+])->where('slug', $slug)->firstOrFail();
+
+         //dd($store);
+        $stores = Store::where('category_id', $store->id)->get();
+        $categories = Category::all(); 
+        $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
+        $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
+        $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
+   $coupons = Coupon::whereIn('store_id', function ($query) use ($store) {
+    $query->select('id')
+          ->from('stores')
+          ->where('category_id', $store->id);
+})->orderByDesc('view') 
+->latest()
+        ->paginate(10);
+
+       
+    return view('website.categ', compact('store','coupons','categories','trendingWith','stores','likes','relatedStores'));
+    }
+
+
 }

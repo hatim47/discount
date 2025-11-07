@@ -1,4 +1,6 @@
 <article class="w-full flex justify-between bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300">
+
+
 <div class="flex  items-center gap-3 sm:gap-6">
 <div class="flex flex-col items-center border-2 rounded-md 
             {{ $coupon->deals == 0 ? 'border-yellow-300' : 'border-sky-300' }}"> 
@@ -17,8 +19,6 @@
     </span>
   @endif
 
-
-
 </div>
   <div class="flex flex-col  items-start gap-3 sm:gap-6">
 
@@ -28,9 +28,7 @@
          <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
     @endif
      <div class="flex flex-col justify-between items-start gap-3">
-  <h2 class="text-[#0f0f0f] text-lg sm:text-xl">{{ $coupon['title']  }}</h2>
-
-
+  <h2 class="text-[#0f0f0f] text-lg sm:text-xl">{{ $coupon['title'] }}</h2>
  <p class="text-xs sm:text-sm text-[#0f0f0f]">View Terms</p>
 
 </div>
@@ -40,7 +38,7 @@
 
 
 
-  <div class="flex flex-col w-16 sm:w-48 items-end sm:items-center justify-between">
+<div class="flex flex-col w-16 sm:w-48 items-end sm:items-center justify-between">
 <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
  @if($coupon->deals == 0) 
                         <button

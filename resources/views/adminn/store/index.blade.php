@@ -23,15 +23,16 @@
                                     <div class="form-check style-check d-flex align-items-center">
                                         <input class="form-check-input" type="checkbox">
                                         <label class="form-check-label">
-                                            S.L
+                                         Id
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Issued Date</th>
-                                <th scope="col">Amount</th>
+                            <th scope="col">Name</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">Copons Count</th>
+                                 <th scope="col">Image</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Dates</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -48,6 +49,7 @@
                                 </td>
                                 <td>25 Jan 2024</td>
                                 <td>$200.00</td>
+                                 <td>$200.00</td>
                                 <td> <span class="bg-success-focus text-success-main px-24 py-4 rounded-pill fw-medium text-sm">Paid</span> </td>
                                 <td>
                                     <a  href="javascript:void(0)" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
@@ -63,38 +65,45 @@
                             </tr>
                                @foreach ($stores as $store)
                 <tr>
+                
                     <td>{{ $store->id }}</td>
                     <td>{{ $store->name }}</td>
-                    <td>{{ $store->slug }}</td>
-                    <td>
-                        @if($store->logo)
-                            <img src="{{$store->logo}}" alt="Logo" width="40">
-                        @else
-                            No Image
-                        @endif
-                    </td>
-                   <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
-                    <td> {{ $store->created_at->format('d M Y') }} </td>
-                    <td>
-                    <a href="{{ route('store.edit', $store->id) }}" 
-           data-id="{{ $store->id }}" class=" w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
-                                        <iconify-icon icon="lucide:edit"></iconify-icon>
-           
-        </a>
-                        <form action="{{ route('categories.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
-                        </form>
+                    <td>{{ $store->category->name}}</td>
+<td>
+    <a href="{{ route('coupons.index_store', ['category' => $store->id]) }}" class="text-decoration-none w-70-px text-black bg-warning-100  text-danger-main py-4 rounded-pill d-flex flex-row-reverse justify-content-center align-items-center flex-shrink-0">
+       <iconify-icon icon="lucide:store" class="ms-10 "></iconify-icon>
+       <span>{{ $store->coupons_count }}</span>
+    </a>
+</td>
+<td>
+    @if($store->logo)
+        <img src="{{$store->logo}}" alt="Logo" width="40">
+    @else
+        No Image
+    @endif
+</td>
+<td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
+<td> {{ $store->created_at->format('d M Y') }} </td>
+<td>
+<a href="{{ route('store.edit', $store->id) }}" 
+data-id="{{ $store->id }}" class=" w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <iconify-icon icon="lucide:edit"></iconify-icon>
+
+</a>
+    <form action="{{ route('categories.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
+    </form>
 
 
-                    </td>
-                </tr>
-                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+</td>
+</tr>
+@endforeach
+    </tbody>
+</table>
+</div>
+</div>
 <!-- Edit Category Modal -->
 
 @endsection
