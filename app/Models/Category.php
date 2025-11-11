@@ -20,6 +20,7 @@ class Category extends Model
         'long_content',
         'logo', 
         'url',
+        'ismenu',
         'feature',
         'recom',
         'relat',

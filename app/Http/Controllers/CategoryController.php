@@ -33,12 +33,8 @@ $categories = Category::withCount('stores')
         return view('adminn.category.index', compact('categories'));
     }
 
- 
-  
-
-    public function store(Request $request)
+     public function store(Request $request)
     {
-     
         $request->validate([
             'name' => 'required',
             'slug' => 'required|string|max:255|unique:categories,slug',
@@ -59,8 +55,6 @@ $categories = Category::withCount('stores')
         return redirect()->route('cate.add')
                          ->with('success', 'Category created successfully.');
     }
-
-
 
 //     @foreach($store->getMedia('images') as $media)
 //     <img src="{{ $media->getUrl() }}" width="120">
@@ -101,11 +95,7 @@ $categories = Category::withCount('stores')
         $categories = Category::with('stores')->get();
         return view('website.categ_menu', compact('categories'));
     }
-     public function categmenubar()
-    {
-        $categories = Category::with('stores')->get();
-        return view('website.layouts.header', compact('categories'));
-    }
+
 
      public function page($slug)
     {
@@ -122,6 +112,15 @@ $categories = Category::withCount('stores')
         $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
         $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
         $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
+
+
+  $feature = Coupon::with('store') // eager load store
+                          ->where('feature', true)
+                          ->where('verified', true)
+                          ->where('status', 'active')
+                          ->get();
+
+
    $coupons = Coupon::whereIn('store_id', function ($query) use ($store) {
     $query->select('id')
           ->from('stores')
@@ -131,7 +130,7 @@ $categories = Category::withCount('stores')
         ->paginate(10);
 
        
-    return view('website.categ', compact('store','coupons','categories','trendingWith','stores','likes','relatedStores'));
+    return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores'));
     }
 
 

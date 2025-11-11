@@ -19,6 +19,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -49,6 +51,12 @@ Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
 
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+Route::get('/portal', fn() => view('website.portal'))->middleware('auth:web')->name('user.portal');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+// ADMIN AUTH
+Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
 
 
 

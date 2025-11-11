@@ -41,7 +41,7 @@
  <h1 class="text-2xl font-bold text-[#0F0F0F]">{{$category->name}}</h1>
 <a href="{{route('categ.page', $category->slug)}}"class="text-lg font-bold text-[#0F0F0F]" >View All </a>
    </div>
-<div class="flex flex-col  px-3 py-6 ">
+<div class="flex flex-col px-3 py-6 ">
 
     <div class="flex flex-wrap gap-4 mb-6">
         @foreach ($category->stores as $store)

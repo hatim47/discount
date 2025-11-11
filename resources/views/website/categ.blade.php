@@ -3,6 +3,7 @@
 @section('title', 'Welcome to ' . config('website.company.name'))
 @section('meta_description', 'Best marketing platform to grow your business.')
 @push('styles')
+  <link rel="stylesheet"  href="{{ asset('assets/css/lib/slick.css') }}">
 <style>
  {
     overflow-x: auto;
@@ -58,26 +59,61 @@ font-weight:700;
 font-size:30px;
 
 }
+
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row !important;
+  list-style: none;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+  padding: 0;
+  position: static !important;
+}
+
+/* Each dot wrapper */
+.slick-dots li {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide the number text inside buttons */
+.slick-dots li button {
+  font-size: 0; /* hides 1, 2, 3... */
+  line-height: 0;
+  color: transparent;
+  background: #d1d5db; /* gray-300 */
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Active dot style */
+.slick-dots li.slick-active button {
+  background: #1EC27E; /* your brand green */
+  
+  border-radius: 12px;
+}
+
+/* Hover effect */
+.slick-dots li button:hover {
+  background: #6ee7b7; /* lighter green */
+}
 </style>
 @endpush
 
 @section('content')
+
     <section class="bg-[#FAF9F5] text-[#0F0F0F]">
 
         <div
-            class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-
-
-
+            class="max-w-7xl mx-auto py-5 px-4 sm:px-6 flex flex-col  items-start  justify-start gap-6">
             <!-- Left Section -->
-            <div class="flex items-center gap-4 ms-3">
-                <!-- Logo -->
-                <div
-                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
-                    <img src="{{ $store->logo }}" alt="Clarks" class="w-full h-full object-contain p-2" />
-                </div>
-
-                <!-- Text Content -->
+            <div class="flex  gap-4 ms-3">
                 <div>
                     <!-- Breadcrumb -->
                     <nav class="text-sm mb-1 text-gray-500">
@@ -87,13 +123,34 @@ font-size:30px;
                         <span class=" sm:mx-2">&gt;</span>
                         <span class="text-[#1ec27e] hover:font-medium hover:underline">{{ $store->name }}</span>
                     </nav>
-
-                    
                 </div>
             </div>
 
-         
+ <div class="container mx-auto px-4 ">
+  <div id="store-slider" class="slick-slider">
+    @foreach($feature as $coupon)
+      <div>
+        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-2 my-5">
+          <div class="relative w-full">
+            <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" class="w-full h-40 object-cover"/>
+            <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-white shadow-md"/>
+          </div>
 
+          <div class="p-4 flex flex-col justify-between ">
+            <div class="flex justify-between items-center mb-1">
+              <h2 class="text-gray-900 font-semibold text-sm">{{ $coupon->store['name'] }}</h2>
+              @if($coupon->verified)
+                <span class="text-[#0f0f0f] bg-[#1EC27E]/20 uppercase px-2 text-xs rounded-2xl">Verified</span>
+              @endif
+            </div>
+            <h6 class="text-neutral-900 font-semibold text-sm mb-1">{{ $coupon['title'] }}</h6>
+            <p class="text-xs text-neutral-700">View all <span class="underline">{{ $coupon->store['name'] }} deals</span></p>
+          </div>
+        </article>
+      </div>
+    @endforeach
+  </div>
+</div>
         </div>
 
     </section>
@@ -156,21 +213,21 @@ font-size:30px;
   
 
   <!-- Filter Section -->
-  <div class="bg-white w-full rounded-xl shadow p-4">
+  <div class="bg-white w-full rounded-xl shadow p-4" id="filter-options">
     <h3 class="font-bold text-lg text-gray-900 mb-2">Filter by</h3>
 
     <div class="flex flex-col gap-2 text-sm text-gray-700">
       <label class="flex items-center justify-between cursor-pointer">
         <span>All</span>
-        <input type="radio" name="filter" checked class="accent-green-500" />
+        <input type="radio" name="filter" value="all" checked class="accent-green-500" />
       </label>
       <label class="flex items-center justify-between cursor-pointer">
         <span>Voucher Code</span>
-        <input type="radio" name="filter" class="accent-gray-400" />
+        <input type="radio" name="filter" value="voucher" class="accent-gray-400" />
       </label>
       <label class="flex items-center justify-between cursor-pointer">
         <span>Online Sale</span>
-        <input type="radio" name="filter" class="accent-gray-400" />
+        <input type="radio" name="filter" value="sale" class="accent-gray-400" />
       </label>
     </div>
   </div>
@@ -266,23 +323,16 @@ font-size:30px;
 
     </ul>
   </div>
-@endif
-    
+@endif    
       </div> 
     {{-- column two end --}} 
     </div>
-
   </section>
-
-
-    <h1 class="text-5xl font-medium">{{ $store->name }}</h1>
-
-
-
-
+  <h1 class="text-5xl font-medium">{{ $store->name }}</h1>
 @endsection
 @push('scripts')
-
+ <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+ <script src="{{ asset('assets/js/lib/slick.min.js') }}"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     let loadMoreBtn = document.getElementById("loadMore");
@@ -316,5 +366,70 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+$(document).ready(function(){
+  $('#store-slider').slick({
+    slidesToShow: 4,          // Large screens default
+    arrows: false,             // show next/prev arrows
+    dots: true,               // show pagination dots
+    infinite: false,          // set true if you want looping
+    draggable: true,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1024,     // large screens
+        settings: { slidesToShow: 4 }
+      },
+      {
+        breakpoint: 768,      // medium screens
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 640,      // small screens
+        settings: { slidesToShow: 2 }
+      },
+      {
+        breakpoint: 480,      // mobile
+        settings: { slidesToShow: 1 }
+      }
+    ]
+  });
+});
+
 </script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const filters = document.querySelectorAll('input[name="filter"]');
+
+  // Function to filter visible coupons
+  function applyFilter(selected) {
+    const coupons = document.querySelectorAll('#coupon-list .coupon-card'); // requery each time
+
+    coupons.forEach(coupon => {
+      const type = coupon.dataset.type;
+
+      if (selected === 'all' || selected === type) {
+        coupon.style.display = '';
+      } else {
+        coupon.style.display = 'none';
+      }
+    });
+  }
+
+  // Listen for filter changes
+  filters.forEach(filter => {
+    filter.addEventListener('change', () => {
+      applyFilter(filter.value);
+    });
+  });
+
+  // Also listen for new coupons after Load More click
+  document.addEventListener('couponsLoaded', () => {
+    const activeFilter = document.querySelector('input[name="filter"]:checked').value;
+    applyFilter(activeFilter);
+  });
+});
+</script>
+
 @endpush

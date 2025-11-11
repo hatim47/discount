@@ -1,4 +1,5 @@
-<article class="w-full flex justify-between bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300">
+<article class="coupon-card w-full flex justify-between bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300"
+  data-type="{{ $coupon->deals == 0 ? 'voucher' : 'sale' }}">
 
 
 <div class="flex  items-center gap-3 sm:gap-6">

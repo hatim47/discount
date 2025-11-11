@@ -34,7 +34,7 @@
     30 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
     31 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
     32 => 'App\\Providers\\AppServiceProvider',
-    33 => 'App\\Providers\\ViewServiceProvider',
+   
   
   ),
   'eager' => 
