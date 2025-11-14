@@ -1,6 +1,8 @@
-<article class="coupon-card w-full flex justify-between bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300"
+<article
+x-data="{ showTerms: false }"
+ class="coupon-card w-full flex flex-col  bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300"
   data-type="{{ $coupon->deals == 0 ? 'voucher' : 'sale' }}">
-
+<div class="flex justify-between">
 
 <div class="flex  items-center gap-3 sm:gap-6">
 <div class="flex flex-col items-center border-2 rounded-md 
@@ -22,7 +24,6 @@
 
 </div>
   <div class="flex flex-col  items-start gap-3 sm:gap-6">
-
    @if($coupon->verified)
         <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl">Verified</span>
         @else
@@ -30,7 +31,11 @@
     @endif
      <div class="flex flex-col justify-between items-start gap-3">
   <h2 class="text-[#0f0f0f] text-lg sm:text-xl">{{ $coupon['title'] }}</h2>
- <p class="text-xs sm:text-sm text-[#0f0f0f]">View Terms</p>
+
+    <!-- Toggle button -->
+    <p @click="showTerms = !showTerms" class="text-xs sm:text-sm text-[#0f0f0f] cursor-pointer">
+        View Terms
+    </p>
 
 </div>
 </div>
@@ -94,5 +99,13 @@
     }
 @endphp
    <p class="text-xs text-[#0f0f0f]/80"> {{ $views }} Used </p>
-        </div>       
+        </div> 
+        </div>
+             <div x-show="showTerms" 
+         x-transition
+         class="mt-3 border-t border-gray-200 text-gray-700 text-sm ">
+        <p>
+           {!! $coupon['trems'] !!}
+        </p>
+    </div>  
     </article>

@@ -20,9 +20,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\RatingController;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -33,30 +33,41 @@ Route::controller(DashboardController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
 Route::get('admin/cate','add')->name('cate.add');
 Route::get('admin/categories/show/{id}','show')->name('cate.show');});
-
- Route::get('admin/stores/category/{category}', [StoreController::class, 'index_cat'])
-        ->name('stores.index');
-
+ Route::get('admin/stores/category/{category}', [StoreController::class, 'index_cat'])->name('stores.index');
     // Coupons filtered by category
-    Route::get('admin/coupons/category/{category}', [CouponController::class, 'index_cat'])
-        ->name('coupons.index');
-          Route::get('admin/coupons/store/{category}', [CouponController::class, 'index_Store'])
-        ->name('coupons.index_store');
-Route::get('store/{slug}',[StoreController::class,'website'])->name('store.website');
-Route::get('all-store/{slug}',[StoreController::class,'menu'])->name('store.menu');
-Route::get('categories',[CategoryController::class,'categmenu'])->name('categ.menu');
-Route::get('categories/{slug}',[CategoryController::class,'page'])->name('categ.page');
+Route::get('admin/coupons/category/{category}', [CouponController::class, 'index_cat'])->name('coupons.index');
+Route::get('admin/coupons/store/{category}', [CouponController::class, 'index_Store'])->name('coupons.index_store');
+
+
+Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
 
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::get('/portal', fn() => view('website.portal'))->middleware('auth:web')->name('user.portal');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+
+
+Route::group([
+    'prefix' => '{region?}',
+    'middleware' => 'setregion',
+    'where' => ['region' => 'us|ca|au'] // allow only valid region codes
+], function () {   
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('store/{slug}',[StoreController::class,'website'])->name('store.website');
+Route::get('all-store/{slug}',[StoreController::class,'menu'])->name('store.menu');
+Route::get('categories',[CategoryController::class,'categmenu'])->name('categ.menu');
+Route::get('categories/{slug}',[CategoryController::class,'page'])->name('categ.page');
+Route::post('/stores/{storeId}/rate', [StoreController::class, 'rate'])->name('store.rate');
+
+});
+
+// Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+// Route::get('/portal', fn() => view('website.portal'))->middleware('auth:web')->name('user.portal');
+// Route::post('/register', [RegisterController::class, 'register'])->name('register');
 // ADMIN AUTH
-Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
+
 
 
 

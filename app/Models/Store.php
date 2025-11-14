@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Support\Str;
 class Store extends Model 
 {
      protected $fillable = [
@@ -93,4 +94,18 @@ class Store extends Model
         'related_store_id'   
     );
     }
+
+       public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+        protected static function booted()
+        {
+            static::saving(function ($store) {
+                $store->slug = Str::slug($store->name);
+            });
+        }
+
+    
 }

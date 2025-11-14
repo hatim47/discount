@@ -4,7 +4,7 @@ namespace App\Models;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 class Category extends Model 
 {
   
@@ -41,5 +41,12 @@ class Category extends Model
     public function coupons()
     {
         return $this->hasMany(Coupon::class);
+    }
+
+      protected static function booted()
+    {
+        static::saving(function ($category) {
+            $category->slug = Str::slug($category->title);
+        });
     }
 }

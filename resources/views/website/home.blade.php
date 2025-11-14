@@ -177,7 +177,7 @@ We, at TVC, make money by helping our customers get the best deals, especially o
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
             @foreach($category->stores as $store)
                     @foreach($store->coupons as $coupon)
-          <a href="{{route('store.website', $store->slug)}} " class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+          <a href="{{route('store.website', ['region' => session('region_code'), 'slug' => $store->slug] ) }} " class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
       <div class="relative border-black/20 border-b-1">
   <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-full h-40 object-cover" />
   

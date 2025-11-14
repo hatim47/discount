@@ -41,7 +41,7 @@
       <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         @foreach($categoryies->where('ismenu', 1)->take(9) as $category)
           <li>
-            <a href="{{ route('categ.page', $category->slug) }}"
+            <a href="{{ route('categ.page', ['region' => session('region_code'), 'slug' => $category->slug]) }}"
                class="block text-gray-900 hover:text-[#1EC27E] font-bold rounded-md text-sm mb-2">
               {{ $category->name }}
             </a>
@@ -49,14 +49,14 @@
             <div class="flex flex-col space-y-1">
               @foreach ($category->stores->where('ismenu', 1)->take(3) as $store)
                 @if ($store->ismenu === 1)
-                  <a href="{{ route('store.website', $store->slug) }}"
+                  <a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => $store->slug]) }}"
                      class="block text-gray-700 hover:text-[#1EC27E] rounded-md text-sm">
                     {{ $store->name }}
                   </a>
                 @endif
               @endforeach
 
-              <a href="{{ route('categ.page', $category->slug) }}"
+              <a href="{{ route('categ.page', ['region' => session('region_code'), 'slug' => $category->slug]) }}"
                  class="flex items-center text-gray-700 hover:text-[#1EC27E] text-sm mt-1">
                 <span>More Brands</span>
                 <span class="bg-[#1EC27E] text-white rounded-full p-1 ml-1">
@@ -69,15 +69,17 @@
 
         <!-- EXTRA COLUMN -->
         <li>
-          <a href="{{ route('categ.page','Entertainment') }}"
+          <a href="{{ route('categ.menu',['region' => session('region_code')]) }}"
              class="block text-gray-900 font-bold hover:text-[#1EC27E] text-sm mb-2">
             More Categories
           </a>
           <div class="flex flex-col space-y-1">
-            <a href="{{ route('store.website','Entertainment') }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Entertainment</a>
-            <a href="{{ route('store.website','Electronics') }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Electronics</a>
-            <a href="{{ route('store.website','Services') }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Services</a>
-            <a href="{{ route('categ.page','Entertainment') }}"
+     <a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Entertainment']) }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Entertainment</a>
+
+<a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Electronics']) }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Electronics</a>
+
+<a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Services']) }}" class="text-gray-700 hover:text-[#1EC27E] text-sm">Services</a>
+            <a href="{{ route('categ.menu', ['region' => session('region_code')]) }}"
                class="flex items-center text-gray-700 hover:text-[#1EC27E] text-sm mt-1">
               <span>More Brands</span>
               <span class="bg-[#1EC27E] text-white rounded-full p-1 ml-1">
@@ -106,14 +108,14 @@
 
 
         {{-- Action Button --}}
-      <a href="javascript:void(0)"
+      {{-- <a href="javascript:void(0)"
            @click="showLogin = true"
            class="bg-primary-600 text-black px-4 py-2 rounded-lg hover:bg-primary-700 transition duration-200 shadow-md">
             Login / Sign Up
-        </a>
+        </a> --}}
 
 
- <div x-show="showLogin"
+ {{-- <div x-show="showLogin"
        x-transition.opacity
       x-data="{ email: '', password: '', showPassword: false, error: '' }"
        class="fixed inset-0 bg-[#f2f0e6] flex items-center justify-center z-[10000]"
@@ -325,7 +327,7 @@
             </button>
         </form>
     </div>
-</div>
+</div> --}}
 
 
 

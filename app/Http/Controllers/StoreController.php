@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Dynacontent;
@@ -12,7 +11,8 @@ use App\Models\StoreTrend;
 use App\Models\Store;
 use App\Models\Coupon;
 use Illuminate\Support\Str;
-
+use App\Models\Rating;
+use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
     public function index()
@@ -20,12 +20,11 @@ class StoreController extends Controller
        $query = Store::with(['category'])  // eager load category
                   ->withCount('coupons'); // count coupons per store
 
-    // optional category filter if needed
-  
-
     $stores = $query->latest()->get();
         return view('adminn.store.index', compact('stores'));
     }
+
+    
 
 public function index_cat($categoryId = null)
 {
@@ -306,35 +305,62 @@ public function index_cat($categoryId = null)
     public function website($slug)
     {
        
-        // $store = Store::where('slug', $slug)->firstOrFail();
-         $store = Store::with([
+       $store = Store::with([
         'dynacontents',
-        'trendingWith',      
+        'trendingWith',
         'categories',
-        'relatedStores',        
-           'likes' => function ($q) {
-        $q->withCount([
-            'coupons as coupons_with_code_count' => function ($query) {
-                $query->whereNotNull('code')
-                      ->where('code', '!=', ''); // only coupons with a code
-            }
-        ]);
-    }
-              
+        'relatedStores',
+        'likes' => function ($q) {
+            $q->withCount([
+                'coupons as coupons_with_code_count' => function ($query) {
+                    $query->whereNotNull('code')
+                          ->where('code', '!=', '');
+                }
+            ]);
+        },
+        'ratings' // Include ratings relation
     ])->where('slug', $slug)->firstOrFail();
 
-    // For dropdowns/multiselects
-         //dd($store);
-        $stores = Store::all();
-        $categories = Category::all(); // Fetch categories for the dropdown
-        $trends = Store::where('trend', true)->get(); 
-        // $coupons = $store->coupons;
-          $coupons = Coupon::where('store_id', $store->id)
+    // Get all stores, categories, and trending stores
+    $stores = Store::all();
+    $categories = Category::all();
+    $trends = Store::where('trend', true)->get();
+
+    // Get coupons for this store
+    $coupons = Coupon::where('store_id', $store->id)
         ->latest()
         ->paginate(10);
-    return view('website.store', compact('store','coupons','categories','trends','stores'));
-        // return view('website.store');
+
+    // --- Ratings Section ---
+    $average = round($store->ratings->avg('rating'), 1);
+    $count = $store->ratings->count();
+
+    // Check if logged-in user or guest already rated
+    $user = Auth::user();
+    $existingRating = null;
+
+    if ($user) {
+        $existingRating = Rating::where('store_id', $store->id)
+            ->where('user_id', $user->id)
+            ->first();
+    } else {
+        $existingRating = Rating::where('store_id', $store->id)
+            ->where('ip_address', \request()->ip())
+            ->first();
     }
+
+    // Pass everything to the view
+    return view('website.store', compact(
+        'store',
+        'coupons',
+        'categories',
+        'trends',
+        'stores',
+        'average',
+        'count',
+        'existingRating'
+    ));
+}
     
          public function menu($slug){
 
@@ -342,5 +368,57 @@ public function index_cat($categoryId = null)
        $categories = Store::where('name', 'like', $slug . '%')->get();
              return view('website.store_menu', compact('categories','slug'));   
          }
+
+      public function rate(Request $request, $storeId)
+    {
+               $request->validate(['rating' => 'required|integer|min:1|max:5']);
+
+       $user = $request->user();
+$ip = $request->ip();
+
+if ($user) {
+    $existing = Rating::where('user_id', $user->id)
+        ->where('store_id', $storeId)
+        ->first();
+} else {
+    $existing = Rating::where('ip_address', $ip)
+        ->where('store_id', $storeId)
+        ->first();
+}
+
+if ($existing) {
+    // User/guest already rated, do not allow updating
+    return response()->json([
+        'success' => false,
+        'message' => 'You have already rated this store.',
+        'average' => round(Rating::where('store_id', $storeId)->avg('rating'), 1),
+        'count' => Rating::where('store_id', $storeId)->count()
+    ]);
+}
+
+// Otherwise, create the rating
+$rating = Rating::create([
+    'user_id' => $user?->id,
+    'ip_address' => $user ? null : $ip,
+    'store_id' => $storeId,
+    'rating' => $request->rating
+]);
+
+$average = Rating::where('store_id', $storeId)->avg('rating');
+$count = Rating::where('store_id', $storeId)->count();
+
+return response()->json([
+    'success' => true,
+    'message' => 'Thank you for rating!',
+    'average' => round($average, 1),
+    'count' => $count
+]);
+
+    }      
+
+
+
+
+
     
 }
