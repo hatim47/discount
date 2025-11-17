@@ -21,9 +21,17 @@ use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RatingController;
+use App\Models\Region;
 
-
-
+try {
+    $validRegions = Region::where('status', 1)
+                         ->pluck('code')
+                         ->implode('|');
+    // Result: "au|ca|uk|nz|de|fr" etc.
+} catch (\Exception $e) {
+    // Fallback if database not available yet
+    $validRegions = 'au|ca|uk|nz|de|fr';
+}
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
      \UniSharp\LaravelFilemanager\Lfm::routes();
 });
@@ -46,39 +54,47 @@ Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
 
-
-
-
-Route::group([
-    'prefix' => '{region?}',
-    'middleware' => 'setregion',
-    'where' => ['region' => 'us|ca|au'] // allow only valid region codes
-], function () {   
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('store/{slug}',[StoreController::class,'website'])->name('store.website');
-Route::get('all-store/{slug}',[StoreController::class,'menu'])->name('store.menu');
-Route::get('categories',[CategoryController::class,'categmenu'])->name('categ.menu');
-Route::get('categories/{slug}',[CategoryController::class,'page'])->name('categ.page');
-Route::post('/stores/{storeId}/rate', [StoreController::class, 'rate'])->name('store.rate');
-
+Route::middleware('setregion')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
+    Route::get('all-store', [StoreController::class, 'store_menu'])->name('store.menusa');
+    Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('store.menu');
+    Route::get('categories', [CategoryController::class, 'categmenu'])->name('categ.menu');
+    Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('categ.page');
+    Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('store.rate');
 });
+
+// Region-prefixed routes (dynamically from database)
+Route::prefix('{region}')
+    ->where(['region' => $validRegions]) // Only match valid region codes
+    ->middleware('setregion')
+    ->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('region.home');
+        Route::get('store/{slug}', [StoreController::class, 'website'])->name('region.store.website');
+        Route::get('all-store', [StoreController::class, 'store_menu'])->name('region.store.menusa');
+        Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('region.store.menu');
+        Route::get('categories', [CategoryController::class, 'categmenu'])->name('region.categ.menu');
+        Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
+        Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('region.store.rate');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 // Route::get('/portal', fn() => view('website.portal'))->middleware('auth:web')->name('user.portal');
 // Route::post('/register', [RegisterController::class, 'register'])->name('register');
 // ADMIN AUTH
-
-
-
-
-
-
-
-
-
-
-
-
 Route::controller(HomeController::class)->group(function () {
  
 

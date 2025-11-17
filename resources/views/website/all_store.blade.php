@@ -41,7 +41,7 @@
 <ul class="flex flex-wrap justify-center border-b-2 border-gray-300 text-sm text-gray-700 pb-6 px-6">
     @foreach ($letters as $letter)
         <li>
-       <a href="{{region_route('store.menu',['slug' => strtolower($letter)])}}"
+            <a href="{{region_route('store.menu',['slug' => strtolower($letter)])}}"
                class="flex items-center justify-center px-4 py-2 m-1 bg-[#f4fcef] rounded-md hover:bg-[#dcfcc7] font-semibold">
                 {{ $letter }}
             </a>
@@ -50,12 +50,11 @@
 </ul>
  </div>
 <div class="max-w-7xl mx-auto bg-white flex flex-col p-6">
-
- <h1 class="text-2xl my-4 uppercase font-bold text-[#0F0F0F] ">{{$slug}}</h1>
+ {{-- <h1 class="text-2xl my-4 uppercase font-bold text-[#0F0F0F] ">{{$slug}}</h1> --}}
  <div class="grid grid-cols-2 sm:grid-cols-3 auto-cols-min md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-y-3 gap-x-6 ">
 @foreach ($categories as $category )
- <div class="flex flex-col items-start   ">
-<a href="{{region_route('store.website', ['slug' =>  $category->slug])}}" class=" text-[#0F0F0F] hover:text-[#1ec27e] transition duration-300 ease-in-out " >{{$category->name}} </a>
+ <div class="flex flex-col items-start">
+<a href="{{region_route('store.website', $category->slug)}}" class="text-[#0F0F0F] hover:text-[#1ec27e] transition duration-300 ease-in-out " >{{$category->name}} </a>
    </div>    
 @endforeach
 </div>     

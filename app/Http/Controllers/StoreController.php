@@ -10,11 +10,16 @@ use App\Models\StoreRelatedCategory;
 use App\Models\StoreTrend;
 use App\Models\Store;
 use App\Models\Coupon;
+use App\Models\Region;
 use Illuminate\Support\Str;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
+
 class StoreController extends Controller
 {
+// $region = config('app.current_region');
+// $regionCode = session('region');
+
     public function index()
     {
        $query = Store::with(['category'])  // eager load category
@@ -22,9 +27,7 @@ class StoreController extends Controller
 
     $stores = $query->latest()->get();
         return view('adminn.store.index', compact('stores'));
-    }
-
-    
+    }    
 
 public function index_cat($categoryId = null)
 {
@@ -166,7 +169,6 @@ public function index_cat($categoryId = null)
     }
     public function edit($id)
     {
-
          $store = Store::with([
         'dynacontents',
         'trendingWith',      // related stores
@@ -302,9 +304,23 @@ public function index_cat($categoryId = null)
                          ->with('success', 'Store deleted successfully.');
     }
 
-    public function website($slug)
-    {
-       
+ public function website($regionOrSlug, $slug = null)
+{
+  if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }
+    
+ 
+    
+   
+    $regionId = $region->id;
+    $regionTitle = $region->title;
        $store = Store::with([
         'dynacontents',
         'trendingWith',
@@ -319,7 +335,20 @@ public function index_cat($categoryId = null)
             ]);
         },
         'ratings' // Include ratings relation
-    ])->where('slug', $slug)->firstOrFail();
+    ])->where('store_region', $regionId)->where('slug', $slug)->first();
+//  dd($store->id, $regionId, $slug);
+if (!$store) {
+    $isDefaultRegion = $region->code === config('app.default_region', 'usa');
+    
+    if ($isDefaultRegion) {
+        return redirect()->route('home')
+            ->with('error', 'Store not found in this region.');
+    }
+    
+    return redirect()->route('region.home', ['region' => $region->code])
+        ->with('error', 'Store not found in this region.');
+}
+
 
     // Get all stores, categories, and trending stores
     $stores = Store::all();
@@ -361,11 +390,40 @@ public function index_cat($categoryId = null)
         'existingRating'
     ));
 }
-    
-         public function menu($slug){
+   public function store_menu($region = null)
+{
 
-            $slug;
-       $categories = Store::where('name', 'like', $slug . '%')->get();
+    $region = $region ?? config('app.default_region', 'usa');
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+   
+       $categories = Store::where('store_region', $regionId)
+               ->orderBy('name', 'asc')
+               ->get();
+             return view('website.all_store', compact('categories'));   
+         }
+
+    
+        public function menu($regionOrSlug, $slug = null)
+{
+ if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }
+    
+ 
+    
+   
+    $regionId = $region->id;
+    $regionTitle = $region->title;
+    //  dd($slug,$regionId);
+       $categories = Store::where('name', 'like', $slug . '%')->where('store_region', $regionId)->get();
              return view('website.store_menu', compact('categories','slug'));   
          }
 
@@ -413,7 +471,6 @@ return response()->json([
     'average' => round($average, 1),
     'count' => $count
 ]);
-
     }      
 
 

@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Event;
+use App\Models\Region;
 
 
 use Illuminate\Http\Request;
@@ -12,32 +13,54 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
         
-    public function index()
+    public function index($region = null)
     {
-          $feature = Coupon::with('store') // eager load store
-                          ->where('feature', true)
-                          ->where('verified', true)
-                          ->where('status', 'active')
-                          ->get();
-        // $categories = Category::all();
-  $categories = Category::where('status', 1)
-    ->with([
-        'stores' => function ($q) {
-            $q->limit(4); // only one store per category
-        },
-        'stores.coupons' => function ($q) {
-            $q->where('status', 'active')
-              
-              ->limit(1);
-        }
-    ])->get();
-     //dd($categories);
-        $stores = Store::where('feature', true)->get();
-        $events = Event::all();
-       
-    //    dd($feature);
-        return view('website.home', compact('feature', 'categories', 'stores', 'events'));
-    }
+   $region = $region ?? config('app.default_region', 'usa');
+           
+    // Fetch region model
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+
+    // Featured coupons (with store eager-loaded)
+    $feature = Coupon::with('store')
+        ->where('feature', true)
+        ->where('verified', true)
+        ->where('status', 'active')
+         ->whereHas('store', function ($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+        ->get();
+
+    // Categories with up to 4 stores, each store has 1 coupon for that region
+    $categories = Category::where('status', 1)->where('cate_region', $regionId)
+        ->with([
+            'stores' => function ($q) use ($regionId){
+                $q->where('store_region', $regionId)
+                ->limit(4);
+            },
+            'stores.coupons' => function ($q)  {
+                $q->where('status', 'active')
+                  ->limit(1);
+            }
+        ])
+        ->get();
+
+    // Featured stores for this region
+    $stores = Store::where('feature', true)
+        ->where('store_region', $regionId)
+        ->get();
+
+    // All events
+    $events = Event::all();
+
+    return view('website.home', compact(
+        'feature',
+        'categories',
+        'stores',
+        'events'
+    ));
+}
 
        
 

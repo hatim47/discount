@@ -90,15 +90,27 @@ $categories = Category::withCount('stores')
                          ->with('success', 'Category deleted successfully.');
     }
 
-    public function categmenu()
-    {
-        $categories = Category::with('stores')->get();
+   public function categmenu($region = null)
+{
+    $region = $region ?? config('app.default_region', 'usa');
+        $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+    
+        $categories = Category::with('stores')->where('cate_region', $regionId)->get();
         return view('website.categ_menu', compact('categories'));
+
+}
+
+
+    public function page($regionOrSlug, $slug = null)
+{
+    if ($slug === null) {
+        $slug = $regionOrSlug;
+        $region = config('app.default_region', 'usa');
+    } else {
+        $region = $regionOrSlug;
     }
-
-
-     public function page($slug)
-    {
         // $store = Store::where('slug', $slug)->firstOrFail();
          $store = Category::with([
     'stores' => function ($q) {
