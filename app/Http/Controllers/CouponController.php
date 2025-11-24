@@ -14,6 +14,7 @@ class CouponController extends Controller
     public function index()
     {
        $coupon = Coupon::all(); 
+      
         return view('adminn.coupon.index', compact('coupon'));
     }
 
@@ -47,6 +48,8 @@ public function create()
     }
     public function store(Request $request)
     {     
+            // dd($request->all());
+
         $request->validate([
             'title' => 'required',
             'code' => 'required|string|max:255|unique:coupons,code',
@@ -55,14 +58,21 @@ public function create()
             'trems' => 'nullable|string',
             'store_id' => 'required|exists:stores,id',   
         ]);
-        Coupon::create($request->all());
+$data = $request->all();
+
+$data['event_id'] = $request->event_id == 0 ? null : $request->event_id;
+       Coupon::create($data);
+
         return redirect()->route('coupon.create')->with('success', 'Coupon created successfully.');
     }
+
     public function edit($id){
         $coupon = Coupon::findOrFail($id);
         $stores = Store::all(); // fetch from DB
         return view('adminn.coupon._form', compact('coupon','stores'));
     }
+
+
     public function update(Request $request, $id){
         $coupon = Coupon::findOrFail($id);
         $request->validate([

@@ -17,21 +17,21 @@ class Region extends Model
     // ✅ Relationships
     public function stores()
     {
-        return $this->hasMany(Store::class, 'store_region');
+        return $this->hasMany(Store::class);
     }
 
     public function categories()
     {
-        return $this->hasMany(Category::class, 'cate_region');
+        return $this->hasMany(Category::class);
     }
 
     public function coupons()
     {
-        return $this->hasMany(Coupon::class, 'copon_region');
+        return $this->hasMany(Coupon::class);
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'event_region');
+        return $this->hasMany(Event::class);
     }
 }

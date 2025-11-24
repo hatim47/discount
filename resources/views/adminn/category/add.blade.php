@@ -180,7 +180,7 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            {{-- <div class="col-sm-6">
                                                 <label class="form-label">Img *</label>
                                                 <div class="position-relative"> 
                                               <div class="mb-3">
@@ -196,11 +196,18 @@
     <img id="holder" style="margin-top:15px;max-height:100px;">
 </div>
                                                     {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
-                                                    <div class="wizard-form-error"></div>
+                                                  {{--  <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div>
-                                         
-                                           
+                                            </div> --}}
+                                         <div class="col-sm-6">
+                             
+      <label class="form-label">Select Region</label>
+<select class="form-control radius-8 form-select wizard-required" name="cate_region" id="region" style="">
+    @foreach ($region as $trend)
+        <option value="{{ $trend->id }}">{{ $trend->title }}</option>
+    @endforeach
+</select> </div>
+
                                             
                                             <div class="form-group text-end">
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -211,6 +218,29 @@
                                     <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
+                                 
+
+<div class="col-12">
+    <div class="form-switch switch-primary d-flex align-items-center gap-3">
+
+        <!-- Always sends 0 if not checked -->
+        <input type="hidden" name="is_menu" value="0">
+
+        <!-- Sends 1 if checked -->
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            role="switch" 
+            id="switch2" 
+            name="is_menu"
+            value="1"
+        >
+
+        <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch2">
+            Menu Active
+        </label>
+    </div>
+</div>
                                             <div class="col-12">
                                                 <label class="form-label">Short Content*</label>
                                                 <div class="position-relative">   

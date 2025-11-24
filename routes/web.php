@@ -56,12 +56,16 @@ Route::resource('admin/event',EventController::class);
 
 Route::middleware('setregion')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('all-event', [EventController::class, 'event'])->name('event.all');
+     Route::get('event/{slug}', [EventController::class, 'subevent'])->name('event');
     Route::get('store/{slug}', [StoreController::class, 'website'])->name('store.website');
     Route::get('all-store', [StoreController::class, 'store_menu'])->name('store.menusa');
     Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('store.menu');
     Route::get('categories', [CategoryController::class, 'categmenu'])->name('categ.menu');
     Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('categ.page');
     Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('store.rate');
+ Route::get('search', [StoreController::class, 'search'])->name('store.search');
+     Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('.categ.menu');
 });
 
 // Region-prefixed routes (dynamically from database)
@@ -72,10 +76,15 @@ Route::prefix('{region}')
         Route::get('/', [HomeController::class, 'index'])->name('region.home');
         Route::get('store/{slug}', [StoreController::class, 'website'])->name('region.store.website');
         Route::get('all-store', [StoreController::class, 'store_menu'])->name('region.store.menusa');
+        Route::get('all-event', [EventController::class, 'event'])->name('region.event.all');
+        Route::get('event/{slug}', [EventController::class, 'subevent'])->name('region.event');
         Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('region.store.menu');
         Route::get('categories', [CategoryController::class, 'categmenu'])->name('region.categ.menu');
         Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
         Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('region.store.rate');
+ Route::get('search', [StoreController::class, 'search'])->name('region.store.search');
+ Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('region.categ.menu');
+
     });
 
 

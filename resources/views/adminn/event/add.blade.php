@@ -270,11 +270,18 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                           
-                                            {{-- <div class="col-sm-6">
+                                          
+      <div class="col-6">
+      <label class="form-label">Select Region</label>
+<select class="form-control radius-8 form-select wizard-required" name="event_region" id="region" style="">
+    @foreach ($region as $trend)
+        <option value="{{ $trend->id }}">{{ $trend->title }}</option>
+    @endforeach
+</select> </div>
+                                            <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="m_title" placeholder="Enter Title" required>
+                                                    <input type="text" class="form-control wizard-required" name="m_tiitle" placeholder="Enter Title" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -284,7 +291,7 @@
                                                     <input type="text" class="form-control wizard-required" name="m_descrip" placeholder="Enter Description" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                           
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>

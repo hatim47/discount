@@ -300,6 +300,7 @@
                                                     
                                             <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
                                                  @foreach($event as $category)
+                                                  <option value="0">No Event</option>
                                                        <option value="{{ $category->id }}">
                                                             {{ $category->title }}
                                                          </option>

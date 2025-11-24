@@ -20,7 +20,7 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="Categories"  class="text-[#1ec27e] hover:font-medium hover:underline">Categories</a>
+                        <a href="categories"  class="text-[#1ec27e] hover:font-medium hover:underline">Categories</a>
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
@@ -39,7 +39,10 @@
  <div class="flex flex-col items-start border-b border-gray-300 text-gray-700 text-sm font-medium p-6">
  <div class="flex justify-between w-full ">
  <h1 class="text-2xl font-bold text-[#0F0F0F]">{{$category->name}}</h1>
-<a href="{{route('categ.page', $category->slug)}}"class="text-lg font-bold text-[#0F0F0F]" >View All </a>
+{{-- {{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }} --}}
+{{-- {{$category->slug}} --}}
+
+<a href="{{region_route('categ.page', ['slug' => $category->slug] ) }}"class="text-lg font-bold text-[#0F0F0F]" >View All </a>
    </div>
 <div class="flex flex-col px-3 py-6 ">
 

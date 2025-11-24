@@ -18,6 +18,8 @@ class Event extends Model
         'end_date',
         'top_events',
         'status',
+        'm_tiitle',
+        'm_descrip',
         'event_region',
     ];
 
@@ -25,8 +27,6 @@ class Event extends Model
         'start_date' => 'datetime',
         'end_date'   => 'datetime',
     ];
-
-    // ✅ Relationships
     public function region()
     {
         return $this->belongsTo(Region::class, 'event_region');

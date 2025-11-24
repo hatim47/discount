@@ -3,7 +3,7 @@
 @section('title', 'Welcome to ' . config('website.company.name'))
 @section('meta_description', 'Best marketing platform to grow your business.')
 @push('styles')
-  <link rel="stylesheet"  href="{{ asset('assets/css/lib/slick.css') }}">
+  <link rel="stylesheet"  href="{{ asset('public/assets/css/lib/slick.css') }}">
 <style>
  {
     overflow-x: auto;
@@ -297,7 +297,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
      
     @foreach ($trendingWith as $relateds )
-      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
       {{$relateds->name}}
       </a></li>
     @endforeach
@@ -312,7 +312,7 @@ font-size:30px;
 </div>
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($likes as $relateds )
-    <li><a href="#" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
+    <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
       <img class="w-16 rounded-lg border border-[#1EC27E]" src="{{$relateds->logo}}" />
        <div class="flex flex-col items-start  " >
         <p>{{$relateds->name}}</p>
@@ -331,8 +331,8 @@ font-size:30px;
   <h1 class="text-5xl font-medium">{{ $store->name }}</h1>
 @endsection
 @push('scripts')
- <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
- <script src="{{ asset('assets/js/lib/slick.min.js') }}"></script>
+ <script src="{{ asset('public/assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+ <script src="{{ asset('public/assets/js/lib/slick.min.js') }}"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     let loadMoreBtn = document.getElementById("loadMore");

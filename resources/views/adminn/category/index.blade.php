@@ -5,8 +5,10 @@
     $script = '<script>
                     let table = new DataTable("#dataTable");
                </script>
-               <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-               ';
+             
+   <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+              
+   ';
 @endphp
 
 @section('content')
@@ -31,14 +33,13 @@
                             <th scope="col">Name</th>
                                 <th scope="col">Stores Count</th>
                                 <th scope="col">copuns Count</th>
-                                <th scope="col">Amount</th>
                                 <th scope="col">Status</th>
                                  <th scope="col">date</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
+{{-- 
                             <tr>
                                 <td>21243243</td>
                                 <td><a  href="javascript:void(0)" class="text-primary-600">#526534</a></td>
@@ -63,7 +64,7 @@
                                         <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> --}}
                                @foreach ($categories as $category)
                 <tr>
                     <td>{{ $category->id }}</td>
@@ -80,15 +81,15 @@
        <span>{{ $category->coupons_count }}</span>
     </a>
               </td>
-                    <td>
+                    {{-- <td>
                         @if($category->logo)
                             <img src="{{ Storage::url($category->logo) }}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif
-                    </td>
+                    </td> --}}
                    <td> {{ $category->status == 1 ? 'Active' : 'Inactive' }} </td>
-                    <td> {{ $category->created_at->format('d M Y') }} </td>
+                    <td> {{ $category->region->id == $category->cate_region ? $category->region->title : '' }} </td>
                     <td>
                     <a href="javascript:void(0)" 
            data-id="{{ $category->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
@@ -134,15 +135,30 @@ function initLfmButtons() {
         console.error("jQuery not loaded.");
         return;
     }
-    if (typeof $.fn.filemanager !== "function") {
+    {{-- if (typeof $.fn.filemanager !== "function") {
         console.error("stand-alone-button.js not loaded.");
         return;
-    }
+    } --}}
 
     // Initialize every LFM button inside the page
-    $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
+    {{-- $("[id^='lfm']").filemanager("image", { prefix: route_prefix }); --}}
 }
-
+   function initEditor(selector) {
+        ClassicEditor
+            .create(document.querySelector(selector), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'insertTable', '|',
+                     'undo', 'redo'
+                ],
+                ckfinder: {
+                    uploadUrl: "/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}"
+                }
+            })
+            .catch(error => console.error(error));
+    }
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
@@ -154,10 +170,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("editCategoryBody").innerHTML = html;
                     initLfmButtons();
                     new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
+                      initLfmButtons();
+
+                    // Initialize CKEditor AFTER modal becomes visible
+                    document.getElementById("editCategoryModal")
+                        .addEventListener("shown.bs.modal", function () {
+                            initEditor('#editor1');
+                            initEditor('#editor2');
+                        }, { once: true });
+                
                 })
                 .catch(err => console.error(err));
         });
     });
 });
 </script>
+
 @endpush

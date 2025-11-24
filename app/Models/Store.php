@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Store extends Model 
 {
      protected $fillable = [
-            'name',
+        'name',
         'slug',
         'logo',
         'image',
@@ -28,6 +28,9 @@ class Store extends Model
         'store_region',
         'ismenu',
         'category_id',
+        'm_tiitle',
+        'm_descrip',
+
     ];
 
     // Relationships

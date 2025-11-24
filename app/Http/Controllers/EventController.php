@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Region;
+use App\Models\Store;
+use App\Models\Coupon;
 class EventController extends Controller
 {
    public function index()
    {
-       $events = Event::all();
+       $events = Event::with('region')->latest()->get();
        return view('adminn.event.index', compact('events'));
    }
 
    public function create()
    {
-       return view('adminn.event.add');
+
+        $region = Region::all();
+       return view('adminn.event.add', compact('region'));
    }    
 
    public function store(Request $request)
@@ -62,7 +67,52 @@ class EventController extends Controller
         return redirect()->route('event.index')
                          ->with('success', 'Event deleted successfully.');
     }
+ public function event($region = null)
+    {
 
+         $region = $region ?? config('app.default_region', 'usa');
+           
+    // Fetch region model
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
 
+        $event = Event::where("event_region",$regionId)->get();
+      
+        $meta_description = "fdsfdsf";
+        $title = "m_tiitle";
+        return view('website.event', compact('event','title','meta_description'));
+    }
+ public function subevent($regionOrSlug, $slug = null)
+    {
+        if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }
+    
+ 
+    
+   
+    $regionId = $region->id;
+    $regionTitle = $region->title;
+
+        $event = Event::where("event_region",$regionId)->where('slug', $slug)->firstOrFail();
+
+        $allevent = Event::where("event_region",$regionId)->get();
+$trends = Store::where('trend', true)->get();
+
+    // Get coupons for this store
+    $coupons = Coupon::with('store')->where('store_id', $store->id)
+        ->latest()
+        ->paginate(10);
+        $meta_description = $event->m_descrip;  
+        $title = $event->m_tiitle;       
+        return view('website.eventsub', compact('event','trends','coupons','allevent','title','meta_description'));
+    }
 
 }

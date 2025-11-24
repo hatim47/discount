@@ -181,6 +181,15 @@
                             </div>
                             <fieldset class="wizard-fieldset show">
                                 <h6 class="text-md text-neutral-500">Category Information</h6>
+
+  <div class="row gy-3">
+      <div class="col-6">
+      <label class="form-label">Select Region</label>
+<select class="form-control radius-8 form-select wizard-required" name="store_region" id="region" style="">
+    @foreach ($region as $trend)
+        <option value="{{ $trend->id }}">{{ $trend->title }}</option>
+    @endforeach
+</select> </div></div>
                                 <div class="row gy-3">
                                     <div class="col-sm-6">
                                         <label class="form-label">Store Name*</label>
@@ -198,7 +207,7 @@
                                                 class="form-control radius-8 form-select wizard-required" id="depart"
                                                 required>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">
+                                                    <option data-region="{{ $category->cate_region }}" value="{{ $category->id }}">
                                                         {{ $category->name }}
                                                     </option>
                                                 @endforeach
@@ -263,8 +272,7 @@
                             <fieldset class="wizard-fieldset">
                                 <h6 class="text-md text-neutral-500">Website Information</h6>
                         
-
-
+   
                                 <div class="row gy-3">
 <label class="form-label">Select one or more tags to highlight this coupon 
 (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
@@ -394,7 +402,7 @@
     <ul id="dropdown2-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($categories as $index => $category)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="relat_cate_options[]" value="{{ $category->id }}">
+          <input data-region="{{ $category->cate_region}}"  class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="relat_cate_options[]" value="{{ $category->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $category->name }}</label>
         </div>
       </li>
@@ -446,7 +454,7 @@
     <ul id="dropdown3-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($stores as $index => $store)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="like_store_options[]" value="{{ $store->id }}">
+          <input data-region="{{ $store->store_region }}" class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="like_store_options[]" value="{{ $store->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $store->name }}</label>
         </div>
       </li>
@@ -491,7 +499,7 @@
     <ul id="dropdown4-list" class="list-unstyled ms-13  mb-0" style="max-height: 200px; overflow-y: auto;">
       @foreach ($trends as $index => $trend)<li> 
         <div class="form-check d-flex align-items-center">
-          <input class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="trend_store_options[]" value="{{ $trend->id }}">
+          <input data-region="{{ $trend->store_region }}"  class="form-check-input multi-option" type="checkbox" id="opt{{ $index + 1 }}" name="trend_store_options[]" value="{{ $trend->id }}">
           <label class="form-check-label" for="opt{{ $index + 1 }}">{{ $trend->name }}</label>
         </div>
       </li>
@@ -550,7 +558,7 @@
 
                             <fieldset class="wizard-fieldset">
                                 <h6 class="text-md text-neutral-500">SEO Information</h6>
-                                <div class="row gy-3">
+                                <div class="row gy-3 mb-5">
                                     <div class="col-sm-6">
                                         <label class="form-label">URL SLUG*</label>
                                         <div class="position-relative">
@@ -564,6 +572,28 @@
                                         <div class="position-relative">
                                             <input type="text" class="form-control wizard-required" name="link"
                                                 placeholder="Enter url" required>
+                                            <div class="wizard-form-error"></div>
+                                        </div>
+                                    </div>
+                                
+
+                                   
+                                </div>
+
+                                 <div class="row gy-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">(META) Title*</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control wizard-required" name="m_tiitle"
+                                                placeholder="Enter Title" required>
+                                            <div class="wizard-form-error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">(META) Description*</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control wizard-required" name="m_descrip"
+                                                placeholder="Enter Description" style="height: 60px; line-height: 20px; overflow-y: auto;" required>
                                             <div class="wizard-form-error"></div>
                                         </div>
                                     </div>
@@ -607,6 +637,12 @@
 @push('scripts')
     <script>
         const allStores = @json($stores);
+
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", function() {
              const categorySelect = document.getElementById("depart");
     const storeList = document.getElementById("store-list");
@@ -614,10 +650,53 @@
     const badge = document.getElementById("dropdown1-count");
     const searchInput = document.getElementById("store-search");
     const toggleBtn = document.getElementById("select-all-toggle");
+    const regionSelect = document.getElementById("region");
+
+
+
+const allCategoryOptions = Array.from(categorySelect.options);
+const allCategoryItems = Array.from(document.querySelectorAll('#dropdown2-list li'));
+const allStoreItems = Array.from(document.querySelectorAll('#dropdown3-list li'));
+const allTrendItems = Array.from(document.querySelectorAll('#dropdown4-list li'));
+regionSelect.addEventListener("change", function() {
+    const selectedRegion = this.value;
+
+    // Clear current options
+    categorySelect.innerHTML = '';
+
+    // Filter options that match selected region
+    const filteredOptions = allCategoryOptions.filter(option => option.dataset.region == selectedRegion);
+     allCategoryItems.forEach(li => {
+        const input = li.querySelector('input');
+        li.style.display = input.dataset.region == selectedRegion ? '' : 'none';
+    });
+
+    // Filter stores
+    allStoreItems.forEach(li => {
+        const input = li.querySelector('input');
+        li.style.display = input.dataset.region == selectedRegion ? '' : 'none';
+    });
+
+    // Filter trends
+    allTrendItems.forEach(li => {
+        const input = li.querySelector('input');
+        li.style.display = input.dataset.region == selectedRegion ? '' : 'none';
+    });
+
+    // Append filtered options
+    filteredOptions.forEach(option => categorySelect.appendChild(option));
+
+    // Optionally, reset selected index
+    categorySelect.selectedIndex = 0;
+});
+
+
    function renderStores(categoryId) {
         storeList.innerHTML = "";
-
-        const filtered = allStores.filter(s => s.category_id == categoryId);
+regionId = regionSelect.value;
+        {{-- const filtered = allStores.filter(s => s.category_id == categoryId); --}}
+const filtered = allStores.filter(s =>s.category_id == categoryId && s.store_region == regionId
+);
 
         if (filtered.length === 0) {
             storeList.innerHTML = '<li class="text-muted small fst-italic">No stores found</li>';

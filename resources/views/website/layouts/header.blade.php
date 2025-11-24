@@ -1,5 +1,5 @@
 {{-- resources/views/components/header.blade.php --}}
-<header class="bg-[#FAF9F5] border-b-2 border-[#1EC27E] top-0 z-20 relative" x-data="{ showLogin:false, showSignup:false, showPassword:false }">
+<header class="bg-[#FAF9F5] border-b-2 border-[#1EC27E] top-0 z-20 relative" x-data="{ showLogin:false, showSignup:false, showPassword:false, mobileMenu:false, showSearch:false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center z-2">
         {{-- Logo/Brand Name --}}
         <a href="{{ url('/') }}" class="text-3xl font-extrabold text-primary-700 hover:text-primary-600 transition">
@@ -41,7 +41,7 @@
       <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         @foreach($categoryies->where('ismenu', 1)->take(9) as $category)
           <li>
-            <a href="{{ route('categ.page', ['region' => session('region_code'), 'slug' => $category->slug]) }}"
+            <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}"
                class="block text-gray-900 hover:text-[#1EC27E] font-bold rounded-md text-sm mb-2">
               {{ $category->name }}
             </a>
@@ -56,7 +56,7 @@
                 @endif
               @endforeach
 
-              <a href="{{ route('categ.page', ['region' => session('region_code'), 'slug' => $category->slug]) }}"
+              <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}"
                  class="flex items-center text-gray-700 hover:text-[#1EC27E] text-sm mt-1">
                 <span>More Brands</span>
                 <span class="bg-[#1EC27E] text-white rounded-full p-1 ml-1">
@@ -69,7 +69,7 @@
 
         <!-- EXTRA COLUMN -->
         <li>
-          <a href="{{ route('categ.menu',['region' => session('region_code')]) }}"
+          <a href="{{region_route('categ.menu') }}"
              class="block text-gray-900 font-bold hover:text-[#1EC27E] text-sm mb-2">
             More Categories
           </a>
@@ -105,6 +105,30 @@
     </div>
   </div>
 </nav>
+<div class="flex items-center space-x-2">
+            <button @click="openSearch()" class="text-gray-600 flex items-center hover:text-[#1EC27E] transition">
+                <iconify-icon icon="ic:outline-search" width="24" height="24" ></iconify-icon>
+            </button>
+        </div>
+
+        {{-- Mobile Hamburger --}}
+        <div class="md:hidden flex items-center">
+            <button @click="mobileMenu = !mobileMenu" class="text-gray-600 hover:text-[#1EC27E] transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    {{-- Mobile Menu --}}
+    <div x-show="mobileMenu" x-transition class="md:hidden bg-white border-t border-[#1EC27E]">
+        <nav class="px-4 py-4 space-y-2">
+            <a href="{{region_route('categ.menu') }}" class="block text-gray-700 hover:text-[#1EC27E] font-semibold">Categories</a>
+            <a href="{{ url('/featured') }}" class="block text-gray-700 hover:text-[#1EC27E] font-semibold">Featured Deals</a>
+            <a href="{{ url('/about') }}" class="block text-gray-700 hover:text-[#1EC27E] font-semibold">About Us</a>
+        </nav>
+    </div>
 
 
         {{-- Action Button --}}

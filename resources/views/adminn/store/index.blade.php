@@ -21,7 +21,7 @@
                             <tr>
                                 <th scope="col">
                                     <div class="form-check style-check d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox">
+                                        {{-- <input class="form-check-input" type="checkbox"> --}}
                                         <label class="form-check-label">
                                          Id
                                         </label>
@@ -32,13 +32,13 @@
                                 <th scope="col">Copons Count</th>
                                  <th scope="col">Image</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Dates</th>
+                                <th scope="col">Regoins</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <tr>
+                            {{-- <tr>
                                 <td>21243243</td>
                                 <td><a  href="javascript:void(0)" class="text-primary-600">#526534</a></td>
                                 <td>
@@ -62,10 +62,10 @@
                                         <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> --}}
                                @foreach ($stores as $store)
                 <tr>
-                
+                   
                     <td>{{ $store->id }}</td>
                     <td>{{ $store->name }}</td>
                     <td>{{ $store->category->name}}</td>
@@ -83,17 +83,17 @@
     @endif
 </td>
 <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
-<td> {{ $store->created_at->format('d M Y') }} </td>
+<td>{{ $store->region->id == $store->store_region ? $store->region->title : '' }} </td>
 <td>
 <a href="{{ route('store.edit', $store->id) }}" 
 data-id="{{ $store->id }}" class=" w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                     <iconify-icon icon="lucide:edit"></iconify-icon>
 
 </a>
-    <form action="{{ route('categories.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+    <form action="{{ route('store.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
         @csrf
         @method('DELETE')
-        <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
+        <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this store?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
     </form>
 
 

@@ -53,12 +53,13 @@ class HomeController extends Controller
 
     // All events
     $events = Event::all();
-
+$meta_description = "Your meta description here";
     return view('website.home', compact(
         'feature',
         'categories',
         'stores',
-        'events'
+        'events',
+        'meta_description'
     ));
 }
 

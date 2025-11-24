@@ -1,0 +1,11 @@
+/* Themify Customize Styling */
+body {	
+	background-repeat: no-repeat; 
+}
+#headerwrap {	background-image: none; 
+}
+#header {	
+	background-color: transparent;background-image: none; 
+}
+#header-slider {	background-image: none; 
+}

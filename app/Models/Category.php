@@ -25,6 +25,7 @@ class Category extends Model
         'recom',
         'relat',
         'like',
+        'showe',
         'cate_region',
     ];
 

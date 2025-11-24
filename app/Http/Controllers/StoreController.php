@@ -22,8 +22,7 @@ class StoreController extends Controller
 
     public function index()
     {
-       $query = Store::with(['category'])  // eager load category
-                  ->withCount('coupons'); // count coupons per store
+       $query = Store::with(['category','region'])->withCount('coupons'); // count coupons per store
 
     $stores = $query->latest()->get();
         return view('adminn.store.index', compact('stores'));
@@ -32,7 +31,7 @@ class StoreController extends Controller
 public function index_cat($categoryId = null)
 {
     $query = Store::query();
-    if ($categoryId) {  $query->where('category_id', $categoryId);    }
+    if ($categoryId) {$query->where('category_id', $categoryId);}
     $stores = $query->latest()->get();
     return view('adminn.store.index_cat', compact('stores'));
 }
@@ -42,7 +41,9 @@ public function index_cat($categoryId = null)
         $stores = Store::all();
         $trends = Store::where('trend', true)->get();
         $categories = Category::all(); // Fetch categories for the dropdown
-        return view('adminn.store.add', compact('categories', 'stores','trends'));
+         $region = Region::all();
+        // dd($region[0]->code);
+        return view('adminn.store.add', compact('categories', 'stores','trends','region'));
     }
     public function store(Request $request)
     {
@@ -65,7 +66,7 @@ public function index_cat($categoryId = null)
             'relat_store' => 'nullable',
             'relat_cate'  => 'nullable',
             'like_store'  => 'nullable',
-
+            'store_region' => 'required|exists:regions,id',
             // dynamic content
             'dy_heading'     => 'nullable|array',
             'dy_heading.*'   => 'nullable|string',
@@ -95,7 +96,9 @@ public function index_cat($categoryId = null)
         'link'        => $request->link,
         'category_id' => $request->category_id,
         'status'      => $request->status ?? 1,
-
+            'm_tiitle' => $request->m_tiitle,
+    'm_descrip' => $request->m_descrip,
+    'store_region' => $request->store_region,
         // on/off toggles
         'trend'       => $request->has('trend'),
         'recom'       => $request->has('recom'),
@@ -145,26 +148,30 @@ public function index_cat($categoryId = null)
         }
     }
       $data = $request->all();
-
     // ✅ Handle logo upload
     if ($request->hasFile('logo')) {
         $data['logo'] = $request->file('logo')->store('logos', 'public');
-    }
-
-    
+    }    
     if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('images', 'public');
     } 
+
+     $region = Region::all();
+        // dd($region[0]->code);
      $stores = Store::all();
-        $trends = Store::where('trend', true)->get();
-    
+     $trends = Store::where('trend', true)->get();    
     $categories = Category::all(); // Fetch categories for the dropdown
-        return view('adminn.store.add', compact('categories'));
+        return view('adminn.store.add', compact('categories', 'stores','trends','region'));
     }
+
+
+
+
+
+
     public function show($id)
     {
-        $store = Store::findOrFail($id);
-        
+        $store = Store::findOrFail($id);        
         return response()->json($store);
     }
     public function edit($id)
@@ -223,6 +230,8 @@ public function index_cat($categoryId = null)
     'heading'    => $request->heading,
     'description'=> $request->description,
     'category_id' => $request->category_id,
+    'm_tiitle' => $request->m_tiitle,
+    'm_descrip' => $request->m_descrip,
     'status'      => $request->status ?? 0,
     'trend'       => $request->has('trend') ? 1 : 0,
     'recom'       => $request->has('recom') ? 1 : 0,
@@ -291,7 +300,6 @@ public function index_cat($categoryId = null)
        return redirect()
         ->route('store.index')
         ->with('success', 'Store updated successfully!');
-
     
     }
 
@@ -300,7 +308,7 @@ public function index_cat($categoryId = null)
     {
         $store = Store::findOrFail($id);
         $store->delete();
-        return redirect()->route('adminn.store.index')
+        return redirect()->route('store.index')
                          ->with('success', 'Store deleted successfully.');
     }
 
@@ -348,7 +356,9 @@ if (!$store) {
     return redirect()->route('region.home', ['region' => $region->code])
         ->with('error', 'Store not found in this region.');
 }
-
+    // $titel=$store->name . " Coupons & Deals - " . config('app.name');
+$title = $store->m_tiitle;
+    $meta_description = $store->m_descrip;
 
     // Get all stores, categories, and trending stores
     $stores = Store::all();
@@ -356,9 +366,11 @@ if (!$store) {
     $trends = Store::where('trend', true)->get();
 
     // Get coupons for this store
-    $coupons = Coupon::where('store_id', $store->id)
+    $coupons = Coupon::with('store')->where('store_id', $store->id)
         ->latest()
         ->paginate(10);
+  
+
 
     // --- Ratings Section ---
     $average = round($store->ratings->avg('rating'), 1);
@@ -377,7 +389,6 @@ if (!$store) {
             ->where('ip_address', \request()->ip())
             ->first();
     }
-
     // Pass everything to the view
     return view('website.store', compact(
         'store',
@@ -387,7 +398,9 @@ if (!$store) {
         'stores',
         'average',
         'count',
-        'existingRating'
+        'existingRating',
+        'title',
+        'meta_description'
     ));
 }
    public function store_menu($region = null)
@@ -474,8 +487,58 @@ return response()->json([
     }      
 
 
+public function popupsearch($region = null)
+    {
+
+            $region = $region ?? config('app.default_region', 'usa');
+            $regionModel = Region::where('code', $region)->firstOrFail();
+            $regionId = $regionModel->id;
+            $regionTitle = $regionModel->title;
+
+        // $searchQuery = $request->input('query', '');
+      $topStores = Store::withCount('coupons')
+    ->orderBy('coupons_count', 'desc')
+    ->where('store_region', $regionId)
+    ->latest()
+    ->take(5)
+    ->get();
+
+// 2. Get latest 5 coupons from these top 5 stores
+$trendingCoupons = Coupon::with('store')
+    ->whereIn('store_id', $topStores->pluck('id'))
+    ->latest()
+    ->take(5)
+    ->get();
+
+         return response()->json([
+        'offers' => $trendingCoupons,
+        'brands' => $topStores,
+    ]);
+    }
 
 
+    public function search(Request $request, $region = null)
+{
+    // Use region from URL or fallback to session/default
+    $region = $region ?? session('region', config('app.default_region', 'usa'));
+   $regionModel = Region::where('code', $region)->firstOrFail();
+            $regionId = $regionModel->id;
+            $regionTitle = $regionModel->title;
+    $query = $request->input('query', '');
 
-    
+    // Fetch stores filtered by region (optional: if your Store model has region_id)
+    $stores = Store::when($regionId, function($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+    ->when($query, function($q) use ($query) {
+        $q->where('name', 'like', "%{$query}%");
+    })
+    ->latest()
+    ->take(10) // limit results
+    ->get(['id', 'name', 'slug', 'logo']); // select fields you need
+
+    return response()->json([
+        'stores' => $stores
+    ]);
+}
 }

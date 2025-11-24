@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Store;
 use App\Models\Coupon;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,15 +13,14 @@ class CategoryController extends Controller
 {
      public function add()
     {
-        return view('adminn.category.add');
+    $region = Region::all();
+        return view('adminn.category.add', compact('region'));
     }
 
 
     public function index()
     {
     //    $categories = Category::latest()->get(); // fetch from DB
-
-  
 $categories = Category::withCount('stores')
     ->addSelect([
         'coupons_count' => DB::table('coupons')
@@ -30,7 +30,9 @@ $categories = Category::withCount('stores')
     ])
     ->latest()
     ->get();
-        return view('adminn.category.index', compact('categories'));
+    
+    return view('adminn.category.index', compact('categories'));
+
     }
 
      public function store(Request $request)
@@ -38,10 +40,13 @@ $categories = Category::withCount('stores')
         $request->validate([
             'name' => 'required',
             'slug' => 'required|string|max:255|unique:categories,slug',
-            'logo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:110',
+            // 'logo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:110',
             'shrt_content' => 'nullable',
             'long_content' => 'nullable',
+            'status' => 'required|boolean',
+            'is_menu' => 'required|boolean',
             'm_title' => 'nullable|string',
+            'cate_region' => 'required|integer|exists:regions,id',
             'm_descrip' => 'nullable|string', 
             'url' => 'nullable|string|max:255|unique:categories,url',   
         ]);
@@ -55,7 +60,6 @@ $categories = Category::withCount('stores')
         return redirect()->route('cate.add')
                          ->with('success', 'Category created successfully.');
     }
-
 //     @foreach($store->getMedia('images') as $media)
 //     <img src="{{ $media->getUrl() }}" width="120">
 // @endforeach
@@ -65,17 +69,17 @@ $categories = Category::withCount('stores')
         return response()->json($category);
     }
    public function edit($id)
-{
+    {
     $category = Category::findOrFail($id); 
-        return view('adminn.category._form', compact('category'));
+    return view('adminn.category._form', compact('category'));
     }
-
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
+            'slug' => 'nullable|string',
+
         ]);
         $category->update($request->all());
         return redirect()->route('categories.index')
@@ -96,15 +100,14 @@ $categories = Category::withCount('stores')
         $regionModel = Region::where('code', $region)->firstOrFail();
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
-    
+    $meta_description ="s";
         $categories = Category::with('stores')->where('cate_region', $regionId)->get();
-        return view('website.categ_menu', compact('categories'));
-
+        return view('website.categ_menu', compact('categories','meta_description'));
 }
 
 
     public function page($regionOrSlug, $slug = null)
-{
+    {
     if ($slug === null) {
         $slug = $regionOrSlug;
         $region = config('app.default_region', 'usa');
@@ -124,25 +127,25 @@ $categories = Category::withCount('stores')
         $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
         $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
         $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
-
+// $title = $store->m_title;
+//     $meta_description = $store->m_descrip;
 
   $feature = Coupon::with('store') // eager load store
                           ->where('feature', true)
                           ->where('verified', true)
                           ->where('status', 'active')
                           ->get();
+$meta_description ="s";
 
-
-   $coupons = Coupon::whereIn('store_id', function ($query) use ($store) {
+   $coupons = Coupon::with('store')->
+   whereIn('store_id', function ($query) use ($store) {
     $query->select('id')
           ->from('stores')
           ->where('category_id', $store->id);
 })->orderByDesc('view') 
 ->latest()
         ->paginate(10);
-
-       
-    return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores'));
+    return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores','title','meta_description'));
     }
 
 
