@@ -1,10 +1,10 @@
-<form action="{{ route('event.update', $event->id) }}" method="POST">
+<form action="{{ route('dynapage.update', $event->id) }}" method="POST">
     @csrf
     @method('PUT')
 
     <div class="mb-3">
-        <label class="form-label">Event Name</label>
-        <input type="text" name="title" class="form-control" value="{{ old('title', $event->title) }}" required>
+        <label class="form-label">Page Name</label>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $event->name) }}" required>
     </div>
 
     <div class="mb-3">
@@ -29,15 +29,22 @@
         <label class="form-label">Meta Description</label>
         <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $event->m_descrip) }}" required>
     </div>
+  <div class="mb-3">
+        <label class="form-label">Heading</label>
+        <input type="text" name="heading" class="form-control" value="{{ old('heading', $event->heading) }}" required>
+    </div>
 
-
-  <div class="position-relative"> 
-                         <label class="form-label"> Description</label>
-  
-                                 <textarea id="editor1" name="description" class="form-control" rows="4">{{ $event->description }} </textarea>
+  <div class="position-relative">
+    <label class="form-label">Short Description</label>   
+                                 <textarea id="editor1" name="shortdiscription" class="form-control" rows="4">{{ $event->shortdiscription }} </textarea>
                                                         <div class="wizard-form-error"></div>
                                                 </div>
+<div class="position-relative">   
+                       <label class="form-label">Long Description</label>
 
+                                 <textarea id="editor2" name="longdiscription" class="form-control" rows="4">{{ $event->longdiscription }} </textarea>
+                                                        <div class="wizard-form-error"></div>
+                                                </div>
 
 
 

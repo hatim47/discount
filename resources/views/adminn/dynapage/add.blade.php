@@ -110,7 +110,7 @@
     <script>
     var route_prefix = "'. url('/laravel-filemanager') .'";
     $("#lfm").filemanager("image", {prefix: route_prefix});
-       $("#lfms").filemanager("image", {prefix: route_prefix});
+      
 </script>';
                  
 @endphp
@@ -121,11 +121,11 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                         <form action="{{ route('coupon.store') }}" method="POST" enctype="multipart/form-data">
+                         <form action="{{ route('dynapage.store') }}" method="POST" enctype="multipart/form-data">
                                          @csrf
                         <div class="d-flex justify-content-between " >
                          <div class="" >
-                            <h6 class="mb-4 text-xl">Coupon adding</h6>
+                            <h6 class="mb-4 text-xl">Dynamic Pages  adding</h6>
                             <p class="text-neutral-500">Fill up your details and proceed next steps.</p>
                             </div>
  <div class="form-switch switch-primary d-flex align-items-center gap-3">
@@ -147,7 +147,7 @@
                                                 <div class="form-wizard-list__line">
                                                     <span class="count">1</span>
                                                 </div>
-                                                <span class="text text-xs fw-semibold">Coupon start </span>
+                                                <span class="text text-xs fw-semibold">Page start </span>
                                             </li>
                                             <li class="form-wizard-list__item">
                                                 <div class="form-wizard-list__line">
@@ -155,61 +155,40 @@
                                                 </div>
                                                 <span class="text text-xs fw-semibold">Website Data </span>
                                             </li>
-                                            {{-- <li class="form-wizard-list__item">
-                                                <div class="form-wizard-list__line">
-                                                    <span class="count">3</span>
-                                                </div>
-                                                <span class="text text-xs fw-semibold">Seo Date </span>
-                                            </li> --}}
                                             <li class="form-wizard-list__item">
                                                 <div class="form-wizard-list__line">
                                                     <span class="count">3</span>
+                                                </div>
+                                                <span class="text text-xs fw-semibold">Seo Data </span>
+                                            </li>
+                                            <li class="form-wizard-list__item">
+                                                <div class="form-wizard-list__line">
+                                                    <span class="count">4</span>
                                                 </div>
                                                 <span class="text text-xs fw-semibold">Completed</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <fieldset class="wizard-fieldset show">
-                                        <h6 class="text-md text-neutral-500">Category Information</h6>
+                                        <h6 class="text-md text-neutral-500"> Information</h6>
                                         <div class="row gy-3">
-                                            <div class="col-sm-4">
-                                                <label class="form-label">Coupon Name*</label>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Page Name*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="title" placeholder="Enter Coupon Title" required>
+                                                    <input type="text" class="form-control wizard-required" name="name" placeholder="Enter Page Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <label class="form-label">Coupon Discount*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="discount" placeholder="Enter Coupon Discount" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label class="form-label">Coupon Code*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="code" placeholder="Enter Coupon Code" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                             <div class="col-sm-6">
-                                                <label class="form-label">Coupon Link*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter Coupon link" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                    
+                                  
                                         
 
                                             <div class="col-sm-6">
-                                                <label class="form-label">Logo *</label>
+                                                <label class="form-label">Page banner *</label>
                                                 <div class="position-relative"> 
                                               <div class="mb-3">
   
     <div class="input-group">
-        <input id="logo" class="form-control wizard-required" type="text" name="image" required>
+        <input id="logo" class="form-control wizard-required" type="text" name="banner" required>
         <span class="input-group-btn">
             <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
                 Choose
@@ -223,21 +202,8 @@
                                                     
                                                 </div>
                                             </div>
-                                             <div class="col-sm-6">
-                                                <label class="form-label">Start Date*</label>
-                                                <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                           <div class="col-sm-6">
-                                                <label class="form-label">End Date*</label>
-                                                <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                           
+                                            
+
                                             
                                             <div class="form-group text-end">
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -246,99 +212,35 @@
                                     </fieldset>
 
                                     <fieldset class="wizard-fieldset">
-
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
-                                         <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
-
-                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                    
-                                    <input type="checkbox" class="btn-check" id="btncheck1">                        
-                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
-                       
-                        <input type="checkbox" class="btn-check" id="btncheck11">
-                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
-                        
-                        <input type="checkbox" class="btn-check" id="btncheck12">                        
-                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
-                       
-                        <input type="checkbox" class="btn-check" id="btncheck2">
-                        <label class="btn btn-outline-primary-600 px-20 py-11" for="btncheck2">Deals </label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck3">
-                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck3">Verified </label>
-                        
-                        <input type="checkbox" class="btn-check" id="btncheck31">
-                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck31">Exclusive </label>
-
-                    </div>
+                                         <div class="col-12">
+                                                <label class="form-label">Heading *</label>
+                                                <div class="position-relative">   
+                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Category Name" required>
+                                                        <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
                                             <div class="col-12">
-                                                <label class="form-label">Terms Conditions</label>
-                                                <div class="position-relative">
-                                                        <textarea id="editor2" name="trems" class="form-control" rows="8"></textarea>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div> 
-                                             <div class="col-sm-4">
-                                                <label class="form-label">Select Store Name*</label>
-                                                <div class="position-relative">
-                                                    
-                                            <select name="store_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($stores as $category)
-                                                       <option value="{{ $category->id }}">
-                                                            {{ $category->name }}
-                                                         </option>
-                                                     @endforeach
-                                            </select>                                      
-                                                    <div class="wizard-form-error"></div>
+                                                <label class="form-label">Short Content*</label>
+                                                <div class="position-relative">   
+                                 <textarea id="editor1" name="shortdiscription" class="form-control" rows="4"> </textarea>
+                                                        <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            
-                                              <div class="col-sm-4">
-                                                <label class="form-label">Select Event Name*</label>
+                                            <div class="col-12">
+                                                <label class="form-label">Long Description Content*</label>
                                                 <div class="position-relative">
-                                                    
-                                            <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($event as $category)
-                                                  <option value="0">No Event</option>
-                                                       <option value="{{ $category->id }}">
-                                                            {{ $category->title }}
-                                                         </option>
-                                                     @endforeach
-                                            </select>                                      
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                               <div class="col-sm-4">
-                                                <label class="form-label">Select Dynamic Page Name*</label>
-                                                <div class="position-relative">
-                                                    
-                                            <select name="dynapage_id" class="form-control radius-8 form-select wizard-required" id="dynapage" required>
-                                                 @foreach($dynapage as $category)
-                                                  <option value="0">No Dynamic Page</option>
-                                                       <option value="{{ $category->id }}">
-                                                            {{ $category->name }}
-                                                         </option>
-                                                     @endforeach
-                                            </select>                                      
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                                   <div class="col-sm-6">
-                                                <label class="form-label">Store Sort [  '0' consider to be first ] </label>
-                                                <div class="position-relative">
-                                                    <input type="number" class="form-control wizard-required" name="sort_store" placeholder="Enter Coupon Name" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Category Sort [ '0' consider to be first ]</label>
-                                                <div class="position-relative">
-                                                    <input type="number" class="form-control wizard-required" name="sort_cate" placeholder="Enter Coupon Code" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>  
+                                                        <textarea id="editor2" name="longdiscription" class="form-control" rows="8"></textarea>
 
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+        
+
+   
+                                            
+                                         
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -346,7 +248,7 @@
                                         </div>
                                     </fieldset>
 
-                                    {{-- <fieldset class="wizard-fieldset">
+                                    <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">SEO Information</h6>
                                         <div class="row gy-3">
                                             <div class="col-sm-6">
@@ -356,17 +258,19 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+                                          
+      <div class="col-6">
+      <label class="form-label">Select Region</label>
+<select class="form-control radius-8 form-select wizard-required" name="dyna_region" id="region" style="">
+{{-- {{dd($region)}} --}}
+    @foreach ($region as $trend)
+        <option value="{{ $trend->id }}">{{ $trend->title }}</option>
+    @endforeach
+</select> </div>
                                             <div class="col-sm-6">
-                                                <label class="form-label">SEO URL*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter url" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="m_title" placeholder="Enter Title" required>
+                                                    <input type="text" class="form-control wizard-required" name="m_tiitle" placeholder="Enter Title" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -376,14 +280,14 @@
                                                     <input type="text" class="form-control wizard-required" name="m_descrip" placeholder="Enter Description" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div> --}
+                                            </div>
                                           
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
                                             </div>
                                         </div>
-                                    </fieldset> --}}
+                                    </fieldset>
 
                                     <fieldset class="wizard-fieldset">
                                         <div class="text-center mb-40">
@@ -429,7 +333,7 @@
             .catch(error => console.error(error));
     }
 
-   
+    initEditor('#editor1');
     initEditor('#editor2');
 </script>
 @endpush

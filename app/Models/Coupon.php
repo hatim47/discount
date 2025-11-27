@@ -32,6 +32,8 @@ class Coupon extends Model
         'copon_region',
         'store_id',
         'status',
+        'event_id',
+         'dyna_id ',
     ];
 
     protected $casts = [
@@ -44,7 +46,7 @@ class Coupon extends Model
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
-
+    
     public function region()
     {
         return $this->belongsTo(Region::class, 'copon_region');

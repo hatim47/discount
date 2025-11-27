@@ -22,6 +22,7 @@ use App\Http\Controllers\CryptocurrencyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RatingController;
 use App\Models\Region;
+use App\Http\Controllers\DynapageController;
 
 try {
     $validRegions = Region::where('status', 1)
@@ -53,6 +54,7 @@ Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
+Route::resource('admin/dynapage',DynapageController::class);
 
 Route::middleware('setregion')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

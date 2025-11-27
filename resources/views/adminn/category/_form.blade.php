@@ -70,10 +70,13 @@
         <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $category->m_descrip) }}" required>
     </div>
   <div class="position-relative">   
+    <label class="form-label">Short Description</label>
                                  <textarea id="editor1" name="shrt_content" class="form-control" rows="4">{{ $category->shrt_content }} </textarea>
                                                         <div class="wizard-form-error"></div>
                                                 </div>
                    <div class="position-relative">
+                       <label class="form-label">Long Description</label>
+
                                                         <textarea id="editor2" name="long_content" class="form-control" rows="8">{{ $category->long_content }}</textarea>
 
                                                     <div class="wizard-form-error"></div>

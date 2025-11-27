@@ -39,7 +39,12 @@
                     <span>Event List</span>
                 </a>
             </li>
-  
+   <li>
+                <a href="{{ route('dynapage.index') }}">
+                <iconify-icon icon="streamline:multiple-file-2-remix" class="menu-icon" ></iconify-icon>
+                    <span>Dynamic Pages List</span>
+                </a>
+            </li>
             <li>
                 <a  href="{{ route('gallery') }}">
                     <iconify-icon icon="solar:gallery-wide-linear" class="menu-icon"></iconify-icon>

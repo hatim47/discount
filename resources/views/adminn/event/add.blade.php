@@ -125,7 +125,7 @@
                                          @csrf
                         <div class="d-flex justify-content-between " >
                          <div class="" >
-                            <h6 class="mb-4 text-xl">Store adding</h6>
+                            <h6 class="mb-4 text-xl">Event adding</h6>
                             <p class="text-neutral-500">Fill up your details and proceed next steps.</p>
                             </div>
  <div class="form-switch switch-primary d-flex align-items-center gap-3">
@@ -170,7 +170,7 @@
                                         </ul>
                                     </div>
                                     <fieldset class="wizard-fieldset show">
-                                        <h6 class="text-md text-neutral-500">Category Information</h6>
+                                        <h6 class="text-md text-neutral-500">Event Information</h6>
                                         <div class="row gy-3">
                                             <div class="col-sm-6">
                                                 <label class="form-label">Event Name*</label>
@@ -229,7 +229,7 @@
                                          <div class="col-12">
                                                 <label class="form-label">Heading *</label>
                                                 <div class="position-relative">   
-                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Category Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Heading " required>
                                                         <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>

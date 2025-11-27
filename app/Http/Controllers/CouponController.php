@@ -5,7 +5,7 @@ use App\Models\Category;
 use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Event;
-
+use App\Models\DynaPage;
 
 use Illuminate\Http\Request;
 
@@ -13,8 +13,8 @@ class CouponController extends Controller
 {
     public function index()
     {
-       $coupon = Coupon::all(); 
-      
+    //    $coupon = Coupon::all(); 
+       $coupon = Coupon::limit(5)->get();
         return view('adminn.coupon.index', compact('coupon'));
     }
 
@@ -44,7 +44,8 @@ public function create()
     {
         $stores = Store::all(); 
         $event = Event::all();
-        return view('adminn.coupon.add', compact('stores','event'));
+         $dynapage = DynaPage::all();
+        return view('adminn.coupon.add', compact('stores','event','dynapage'));
     }
     public function store(Request $request)
     {     
@@ -53,39 +54,54 @@ public function create()
         $request->validate([
             'title' => 'required',
             'code' => 'required|string|max:255|unique:coupons,code',
-            'link' => 'required|numeric',
-            'description' => 'nullable|string',
+            'link' => 'required|string|max:255',
             'trems' => 'nullable|string',
             'store_id' => 'required|exists:stores,id',   
         ]);
+
+
 $data = $request->all();
 
-$data['event_id'] = $request->event_id == 0 ? null : $request->event_id;
+$data['event_id'] = $request->event_id == 0 ? null : $request->event_id;      
+$data['dynapage_id'] = $request->dynapage_id == 0 ? null : $request->dynapage_id;
        Coupon::create($data);
-
         return redirect()->route('coupon.create')->with('success', 'Coupon created successfully.');
     }
 
     public function edit($id){
         $coupon = Coupon::findOrFail($id);
         $stores = Store::all(); // fetch from DB
-        return view('adminn.coupon._form', compact('coupon','stores'));
+        $event = Event::all();
+         $dynapage = DynaPage::all();
+        return view('adminn.coupon._form', compact('coupon','stores','event','dynapage'));
     }
 
 
-    public function update(Request $request, $id){
-        $coupon = Coupon::findOrFail($id);
-        $request->validate([
-            'name' => 'required',
-            'code' => 'required|string|max:255|unique:coupons,code,'.$coupon->id,
-            'discount' => 'required|numeric',
-            'description' => 'nullable|string',
-            'store_id' => 'required|exists:stores,id',   
-        ]);
-        $coupon->update($request->all());
-        return redirect()->route('coupon.index')
-                         ->with('success', 'Coupon updated successfully.');
+ public function update(Request $request, $id)
+{
+   
+    $coupon = Coupon::findOrFail($id);
+
+    $request->validate([
+        'title'      => 'required',
+        'code'      => 'required',
+        'discount'  => 'required',
+        'store_id'  => 'required|exists:stores,id',
+    ]);
+
+    // Handle checkboxes
+    $checkboxFields = ['trend','feature','recom','deals','verified','exclusive'];
+    foreach ($checkboxFields as $field) {
+        // If checkbox is checked, set 1, otherwise 0
+        $request[$field] = $request->has($field) ? 1 : 0;
     }
+
+    // Update coupon
+    $coupon->update($request->all());
+
+    return redirect()->route('coupon.index')
+                     ->with('success', 'Coupon updated successfully.');
+}
     public function destroy($id){
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();

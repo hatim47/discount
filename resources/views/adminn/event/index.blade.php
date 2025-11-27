@@ -13,7 +13,7 @@
 
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Store Datatables</h5>
+                    <h5 class="card-title mb-0">Event Datatables</h5>
                     <a href="{{ route('event.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Event</a>
                 </div> 
                 <div class="card-body">
@@ -28,10 +28,10 @@
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Issued Date</th>
-                                <th scope="col">Amount</th>
+                            <th scope="col">Name</th>
+                                <th scope="col">slug</th>
+                                <th scope="col">banner</th>
+                                <th scope="col">sataus</th>
                                 <th scope="col">Regoin</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -59,7 +59,7 @@
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
         </a>
-                        <form action="{{ route('categories.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                        <form action="{{ route('event.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
@@ -76,7 +76,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Category</h5>
+                <h5 class="modal-title">Edit Event</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="editCategoryBody">

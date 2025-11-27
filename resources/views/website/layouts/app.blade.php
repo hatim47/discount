@@ -24,7 +24,7 @@
 
     {{-- Tailwind & Vite --}}
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Custom CSS per page --}}
     @stack('styles')
