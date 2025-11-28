@@ -258,11 +258,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
             @foreach($category->stores as $store)
                     @foreach($store->coupons as $coupon)
-          <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
-      <div class="relative rounded-3xl p-4 ">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+            <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class="relative rounded-3xl p-4 ">
   <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-full rounded-3xl  h-40 object-cover" />
   
-</div>
+</a>
 <div class="p-4 pt-3 flex flex-col justify-between h-[170px]">
   <div class="flex justify-between items-center">
   {{-- <h2 class="text-gray-900 font-semibold text-sm">{{$store['name'] }}</h2> --}}
@@ -322,7 +322,7 @@
             </button>
               @endif
                 </div>
-    </a>
+    </div>
             @endforeach 
 
 
