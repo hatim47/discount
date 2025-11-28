@@ -129,9 +129,9 @@ $jsonLd = json_encode(
                 <div>
                     <!-- Breadcrumb -->
                     <nav class="text-sm mb-1 text-gray-500">
-                        <a href="{{ route('home') }}" class="hover:underline">Home</a>
+                        <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class=" sm:mx-2">&gt;</span>
-                        <a href="/brands" class="hover:underline">All Brands</a>
+                        <a href="{{region_route('store.menusa') }}" class="hover:underline">All Brands</a>
                         <span class=" sm:mx-2">&gt;</span>
                         <span class="text-[#0B453C] font-medium">{{ $store->name }}</span>
                     </nav>

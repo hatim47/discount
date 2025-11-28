@@ -40,7 +40,9 @@
     </div>
 </div>
 
-
+<style>
+  [x-cloak] { display: none !important; }
+</style>
 
 <header class="bg-white  top-0 z-20 relative" x-data="{ showLogin:false, showSignup:false, showPassword:false, mobileMenu:false, showSearch:false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center z-2">
@@ -56,86 +58,86 @@
        <a href="{{ url('/') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
           Home
         </a>
- <div x-data="megaMenu()" x-init="init()" class="relative">
-  <!-- Trigger -->
-  <a href="{{ url('/categories') }}"
-     @mouseenter="openWithCancel()"
-     @mouseleave="startCloseTimer()"
-     class="text-gray-600 hover:text-[#0B453C] transition font-semibold flex items-center">
-    Categories <iconify-icon icon="lsicon:down-outline" width="16" height="16"></iconify-icon>
-  </a>
+  <div x-data="megaMenu()" x-init="init()" class="relative">
+    <!-- Trigger -->
+    <a href="{{ url('/categories') }}"
+      @mouseenter="openWithCancel()"
+      @mouseleave="startCloseTimer()"
+      class="text-gray-600 hover:text-[#0B453C] transition font-semibold flex items-center">
+      Categories <iconify-icon icon="lsicon:down-outline" width="16" height="16"></iconify-icon>
+    </a>
 
-  <!-- FULLSCREEN MODAL OVERLAY -->
-  <!-- Important: overlay is fixed and listens for mouseenter/mouseleave -->
-  <div
-    x-show="open"
-    x-transition.opacity.duration.200ms
-    @mouseenter="clearCloseTimer()"
-    @mouseleave="startCloseTimer()"
-    class="fixed inset-0 z-[9999] bg-black/20 flex items-start justify-center pointer-events-auto"
-    x-cloak
-  >
-    <!-- Panel -->
+    <!-- FULLSCREEN MODAL OVERLAY -->
+    <!-- Important: overlay is fixed and listens for mouseenter/mouseleave -->
     <div
-      class="bg-white w-full max-w-6xl mt-24 rounded-lg border-t-4 border-[#0B453C] shadow-2xl p-6 overflow-y-auto"
+      x-show="open"
+      x-transition.opacity.duration.200ms
       @mouseenter="clearCloseTimer()"
       @mouseleave="startCloseTimer()"
-      role="region"
-      aria-label="Categories"
+      class="fixed inset-0 z-[9999] bg-black/20 flex items-start justify-center pointer-events-auto"
+      x-cloak
     >
-      <!-- Content: your grid -->
-      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        @foreach($categoryies->where('ismenu', 1)->take(9) as $category)
-          <li>
-            <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}"
-               class="block text-gray-900 hover:text-[#0B453C] font-bold rounded-md text-sm mb-2">
-              {{ $category->name }}
-            </a>
-
-            <div class="flex flex-col space-y-1">
-              @foreach ($category->stores->where('ismenu', 1)->take(3) as $store)
-                @if ($store->ismenu === 1)
-                  <a href="{{region_route('store.website', ['slug' => $store->slug ]) }}"
-                     class="block text-gray-700 hover:text-[#0B453C] rounded-md text-sm">
-                    {{ $store->name }}
-                  </a>
-                @endif
-              @endforeach
-
+      <!-- Panel -->
+      <div
+        class="bg-white w-full max-w-6xl mt-24 rounded-lg border-t-4 border-[#0B453C] shadow-2xl p-6 overflow-y-auto"
+        @mouseenter="clearCloseTimer()"
+        @mouseleave="startCloseTimer()"
+        role="region"
+        aria-label="Categories"
+      >
+        <!-- Content: your grid -->
+        <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          @foreach($categoryies->where('ismenu', 1)->take(9) as $category)
+            <li>
               <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}"
-                 class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
+                class="block text-gray-900 hover:text-[#0B453C] font-bold rounded-md text-sm mb-2">
+                {{ $category->name }}
+              </a>
+
+              <div class="flex flex-col space-y-1">
+                @foreach ($category->stores->where('ismenu', 1)->take(3) as $store)
+                  @if ($store->ismenu === 1)
+                    <a href="{{region_route('store.website', ['slug' => $store->slug ]) }}"
+                      class="block text-gray-700 hover:text-[#0B453C] rounded-md text-sm">
+                      {{ $store->name }}
+                    </a>
+                  @endif
+                @endforeach
+
+                <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}"
+                  class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
+                  <span>More Brands</span>
+                  <span class="bg-[#0B453C] text-white flex rounded-full p-1 ml-1">
+                    <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                  </span>
+                </a>
+              </div>
+            </li>
+          @endforeach
+
+          <!-- EXTRA COLUMN -->
+          <li>
+            <a href="{{region_route('categ.menu') }}"
+              class="block text-gray-900 font-bold hover:text-[#0B453C] text-sm mb-2">
+              More Categories
+            </a>
+            <div class="flex flex-col space-y-1">
+      <a href="{{region_route('store.website', ['slug' =>'Entertainment' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Entertainment</a>
+  <a href="{{region_route('store.website', ['slug' =>'Electronics' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Electronics</a>
+  <a href="{{region_route('store.website', ['slug' =>'Services' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Services</a>
+              <a href="{{ route('categ.menu', ['region' => session('region_code')]) }}"
+                class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
                 <span>More Brands</span>
-                <span class="bg-[#0B453C] text-white flex rounded-full p-1 ml-1">
+                <span class="bg-[#0B453C] text-white rounded-full flex p-px ml-1">
                   <iconify-icon icon="lucide:chevron-right"></iconify-icon>
                 </span>
               </a>
             </div>
           </li>
-        @endforeach
-
-        <!-- EXTRA COLUMN -->
-        <li>
-          <a href="{{region_route('categ.menu') }}"
-             class="block text-gray-900 font-bold hover:text-[#0B453C] text-sm mb-2">
-            More Categories
-          </a>
-          <div class="flex flex-col space-y-1">
-     <a href="{{region_route('store.website', ['slug' =>'Entertainment' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Entertainment</a>
-<a href="{{region_route('store.website', ['slug' =>'Electronics' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Electronics</a>
-<a href="{{region_route('store.website', ['slug' =>'Services' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Services</a>
-            <a href="{{ route('categ.menu', ['region' => session('region_code')]) }}"
-               class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
-              <span>More Brands</span>
-              <span class="bg-[#0B453C] text-white rounded-full flex p-px ml-1">
-                <iconify-icon icon="lucide:chevron-right"></iconify-icon>
-              </span>
-            </a>
-          </div>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
 <div class="relative inline-block text-left">
     <!-- Button -->
