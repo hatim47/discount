@@ -119,7 +119,7 @@ font-size:30px;
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
                         <span class=" sm:mx-2">&gt;</span>
-                        <a href="Categories"  class=" hover:underline">Categories</a>
+                        <a href="{{region_route('categ.menu') }}"  class=" hover:underline">Categories</a>
                         <span class=" sm:mx-2">&gt;</span>
                         <span class="text-[#0B453C] hover:font-medium hover:underline">{{ $store->name }}</span>
                     </nav>

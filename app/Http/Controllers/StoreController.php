@@ -414,7 +414,9 @@ $title = $store->m_tiitle;
        $categories = Store::where('store_region', $regionId)
                ->orderBy('name', 'asc')
                ->get();
-             return view('website.all_store', compact('categories'));   
+               $title = "All Stores in " . $regionTitle;
+    $meta_description = "Browse all stores available in " . $regionTitle . " on " . config('app.name') . ". Find the best deals and discounts from your favorite brands.";
+             return view('website.all_store', compact('categories','title','meta_description'));   
          }
 
     
