@@ -74,8 +74,7 @@
         @mousemove="drag($event)"
         @touchmove="drag($event)"
     >
-   @foreach($feature as $coupon)                 
-
+   @foreach($feature as $coupon)      
 <article class="bg-white border border-gray-100 rounded-2xl flex-shrink-0 w-full md:w-6/12 lg:w-[23.7%] mx-2 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div class="relative p-4">
   <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy" class="w-full rounded-3xl h-40 object-cover" />
@@ -246,29 +245,24 @@
 {{-- Deals Section --}}
 <div class="bg-white">
     <section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 text-center">
-
-
     @foreach($categories as $category)
         <div class="group flex justify-between gap-3 items-center mt-8 mb-4 pt-2 pb-1 px-4">
             <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}" class="font-bold text-[#0F0F0F] text-3xl m-0 p-0">{{ $category->name }}</a>
             <a href="{{ region_route('categ.page', ['slug' => $category->slug]) }}" class="text-[#0B453C] font-bold underline underline-offset-6">See All</a>
         </div>
-   @php
-        // collect all coupons from stores in this category
+   @php        // collect all coupons from stores in this category
         $allCoupons = $category->stores->flatMap->coupons;
-
         // only trending & pick max 4
         $trendingCoupons = $allCoupons->where('trend', 1)->take(4);
     @endphp
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
             @foreach($category->stores as $store)
                     @foreach($store->coupons as $coupon)
-          <a href="#" class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+          <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
       <div class="relative rounded-3xl p-4 ">
   <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-full rounded-3xl  h-40 object-cover" />
   
 </div>
-
 <div class="p-4 pt-3 flex flex-col justify-between h-[170px]">
   <div class="flex justify-between items-center">
   {{-- <h2 class="text-gray-900 font-semibold text-sm">{{$store['name'] }}</h2> --}}
@@ -456,11 +450,6 @@ function slider() {
         }
     }
 }
-
-
-
-
-
   document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("store-slider");
     let isDown = false;
@@ -473,7 +462,6 @@ function slider() {
             rafId = requestAnimationFrame(momentum);
         }
     };
-
     const onDown = (pageX) => {
         isDown = true;
         startX = pageX - slider.offsetLeft;
