@@ -127,8 +127,8 @@ $categories = Category::withCount('stores')
         $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
         $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
         $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
-// $title = $store->m_title;
-//     $meta_description = $store->m_descrip;
+$title = $store->m_title;
+    $meta_description = $store->m_descrip;
 
   $feature = Coupon::with('store') // eager load store
                           ->where('feature', true)
