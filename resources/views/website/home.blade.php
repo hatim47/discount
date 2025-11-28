@@ -199,7 +199,7 @@
                 <h2 class="text-3xl font-normal mb-1">About</h2>
                 <h1 class="text-5xl/11 font-extrabold  mb-4">Top Vouchers<br>Code</h1>
                 <p class="text-sm lg:text-base leading-relaxed mb-8 opacity-90">
-                    Top Vouchers Code contains affiliate links to products. We may receive a commission for purchases made through these links.
+                 Top Vouchers Code contains affiliate links to products. We may receive a commission for purchases made through these links.
                 </p>
                 <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform">
                     Get Deal
@@ -259,9 +259,8 @@
             @foreach($category->stores as $store)
                     @foreach($store->coupons as $coupon)
           <div class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
-            <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class="relative rounded-3xl p-4 ">
-  <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-full rounded-3xl  h-40 object-cover" />
-  
+            <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class=" flex justify-center py-4 ">
+  <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-11/12 rounded-3xl  h-40 object-cover" />
 </a>
 <div class="p-4 pt-3 flex flex-col justify-between h-[170px]">
   <div class="flex justify-between items-center">
