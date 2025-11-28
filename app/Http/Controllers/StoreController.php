@@ -439,7 +439,9 @@ $title = $store->m_tiitle;
     $regionTitle = $region->title;
     //  dd($slug,$regionId);
        $categories = Store::where('name', 'like', $slug . '%')->where('store_region', $regionId)->get();
-             return view('website.store_menu', compact('categories','slug'));   
+         $title = "All Stores in " . $regionTitle;
+    $meta_description = "Browse all stores available in " . $regionTitle . " on " . config('app.name') . ". Find the best deals and discounts from your favorite brands.";
+             return view('website.store_menu', compact('categories','slug','title','meta_description'));   
          }
 
       public function rate(Request $request, $storeId)
