@@ -16,12 +16,27 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-    if (! Auth::check()) {
-    if ($request->routeIs('admin.login') || $request->routeIs('admin.login.post')) {
+   
+    if ($request->is('admin/*')) {
+
+            // Allow login page
+            if ($request->routeIs('admin.login') || $request->routeIs('admin.login.post')) {
+                return $next($request);
+            }
+
+            // Check if user is logged in
+            if (!Auth::check()) {
+                return redirect()->route('admin.login');
+            }
+
+            // Optional: only admin role
+            if (Auth::user()->role !== 'admin') {
+                abort(403, 'Unauthorized');
+            }
+        }
+
         return $next($request);
-    }
-    return redirect()->route('admin.login');
-}
-        return $next($request);
+
+      
     }
 }

@@ -23,9 +23,9 @@
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold -top-1" @click="openSearch()" >
     <iconify-icon icon="flowbite:search-outline" width="28" height="28" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div>
- <button class="bg-[#0B453C]  px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2" @click="openSearch()">Search</button>
+ <button class="bg-[#0B453C] px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2" @click="openSearch()">Search</button>
 </div>
-<div class=" grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-8 text-left py-5">
+<div class="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-8 text-left py-5">
 <!-- All Codes Verified -->
 <div class="flex items-center space-x-3">
 <img src="{{asset('public/assets/images/icon.svg - 2025-11-25T215548.414 1.png')}}" alt="Verified Codes" class="w-10 h-10">
