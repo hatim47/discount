@@ -23,7 +23,7 @@ class SetRegion
         
         // Try to get region from database
         $regionModel = Region::where('code', $regionCode)->first();
-       
+     
         if ($regionModel) {
             session(['region' => $regionModel->code]);
             config(['app.current_region' => $regionModel]);

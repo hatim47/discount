@@ -4,26 +4,33 @@
 
 
     <div class="row gy-3">
-   <div class="col-12">
-<div class="mb-3">
-    <label class="form-label"> Status </label>
-    <div class="form-switch switch-primary d-flex align-items-center gap-3">
-       <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">Hide</label>
-        <input 
-            class="form-check-input" 
-            type="checkbox" 
-            role="switch" 
-            id="switch1" 
-            name="status"
-            value="1"
-            {{ $coupon->status == 1 ? 'checked' : '' }}>
+<div class="col-12">
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <div class="d-flex gap-3">
+            <div class="form-check">
+                <input 
+                    class="form-check-input" 
+                    type="radio" 
+                    name="status" 
+                    id="status_active" 
+                    value="active"
+                    {{ $coupon->status == 'active' ? 'checked' : '' }}>
+                <label class="form-check-label" for="status_active">Active</label>
+            </div>
             
-        <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">
-            Show / Active
-        </label>
+            <div class="form-check">
+                <input 
+                    class="form-check-input" 
+                    type="radio" 
+                    name="status" 
+                    id="status_inactive" 
+                    value="inactive"
+                    {{ $coupon->status == 'inactive' ? 'checked' : '' }}>
+                <label class="form-check-label" for="status_inactive">Inactive</label>
+            </div>
+        </div>
     </div>
-  
-</div>
 </div>
            <div class="col-sm-4">
                                                <label class="form-label">Coupon Name</label>
@@ -146,7 +153,7 @@
                                                 <label class="form-label">Select Dynamic Page Name*</label>
                                                 <div class="position-relative">
                                                     
-                                            <select name="dynapage_id" class="form-control radius-8 form-select wizard-required" id="dynapage" >
+                                            <select name="dyna_id" class="form-control radius-8 form-select wizard-required" id="dynapage" >
                                                  @foreach($dynapage as $category)
                                                   <option value=" ">No Dynamic Page</option>
                                                     

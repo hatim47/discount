@@ -95,7 +95,7 @@
             <div class="flex flex-col space-y-1">
               @foreach ($category->stores->where('ismenu', 1)->take(3) as $store)
                 @if ($store->ismenu === 1)
-                  <a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => $store->slug]) }}"
+                  <a href="{{region_route('store.website', ['slug' => $store->slug ]) }}"
                      class="block text-gray-700 hover:text-[#0B453C] rounded-md text-sm">
                     {{ $store->name }}
                   </a>
@@ -120,11 +120,9 @@
             More Categories
           </a>
           <div class="flex flex-col space-y-1">
-     <a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Entertainment']) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Entertainment</a>
-
-<a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Electronics']) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Electronics</a>
-
-<a href="{{ route('store.website', ['region' => session('region_code'), 'slug' => 'Services']) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Services</a>
+     <a href="{{region_route('store.website', ['slug' =>'Entertainment' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Entertainment</a>
+<a href="{{region_route('store.website', ['slug' =>'Electronics' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Electronics</a>
+<a href="{{region_route('store.website', ['slug' =>'Services' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Services</a>
             <a href="{{ route('categ.menu', ['region' => session('region_code')]) }}"
                class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
               <span>More Brands</span>
@@ -138,6 +136,35 @@
     </div>
   </div>
 </div>
+
+<div class="relative inline-block text-left">
+    <!-- Button -->
+    <a 
+        href="#" 
+        class="text-gray-600 hover:text-[#0B453C] transition font-semibold"
+        id="dropdownButton"
+        aria-expanded="true"
+        aria-haspopup="true"
+    >
+        Top Discounts
+    </a>
+
+    <!-- Dropdown menu -->
+    <div 
+        class="hidden absolute mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10"
+        id="dropdownMenu"
+    >
+        <div class="py-1">
+            @foreach($dynapage as $page)
+                <a href="{{ region_route('dynapage', ['slug' => $page->slug]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                >
+                    {{ $page->name }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+
 
         <!-- OTHER NAV LINKS -->
         <a href="{{ url('/featured') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
@@ -175,6 +202,23 @@
             <a href="{{ url('/about') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">About Us</a>
         </nav>
     </div>
+
+<script>
+    const button = document.getElementById('dropdownButton');
+    const menu = document.getElementById('dropdownMenu');
+
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        menu.classList.toggle('hidden');
+    });
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!button.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+</script>
 
 
         {{-- Action Button --}}

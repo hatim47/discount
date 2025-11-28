@@ -20,7 +20,7 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="Categories"  class="text-[#1ec27e]  hover:font-medium hover:underline">Categories</a>
+                        <a href="Categories"  class="text-[#0B453C]  hover:font-medium hover:underline">Categories</a>
                       
                     </nav>
                     <!-- Title -->
@@ -33,7 +33,7 @@
 
     </section>
 
- <section class="bg-[#F2F0E6] py-10 text-[#0F0F0F]">
+ <section class="bg-[#F2FCFA] py-10 text-[#0F0F0F]">
         <div class="max-w-7xl mx-auto bg-white flex flex-col rounded-t-2xl pt-6 pb-0">
 @php
     $letters = array_merge(['0-9'],range('A', 'Z'));
@@ -55,7 +55,7 @@
  <div class="grid grid-cols-2 sm:grid-cols-3 auto-cols-min md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-y-3 gap-x-6 ">
 @foreach ($categories as $category )
  <div class="flex flex-col items-start   ">
-<a href="{{region_route('store.website', ['slug' =>  $category->slug])}}" class=" text-[#0F0F0F] hover:text-[#1ec27e] transition duration-300 ease-in-out " >{{$category->name}} </a>
+<a href="{{region_route('store.website', ['slug' =>  $category->slug])}}" class=" text-[#0F0F0F] hover:text-[#0B453C] transition duration-300 ease-in-out " >{{$category->name}} </a>
    </div>    
 @endforeach
 </div>     

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Region;
+use App\Models\DynaPage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,22 +39,19 @@ class AppServiceProvider extends ServiceProvider
                                      ->where('cate_region', $regionId)
                                      ->orderBy('name', 'asc') // Optional: order by name
                                      ->get();
+             $dynapage = DynaPage::where('ismenu', '1')->where('dyna_region', $regionId)->get();
             } else {
                 $categories = collect(); // Empty collection if no region
+                $dynapage = collect();
             }
-            
-            $view->with('categoryies', $categories);
+            $view->with('categoryies', $categories)->with('dynapage', $dynapage);
         });
-
    View::composer('*', function ($view) {
             $localeUrl = env('APP_URL');
-            $locales = ['au','ca'];
-
-            
+            $locales = ['au','ca'];            
             if (in_array(app()->getLocale(), $locales)) {
                 $localeUrl = env('APP_URL'). app()->getLocale() . '/';
             }
-
             $view->with('localeUrl', $localeUrl);
         });
     

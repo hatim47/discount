@@ -214,6 +214,27 @@
                                     <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
+                                        <div class="col-12">
+    <div class="form-switch switch-primary d-flex align-items-center gap-3">
+
+        <!-- Always sends 0 if not checked -->
+        <input type="hidden" name="ismenu" value="0">
+
+        <!-- Sends 1 if checked -->
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            role="switch" 
+            id="switch2" 
+            name="ismenu"
+            value="1"
+        >
+
+        <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch2">
+            Menu Active
+        </label>
+    </div>
+</div>
                                          <div class="col-12">
                                                 <label class="form-label">Heading *</label>
                                                 <div class="position-relative">   

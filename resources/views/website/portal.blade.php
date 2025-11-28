@@ -8,16 +8,16 @@
 @endpush
 
 @section('content')
-<div class="min-h-screen bg-[#F2F0E6] flex ">
+<div class="min-h-screen bg-[#F2FCFA] flex ">
 <div class=" flex flex-col lg:flex-row mx-auto max-w-7xl ">
 
   <!-- Sidebar -->
   <aside class=" w-full lg:w-64 p-6 border-r border-gray-200">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800">User Portal</h2>
     <nav class="flex flex-col gap-3">
-      <button class="text-white font-medium px-4 py-2 rounded-xl bg-[#1EC27E] text-left w-full">My Profile</button>
-      <button class="text-gray-700 font-medium px-4 py-2 rounded-xl shadow-md bg-white  transition duration-300 ease-in-out hover:bg-[#1EC27E] hover:text-white text-left w-full">Favourite Brands</button>
-      <button class="text-gray-700 font-medium px-4 py-2 rounded-xl shadow-md bg-white  transition duration-300 ease-in-out hover:bg-[#1EC27E] hover:text-white text-left w-full">Saved Offers</button>
+      <button class="text-white font-medium px-4 py-2 rounded-xl bg-[#0B453C] text-left w-full">My Profile</button>
+      <button class="text-gray-700 font-medium px-4 py-2 rounded-xl shadow-md bg-white  transition duration-300 ease-in-out hover:bg-[#0B453C] hover:text-white text-left w-full">Favourite Brands</button>
+      <button class="text-gray-700 font-medium px-4 py-2 rounded-xl shadow-md bg-white  transition duration-300 ease-in-out hover:bg-[#0B453C] hover:text-white text-left w-full">Saved Offers</button>
     </nav>
   </aside>
 

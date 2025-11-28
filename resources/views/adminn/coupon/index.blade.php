@@ -50,7 +50,7 @@
                             No Image
                         @endif
                     </td>
-                   <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
+                   <td> {{ $store->status == 'active' ? 'Active' : 'Inactive' }} </td>
                     <td> {{ $store->created_at->format('d M Y') }} </td>
                     <td>
                     <a href="javascript:void(0)" 

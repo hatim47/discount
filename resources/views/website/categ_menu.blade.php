@@ -20,7 +20,7 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="categories"  class="text-[#1ec27e] hover:font-medium hover:underline">Categories</a>
+                        <a href="categories"  class="text-[#0B453C] hover:font-medium hover:underline">Categories</a>
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </section>
- <section class="bg-[#F2F0E6] py-10 text-[#0F0F0F]">
+ <section class="bg-[#F2FCFA] py-10 text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto bg-white flex flex-col rounded-2xl">
 
@@ -60,7 +60,7 @@
     </div>
      <div class="grid grid-cols-2 sm:grid-cols-3 auto-cols-min md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-y-3 gap-x-9">
         @foreach ($category->stores->take(56) as $store)
-            <a  href="{{route('store.website', $store->slug)}}"  class="text-sm text-gray-700 hover:text-[#1ec27e] cursor-pointer">
+            <a  href="{{route('store.website', $store->slug)}}"  class="text-sm text-gray-700 hover:text-[#0B453C] cursor-pointer">
                 {{ $store->name }}
             </a>
         @endforeach

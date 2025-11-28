@@ -21,7 +21,7 @@
 /* Header row styling */
  thead {
     background-color: #FAF9F5; /* Light gray background */
-    border-bottom: 2px solid #1EC27E; /* Separator line below header */
+    border-bottom: 2px solid #0B453C; /* Separator line below header */
 }
 
 /* Header cell styling */
@@ -36,7 +36,7 @@
 /* Data cell styling */
  td {
     padding: 10px 15px;
-    border-bottom: 1px solid #1EC27E; /* Light separator line for rows */
+    border-bottom: 1px solid #0B453C; /* Light separator line for rows */
 }
 
 /* Alternating row colors (zebra stripping) */
@@ -94,7 +94,7 @@ font-size:30px;
 
 /* Active dot style */
 .slick-dots li.slick-active button {
-  background: #1EC27E; /* your brand green */
+  background: #0B453C; /* your brand green */
   
   border-radius: 12px;
 }
@@ -121,7 +121,7 @@ font-size:30px;
                         <span class=" sm:mx-2">&gt;</span>
                         <a href="Categories"  class=" hover:underline">Categories</a>
                         <span class=" sm:mx-2">&gt;</span>
-                        <span class="text-[#1ec27e] hover:font-medium hover:underline">{{ $store->name }}</span>
+                        <span class="text-[#0B453C] hover:font-medium hover:underline">{{ $store->name }}</span>
                     </nav>
                 </div>
             </div>
@@ -140,7 +140,7 @@ font-size:30px;
             <div class="flex justify-between items-center mb-1">
               <h2 class="text-gray-900 font-semibold text-sm">{{ $coupon->store['name'] }}</h2>
               @if($coupon->verified)
-                <span class="text-[#0f0f0f] bg-[#1EC27E]/20 uppercase px-2 text-xs rounded-2xl">Verified</span>
+                <span class="text-[#0f0f0f] bg-[#0B453C]/20 uppercase px-2 text-xs rounded-2xl">Verified</span>
               @endif
             </div>
             <h6 class="text-neutral-900 font-semibold text-sm mb-1">{{ $coupon['title'] }}</h6>
@@ -155,7 +155,7 @@ font-size:30px;
 
     </section>
 
- <section class="bg-[#F2F0E6] text-[#0F0F0F]">
+ <section class="bg-[#F2FCFA] text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6  gap-6  grid grid-cols-1 lg:grid-cols-10">
      {{-- column one start  --}}
     <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
@@ -175,7 +175,7 @@ font-size:30px;
         <button 
             id="loadMore" 
             data-next-page="{{ $coupons->nextPageUrl() }}" 
-            class="bg-[#1EC27E] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-green-600"
         >
             Load More
         </button>
@@ -250,7 +250,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($relatedStores as $relateds )
-      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
   
       {{$relateds->name}}
       </a></li>
@@ -265,7 +265,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($categories as $relateds )
-     <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+     <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
      
       {{$relateds->name}}
       </a></li>
@@ -283,7 +283,7 @@ font-size:30px;
     @foreach ($letters as $letter)
         <li>
             <a href="{{route('store.menu', strtolower($letter))}}"
-               class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#1EC27E]/15 font-semibold">
+               class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#0B453C]/15 font-semibold">
                 {{ $letter }}
             </a>
         </li>
@@ -297,7 +297,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
      
     @foreach ($trendingWith as $relateds )
-      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
+      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
       {{$relateds->name}}
       </a></li>
     @endforeach
@@ -313,10 +313,10 @@ font-size:30px;
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($likes as $relateds )
     <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
-      <img class="w-16 rounded-lg border border-[#1EC27E]" src="{{$relateds->logo}}" />
+      <img class="w-16 rounded-lg border border-[#0B453C]" src="{{$relateds->logo}}" />
        <div class="flex flex-col items-start  " >
         <p>{{$relateds->name}}</p>
-        <span class="font-bold text-[#1EC27E]">{{$relateds->coupons_with_code_count}}Discount Available</span>
+        <span class="font-bold text-[#0B453C]">{{$relateds->coupons_with_code_count}}Discount Available</span>
         </div>
       </a></li>
     @endforeach

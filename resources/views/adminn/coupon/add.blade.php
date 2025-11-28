@@ -313,7 +313,7 @@
                                                 <label class="form-label">Select Dynamic Page Name*</label>
                                                 <div class="position-relative">
                                                     
-                                            <select name="dynapage_id" class="form-control radius-8 form-select wizard-required" id="dynapage" required>
+                                            <select name="dyna_id" class="form-control radius-8 form-select wizard-required" id="dynapage" required>
                                                  @foreach($dynapage as $category)
                                                   <option value="0">No Dynamic Page</option>
                                                        <option value="{{ $category->id }}">

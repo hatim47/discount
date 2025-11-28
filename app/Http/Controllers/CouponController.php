@@ -63,7 +63,7 @@ public function create()
 $data = $request->all();
 
 $data['event_id'] = $request->event_id == 0 ? null : $request->event_id;      
-$data['dynapage_id'] = $request->dynapage_id == 0 ? null : $request->dynapage_id;
+$data['dyna_id'] = $request->dyna_id == 0 ? null : $request->dyna_id;
        Coupon::create($data);
         return redirect()->route('coupon.create')->with('success', 'Coupon created successfully.');
     }
@@ -79,7 +79,7 @@ $data['dynapage_id'] = $request->dynapage_id == 0 ? null : $request->dynapage_id
 
  public function update(Request $request, $id)
 {
-   
+
     $coupon = Coupon::findOrFail($id);
 
     $request->validate([
@@ -102,12 +102,12 @@ $data['dynapage_id'] = $request->dynapage_id == 0 ? null : $request->dynapage_id
     return redirect()->route('coupon.index')
                      ->with('success', 'Coupon updated successfully.');
 }
-    public function destroy($id){
+    public function destroy($id) {
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
         return redirect()->route('coupon.index')
                          ->with('success', 'Coupon deleted successfully.');
-    }
+    }   
 
 
     

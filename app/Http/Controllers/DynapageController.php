@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DynaPage;
 use App\Models\Region;
+use App\Models\Store;
+use App\Models\Coupon;
 class DynapageController extends Controller
 {
     //
@@ -64,21 +66,28 @@ class DynapageController extends Controller
         return redirect()->route('dynapage.index')
                          ->with('success', 'Event deleted successfully.');
     }
- public function event($region = null)
+ public function dynamic($regionOrSlug, $slug = null)
     {
-
-         $region = $region ?? config('app.default_region', 'usa');
-           
-    // Fetch region model
-    $regionModel = Region::where('code', $region)->firstOrFail();
-    $regionId = $regionModel->id;
-    $regionTitle = $regionModel->title;
-
-        $event = DynaPage::where("event_region",$regionId)->get();
-      
-        $meta_description = "fdsfdsf";
-        $title = "m_tiitle";
-        return view('website.event', compact('event','title','meta_description'));
+        if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }    
+    $regionId = $region->id;
+    $regionTitle = $region->title;
+        $event = DynaPage::where("dyna_region",$regionId)->where('slug', $slug)->firstOrFail();
+        $trends = Store::where('trend', true)->where("store_region",$regionId)->get();
+ 
+    $coupons = Coupon::with('store')->where('dyna_id', $event->id)
+        ->latest()
+        ->paginate(10);
+        $meta_description = $event->m_descrip;  
+        $title = $event->m_tiitle;       
+        return view('website.dynacpage', compact('event','trends','coupons','title','meta_description'));
     }
 
 }

@@ -1,25 +1,32 @@
 {{-- resources/views/components/footer.blade.php --}}
 @php
     $footerData = [
-        'SAVING' => ['Get Inspired', 'Student Offers', 'App', 'Deal Seeker'],
-        'HELP' => ['All Events', 'Black Friday Offers', 'Cyber Monday Offers', 'Christmas Deals'],
-        'ABOUT' => ['About us', 'Advertise With Us', 'Privacy Policy', 'Site map', 'Contact us'],
+        'SAVING' => [
+            ['label' => 'Get Inspired', 'link' => '/get-inspired'],
+            ['label' => 'Student Offers', 'link' => '/student-offers'],
+            ['label' => 'App', 'link' => '/app'],
+            ['label' => 'Deal Seeker', 'link' => '/deal-seeker'],
+        ],
+        'HELP' => [
+            ['label' => 'All Events', 'link' => region_route('event.all')],
+            ['label' => 'Black Friday Offers', 'link' => '/black-friday'],
+            ['label' => 'Cyber Monday Offers', 'link' => '/cyber-monday'],
+            ['label' => 'Christmas Deals', 'link' => '/christmas'],
+        ],
+        'ABOUT' => [
+            ['label' => 'About us', 'link' => '/about'],
+            ['label' => 'Advertise With Us', 'link' => '/advertise'],
+            ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
+            ['label' => 'Site map', 'link' => '/sitemap'],
+            ['label' => 'Contact us', 'link' => '/contact'],
+        ],
         'MOBILE_APP' => [
-            ['name' => 'App Store', 'img' => '/apple-store.png', 'link' => '#'],
-            ['name' => 'Google Play', 'img' => '/google-play.png', 'link' => '#'],
+            ['name' => 'App Store', 'img' => '/apple-store.png', 'link' => 'https://apple.com'],
+            ['name' => 'Google Play', 'img' => '/google-play.png', 'link' => 'https://play.google.com'],
         ],
         'BROWSER_EXTENSION' => [
-            ['name' => 'Chrome Web Store', 'img' => '/chrome-store.png', 'link' => '#'],
+            ['name' => 'Chrome Web Store', 'img' => '/chrome-store.png', 'link' => 'https://chromewebstore.google.com'],
         ],
-    ];
-
-    $socialLinks = [
-        ['icon' => 'mdi:facebook', 'link' => '#'],
-        ['icon' => 'mdi:twitter', 'link' => '#'],
-        ['icon' => 'mdi:instagram', 'link' => '#'],
-        ['icon' => 'mdi:pinterest', 'link' => '#'],
-        ['icon' => 'mdi:youtube', 'link' => '#'],
-        ['icon' => 'mdi:linkedin', 'link' => '#'],
     ];
 @endphp
 
@@ -28,13 +35,17 @@
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>
-                <h3 class="text-green-600 font-semibold mb-3">
+                <h3 class="text-[#0B453C] font-semibold mb-3">
                     {{ str_replace('_', ' ', $section) }}
                 </h3>
                 <ul class="space-y-2 text-gray-700">
                     @foreach($items as $item)
-                        @if(is_string($item))
-                            <li class="hover:underline cursor-pointer">{{ $item }}</li>
+                        @if(isset($item['label']))
+                            <li>
+                                <a href="{{ $item['link'] }}" class="hover:underline cursor-pointer">
+                                    {{ $item['label'] }}
+                                </a>
+                            </li>
                         @else
                             <li>
                                 <a href="{{ $item['link'] }}">
@@ -50,11 +61,18 @@
 
     {{-- Social Icons --}}
     <div class="flex justify-center space-x-6 py-4">
-        @foreach($socialLinks as $s)
-            <a href="{{ $s['link'] }}" class="text-gray-600 hover:text-green-600 text-2xl">
-                <i class="{{ $s['icon'] }}"></i> {{-- Replace with proper icon library for Blade --}}
-            </a>
-        @endforeach
+        <a href="https://facebook.com" class="hover:opacity-70">
+            <iconify-icon icon="entypo-social:facebook-with-circle" width="28" height="28"></iconify-icon>
+        </a>
+        <a href="https://instagram.com" class="hover:opacity-70">
+            <iconify-icon icon="entypo-social:instagram-with-circle" width="28" height="28"></iconify-icon>
+        </a>
+        <a href="https://linkedin.com" class="hover:opacity-70">
+            <iconify-icon icon="entypo-social:linkedin-with-circle" width="28" height="28"></iconify-icon>
+        </a>
+        <a href="https://youtube.com" class="hover:opacity-70">
+            <iconify-icon icon="entypo-social:youtube-with-circle" width="28" height="28"></iconify-icon>
+        </a>
     </div>
 
     {{-- Disclaimer --}}

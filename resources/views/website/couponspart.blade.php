@@ -1,6 +1,6 @@
 <article
 x-data="{ showTerms: false }"
- class="coupon-card w-full flex flex-col  bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300"
+ class="coupon-card w-full flex flex-col  bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-3xl p-3 sm:p-6  hover:shadow-lg transition-shadow duration-300"
   data-type="{{ $coupon->deals == 0 ? 'voucher' : 'sale' }}">
 <div class="flex justify-between">
 
@@ -59,15 +59,15 @@ x-data="{ showTerms: false }"
       class="
         relative z-10 overflow-hidden 
        hidden md:inline-flex items-center justify-center 
-        w-full px-6 py-2 rounded-lg font-light text-white 
-        bg-[#1EC27E] shadow-md 
+        w-full px-6 py-2 rounded-full font-light text-white 
+        bg-[#0B453C] shadow-md 
         before:content-[attr(data-code)] before:tracking-widest before:inline-flex 
         before:absolute before:top-0 before:right-0 before:h-full before:w-16 
         before:items-center before:justify-end before:pr-3
-        before:border-2 before:border-dashed before:border-l-0 before:border-[#1EC27E]
-        before:rounded-r-lg before:bg-[#F2F0E6] before:text-[#0F0F0F] before:uppercase before:text-sm 
+        before:border-2 before:border-dashed before:border-l-0 before:border-[#0B453C]
+        before:rounded-r-full before:bg-[#F2FCFA] before:text-[#0F0F0F] before:uppercase before:text-sm 
          before:-z-1 after:content-[''] after:absolute after:top-0 after:right-[34px] after:h-[calc(100%+2px)] after:w-full
-        after:bg-[#1EC27E] after: after:transition-all after:duration-200 after:ease-in-out  after:-z-1
+        after:bg-[#0B453C] after: after:transition-all after:duration-200 after:ease-in-out  after:-z-1
         font-normal text-base  after:skew-x-[25deg] hover:after:right-[45px] hover:after:shadow-[5px_0_5px_0_rgba(0,0,0,0.25)]
       "
     > 
@@ -78,7 +78,7 @@ x-data="{ showTerms: false }"
     <button 
       aria-label="Reveal Code" 
       class="md:hidden w-10 h-10 flex items-center justify-end 
-             rounded-full  text-[#1EC27E] text-xl "
+             rounded-full  text-[#0B453C] text-xl "
     >
      <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 256 512"><path fill="currentColor" d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256L41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
     </button>
@@ -87,13 +87,13 @@ x-data="{ showTerms: false }"
   data-code=""
     data-title="{{ $coupon->title }}"
     data-terms="{{ $coupon->terms }}"  
-                    class="w-48 hidden md:inline-block  bg-[#1EC27E] text-white px-4 py-2 rounded hover:bg-[#1EC27E]">
+                    class="w-48 hidden md:inline-block  bg-[#0B453C] text-white px-4 py-2 rounded-full hover:bg-[#0B453C]">
                 Get Deal
             </button>  
             <button 
       aria-label="Reveal Code" 
       class="md:hidden w-10 h-10 flex items-center justify-end 
-             rounded-full  text-[#1EC27E] text-xl "
+             rounded-full  text-[#0B453C] text-xl "
     >
      <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 256 512"><path fill="currentColor" d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256L41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
     </button>            @endif

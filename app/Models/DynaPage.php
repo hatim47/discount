@@ -17,7 +17,9 @@ class DynaPage extends Model
           'status',
         'm_tiitle',
         'm_descrip',
-        'dyna_region'
+        'dyna_region',
+         'ismenu'
+
     ];
  public function region()
     {

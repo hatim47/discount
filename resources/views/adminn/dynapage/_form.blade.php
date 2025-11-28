@@ -1,7 +1,24 @@
 <form action="{{ route('dynapage.update', $event->id) }}" method="POST">
     @csrf
     @method('PUT')
-
+<div class="mb-3">
+    <label class="form-label">This Active in Menu  </label>
+    <div class="form-switch switch-primary d-flex align-items-center gap-3">
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            role="switch" 
+            id="switch1" 
+            name="ismenu"
+            value="1"
+            {{ $event->ismenu == 1 ? 'checked' : '' }}>
+            
+        <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">
+            Menu Active
+        </label>
+    </div>
+  
+</div>
     <div class="mb-3">
         <label class="form-label">Page Name</label>
         <input type="text" name="name" class="form-control" value="{{ old('name', $event->name) }}" required>

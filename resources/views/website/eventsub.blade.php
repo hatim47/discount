@@ -18,7 +18,7 @@
 /* Header row styling */
  thead {
     background-color: #FAF9F5; /* Light gray background */
-    border-bottom: 2px solid #1EC27E; /* Separator line below header */
+    border-bottom: 2px solid #0B453C; /* Separator line below header */
 }
 
 /* Header cell styling */
@@ -33,7 +33,7 @@
 /* Data cell styling */
  td {
     padding: 10px 15px;
-    border-bottom: 1px solid #1EC27E; /* Light separator line for rows */
+    border-bottom: 1px solid #0B453C; /* Light separator line for rows */
 }
 
 /* Alternating row colors (zebra stripping) */
@@ -83,7 +83,7 @@ font-size:30px;
         </div>
     </section>
 
- <section class="bg-[#F2F0E6] text-[#0F0F0F]">
+ <section class="bg-[#F2FCFA] text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6  gap-6  grid grid-cols-1 lg:grid-cols-10">
      {{-- column one start  --}}
     <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
@@ -98,7 +98,7 @@ font-size:30px;
      @if ($coupons->hasMorePages())
     <div class="text-center mt-6">
 <button id="loadMore" data-next-page="{{ $coupons->nextPageUrl() }}" 
-class="bg-[#1EC27E] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-green-600"
         >            Load More        </button>
     </div>
 @endif
@@ -168,8 +168,8 @@ class="bg-[#1EC27E] text-white px-6 py-2 rounded-lg hover:bg-green-600"
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($allevent as $relateds )
-     <li><a href="{{ region_route('event', ['slug' => $relateds->slug]) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#1EC27E]/15">
-      {{-- <img class="w-16 rounded-lg border border-[#1EC27E] " src="{{$relateds->logo}}" /> --}}
+     <li><a href="{{ region_route('event', ['slug' => $relateds->slug]) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+      {{-- <img class="w-16 rounded-lg border border-[#0B453C] " src="{{$relateds->logo}}" /> --}}
       {{$relateds->title}}
       </a></li>
   @endforeach

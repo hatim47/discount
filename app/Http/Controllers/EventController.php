@@ -107,7 +107,7 @@ class EventController extends Controller
 $trends = Store::where('trend', true)->get();
 
     // Get coupons for this store
-    $coupons = Coupon::with('store')->where('store_id', $store->id)
+    $coupons = Coupon::with('store')->where('event_id', $event->id)
         ->latest()
         ->paginate(10);
         $meta_description = $event->m_descrip;  

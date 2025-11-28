@@ -3,7 +3,7 @@
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
         
         <!-- Modal Header -->
-        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-4 relative">
+        <div class="bg-gradient-to-r from-[#01473d] to-[#003830] text-white px-6 py-4 relative">
             <p class="text-sm font-medium">Hurry! Limited time offer.</p>
             <button class="absolute top-4 right-4 text-white hover:text-gray-200 text-3xl leading-none" onclick="closeModal()">&times;</button>
         </div>
@@ -18,8 +18,8 @@
 
             <!-- Coupon Code Box (for copycode) -->
             <div id="couponCodeSection" class="hidden">
-                <div class="border-2 border-dashed border-green-500 rounded-lg px-4 py-3 mb-4 cursor-pointer hover:bg-green-50 transition flex items-center justify-between" onclick="copyCode()">
-                    <span id="couponCode" class="text-green-600 font-mono font-bold text-lg"></span>
+                <div class="border-2 border-dashed border-[#0B453C] rounded-lg px-4 py-3 mb-4 cursor-pointer hover:bg-[#F2FCFA] transition flex items-center justify-between" onclick="copyCode()">
+                    <span id="couponCode" class="text-[#003830] font-mono font-bold text-lg"></span>
                     <span class="text-gray-600">📋 Copy</span>
                 </div>
                 
@@ -30,12 +30,12 @@
 
             <!-- No Code Required (for getdeal) -->
             <div id="dealSection" class="hidden">
-                <div class="border-2 border-dashed border-green-500 rounded-lg px-4 py-3 mb-4 flex items-center justify-between">
-                    <span class="text-green-600 font-mono font-bold text-lg">NO CODE REQUIRED</span>
+                <div class="border-2 border-dashed border-[#0B453C] rounded-lg px-4 py-3 mb-4 flex items-center justify-between">
+                    <span class="text-[#003830] font-mono font-bold text-lg">NO CODE REQUIRED</span>
                     <span>📋</span>
                 </div>
                 
-                <button class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg mb-4 transition" id="goto-btn" onclick="gotoDealFromModal()">
+                <button class="w-full bg-[#0B453C] hover:bg-[#003830] text-white font-semibold py-3 rounded-lg mb-4 transition" id="goto-btn" onclick="gotoDealFromModal()">
                     Get This Deal
                 </button>
                 

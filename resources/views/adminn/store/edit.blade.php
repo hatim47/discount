@@ -27,7 +27,6 @@
             <h1>{{ old('id', $store->id) }} </h1>
 
             <div class="col-sm-2">
-
                 <div class="mb-3">
                     <label class="form-label">Store Name </label>
                     <input type="text" name="name" class="form-control" value="{{ old('name', $store->name) }}">
@@ -387,7 +386,26 @@
                     <label class="form-label">Link</label>
                     <input type="text" name="link" class="form-control" value="{{ old('link', $store->link) }}">
                 </div>
+  <div class="row gy-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">(META) Title*</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control wizard-required"  value="{{ old('m_tiitle', $store->m_tiitle) }}" name="m_tiitle"
+                                                 >
+                                            <div class="wizard-form-error"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">(META) Description*</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control wizard-required"  value="{{ old('m_descrip', $store->m_descrip) }}" name="m_descrip"
+                                                 style="height: 60px; line-height: 20px; overflow-y: auto;" >
+                                            <div class="wizard-form-error"></div>
+                                        </div>
+                                    </div>
+                                
 
+                                </div>
 
                 <button type="submit" class="btn btn-success">Save</button>
             </div>

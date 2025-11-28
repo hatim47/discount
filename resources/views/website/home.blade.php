@@ -212,7 +212,7 @@
                 <p class="text-sm lg:text-base leading-relaxed mb-8 opacity-90">
                     Top Vouchers Code contains affiliate links to products. We may receive a commission for purchases made through these links.
                 </p>
-                <button class="bg-[#D8FFF9] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform">
+                <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform">
                     Get Deal
                 </button>
             </div>
@@ -256,26 +256,7 @@
 {{-- Deals Section --}}
 <div class="bg-white">
     <section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 text-center">
-<div class="bg-[#0B453C] rounded-3xl px-6 py-3 flex items-center gap-10 h-[40vh]"> 
-<img class="object-cover px-auto w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
-<div class="flex flex-col gap-3 text-left items-start py-6"> 
-<h4 class="text-3xl font-semibold text-white">The Search for Discount Codes Ends Here</h4> 
-<p class="text-white text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
- <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
-                Get Deal
-            </button>
-</div>
- </div>
-<div class="bg-[#D8FFF9] rounded-3xl px-6 py-3 flex flex-row-reverse items-center gap-10 h-[40vh]"> 
-<img class="object-cover px-auto w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
-<div class="flex flex-col gap-3 text-left items-start py-6"> 
-<h4 class="text-3xl font-semibold text-[#0B453C]">The Search for Discount Codes Ends Here</h4> 
-<p class="text-[#0B453C] text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
- <button class="bg-[#0B453C] text-[#D8FFF9] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
-                Get Deal
-            </button>
-</div>
- </div>
+
 
     @foreach($categories as $category)
         <div class="group flex justify-between gap-3 items-center mt-8 mb-4 pt-2 pb-1 px-4">
@@ -359,16 +340,47 @@
                 </div>
     </a>
             @endforeach 
+
+
              @endforeach 
         </div>
 
+@if($loop->iteration == 3)
+
+<div class="bg-[#0B453C] rounded-3xl  mt-8 mb-4  px-6 py-3 flex flex-col md:flex-row items-center gap-10 h-[70vh] md:h-[40vh]"> 
+<img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
+<div class="flex flex-col gap-3 text-left items-start py-6"> 
+<h4 class="text-3xl font-semibold text-white">The Search for Discount Codes Ends Here</h4> 
+<p class="text-white text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
+ <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
+                Get Deal
+            </button>
+</div>
+ </div>
+@endif
+@if($loop->remaining == 2) 
+<div class="bg-[#F2FCFA] rounded-3xl  mt-8 mb-4  px-6 py-3 flex flex-col   md:flex-row-reverse  items-center gap-10 h-[70vh] md:h-[40vh]"> 
+<img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
+<div class="flex flex-col gap-3 text-left items-start py-6"> 
+<h4 class="text-3xl font-semibold text-[#0B453C]">The Search for Discount Codes Ends Here</h4> 
+<p class="text-[#0B453C] text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
+ <button class="bg-[#0B453C] text-[#F2FCFA] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
+                Get Deal
+            </button>
+</div>
+ </div>
+ @endif
   @endforeach 
-  <div class="bg-[#0B453C] rounded-3xl px-6 py-3 flex items-center justify-center gap-10 "> 
+  <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-4 px-6 py-3 flex items-center justify-center gap-10 "> 
 
 <div class="flex flex-col gap-3 text-center items-center py-6"> 
-<h4 class="text-3xl font-semibold text-white">Sign-up To Get Latest Voucher Codes First</h4> 
+<h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
 <p class="text-white text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
-  <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white"  />
+   <div class="relative w-full">
+  <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />
+  <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >
+    <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
+</div></div> 
             <p class="text-white text-sm  md:text-base ">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
 
 </div>

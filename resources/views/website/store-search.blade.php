@@ -24,7 +24,7 @@
                         type="text"
                         x-model="searchQuery"
                         placeholder="Search"
-                        class="h-12 w-full px-6 pr-16 rounded-full border-2 border-[#1EC27E] bg-white focus:outline-none focus:ring-2 focus:ring-[#1EC27E] focus:ring-opacity-50 text-gray-700"
+                        class="h-12 w-full px-6 pr-16 rounded-full border-2 border-[#0B453C] bg-white focus:outline-none focus:ring-2 focus:ring-[#0B453C] focus:ring-opacity-50 text-gray-700"
                         x-ref="searchInput"
                     />
                     <button 
@@ -60,7 +60,7 @@
                                     {{ $offer['logo'] }}
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="text-[#1EC27E] font-bold text-sm mb-1">{{ $offer['brand'] }}</h3>
+                                    <h3 class="text-[#0B453C] font-bold text-sm mb-1">{{ $offer['brand'] }}</h3>
                                     <p class="text-gray-800 font-semibold text-base mb-2">{{ $offer['offer'] }}</p>
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-medium {{ $offer['type'] === 'Code' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700' }}">
                                         {{ $offer['type'] }}
@@ -87,7 +87,7 @@
 
                         @foreach($brands as $brand)
                             <div class="flex justify-between items-center p-4 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer border border-gray-100">
-                                <h3 class="text-[#1EC27E] font-semibold text-lg">{{ $brand['name'] }}</h3>
+                                <h3 class="text-[#0B453C] font-semibold text-lg">{{ $brand['name'] }}</h3>
                                 <span class="text-gray-600 text-sm">View {{ $brand['offers'] }} offers</span>
                             </div>
                         @endforeach
@@ -115,7 +115,7 @@
 
     
     {{-- Search Button --}}
-       {{-- <button @click="openSearch()" class="px-4 py-2 bg-[#1EC27E] text-white rounded-lg">Search Stores</button> --}}
+       {{-- <button @click="openSearch()" class="px-4 py-2 bg-[#0B453C] text-white rounded-lg">Search Stores</button> --}}
 
 
     {{-- Popup Modal --}}
@@ -131,8 +131,8 @@
             {{-- Search Input --}}
             <div class="mb-6">
                 <div class="relative">
-                    <input type="text" x-model="searchQuery" @input.debounce.300ms="searchStores" placeholder="Search stores..." class="h-12 w-full px-6 pr-16 rounded-full border-2 border-[#1EC27E]" x-ref="searchInput" />
-                    <button @click="closeSearch()" class="absolute right-2 top-2 text-gray-400 hover:text-gray-600">X</button>
+                    <input type="text" x-model="searchQuery" @input.debounce.300ms="searchStores" placeholder="Search stores..." class="h-12 w-11/12 px-6 pr-16 rounded-full border-2 border-[#0B453C]" x-ref="searchInput" />
+                    <button @click="closeSearch()" class="absolute right-2 top-2 text-gray-400 hover:text-gray-600"><iconify-icon icon="system-uicons:cross" width="21" height="21"></iconify-icon></button>
                 </div>
             </div>
 
@@ -140,7 +140,7 @@
             <div class="mb-6 flex flex-wrap gap-3">
                 <template x-for="region in regions" :key="region.slug">
                     <button @click="filterRegion(region.slug)"
-                        :class="{'bg-[#1EC27E] text-white': selectedRegion === region.slug, 'bg-gray-100 text-gray-700': selectedRegion !== region.slug}"
+                        :class="{'bg-[#0B453C] text-white': selectedRegion === region.slug, 'bg-gray-100 text-gray-700': selectedRegion !== region.slug}"
                         class="px-4 py-2 rounded-full text-sm font-medium"
                         x-text="region.name">
                     </button>
@@ -158,7 +158,7 @@
     <img :src="offer.store.logo" alt="" class="w-full h-full object-cover">
 </div>
                             <div class="flex-1">
-                                <h3 class="text-[#1EC27E] font-bold text-sm mb-1" x-text="offer.brand"></h3>
+                                <h3 class="text-[#0B453C] font-bold text-sm mb-1" x-text="offer.brand"></h3>
                                 <p class="text-gray-800 font-semibold text-base mb-2" x-text="offer.title"></p>
 
                             </div>
@@ -171,7 +171,7 @@
                     <h2 class="text-2xl font-bold mb-6">BRANDS</h2>
                     <template x-for="brand in brands" :key="brand.id">
                         <a :href="`{{ $routePattern }}`.replace('__SLUG__', brand.slug)" class="flex justify-between items-center p-4 hover:bg-gray-50 rounded-lg border border-gray-100">
-                            <h3 class="text-[#1EC27E] font-semibold text-lg" x-text="brand.name"></h3>
+                            <h3 class="text-[#0B453C] font-semibold text-lg" x-text="brand.name"></h3>
                             <span class="text-gray-600 text-sm" x-text="'View ' + brand.coupons_count + ' offers'"></span>
                         </a>
                     </template>
@@ -181,7 +181,7 @@
             {{-- Search Results --}}
             <div x-show="searchQuery.length" class="space-y-4">
                 <template x-for="store in searchResults" :key="store.id">
-                  <a href="{{region_route('store.website', ['slug' => "store.slug"] ) }}" class="flex items-center gap-4 p-4 border rounded hover:bg-gray-50 cursor-pointer">
+                  <a :href="`{{ $routePattern }}`.replace('__SLUG__', store.slug)" class="flex items-center gap-4 p-4 border rounded hover:bg-gray-50 cursor-pointer">
     <!-- Logo Thumbnail -->
     <div class="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
         <img :src="store.logo" alt="" class="w-full h-full object-cover" />
