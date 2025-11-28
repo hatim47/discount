@@ -1,5 +1,4 @@
 @extends('website.layouts.app')
-
 @section('title', 'Welcome to ' . config('website.company.name'))
 @section('meta_description', 'Best marketing platform to grow your business.')
 @push("style")
@@ -7,7 +6,6 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
-
 @endpush
 @section('content')
 {{-- Hero Section --}}
@@ -25,9 +23,8 @@
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold -top-1" @click="openSearch()" >
     <iconify-icon icon="flowbite:search-outline" width="28" height="28" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div>
- <button class="bg-[#0B453C]  px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2">Search</button>
+ <button class="bg-[#0B453C]  px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2" @click="openSearch()">Search</button>
 </div>
-
 <div class=" grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-8 text-left py-5">
 <!-- All Codes Verified -->
 <div class="flex items-center space-x-3">
@@ -37,7 +34,6 @@
 <p class="text-sm text-gray-600">Verified</p>
 </div>
 </div>
-
 <!-- 20000+ Discounts -->
 <div class="flex items-center space-x-3">
 <img src="{{asset('public/assets/images/icon.svg - 2025-11-25T220208.269 1.png')}}" alt="Discounts" class="w-10 h-10">
@@ -46,7 +42,6 @@
 <p class="text-sm text-gray-600">Discounts</p>
 </div>
 </div>
-
 <!-- Upto 50% Cashback -->
 <div class="flex items-center space-x-3">
 <img src="{{asset('public/assets/images/icon.svg - 2025-11-25T230742.957 1.png')}}" alt="Cashback" class="w-10 h-10">
@@ -56,17 +51,12 @@
 </div>
 </div>
 </div>
-
-
-
    </div>
 <div class="hidden min-[787px]:flex justify-end">
 <img src="{{asset('public/assets/images/Group 160.png')}}" class="w-10/12" />
 </div>   
-
     </div>
 </section>
-
 {{-- Featured Coupons Grid --}}
 <section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 ">
     <h2 class="text-3xl font-bold text-[#0F0F0F] mb-8 pb-2">Featured Discount Voucher Offers</h2>

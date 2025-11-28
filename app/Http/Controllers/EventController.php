@@ -17,7 +17,6 @@ class EventController extends Controller
 
    public function create()
    {
-
         $region = Region::all();
        return view('adminn.event.add', compact('region'));
    }    

@@ -37,24 +37,36 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], funct
      \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('admin', 'index')->name('index');
+    // Route::get('admin', 'index')->name('index');
 });
+Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
+
+
+Route::middleware('auth')->group(function () {
 Route::controller(CategoryController::class)->group(function () {
 Route::get('admin/cate','add')->name('cate.add');
 Route::get('admin/categories/show/{id}','show')->name('cate.show');});
- Route::get('admin/stores/category/{category}', [StoreController::class, 'index_cat'])->name('stores.index');
+Route::get('admin/stores/category/{category}', [StoreController::class, 'index_cat'])->name('stores.index');
     // Coupons filtered by category
 Route::get('admin/coupons/category/{category}', [CouponController::class, 'index_cat'])->name('coupons.index');
 Route::get('admin/coupons/store/{category}', [CouponController::class, 'index_Store'])->name('coupons.index_store');
 
-
-Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
 Route::resource('admin/dynapage',DynapageController::class);
+Route::resource('admin/users', UsersController::class);
+
+});
+Route::post('/logout', function() {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('admin.login');
+})->name('logout');
+
 
 Route::middleware('setregion')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

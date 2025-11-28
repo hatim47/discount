@@ -14,30 +14,19 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
+      $request->validate([
         'email' => 'required|email',
         'password' => 'required|string',
     ]);
 
-    if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-        if ($request->expectsJson()) {
-            return response()->json([
-                'success' => true,
-                'redirect' => route('user.portal')
-            ]);
-        }
-
-        return redirect()->intended(route('user.portal'));
+    if (Auth::attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        return redirect()->route('store.index');
     }
 
-    if ($request->expectsJson()) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Invalid credentials',
-        ], 422);
-    }
-
-    return back()->withErrors(['email' => 'Invalid credentials']);
+    return back()->withErrors([
+        'email' => 'Invalid email or password',
+    ]);
     }
 
     public function logout(Request $request)
