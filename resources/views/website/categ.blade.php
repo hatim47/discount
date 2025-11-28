@@ -328,7 +328,7 @@ font-size:30px;
     {{-- column two end --}} 
     </div>
   </section>
-  <h1 class="text-5xl font-medium">{{ $store->name }}</h1>
+  {{-- <h1 class="text-5xl font-medium">{{ $store->name }}</h1> --}}
 @endsection
 @push('scripts')
  <script src="{{ asset('public/assets/js/lib/jquery-3.7.1.min.js') }}"></script>
