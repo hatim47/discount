@@ -20,7 +20,7 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="Categories"  class="text-[#0B453C]  hover:font-medium hover:underline">Stores</a>
+                        <a href="{{region_route('store.menusa') }}"  class="text-[#0B453C]  hover:font-medium hover:underline">Stores</a>
                       
                     </nav>
                     <!-- Title -->

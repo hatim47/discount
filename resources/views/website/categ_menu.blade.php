@@ -20,7 +20,7 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="categories"  class="text-[#0B453C] hover:font-medium hover:underline">Categories</a>
+                        <a href="{{region_route('categ.menu') }}"  class="text-[#0B453C] hover:font-medium hover:underline">Categories</a>
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
