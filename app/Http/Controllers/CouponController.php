@@ -13,8 +13,8 @@ class CouponController extends Controller
 {
     public function index()
     {
-    //    $coupon = Coupon::all(); 
-       $coupon = Coupon::limit(5)->get();
+       $coupon = Coupon::all(); 
+    //    $coupon = Coupon::limit(5)->get();
         return view('adminn.coupon.index', compact('coupon'));
     }
 
