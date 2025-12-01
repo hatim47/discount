@@ -45,12 +45,12 @@
                     <span>Dynamic Pages List</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a  href="{{ route('gallery') }}">
                     <iconify-icon icon="solar:gallery-wide-linear" class="menu-icon"></iconify-icon>
                     <span>Gallery</span>
                 </a>
-            </li>
+            </li> --}}
            
             
       
