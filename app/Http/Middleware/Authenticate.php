@@ -30,7 +30,7 @@ class Authenticate
             }
 
             // Optional: only admin role
-            if (Auth::user()->role !== 0) {
+            if (Auth::user()->role !== "0") {
                 abort(403, 'Unauthorized');
             }
         }
