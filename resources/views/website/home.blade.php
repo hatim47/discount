@@ -310,7 +310,7 @@
         </div>
 
         <!-- Discount Card -->
-        <div class="bg-[#FCF9F2] m-0 p-0 rounded-3xl flex justify-center items-center">
+        <div class="bg-[#F2FCFA] m-0 p-0 rounded-3xl flex justify-center items-center">
         <div class="flex flex-col p-5 text-left m-0">
             <h1 class="text-4xl font-bold text-[#0B453C] mb-4 leading-tight">
                 Enjoy 55% off limited time

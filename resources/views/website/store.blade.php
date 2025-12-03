@@ -114,15 +114,15 @@ $jsonLd = json_encode(
 <script type="application/ld+json">
 {!! $jsonLd !!}
 </script>
-    <section class="bg-[#FCF9F2] text-[#0F0F0F]">
+    <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->
             <div class="flex items-center gap-4 ms-3">
                 <!-- Logo -->
                 <div
-                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
-                    <img src="{{ $store->logo }}" alt="Clarks" class="w-full h-full object-contain p-2" />
+                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border border-[#0B453C] flex items-center justify-center bg-white shadow-sm overflow-hidden">
+                    <img src="{{ $store->logo }}" alt="Clarks" class="w-full h-full rounded-full object-contain " />
                 </div>
 
                 <!-- Text Content -->
@@ -152,7 +152,7 @@ $jsonLd = json_encode(
 
                 <!-- Visit Button -->
                 <a href="{{ $store->link }}"
-                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                    class="flex items-center justify-center text-white bg-[#0B453C] hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -221,7 +221,7 @@ $jsonLd = json_encode(
   <p>Voucher Codes: <span id="voucher-count" class="font-semibold">2</span></p>
 <p>Deals: <span id="deal-count" class="font-semibold">4</span></p>
     </div>
-    <div class="mt-3 bg-green-100 px-3 py-2 rounded-md font-semibold text-gray-900">
+    <div class="mt-3 bg-[#0B453C] px-3 py-2 rounded-md font-semibold text-white">
       Total Offers: <span id="total-count" class="ml-1">6</span>
     </div>
   </div>
@@ -233,7 +233,7 @@ $jsonLd = json_encode(
     <div class="flex flex-col gap-2 text-sm text-gray-700">
       <label class="flex items-center justify-between cursor-pointer">
         <span>All</span>
-        <input type="radio" name="filter" value="all" checked class="accent-green-500" />
+        <input type="radio" name="filter" value="all" checked class="accent-[#0B453C]" />
       </label>
       <label class="flex items-center justify-between cursor-pointer">
         <span>Voucher Code</span>
@@ -249,7 +249,7 @@ $jsonLd = json_encode(
   <!-- Quick Links -->
    @if ( $store->dynacontents ->isNotEmpty() )
   <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-semibold text-gray-900">Quick Links</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-semibold text-white">Quick Links</div>
     <ul class="divide-y divide-gray-200 text-sm text-gray-700">
   @foreach ($store->dynacontents as $index => $relateds)
       <li><a href="#{{$index}}" class="block px-4 py-2 hover:bg-gray-50">{{$relateds->heading }}</a></li>
@@ -260,7 +260,7 @@ $jsonLd = json_encode(
 
   @if ( $store->relatedStores ->isNotEmpty())
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Stores</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Stores</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($store->relatedStores as $relateds )
@@ -276,7 +276,7 @@ $jsonLd = json_encode(
 
   @if ($store->categories ->isNotEmpty())
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Categories</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Categories</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($store->categories as $relateds )
@@ -291,7 +291,7 @@ $jsonLd = json_encode(
 @endif
   @if ($store->trendingWith ->isNotEmpty() )
    <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Trending Brands</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Trending Brands</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($store->trendingWith as $relateds )
@@ -306,7 +306,7 @@ $jsonLd = json_encode(
 
    @if ($store->likes->isNotEmpty() )
  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">{{$store->name}} shoppers also like
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">{{$store->name}} shoppers also like
 </div>
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($store->likes as $relateds )

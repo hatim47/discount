@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-    <section class="bg-[#FAF9F5] text-[#0F0F0F]">
+    <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->
@@ -42,7 +42,7 @@
 {{-- {{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }} --}}
 {{-- {{$category->slug}} --}}
 
-<a href="{{region_route('categ.page', ['slug' => $category->slug] ) }}"class="text-lg font-bold text-[#0F0F0F]" >View All </a>
+<a href="{{region_route('categ.page', ['slug' => $category->slug] ) }}"class="text-lg font-bold underline text-[#0B453C]" >View All </a>
    </div>
 <div class="flex flex-col px-3 py-6 ">
 

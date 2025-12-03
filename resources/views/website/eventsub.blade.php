@@ -17,7 +17,7 @@
 
 /* Header row styling */
  thead {
-    background-color: #FAF9F5; /* Light gray background */
+    background-color: #F2FCFA; /* Light gray background */
     border-bottom: 2px solid #0B453C; /* Separator line below header */
 }
 
@@ -38,7 +38,7 @@
 
 /* Alternating row colors (zebra stripping) */
  tbody tr:nth-child(even) {
-    background-color: #FAF9F5; /* Very light subtle contrast */
+    background-color: #F2FCFA; /* Very light subtle contrast */
 }
 
 /* Hover effect for rows */
@@ -61,7 +61,7 @@ font-size:30px;
 
 @section('content')
 
-    <section class="bg-[#FAF9F5] text-[#0F0F0F]">
+    <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->

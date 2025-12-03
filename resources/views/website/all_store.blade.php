@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-    <section class="bg-[#FAF9F5] text-[#0F0F0F]">
+    <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->

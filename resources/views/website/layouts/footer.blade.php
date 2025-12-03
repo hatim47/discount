@@ -30,14 +30,14 @@
     ];
 @endphp
 
-<footer class="bg-[#F2FCFA] mt-10">
+<footer class="bg-[#F2FCFA] pt-10">
     <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>
-                <h3 class="text-[#0B453C] font-semibold mb-3">
+                <h4 class="text-[#0B453C] font-semibold mb-3">
                     {{ str_replace('_', ' ', $section) }}
-                </h3>
+                </h4>
                 <ul class="space-y-2 text-gray-700">
                     @foreach($items as $item)
                         @if(isset($item['label']))

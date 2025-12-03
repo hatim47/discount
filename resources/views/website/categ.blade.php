@@ -20,7 +20,7 @@
 
 /* Header row styling */
  thead {
-    background-color: #FAF9F5; /* Light gray background */
+    background-color: #F2FCFA; /* Light gray background */
     border-bottom: 2px solid #0B453C; /* Separator line below header */
 }
 
@@ -41,7 +41,7 @@
 
 /* Alternating row colors (zebra stripping) */
  tbody tr:nth-child(even) {
-    background-color: #FAF9F5; /* Very light subtle contrast */
+    background-color: #F2FCFA; /* Very light subtle contrast */
 }
 
 /* Hover effect for rows */
@@ -108,7 +108,7 @@ font-size:30px;
 
 @section('content')
 
-    <section class="bg-[#FAF9F5] text-[#0F0F0F]">
+    <section class="bg-[#F2FCFA] text-[#0F0F0F]">
 
         <div
             class="max-w-7xl mx-auto py-5 px-4 sm:px-6 flex flex-col  items-start  justify-start gap-6">
@@ -133,14 +133,14 @@ font-size:30px;
         <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-2 my-5">
           <div class="relative p-4 w-full">
             <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" class="w-full rounded-3xl h-40 object-cover"/>
-          <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-white shadow-md"/>
+          <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-[#0B453C] shadow-md"/>
           </div>
 
           <div class="p-4 flex flex-col justify-between ">
             <div class="flex justify-between items-center mb-1">
-              <h2 class="text-gray-900 font-semibold text-sm">{{ $coupon->store['name'] }}</h2>
+              <h2 class="text-gray-900 font-semibold py-2 text-sm">{{ $coupon->store['name'] }}</h2>
               @if($coupon->verified)
-                <span class="text-[#0f0f0f] bg-[#0B453C]/20 uppercase px-2 text-xs rounded-2xl">Verified</span>
+                 <iconify-icon icon="bitcoin-icons:verify-filled" width="32" height="32" class="text-[#0B453C]"></iconify-icon>
               @endif
             </div>
             <h6 class="text-neutral-900 font-semibold text-sm mb-1">{{ $coupon['title'] }}</h6>
@@ -175,7 +175,7 @@ font-size:30px;
         <button 
             id="loadMore" 
             data-next-page="{{ $coupons->nextPageUrl() }}" 
-            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#ededed]"
         >
             Load More
         </button>
@@ -214,12 +214,12 @@ font-size:30px;
 
   <!-- Filter Section -->
   <div class="bg-white w-full rounded-xl shadow p-4" id="filter-options">
-    <h3 class="font-bold text-lg text-gray-900 mb-2">Filter by</h3>
+    <h5 class="font-bold text-lg text-gray-900 mb-2">Filter by</h5>
 
     <div class="flex flex-col gap-2 text-sm text-gray-700">
       <label class="flex items-center justify-between cursor-pointer">
         <span>All</span>
-        <input type="radio" name="filter" value="all" checked class="accent-green-500" />
+        <input type="radio" name="filter" value="all" checked class="accent-[#56B2A4]" />
       </label>
       <label class="flex items-center justify-between cursor-pointer">
         <span>Voucher Code</span>
@@ -234,7 +234,7 @@ font-size:30px;
 
   <!-- Quick Links -->
   <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">About {{$store->name}}</div>
+    <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">About {{$store->name}}</div>
    <div class="flex flex-wrap text-sm text-gray-700 p-2">
         {!! $store->shrt_content !!}
      
@@ -246,7 +246,7 @@ font-size:30px;
     
 
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Stores</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Stores</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($relatedStores as $relateds )
@@ -261,7 +261,7 @@ font-size:30px;
 @endif
   
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Categories</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Categories</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($categories as $relateds )
@@ -274,7 +274,7 @@ font-size:30px;
     </ul>
   </div>
    <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Browse By Store</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Browse By Store</div>
     @php
     $letters = array_merge(range('A', 'Z'), ['0-9']);
 @endphp
@@ -293,7 +293,7 @@ font-size:30px;
   </div>
   @if ( $trendingWith->isNotEmpty() )
    <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Trending Brands</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Trending Brands</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
      
     @foreach ($trendingWith as $relateds )
@@ -308,7 +308,7 @@ font-size:30px;
 
   @if ( $likes->isNotEmpty() )
  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">{{$store->name}} shoppers also like
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">{{$store->name}} shoppers also like
 </div>
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($likes as $relateds )

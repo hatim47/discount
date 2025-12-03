@@ -5,19 +5,20 @@ x-data="{ showTerms: false }"
 <div class="flex justify-between">
 
 <div class="flex  items-center gap-3 sm:gap-6">
-<div class="flex flex-col items-center border-2 rounded-md 
-            {{ $coupon->deals == 0 ? 'border-yellow-300' : 'border-sky-300' }}"> 
+<div class="flex flex-col items-center rounded-full 
+            {{-- {{ $coupon->deals == 0 ? 'border-[#ededed]' : 'border-[#ededed]' }} --}}
+            "> 
   <img src="{{ $coupon->store['logo'] }}" 
        alt="{{ $coupon->store['name'] }}" 
        loading="lazy" 
-       class="w-20 h-20 rounded-md shadow-md" />
+       class="w-20 h-20 rounded-full shadow-md" />
 
   @if($coupon->deals == 0)
-    <span class="text-[#0f0f0f] bg-yellow-300 uppercase w-full text-center text-xs sm:text-sm">
+    <span class="text-[#0f0f0f] pt-2 uppercase w-full text-center text-xs sm:text-sm">
       Code
     </span>
   @else
-    <span class="text-[#0f0f0f] bg-sky-300 uppercase w-full text-center text-xs sm:text-sm">
+    <span class="text-[#0f0f0f] pt-2 uppercase w-full text-center text-xs sm:text-sm">
       Deal
     </span>
   @endif
@@ -25,9 +26,9 @@ x-data="{ showTerms: false }"
 </div>
   <div class="flex flex-col  items-start gap-3 sm:gap-6">
    @if($coupon->verified)
-        <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl">Verified</span>
+        <iconify-icon icon="bitcoin-icons:verify-filled" width="32" height="32" class="text-[#0B453C]"></iconify-icon>
         @else
-         <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
+         <span class="text-[#0f0f0f]  uppercase px-1  text-xs rounded-2xl"></span>
     @endif
      <div class="flex flex-col justify-between items-start gap-3">
   <h2 class="text-[#0f0f0f] text-lg sm:text-xl">{{ $coupon['title'] }}</h2>
@@ -41,9 +42,6 @@ x-data="{ showTerms: false }"
 </div>
 </div>
  
-
-
-
 <div class="flex flex-col w-16 sm:w-48 items-end sm:items-center justify-between">
 <span class="text-[#0f0f0f] bg-yellow-300 uppercase px-1  text-xs rounded-2xl"></span>
  @if($coupon->deals == 0) 
@@ -72,7 +70,6 @@ x-data="{ showTerms: false }"
       "
     > 
       Reveal Code
-      <!-- Mobile Arrow -->
     
     </button>
     <button 
