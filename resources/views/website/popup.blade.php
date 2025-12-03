@@ -46,8 +46,8 @@
 
             <!-- Terms & Conditions -->
             <div class="bg-gray-50 rounded-lg p-4 text-xs text-gray-700">
-                <strong class="block mb-2 text-gray-900">Terms & Conditions:</strong>
-                <div class="space-y-1" id="couponTerms">
+                
+                <div class="space-y-1 " id="couponTerms">
                     Terms and conditions will appear here.
                 </div>
             </div>
@@ -70,8 +70,8 @@ let currentCouponLink = '';
         const button = event.target.closest('button');
         const code = button.getAttribute('data-code');
         const title = button.getAttribute('data-title') || 'Special Offer';
-        const terms = button.getAttribute('data-terms') || 'Terms and conditions apply.';
-        
+        const terms = button.getAttribute('data-terms');
+      
         // Store data in sessionStorage so popup can access it
         sessionStorage.setItem('couponData', JSON.stringify({
             code: code || '',

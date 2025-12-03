@@ -51,14 +51,29 @@ class HomeController extends Controller
         ->where('store_region', $regionId)
         ->get();
 
+ $requirement = Coupon::with('store')
+        ->where('recom', true)
+        ->where('verified', true)
+        ->where('status', 'active')
+         ->whereHas('store', function ($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+        ->get();
+ 
+
+
+
     // All events
     $events = Event::all();
+
+
 $meta_description = "Your meta description here";
     return view('website.home', compact(
         'feature',
         'categories',
         'stores',
         'events',
+        'requirement',
         'meta_description'
     ));
 }

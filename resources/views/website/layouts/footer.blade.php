@@ -30,7 +30,7 @@
     ];
 @endphp
 
-<footer class="bg-gray-50 border-t mt-10">
+<footer class="bg-[#F2FCFA] mt-10">
     <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
@@ -76,16 +76,17 @@
     </div>
 
     {{-- Disclaimer --}}
-    <p class="text-center text-gray-500 text-sm px-4">
+    {{-- <p class="text-center text-gray-500 text-sm px-4">
         Disclosure: If you buy a product or service after clicking one of our links, we may be paid a commission
-    </p>
+    </p> --}}
 
     {{-- Logo --}}
-    <div class="flex justify-center py-6">
+    {{-- <div class="flex justify-center py-6">
         <h1 class="text-2xl font-bold">TopVouchersCode</h1>
-    </div>
-
-    <p class="text-center text-gray-400 text-xs pb-6">
+    </div> --}}
+<div class="flex justify-center py-6  border-t-1 border-t-black/10 ">
+    <p class="text-center text-gray-400 text-xs ">
         Copyright Topvoucherscode.co.uk. All rights reserved.
     </p>
+     </div>
 </footer>

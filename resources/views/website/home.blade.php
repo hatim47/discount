@@ -59,27 +59,118 @@
 </section>
 {{-- Featured Coupons Grid --}}
 <section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 ">
-    <h2 class="text-3xl font-bold text-[#0F0F0F] mb-8 pb-2">Featured Discount Voucher Offers</h2>
+    <h2 class="text-3xl font-bold text-[#0F0F0F]">Recommended for you</h2>
+
+   <div x-data="sliderr()" x-init="init()" class="relative pe-10 py-5 w-full overflow-hidden">
+    <!-- Slides wrapper -->
+     <div
+     x-ref="track"
+    class="flex py-5 select-none cursor-grab active:cursor-grabbing will-change-transform"
+    :class="{'transition-transform duration-500 ease-out': !dragging }"
+    :style="`transform: translateX(${translateX}px);`"
+     @mousedown.prevent="startDrag"
+    @mousemove="drag"
+    @mouseup="endDrag"
+    @mouseleave="endDrag"
+    @touchstart.prevent="startDrag"
+    @touchmove="drag"
+    @touchend="endDrag"   
+    >
+    {{-- {{ dd($requirement)}} --}}
+   @foreach($requirement as $coupon) 
+   {{-- {{ dd($coupon)}}      --}}
+<article class="bg-white flex p-4 border border-gray-100 rounded-2xl recom flex-shrink-0 w-full md:w-6/12 lg:w-4/12 mx-2 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div class="relative flex flex-1">
+  <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy" class="w-10/12 rounded-2xl h-30 object-cover" />
+ <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}"> <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy"
+  class="w-12 h-12 rounded-full absolute -bottom-1 right-4 "
+  /></a>
+</div>
+
+<div class="pt-3 flex flex-col justify-between items-start ">
+  <div class="flex justify-between items-center">
+  <h3 class="text-gray-800 text-start font-semibold text-base mb-2">{{ $coupon['title'] }}</h3>
+</div>  
+    <div class="flex justify-between w-full">
+  <p data-termsa="{!! $coupon->trems !!}" onclick="openTerms(this)" class="text-sm text-[#0f0f0f]">View Terms</p>
+  @php
+    $views = $coupon->view;
+    if ($views >= 1000000) {
+        $views = round($views / 1000000, 1) . 'M';
+    } elseif ($views >= 1000) {
+        $views = round($views / 1000, 1) . 'k';
+    }
+@endphp
+   <p class="text-sm text-[#0f0f0f]"> {{ $views }} Used
+  </p></div>
+ @if($coupon->deals == 0) 
+
+<button
+      aria-label="Reveal Code"
+      data-code="{{$coupon['code']}}"
+      data-text=" Reveal Code"
+    data-title="{{ $coupon->title }}"
+    data-terms='{{ htmlspecialchars($coupon->trems, ENT_QUOTES) }}'
+    onclick="openCouponLink('{{ $coupon->store['link']}}')"
+      class="       
+        text-[#0B453C]
+       underline font-bold text-base"
+    > 
+      Reveal Code
+    </button>
+    @else
+ <button onclick="openCouponLink('{{ $coupon->store->link }}')"
+  data-code=""
+    data-title="{{ $coupon->title }}"
+   data-terms='@json($coupon->trems)' 
+                    class="inline-block underline font-bold text-[#0B453C] ">
+                Get Deal
+            </button>
+              @endif
+                </div>
+    </article>
+        @endforeach 
+         </div>
+       <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    <template x-for="page in totalPages()" :key="page">
+        <button class="w-3 h-3 rounded-full border-[#0B453C] border"
+            :class="currentIndex === (page-1) ? 'bg-[#0B453C] w-6' : 'bg-white'"
+            @click="goToSlide(page-1)"></button>
+    </template>
+</div>
+    </div> 
+</section>
+
+
+
+
+<section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 ">
+    <h2 class="text-3xl font-bold text-[#0F0F0F]">Featured Discount Voucher Offers</h2>
 
     {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 featured_slider"> --}}
    <div x-data="slider()" x-init="init()" class="relative py-5 w-full overflow-hidden">
     <!-- Slides wrapper -->
     <div
-        class="flex py-5 transition-transform duration-500"
-        :style="`transform: translateX(-${currentIndex * 100}%);`"
-        @mousedown="startDrag($event)"
-        @touchstart="startDrag($event)"
-        @mouseup="endDrag()"
-        @touchend="endDrag()"
-        @mousemove="drag($event)"
-        @touchmove="drag($event)"
+     x-ref="track"
+    class="flex py-5 select-none cursor-grab active:cursor-grabbing will-change-transform"
+    :class="{ 'transition-transform duration-500 ease-out': !dragging }"
+    :style="`transform: translateX(${translateX}px);`"
+     @mousedown.prevent="startDrag"
+    @mousemove="drag"
+    @mouseup="endDrag"
+    @mouseleave="endDrag"
+    @touchstart.prevent="startDrag"
+    @touchmove="drag"
+    @touchend="endDrag"
+    
+
     >
    @foreach($feature as $coupon)      
 <article class="bg-white border border-gray-100 rounded-2xl flex-shrink-0 w-full md:w-6/12 lg:w-[23.7%] mx-2 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div class="relative p-4">
-  <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy" class="w-full rounded-3xl h-40 object-cover" />
+  <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy" class="pointer-events-none select-nonew-full rounded-3xl h-40 object-cover" />
  <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}"> <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" loading="lazy"
-  class="w-14 h-14 rounded-full absolute bottom-0 left-3 border-2 border-[#0B453C] shadow-md"
+  class="w-14 h-14 pointer-events-none select-none rounded-full absolute bottom-0 left-3 border-2 border-[#0B453C] shadow-md"
   /></a>
 </div>
 
@@ -93,7 +184,7 @@
 
   
     <div class="flex justify-between">
-  <p class="text-sm text-[#0f0f0f]">View Terms</p>
+  <p data-termsa="{!! $coupon->trems !!}" onclick="openTerms(this)" class="text-sm text-[#0f0f0f]">View Terms</p>
   @php
     $views = $coupon->view;
     if ($views >= 1000000) {
@@ -110,7 +201,7 @@
       data-code="{{$coupon['code']}}"
       data-text=" Reveal Code"
     data-title="{{ $coupon->title }}"
-    data-terms="{{ $coupon->terms }}"
+    data-terms="{{ $coupon->trems }}"
     onclick="openCouponLink('{{ $coupon->store['link']}}')"
       class="
         relative z-10 overflow-hidden 
@@ -130,10 +221,10 @@
       Reveal Code
     </button>
     @else
- <button onclick="openCouponLink('{{ $coupon->store->link  }}')"
+ <button onclick="openCouponLink('{{ $coupon->store->link }}')"
   data-code=""
     data-title="{{ $coupon->title }}"
-    data-terms="{{ $coupon->terms }}" 
+    data-terms="{{ $coupon->trems }}" 
                     class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full hover:bg-[#0B453C]">
                 Get Deal
             </button>
@@ -148,32 +239,15 @@
         </div>--}}
         @endforeach 
          </div>
-       <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2">
+       {{-- <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2">
     <template x-for="page in totalPages()" :key="page">
         <button class="w-3 h-3 rounded-full border-[#0B453C] border"
             :class="currentIndex === (page-1) ? 'bg-[#0B453C] w-6' : 'bg-white'"
             @click="goToSlide(page-1)"></button>
     </template>
-</div>
+</div> --}}
     </div> 
 </section>
-
-{{-- Featured Stores Carousel --}}
-<section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl font-bold text-[#0F0F0F] mb-8 pb-2">Featured Store</h2>
-    <div class="flex gap-4 flex-wrap justify-center">
-  
-        <div id="store-slider" 
-     class="flex overflow-x-auto space-x-9 scrollbar-hide cursor-grab active:cursor-grabbing px-4 py-6">
-    @foreach($stores as $store)
-        <div class="flex-shrink-0 rounded-3xl border my-2 mx-4">
-            <img src="{{ $store['logo'] }}" 
-                 alt="{{ $store['name'] }}" 
-                 class="w-34 h-24 rounded-3xl object-cover" />
-        </div>
-    @endforeach
-</div>
-
 <style>
 /* Hide scrollbar */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -186,6 +260,24 @@
     -webkit-user-drag: none;
 }
 </style>
+{{-- Featured Stores Carousel --}}
+<section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold text-[#0F0F0F]">Featured Store</h2>
+    <div class="flex gap-4 flex-wrap justify-center">
+  
+        <div id="store-slider" 
+     class="flex overflow-x-auto space-x-9 scrollbar-hide cursor-grab active:cursor-grabbing px-4 py-6">
+    @foreach($stores as $store)
+        <div class="flex-shrink-0 rounded-3xl border border-[#0B453C] my-2 mx-4">
+            <img src="{{ $store['logo'] }}" 
+                 alt="{{ $store['name'] }}" 
+                 class="w-34 h-24 rounded-3xl object-cover" />
+        </div>
+    @endforeach
+</div>
+    <div id="slider-dots" class="flex justify-center items-center gap-2 mt-4"></div>
+
+
     </div>
 </section>
 
@@ -255,10 +347,10 @@
         // only trending & pick max 4
         $trendingCoupons = $allCoupons->where('trend', 1)->take(4);
     @endphp
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2 pb-10">
             @foreach($category->stores as $store)
                     @foreach($store->coupons as $coupon)
-          <div class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <a href=" {{region_route('store.website', ['slug' => $store['slug'] ]) }}" class=" flex justify-center py-4 ">
   <img src="{{ $store['logo'] }}" alt="{{$store['name'] }}" loading="lazy" class="w-11/12 rounded-3xl  h-40 object-cover" />
 </a>
@@ -274,7 +366,7 @@
 
   {{-- <h3 class="text-gray-800 text-start font-semibold text-base mb-2">{{ $coupon['title'] }}</h3> --}}
     <div class="flex justify-between">
-  <p class="text-sm text-[#0f0f0f]">View Terms</p>
+  <p data-termsa="{!! $coupon->trems !!}" onclick="openTerms(this)" class="text-sm text-[#0f0f0f]">View Terms</p>
   @php
     $views = $coupon->view;
     if ($views >= 1000000) {
@@ -292,7 +384,7 @@
       data-text=" Reveal Code"
     data-code="{{ $coupon->code }}"
     data-title="{{ $coupon->title }}"
-    data-terms="{{ $coupon->terms }}"
+    data-terms="{{ $coupon->trems }}"
     onclick="openCouponLink('{{ $store['link'] }}')"
       class="
         relative z-10 overflow-hidden 
@@ -306,7 +398,7 @@
         before:rounded-r-full before:bg-[#F2FCFA] before:text-[#0F0F0F] before:uppercase before:text-sm 
          before:-z-1 after:content-[''] after:absolute after:top-0 after:right-[34px] after:h-[calc(100%+2px)] after:w-full
         after:bg-[#0B453C] after: after:transition-all after:duration-200 after:ease-in-out  after:-z-1
-        font-normal text-base  after:skew-x-[25deg] hover:after:right-[45px] hover:after:shadow-[5px_0_5px_0_rgba(0,0,0,0.25)]
+        font-normal text-base after:skew-x-[25deg] hover:after:right-[45px] hover:after:shadow-[5px_0_5px_0_rgba(0,0,0,0.25)]
       "
     > 
     Reveal Code
@@ -315,7 +407,7 @@
  <button onclick="openCouponLink('{{ $store['link'] }}')"
   data-code=""
     data-title="{{ $coupon->title }}"
-    data-terms="{{ $coupon->terms }}" 
+    data-terms="{{ $coupon->trems }}" 
                     class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full hover:bg-[#0B453C]">
                 Get Deal
             </button>
@@ -330,7 +422,7 @@
 
 @if($loop->iteration == 3)
 
-<div class="bg-[#0B453C] rounded-3xl  mt-8 mb-4  px-6 py-3 flex flex-col md:flex-row items-center gap-10 h-[70vh] md:h-[40vh]"> 
+<div class="bg-[#0B453C] rounded-3xl  mt-8 mb-10  px-6 py-3 flex flex-col md:flex-row items-center gap-10 h-[70vh] md:h-[40vh]"> 
 <img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
 <div class="flex flex-col gap-3 text-left items-start py-6"> 
 <h4 class="text-3xl font-semibold text-white">The Search for Discount Codes Ends Here</h4> 
@@ -342,7 +434,7 @@
  </div>
 @endif
 @if($loop->remaining == 2) 
-<div class="bg-[#F2FCFA] rounded-3xl  mt-8 mb-4  px-6 py-3 flex flex-col   md:flex-row-reverse  items-center gap-10 h-[70vh] md:h-[40vh]"> 
+<div class="bg-[#F2FCFA] rounded-3xl  mt-8 mb-10  px-6 py-3 flex flex-col   md:flex-row-reverse  items-center gap-10 h-[70vh] md:h-[40vh]"> 
 <img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
 <div class="flex flex-col gap-3 text-left items-start py-6"> 
 <h4 class="text-3xl font-semibold text-[#0B453C]">The Search for Discount Codes Ends Here</h4> 
@@ -354,7 +446,7 @@
  </div>
  @endif
   @endforeach 
-  <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-4 px-6 py-3 flex items-center justify-center gap-10 "> 
+  <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-2 px-6 py-3 flex items-center justify-center gap-10 "> 
 
 <div class="flex flex-col gap-3 text-center items-center py-6"> 
 <h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
@@ -381,28 +473,111 @@
 <script>
 function slider() {
     return {
-        slides: Array.from(document.querySelectorAll('.flex-shrink-0')), // all slides
-        currentIndex: 0,
-        slidesPerView: 4, // change based on screen size if needed
-        interval: null,
+        slides: Array.from(document.querySelectorAll('.flex-shrink-0')),
         startX: 0,
+        currentX: 0,
         dragging: false,
+        translateX: 0,
+        maxTranslate: 0,
+        minTranslate: 0,
 
         init() {
-            // Responsive slides per view
-            this.updateSlidesPerView();
-            window.addEventListener('resize', () => this.updateSlidesPerView());
+            this.$nextTick(() => {
+                this.calculateBounds();
+            });
+            
+            window.addEventListener('resize', () => {
+                this.calculateBounds();
+            });
+        },
 
-            {{-- this.startAutoSlide(); --}}
+        calculateBounds() {
+            const trackWidth = this.$refs.track.scrollWidth;
+            const containerWidth = this.$refs.track.parentElement.offsetWidth;
+            
+            this.minTranslate = -(trackWidth - containerWidth);
+            this.maxTranslate = 0;
+            
+            // Keep current position within bounds
+            this.translateX = Math.max(this.minTranslate, Math.min(this.maxTranslate, this.translateX));
+        },
+
+        startDrag(e) {
+            this.dragging = true;
+            this.startX = this.getX(e);
+            this.currentX = this.startX;
+        },
+
+        drag(e) {
+            if (!this.dragging) return;
+            
+            e.preventDefault();
+            this.currentX = this.getX(e);
+            const diff = this.currentX - this.startX;
+
+            // Calculate new position
+            let newTranslate = this.translateX + diff;
+            
+            // Apply bounds with rubber band effect (optional)
+            if (newTranslate > this.maxTranslate) {
+                newTranslate = this.maxTranslate + (newTranslate - this.maxTranslate) * 0.3;
+            } else if (newTranslate < this.minTranslate) {
+                newTranslate = this.minTranslate + (newTranslate - this.minTranslate) * 0.3;
+            }
+            
+            this.translateX = newTranslate;
+            this.startX = this.currentX;
+        },
+
+        endDrag(e) {
+            if (!this.dragging) return;
+            
+            this.dragging = false;
+            
+            // Snap back to bounds if over-dragged
+            if (this.translateX > this.maxTranslate) {
+                this.translateX = this.maxTranslate;
+            } else if (this.translateX < this.minTranslate) {
+                this.translateX = this.minTranslate;
+            }
+        },
+
+        getX(e) {
+            return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        }
+    }
+}
+
+function sliderr() {
+    return {
+        slides: Array.from(document.querySelectorAll('.recom')),
+        startX: 0,
+        currentX: 0,
+        dragging: false,
+        translateX: 0,
+        maxTranslate: 0,
+        minTranslate: 0,
+
+        init() {
+            this.updateSlidesPerView();
+            
+            this.$nextTick(() => {
+                this.calculateBounds();
+            });
+            
+            window.addEventListener('resize', () => {
+                this.updateSlidesPerView();
+                this.calculateBounds();
+            });
         },
 
         updateSlidesPerView() {
             const width = window.innerWidth;
-            if (width < 768) { // mobile
+            if (width < 768) {
                 this.slidesPerView = 1;
-            } else if (width < 1024) { // tablet
+            } else if (width < 1024) {
                 this.slidesPerView = 2;
-            } else { // desktop
+            } else {
                 this.slidesPerView = 6;
             }
         },
@@ -411,56 +586,172 @@ function slider() {
             return Math.ceil(this.slides.length / this.slidesPerView);
         },
 
-        startAutoSlide() {
-            this.interval = setInterval(() => {
-                this.nextSlide();
-            }, 3000);
+        calculateBounds() {
+            const trackWidth = this.$refs.track.scrollWidth;
+            const containerWidth = this.$refs.track.parentElement.offsetWidth;
+            
+            this.minTranslate = -(trackWidth - containerWidth);
+            this.maxTranslate = 0;
+            
+            this.translateX = Math.max(this.minTranslate, Math.min(this.maxTranslate, this.translateX));
         },
 
-        stopAutoSlide() {
-            clearInterval(this.interval);
-        },
-
-        nextSlide() {
-            this.currentIndex = (this.currentIndex + 1) % this.totalPages();
-        },
-
-        goToSlide(page) {
-            this.currentIndex = page;
-            this.stopAutoSlide();
-            this.startAutoSlide();
+        getCurrentPage() {
+            const slideWidth = this.$refs.track.children[0]?.offsetWidth || 0;
+            const progress = Math.abs(this.translateX) / slideWidth;
+            return Math.round(progress / this.slidesPerView);
         },
 
         startDrag(e) {
             this.dragging = true;
-            this.stopAutoSlide();
-            this.startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            this.startX = this.getX(e);
+            this.currentX = this.startX;
         },
 
         drag(e) {
             if (!this.dragging) return;
+            
+            e.preventDefault();
+            this.currentX = this.getX(e);
+            const diff = this.currentX - this.startX;
+
+            let newTranslate = this.translateX + diff;
+            
+            if (newTranslate > this.maxTranslate) {
+                newTranslate = this.maxTranslate + (newTranslate - this.maxTranslate) * 0.3;
+            } else if (newTranslate < this.minTranslate) {
+                newTranslate = this.minTranslate + (newTranslate - this.minTranslate) * 0.3;
+            }
+            
+            this.translateX = newTranslate;
+            this.startX = this.currentX;
+            
+            // Update current index based on position
+            this.currentIndex = this.getCurrentPage();
         },
 
-        endDrag() {
+        endDrag(e) {
             if (!this.dragging) return;
+            
             this.dragging = false;
-            this.nextSlide();
-            this.startAutoSlide();
+            
+            if (this.translateX > this.maxTranslate) {
+                this.translateX = this.maxTranslate;
+            } else if (this.translateX < this.minTranslate) {
+                this.translateX = this.minTranslate;
+            }
+            
+            this.currentIndex = this.getCurrentPage();
+        },
+
+        goToSlide(page) {
+            this.currentIndex = page;
+            const slideWidth = this.$refs.track.children[0]?.offsetWidth || 0;
+            this.translateX = -(page * this.slidesPerView * slideWidth);
+            
+            // Keep within bounds
+            this.translateX = Math.max(this.minTranslate, Math.min(this.maxTranslate, this.translateX));
+        },
+
+        getX(e) {
+            return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
         }
     }
+
 }
+
   document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("store-slider");
+    const dotsContainer = document.getElementById("slider-dots");
+    
     let isDown = false;
     let startX, scrollLeft, lastX, velocity = 0, rafId;
+    let slides, dots;
+
+    // Initialize dots
+const initDots = () => {
+    slides = Array.from(slider.children);
+    dots = [];
+    
+    console.log("Total slides:", slides.length); // Debug
+    
+    // Create dot for every 7 slides
+    const totalDots = Math.ceil(slides.length / 7);
+    console.log("Total dots:", totalDots); // Debug
+    
+    for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement("button");
+        dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 transition-all duration-300 hover:bg-gray-500";
+        dot.addEventListener("click", () => {
+            console.log("Dot clicked:", i); // Debug
+            scrollToSlide(i * 7);
+        });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+    }
+    
+    updateActiveDot();
+};
+const scrollToSlide = (index) => {
+    if (index >= slides.length) {
+        index = slides.length - 1;   }
+    const slide = slides[index];
+    if (slide) {
+        slider.scrollTo({
+            left: slide.offsetLeft,
+            behavior: "smooth"
+        });
+    }
+};
+    // Update active dot based on scroll position
+const updateActiveDot = () => {
+    // Find which slide is most visible
+    const scrollPosition = slider.scrollLeft;
+    const sliderWidth = slider.offsetWidth;
+    const centerPosition = scrollPosition + (sliderWidth / 2);
+    
+    let currentSlideIndex = 0;
+    slides.forEach((slide, index) => {
+        const slideLeft = slide.offsetLeft;
+        const slideRight = slideLeft + slide.offsetWidth;
+        
+        if (centerPosition >= slideLeft && centerPosition <= slideRight) {
+            currentSlideIndex = index;
+        }
+    });
+    
+    const currentDotIndex = Math.floor(currentSlideIndex / 7);
+    
+    console.log("Current slide:", currentSlideIndex, "Current dot:", currentDotIndex);
+    
+    dots.forEach((dot, index) => {
+        if (index === currentDotIndex) {
+            dot.className = "h-3 rounded-full bg-[#0B453C] w-6 transition-all duration-300";
+        } else {
+            dot.className = "w-2.5 h-2.5 rounded-full bg-white border-[#0B453C] border transition-all duration-300";
+        }
+    });
+};
+
+    // Scroll to specific slide
+   // const scrollToSlide = (index) => {
+      //  const slideWidth = slider.offsetWidth;
+      //  slider.scrollTo({
+       //     left: slideWidth * index,
+       //     behavior: "smooth"
+       // });
+  //  };
 
     const momentum = () => {
         slider.scrollLeft -= velocity;
-        velocity *= 0.95; // friction
+        velocity *= 0.95;
         if (Math.abs(velocity) > 0.3) {
             rafId = requestAnimationFrame(momentum);
+        } else {
+            updateActiveDot();
         }
     };
+
     const onDown = (pageX) => {
         isDown = true;
         startX = pageX - slider.offsetLeft;
@@ -496,6 +787,12 @@ function slider() {
         e.preventDefault();
     }, { passive: false });
     slider.addEventListener("touchend", onUp);
+
+    // Update dots on scroll
+    slider.addEventListener("scroll", updateActiveDot);
+
+    // Initialize
+    initDots();
 });
 </script>
 @endpush

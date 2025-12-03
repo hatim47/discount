@@ -45,6 +45,7 @@
 
     {{-- Footer --}}
       @include('website.popup')
+       @include('website.trems')
     @include('website.layouts.footer')
    <script src="{{ asset('public/assets/js/lib/iconify-icon.min.js') }}"></script>
     {{-- Custom JS per page --}}
@@ -63,7 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Reset so it only shows once
         localStorage.removeItem('showPopup');
-
+function decode(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
         // Get stored coupon data
         const data = JSON.parse(sessionStorage.getItem('couponData') || '{}');
 
@@ -81,12 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("couponCodeSection").classList.add("hidden");
         }
 
-        document.getElementById("couponTerms").textContent = data.terms;
+        document.getElementById("couponTerms").innerHTML = decode(data.terms);
+
 
         // SHOW THE POPUP
         openModal();
     }
 });
+
+
 
 
 
