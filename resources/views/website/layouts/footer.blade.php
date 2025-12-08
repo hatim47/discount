@@ -16,7 +16,7 @@
             ['label' => 'About us', 'link' => region_route('aboutus')],
             ['label' => 'Advertise With Us', 'link' => '/advertise'],
             ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
-            ['label' => 'Contact us', 'link' => '/contact'],
+            ['label' => 'Contact us', 'link' => route('contact')],
         ],
         'MOBILE_APP' => [
             ['name' => 'App Store', 'img' => '/apple-store.png', 'link' => 'https://apple.com'],

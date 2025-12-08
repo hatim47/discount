@@ -72,31 +72,37 @@ $jsonLd = json_encode(
  <section class="bg-[#F2FCFA] text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 gap-6 flex flex-col sm:flex-row ">
     
-    <div class="">
-   <img class="w-8/12" src="{{asset('public/assets/images/all_image 1.png')}}" />
+    <div class="flex w-full justify-center  md:w-1/2">
+   <img class="w-full lg:w-7/12" src="{{asset('public/assets/images/all_image 1.png')}}" />
     </div>
 
-  <div class="flex">
+  <div class="flex w-full md:w-1/2">
   
-    <form class="flex flex-col gap-6 justify-between">
+    <form class="flex flex-col gap-6 justify-between w-full">
 
     <!-- Name + Email -->
     <div class="flex flex-col sm:flex-row gap-6">
       <input
         type="text"
         name="name"
-        placeholder="Full Name"
-        class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
+        placeholder="First Name"
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
+      />
+       <input
+        type="text"
+        name="name"
+        placeholder="Last Name"
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
       />
 
-      <input
+    </div>
+     <div class="flex flex-col sm:flex-row gap-6">
+<input
         type="email"
         name="email"
         placeholder="Email Address"
-        class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
       />
-    </div>
-
     <!-- Subject -->
     <input
       type="text"
@@ -104,7 +110,7 @@ $jsonLd = json_encode(
       placeholder="Subject"
       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0B453C]"
     />
-
+ </div>
     <!-- Message -->
     <textarea
       name="message"
