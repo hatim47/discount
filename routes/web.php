@@ -82,6 +82,7 @@ Route::middleware('setregion')->group(function () {
      Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('categ.menusa');
       Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('dynapage');
       Route::get('about-us/', [DynapageController::class, 'about'])->name('aboutus');
+        Route::get('featured', [CouponController::class, 'featureds'])->name('featured');
 });
 Route::prefix('{region}')
     ->where(['region' => $validRegions]) // Only match valid region codes
@@ -97,12 +98,13 @@ Route::prefix('{region}')
         Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
         Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('region.store.rate');
         Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('region.dynapage');
+          Route::get('featured', [CouponController::class, 'featureds'])->name('region.featured');
         Route::get('about-us/', [DynapageController::class, 'about'])->name('region.aboutus');
  Route::get('search', [StoreController::class, 'search'])->name('region.store.search');
  Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('region.categ.menusa');
     });
 
-
+ Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 
 
 

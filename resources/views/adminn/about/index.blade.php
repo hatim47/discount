@@ -14,7 +14,7 @@
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title mb-0">Event Datatables</h5>
-                    <a href="{{ route('event.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Event</a>
+                    <a href="{{ route('about.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add about</a>
                 </div> 
                 <div class="card-body">
                     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
@@ -28,11 +28,9 @@
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Name</th>
-                                <th scope="col">slug</th>
-                                <th scope="col">banner</th>
-                                <th scope="col">sataus</th>
-                                <th scope="col">Regoin</th>
+                            <th scope="col">Regoin</th>
+                                <th scope="col">heading1</th>
+                                <th scope="col">heading1</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -42,7 +40,7 @@
                                @foreach ($events as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
-                   <td> {{ $store->region->id == $store->event_region  ? $store->region->title : '' }} </td>
+                   <td> {{ $store->region->id == $store->about_region  ? $store->region->title : '' }} </td>
                     <td>{{ $store->heading1 }}</td>
                     <td> {{ $store->heading2 }} </td>
                     <td>
@@ -51,10 +49,10 @@
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
         </a>
-                        <form action="{{ route('event.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                        <form action="{{ route('about.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
+                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this about?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
                         </form>
                         </td>
                 </tr>
@@ -101,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
- let url = "{{ route('event.edit', ':id') }}";
+ let url = "{{ route('about.edit', ':id') }}";
         url = url.replace(':id', id);
                 fetch(url)
                 .then(res => res.text())

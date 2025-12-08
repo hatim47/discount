@@ -6,7 +6,7 @@ use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\DynaPage;
-
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -64,6 +64,7 @@ $data = $request->all();
 
 $data['event_id'] = $request->event_id == 0 ? null : $request->event_id;      
 $data['dyna_id'] = $request->dyna_id == 0 ? null : $request->dyna_id;
+$data['view'] = rand(500, 9999);
        Coupon::create($data);
         return redirect()->route('coupon.create')->with('success', 'Coupon created successfully.');
     }
@@ -109,8 +110,30 @@ $data['dyna_id'] = $request->dyna_id == 0 ? null : $request->dyna_id;
                          ->with('success', 'Coupon deleted successfully.');
     }   
 
+ public function featureds ($region = null)
+{
+  $region = $region ?? config('app.default_region', 'usa');
+           
+    // Fetch region model
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
 
-    
+    //   dd($regionId);
+    $coupons = Coupon::with('store')
+    ->whereHas('store', function ($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+   ->where('feature', 1)
+    ->latest()
+    ->paginate(10);
+
+
+$title = '$store->m_tiitle';
+    $meta_description = '$store->m_descrip';
+    return view('website.feature', compact('coupons', 'title', 'meta_description'));
+    }
+
 
 
 }

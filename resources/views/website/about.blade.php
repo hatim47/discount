@@ -31,7 +31,7 @@
          <div class="border w-fit lg:text-lg border-[#0B453C] py-1 px-5 rounded-full ">
       <p>Our Story, Your Savings </p>
       </div>
-      <h2 class="text-2xl lg:text-5xl pb-8  text-[#0B453C] font-bold ">Built to bring you the best offers, Shop more.</h2>
+      <h1 class="text-2xl lg:text-5xl pb-8  text-[#0B453C] font-bold ">  {{ $about->heading1 ?? 'Built to bring you the best offers, Shop more.' }}</h1>
         
          <div class="flex-1 flex md:hidden ">
     <img src="{{asset('public/assets/images/all_image 1.png')}}" />
@@ -94,7 +94,7 @@
 
   <!-- LEFT: TABS -->
   <div class="space-y-6">
-    <h2 class="md:text-3xl lg:text-5xl font-bold text-[#0B453C]">How to get cashback?</h2>
+    <h2 class="md:text-3xl lg:text-5xl font-bold text-[#0B453C]">{{ $about->heading2 ?? 'How to get cashback?' }}</h2>
 
     <div class="space-y-4">
 
@@ -104,8 +104,8 @@
           1
         </div>
         <div class="text-left">
-          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">Register on Our Site</p>
-          <p class="md:text-base/5 lg:text-lg/5 text-gray-900">Join now to unlock exclusive coupons, earn cashback, and start saving instantly — it’s free and only takes a minute!</p>
+          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">{{ $about->head2sub1 ?? 'Register on Our Site' }}</p>
+          <p class="md:text-base/5 lg:text-lg/5 text-gray-900">{{ $about->head2sub1text ?? 'Join now to unlock exclusive coupons, earn cashback, and start saving instantly — it’s free and only takes a minute!' }}</p>
         </div>
       </button>
 
@@ -114,8 +114,8 @@
           2
         </div>
         <div class="text-left">
-          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">Choose Offer and Buy It</p>
-          <p class="md:text-base/5 lg:text-lg/5 text-gray-900">You’ll receive cashback points in your account once your purchase is verified and approved by our team.</p>
+          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">{{ $about->head2sub2 ?? 'Choose Offer and Buy It' }}</p>
+          <p class="md:text-base/5 lg:text-lg/5 text-gray-900">{{ $about->head2sub2text ?? 'You’ll receive cashback points in your account once your purchase is verified and approved by our team.' }}</p>
         </div>
       </button>
 
@@ -124,8 +124,8 @@
           3
         </div>
         <div class="text-left">
-          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">Request Money</p>
-          <p class="md:text-base/5 lg:text-lg/5 text-gray-900">Go to your profile section, find the “Request” button, and click on it to submit your cashback or service request.</p>
+          <p class="md:text-xl lg:text-2xl text-[#0B453C] font-semibold">{{ $about->head2sub3 ?? 'Request Money' }}</p>
+          <p class="md:text-base/5 lg:text-lg/5 text-gray-900" >{{ $about->head2sub3text ?? 'Go to your profile section, find the “Request” button, and click on it to submit your cashback or service request.' }}></p>
         </div>
       </button>
 
@@ -150,8 +150,8 @@
 
  <section class="bg-white text-[#0F0F0F]">
   <div class="max-w-7xl mx-auto pt-22 px-4 sm:px-6 flex flex-col items-center text-center justify-center">
-  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">How It`s Works</h4>
-<p>It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.</p>
+  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->head2sub3 ?? 'How It`s Works' }}</h4>
+<p>{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
   </div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-18 items-center py-16">
 
@@ -160,8 +160,8 @@
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           01
         </div>
- <p class="text-xl l-pt-2 lg:text-4xl text-[#0B453C] ">Create an Account</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.</p>
+ <p class="text-xl l-pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Create an Account' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
 
 </div>
 
@@ -171,8 +171,8 @@
      <div class=" text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           02
         </div>
- <p class="text-xl -pt-2 lg:text-4xl text-[#0B453C] ">Refer and Share</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+ <p class="text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Refer and Share' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
 
 </div>
 
@@ -183,8 +183,8 @@
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           03
         </div>
- <p class=" text-xl -pt-2 lg:text-4xl text-[#0B453C] ">Get Earning</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.</p>
+ <p class=" text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Get Earning' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
 
 </div>
 
@@ -195,8 +195,8 @@
 
 <section class="bg-white text-[#0F0F0F]">
   <div class="max-w-7xl bg-[#F2FCFA] mx-auto pt-22 px-4 sm:px-6 flex flex-col items-center text-center justify-center">
-  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">Our Promising Deals & Vouchers</h4>
-<p>It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.</p>
+  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->head2sub3 ?? 'Our Promising Deals & Vouchers' }}</h4>
+<p>{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
   </div>
   <div class="max-w-7xl bg-[#F2FCFA] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-11  items-center py-16">
 

@@ -125,7 +125,7 @@
       <a href="{{region_route('store.website', ['slug' =>'Entertainment' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Entertainment</a>
   <a href="{{region_route('store.website', ['slug' =>'Electronics' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Electronics</a>
   <a href="{{region_route('store.website', ['slug' =>'Services' ]) }}" class="text-gray-700 hover:text-[#0B453C] text-sm">Services</a>
-              <a href="{{ route('categ.menu', ['region' => session('region_code')]) }}"
+              <a href="{{region_route('categ.menu') }}"
                 class="flex items-center text-gray-700 hover:text-[#0B453C] text-sm mt-1">
                 <span>More Brands</span>
                 <span class="bg-[#0B453C] text-white rounded-full flex p-px ml-1">
@@ -143,12 +143,12 @@
     <!-- Button -->
     <a 
         href="#" 
-        class="text-gray-600 hover:text-[#0B453C] transition font-semibold"
+        class="text-gray-600 hover:text-[#0B453C] transition font-semibold flex items-center"
         id="dropdownButton"
         aria-expanded="true"
         aria-haspopup="true"
     >
-        Top Discounts
+        Top Discounts <iconify-icon icon="lsicon:down-outline" width="16" height="16"></iconify-icon>
     </a>
 
     <!-- Dropdown menu -->
@@ -169,10 +169,10 @@
 
 
         <!-- OTHER NAV LINKS -->
-        <a href="{{ url('/featured') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
+        <a href="{{region_route('featured') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
           Featured Deals
         </a>
-        <a href="{{ url('/about') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
+        <a href="{{region_route('aboutus') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
           About Us
         </a>
 
@@ -200,8 +200,8 @@
     <div x-show="mobileMenu" x-transition class="md:hidden bg-white border-t border-[#0B453C]">
         <nav class="px-4 py-4 space-y-2">
             <a href="{{region_route('categ.menu') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">Categories</a>
-            <a href="{{ url('/featured') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">Featured Deals</a>
-            <a href="{{ url('/about') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">About Us</a>
+            <a href="{{region_route('featured') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">Featured Deals</a>
+            <a href="{{region_route('aboutus') }}" class="block text-gray-700 hover:text-[#0B453C] font-semibold">About Us</a>
         </nav>
     </div>
 

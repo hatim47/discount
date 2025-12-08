@@ -1,52 +1,160 @@
-<form action="{{ route('event.update', $event->id) }}" method="POST">
+<form action="{{ route('about.update', $event->id) }}" method="POST">
     @csrf
     @method('PUT')
-
-    <div class="mb-3">
-        <label class="form-label">Event Name</label>
-        <input type="text" name="title" class="form-control" value="{{ old('title', $event->title) }}" required>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Slug</label>
-        <input type="text" name="slug" class="form-control" value="{{ old('slug', $event->slug) }}" required>
-    </div>
-<div class="mb-3">
-    <label class="form-label">Logo</label>
-    <div class="input-group">
-        <input id="logo" class="form-control" type="text" name="banner" value="{{ old('banner', $event->banner) }}">
-        <span class="input-group-btn">
-         <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
-                Choose
-            </button>
-        </span>
-    </div>
-  <div class="mb-3">
-        <label class="form-label">Meta Title</label>
-        <input type="text" name="m_tiitle" class="form-control" value="{{ old('m_tiitle', $event->m_tiitle) }}" required>
-    </div>
-     <div class="mb-3">
-        <label class="form-label">Meta Description</label>
-        <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $event->m_descrip) }}" required>
-    </div>
-
-
-  <div class="position-relative"> 
-                         <label class="form-label"> Description</label>
-  
-                                 <textarea id="editor1" name="description" class="form-control" rows="4">{{ $event->description }} </textarea>
-                                                        <div class="wizard-form-error"></div>
+ <div class="row gy-3">
+     <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="m_tiitle" placeholder="Enter Title" value="{{ old('m_tiitle', $event->m_tiitle) }}" >
+                                                    <div class="wizard-form-error"></div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('m_descrip', $event->m_descrip) }}" name="m_descrip" placeholder="Enter Description" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">About Heading Main*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('heading1', $event->heading1) }}" name="heading1" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label class="form-label">About Heading Second*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('heading2', $event->heading2) }}"  name="heading2" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                 <label class="form-label">About Heading Second Sub heading*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head2sub1', $event->head2sub1) }}" name="head2sub1" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading Second Sub text*</label>
+                                                <div class="position-relative">                                                  
+                                                <textarea  name="head2sub1text" class="form-control" rows="4">{{$event->head2sub1text}} </textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                 <label class="form-label">About Heading Second Sub heading 2*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head2sub2', $event->head2sub2) }}" name="head2sub2" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading Second Sub text 2*</label>
+                                                <div class="position-relative">                                                  
+                                            <textarea  name="head2sub2text" class="form-control" rows="4">{{$event->head2sub2text}} </textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+ <div class="col-sm-6">
+                                                 <label class="form-label">About Heading Second Sub heading 3*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head2sub3', $event->head2sub3) }}" name="head2sub3" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading Second Sub text 3*</label>
+                                                <div class="position-relative">
+                                                  
+                                          <textarea  name="head2sub3text" class="form-control" rows="4">{{$event->head2sub3text}} </textarea>
+
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+  <div class="col-sm-6">
+                                                 <label class="form-label">About Heading third *</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('heading3', $event->heading3) }}" name="heading3" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                               <div class="col-sm-6">
+                                                <label class="form-label">About Heading third text *</label>
+                                                <div class="position-relative">
+                                                  
+                                          <textarea  name="heading3text" class="form-control" rows="4"> {{$event->heading3text}}</textarea>
+
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+ <div class="col-sm-6">
+                                                 <label class="form-label">About Heading third Sub heading 1*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head3sub1', $event->head3sub1) }}" name="head3sub1" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading third Sub text 1*</label>
+                                                <div class="position-relative">
+                                          <textarea  name="head3sub1text" class="form-control" rows="4">{{$event->head3sub1text}} </textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">About Heading third Sub heading 2*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head3sub2', $event->head3sub2) }}" name="head3sub2" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading third Sub text 2*</label>
+                                                <div class="position-relative">
+                                          <textarea  name="head3sub2text" class="form-control" rows="4">{{$event->head3sub2text}} </textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                 <label class="form-label">About Heading third Sub heading 3*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('head3sub3', $event->head3sub3) }}" name="head3sub3" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading third Sub text 3*</label>
+                                                <div class="position-relative">
+                                                 <textarea  name="head3sub3text" class="form-control" rows="4">{{$event->head3sub3text}} </textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                 <label class="form-label">About Heading Fourth heading *</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" value="{{ old('heading4', $event->heading4) }}" name="heading4" placeholder="Enter Event Name" >
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">About Heading Fourth text *</label>
+                                                <div class="position-relative">                                                  
+                                                <textarea  name="heading4text" class="form-control" rows="4"> {{$event->heading4text}}</textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
 
 
 
 
 
-    <div id="logo-holder" style="margin-top:15px;max-height:100px;">
-        @if($event->banner)
-            <img src="{{ $event->banner }}" width="80" class="mt-2">
-        @endif
-    </div>
 </div>
 
     <button type="submit" class="btn btn-success">Save</button>

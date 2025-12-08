@@ -25,6 +25,8 @@ class About extends Model
     'head3sub3text',
     'heading4',
     'heading4text',
+    'm_tiitle',
+    'm_descrip',
     'about_region',
 ];
 

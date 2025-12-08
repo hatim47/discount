@@ -4,7 +4,7 @@
 
     <div class="mb-3">
         <label class="form-label">Event Name</label>
-        <input type="text" name="title" class="form-control" value="{{ old('title', $event->title) }}" required>
+        <input type="text" name="title" class="form-control" value="{{ old('title', $event->title) }}" >
     </div>
 
     <div class="mb-3">
@@ -23,11 +23,11 @@
     </div>
   <div class="mb-3">
         <label class="form-label">Meta Title</label>
-        <input type="text" name="m_tiitle" class="form-control" value="{{ old('m_tiitle', $event->m_tiitle) }}" required>
+        <input type="text" name="m_tiitle" class="form-control" value="{{ old('m_tiitle', $event->m_tiitle) }}" >
     </div>
      <div class="mb-3">
         <label class="form-label">Meta Description</label>
-        <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $event->m_descrip) }}" required>
+        <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $event->m_descrip) }}" >
     </div>
 
 

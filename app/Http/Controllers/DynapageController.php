@@ -91,30 +91,24 @@ class DynapageController extends Controller
         return view('website.dynacpage', compact('event','trends','coupons','title','meta_description'));
     }
 
-     public function about($regionOrSlug, $slug = null)
+     public function about($region = null)
     {
+           $region = $region ?? config('app.default_region', 'usa');
 
-        // dd($regionOrSlug,$slug);
-          if ($slug === null) {
-            // URL: /store/abc (no region prefix)
-            $slug = $regionOrSlug;
-            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
-        } else {
-            // URL: /au/store/abc (has region prefix)
-            $regionCode = $regionOrSlug;
-            $region = Region::where('code', $regionCode)->firstOrFail();
-        }    
-    $regionId = $region->id;
-    $regionTitle = $region->title;
-//  $about = About::where("about_region",$regionId)->firstOrFail();
+         //dd($region);
 
-         $meta_description =  '$about->m_descrip';  
-         $title =  '$about->m_tiitle';  
+        $regionModel = Region::where('code', $region)->firstOrFail();
+        $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
 
-        // $meta_description =  $about->m_descrip;
-        // $title =  $about->m_tiitle;       
+  $about = About::where("about_region",$regionId)->first();
 
-        return view('website.about', compact('title','meta_description'));
+        //  $meta_description =  '$about->m_descrip';  
+        //  $title =  '$about->m_tiitle';  
+        $meta_description = $about->m_descrip ?? null;
+        $title = $about->m_tiitle ?? null;      
+
+        return view('website.about', compact('about' ,'title','meta_description'));
     }
 
 }

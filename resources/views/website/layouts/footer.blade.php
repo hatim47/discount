@@ -4,7 +4,6 @@
         'SAVING' => [
             ['label' => 'Get Inspired', 'link' => '/get-inspired'],
             ['label' => 'Student Offers', 'link' => '/student-offers'],
-            ['label' => 'App', 'link' => '/app'],
             ['label' => 'Deal Seeker', 'link' => '/deal-seeker'],
         ],
         'HELP' => [
@@ -17,7 +16,6 @@
             ['label' => 'About us', 'link' => region_route('aboutus')],
             ['label' => 'Advertise With Us', 'link' => '/advertise'],
             ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
-            ['label' => 'Site map', 'link' => '/sitemap'],
             ['label' => 'Contact us', 'link' => '/contact'],
         ],
         'MOBILE_APP' => [

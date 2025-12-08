@@ -21,21 +21,8 @@ class AboutController extends Controller
 
    public function store(Request $request)
    {
-       try {
-        $request->validate([
-           'title' => 'required',
-            'heading' => 'required',
-            'description' => 'required',
-            'banner.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-           'start_date' => 'required|date',
-           'end_date' => 'required|date|after_or_equal:start',
-       ]);
-} catch (\Illuminate\Validation\ValidationException $e) {
-        dd($e->errors()); // show validation errors directly
-    }
        About::create($request->all());
-       return redirect()->route('about.index')
-                        ->with('success', 'About created successfully.');
+       return redirect()->route('about.index')->with('success', 'About created successfully.');
    }
 
     public function edit($id)
@@ -47,11 +34,7 @@ class AboutController extends Controller
     public function update(Request $request, $id)
     {
         $event = About::findOrFail($id);
-        $request->validate([
-           'title' => 'required',
-           'slug' => 'required',
-           'banner.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+
         $event->update($request->all());
         return redirect()->route('about.index')->with('success', 'About updated successfully.');
     }

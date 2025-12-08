@@ -78,6 +78,13 @@ $meta_description = "Your meta description here";
     ));
 }
 
+public function contact()
+    {
+              $meta_description = 'meta_description';
+
+        return view('website.contact', compact('meta_description'));
+    }
+
        
 
 
