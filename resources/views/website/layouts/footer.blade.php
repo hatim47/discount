@@ -14,7 +14,7 @@
             ['label' => 'Christmas Deals', 'link' => '/christmas'],
         ],
         'ABOUT' => [
-            ['label' => 'About us', 'link' => '/about'],
+            ['label' => 'About us', 'link' => region_route('aboutus')],
             ['label' => 'Advertise With Us', 'link' => '/advertise'],
             ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
             ['label' => 'Site map', 'link' => '/sitemap'],

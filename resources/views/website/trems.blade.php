@@ -29,10 +29,8 @@
     document.getElementById("couponTermsa").innerHTML = terms;
     document.getElementById("tremModal").style.display = "flex";
 }
- 
 
 function closeModasl() {
     document.getElementById("tremModal").style.display = "none";
 }
-
 </script>

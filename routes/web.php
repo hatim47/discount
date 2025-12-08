@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AiapplicationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartController;
@@ -58,7 +59,7 @@ Route::resource('admin/coupon',CouponController::class);
 Route::resource('admin/event',EventController::class);
 Route::resource('admin/dynapage',DynapageController::class);
 Route::resource('admin/users', UsersController::class);
-
+Route::resource('admin/about', AboutController::class);
 });
 Route::post('/logout', function() {
     Auth::logout();
@@ -66,7 +67,6 @@ Route::post('/logout', function() {
     request()->session()->regenerateToken();
     return redirect()->route('admin.login');
 })->name('logout');
-
 
 Route::middleware('setregion')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -81,6 +81,7 @@ Route::middleware('setregion')->group(function () {
  Route::get('search', [StoreController::class, 'search'])->name('store.search');
      Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('categ.menusa');
       Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('dynapage');
+      Route::get('about-us/', [DynapageController::class, 'about'])->name('aboutus');
 });
 Route::prefix('{region}')
     ->where(['region' => $validRegions]) // Only match valid region codes
@@ -95,7 +96,8 @@ Route::prefix('{region}')
         Route::get('categories', [CategoryController::class, 'categmenu'])->name('region.categ.menu');
         Route::get('categories/{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
         Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('region.store.rate');
-         Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('region.dynapage');
+        Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('region.dynapage');
+        Route::get('about-us/', [DynapageController::class, 'about'])->name('region.aboutus');
  Route::get('search', [StoreController::class, 'search'])->name('region.store.search');
  Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('region.categ.menusa');
     });

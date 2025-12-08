@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DynaPage;
 use App\Models\Region;
 use App\Models\Store;
+use App\Models\About;
 use App\Models\Coupon;
 class DynapageController extends Controller
 {
@@ -88,6 +89,32 @@ class DynapageController extends Controller
         $meta_description = $event->m_descrip;  
         $title = $event->m_tiitle;       
         return view('website.dynacpage', compact('event','trends','coupons','title','meta_description'));
+    }
+
+     public function about($regionOrSlug, $slug = null)
+    {
+
+        // dd($regionOrSlug,$slug);
+          if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }    
+    $regionId = $region->id;
+    $regionTitle = $region->title;
+//  $about = About::where("about_region",$regionId)->firstOrFail();
+
+         $meta_description =  '$about->m_descrip';  
+         $title =  '$about->m_tiitle';  
+
+        // $meta_description =  $about->m_descrip;
+        // $title =  $about->m_tiitle;       
+
+        return view('website.about', compact('title','meta_description'));
     }
 
 }

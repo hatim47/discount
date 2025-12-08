@@ -23,7 +23,7 @@
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold -top-1" @click="openSearch()" >
     <iconify-icon icon="flowbite:search-outline" width="28" height="28" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div>
- <button class="bg-[#0B453C] px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2" @click="openSearch()">Search</button>
+ <button class="bg-[#0B453C] hover:bg-[#3c6a63] transition delay-150 duration-300 ease-in-out px-10 lg:px-16 py-2 rounded-full text-white absolute z-2 top-2 right-2" @click="openSearch()">Search</button>
 </div>
 <div class="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-8 text-left py-5">
 <!-- All Codes Verified -->
@@ -114,7 +114,7 @@
     onclick="openCouponLink('{{ $coupon->store['link']}}')"
       class="       
         text-[#0B453C]
-       underline font-bold text-base"
+       underline hover:no-underline font-bold text-base"
     > 
       Reveal Code
     </button>
@@ -123,7 +123,7 @@
   data-code=""
     data-title="{{ $coupon->title }}"
    data-terms='@json($coupon->trems)' 
-                    class="inline-block underline font-bold text-[#0B453C] ">
+                    class="inline-block underline hover:no-underline font-bold text-[#0B453C] ">
                 Get Deal
             </button>
               @endif
@@ -207,7 +207,7 @@
         relative z-10 overflow-hidden 
         inline-flex items-center justify-center 
         w-full px-6 py-2 rounded-full font-light text-white 
-        bg-[#0B453C] shadow-md 
+        bg-[#0B453C] shadow-md hover:after:bg-[#3c6a63] hover:before:border-[#3c6a63]
         before:content-[attr(data-code)] before:inline-flex 
         before:absolute before:top-0 before:right-0 before:h-full before:w-16 
         before:items-center before:justify-end before:pr-3
@@ -225,7 +225,7 @@
   data-code=""
     data-title="{{ $coupon->title }}"
     data-terms="{{ $coupon->trems }}" 
-                    class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full hover:bg-[#0B453C]">
+                    class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full transition delay-150 duration-300 ease-in-out hover:bg-[#3c6a63]">
                 Get Deal
             </button>
               @endif
@@ -390,7 +390,7 @@
         relative z-10 overflow-hidden 
         inline-flex items-center justify-center 
         w-full px-6 py-2 rounded-full font-light text-white 
-        bg-[#0B453C] shadow-md 
+        bg-[#0B453C] shadow-md hover:after:bg-[#3c6a63] hover:before:border-[#3c6a63]
         before:content-[attr(data-code)] before:inline-flex 
         before:absolute before:top-0 before:right-0 before:h-full before:w-16 
         before:items-center before:justify-end before:pr-3
@@ -408,7 +408,7 @@
   data-code=""
     data-title="{{ $coupon->title }}"
     data-terms="{{ $coupon->trems }}" 
-                    class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full hover:bg-[#0B453C]">
+                    class="inline-block bg-[#0B453C] text-white px-4 py-2 rounded-full transition delay-150 duration-300 ease-in-out hover:bg-[#3c6a63]">
                 Get Deal
             </button>
               @endif
