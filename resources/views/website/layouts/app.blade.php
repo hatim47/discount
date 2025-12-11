@@ -7,15 +7,15 @@
    <title>{{ $title ?? '' }}@yield('title'){{ (!isset($title) && !View::hasSection('title')) ? config('app.name', 'My Marketing Site') : '' }}</title>
 <meta name="description"
       content="{{ trim(($meta_description ?? '') . ' ' . (View::hasSection('meta_description') ? trim($__env->yieldContent('meta_description')) : '') . ' ' . date('F Y')) }}">
-   <meta name="keywords" content="{{ $setting->web_name }}" /> 
+   <meta name="keywords" content="{{ $setting->keyword }}" /> 
 
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ env('APP_ASSETS') }}/img/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ env('APP_ASSETS') }}/img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{$setting->favicon  }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{$setting->favicon  }}">
      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="{{url()->current()}}">
         <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ $og_image ?? env('APP_ASSETS') .'/img/favicon.ico' }}">
+    <meta property="og:image" content="{{ $setting->favicon }}">
     <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:site_name" content="{{ $setting->web_name }}">
     <meta name="og:title" content="{{ $title ?? '' }}@yield('title'){{ (!isset($title) && !View::hasSection('title')) ? config('app.name', 'My Marketing Site') : '' }} ">

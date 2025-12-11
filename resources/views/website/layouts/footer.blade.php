@@ -1,6 +1,15 @@
 {{-- resources/views/components/footer.blade.php --}}
 @php
     $footerData = [
+    ' ' => [
+        [
+            'img' => $setting->web_logo,
+            'name' => $setting->web_name,
+            'link' => region_route('home'),
+            'text' => 'Disclosure: If you buy a product or service after clicking one of our links, we may be paid a commission.'
+        ]
+    ],
+
         'SAVING' => [
             ['label' => 'Get Inspired', 'link' => ' '],
             ['label' => 'Student Offers', 'link' => ' '],
@@ -29,7 +38,7 @@
 @endphp
 
 <footer class="bg-[#F2FCFA] pt-10">
-    <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>
@@ -49,6 +58,10 @@
                                 <a href="{{ $item['link'] }}">
                                     <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="w-36">
                                 </a>
+
+                            </li>
+                            <li>
+                            <p> {{ $item['text'] }}</p>
                             </li>
                         @endif
                     @endforeach
