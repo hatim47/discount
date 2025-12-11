@@ -48,12 +48,27 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categoryies', $categories)->with('dynapage', $dynapage);
         });
         View::composer('*', function ($view) {
+
+
                     $localeUrl = env('APP_URL');
                     $locales = ['au','ca'];            
                     if (in_array(app()->getLocale(), $locales)) {
                         $localeUrl = env('APP_URL'). app()->getLocale() . '/';
                     }
-                    $setting = Setting::first();
+
+     $regionCode = session('region', config('app.default_region', 'usa'));
+            
+            // Get region model
+            $regionModel = Region::where('code', $regionCode)->first();
+            
+            if ($regionModel) {
+                $regionId = $regionModel->id;
+                    $setting = Setting::where('setting_region', $regionId)->first();
+            } else {
+                $setting = Setting::first();
+            }
+
+
                     $view->with([
                 'localeUrl' => $localeUrl,
                 'setting'   => $setting,
