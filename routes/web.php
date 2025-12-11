@@ -123,7 +123,6 @@ Route::prefix('{region}')
 
 
 Route::controller(HomeController::class)->group(function () {
- 
 
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');

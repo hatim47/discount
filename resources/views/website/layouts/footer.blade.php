@@ -2,34 +2,34 @@
 @php
     $footerData = [
         'SAVING' => [
-            ['label' => 'Get Inspired', 'link' => '/get-inspired'],
-            ['label' => 'Student Offers', 'link' => '/student-offers'],
-            ['label' => 'Deal Seeker', 'link' => '/deal-seeker'],
+            ['label' => 'Get Inspired', 'link' => ' '],
+            ['label' => 'Student Offers', 'link' => ' '],
+            ['label' => 'Deal Seeker', 'link' => ' '],
         ],
         'HELP' => [
             ['label' => 'All Events', 'link' => region_route('event.all')],
-            ['label' => 'Black Friday Offers', 'link' => '/black-friday'],
-            ['label' => 'Cyber Monday Offers', 'link' => '/cyber-monday'],
-            ['label' => 'Christmas Deals', 'link' => '/christmas'],
+            ['label' => 'Black Friday Offers', 'link' =>  region_route('event', ['slug' => 'black-friday' ])],
+            ['label' => 'Cyber Monday Offers', 'link' =>  region_route('event', ['slug' => 'cyber-monday' ])],
+            ['label' => 'Christmas Deals', 'link' =>  region_route('event', ['slug' => 'christmas-deals' ])],
         ],
         'ABOUT' => [
             ['label' => 'About us', 'link' => region_route('aboutus')],
+            ['label' => 'Search Store', 'link' => region_route('store.menusa')],
+            ['label' => 'Our Blogs', 'link' => '/blogs'],
+        ],
+             'INFORMATION' => [
             ['label' => 'Advertise With Us', 'link' => region_route('advertise')],
-            ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
+          //  ['label' => 'Privacy Policy', 'link' => '/privacy-policy'], 
             ['label' => 'Contact us', 'link' => route('contact')],
         ],
-        'MOBILE_APP' => [
-            ['name' => 'App Store', 'img' => '/apple-store.png', 'link' => 'https://apple.com'],
-            ['name' => 'Google Play', 'img' => '/google-play.png', 'link' => 'https://play.google.com'],
-        ],
-        'BROWSER_EXTENSION' => [
-            ['name' => 'Chrome Web Store', 'img' => '/chrome-store.png', 'link' => 'https://chromewebstore.google.com'],
-        ],
+        
+        
+      
     ];
 @endphp
 
 <footer class="bg-[#F2FCFA] pt-10">
-    <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
+    <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>

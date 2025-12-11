@@ -7,9 +7,9 @@
         <!-- Left: Offers -->
         <div class="flex items-center space-x-2 text-sm font-medium text-gray-800">
            <iconify-icon icon="hugeicons:discount-tag-01" width="24" height="24"></iconify-icon>
-            <span>Black Friday Offers</span>
+            <a href="{{ region_route('event', ['slug' => 'black-friday' ])}}">Black Friday Offers</a>
             <span class="text-gray-400">|</span>
-            <span>Top 20 Discounts</span>
+            <a href="{{ region_route('dynapage', ['slug' => '20-discounts']) }}">Top 20 Discounts</a>
         </div>
 
         <!-- Right: Social Icons + Login + Share -->
