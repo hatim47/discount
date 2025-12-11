@@ -78,11 +78,17 @@ $meta_description = $setting->home_m_descrip ;
 
 public function contact()
     {   
+          $region = $region ?? config('app.default_region', 'usa');
+           
+    // Fetch region model
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
 $setting = Setting::where('setting_region', $regionId)->first();
 $title = $setting->contact_m_tiitle ;
 $meta_description = $setting->contact_m_descrip ;
 
-        return view('website.contact', compact('$title','meta_description'));
+        return view('website.contact', compact('title','meta_description'));
     }
 
 
@@ -94,14 +100,20 @@ $meta_description = $setting->contact_m_descrip ;
     
 
 
-      public function advertise()
+      public function advertise($region = null)
     {
+          $region = $region ?? config('app.default_region', 'usa');
+           
+    // Fetch region model
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
 $setting = Setting::where('setting_region', $regionId)->first();
 $title = $setting->advertise_m_tiitle ;
 $meta_description = $setting->advertise_m_descrip ;
             
 
-        return view('website.advers', compact('$title','meta_description'));
+        return view('website.advers', compact('title','meta_description'));
     } 
 
 
