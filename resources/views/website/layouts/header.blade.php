@@ -82,7 +82,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center z-2">
         {{-- Logo/Brand Name --}}
         <a href="{{ url('/') }}" class="text-3xl font-extrabold text-primary-700 hover:text-primary-600 transition">
-            FindsCoupon
+            <img src="{{$setting->web_logo}}"/>
         </a>
 <!-- NAVBAR -->
 <nav class="hidden md:flex space-x-6">
