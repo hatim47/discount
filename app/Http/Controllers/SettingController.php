@@ -46,7 +46,7 @@ Setting::create($data);
     public function edit($id)
     {
         $setting = Setting::findOrFail($id); 
-        return view('adminn.settings._form', compact('setting'));
+        return view('adminn.settings._form', compact('settingsa'));
     }
 
     // UPDATE
