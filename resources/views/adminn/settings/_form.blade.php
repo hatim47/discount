@@ -8,7 +8,7 @@
     <div class="mb-3">
     <label class="form-label">Logo favicon</label>
     <div class="input-group">
-        <input id="favi" class="form-control" type="text" value="{{ old('favicon', $settingsasa->favicon) }}"  name="favicon" >
+        <input id="favi" class="form-control" type="text" value="{{ old('favicon', $settingsa->favicon) }}"  name="favicon" >
         <span class="input-group-btn">
          <button id="lfm" data-input="favi" data-preview="holder" class="btn btn-primary">
                 Choose
@@ -17,15 +17,15 @@
     </div>
 
     <div id="logo-holder" style="margin-top:15px;max-height:100px;">
-        @if($settingsasa->favicon)
-            <img src="{{ $settingsasa->favicon }}" width="80" class="mt-2">
+        @if($settingsa->favicon)
+            <img src="{{ $settingsa->favicon }}" width="80" class="mt-2">
         @endif
     </div>
 </div>
     <div class="mb-3">
     <label class="form-label">Logo</label>
     <div class="input-group">
-        <input id="logo" class="form-control" type="text" value="{{ old('web_logo', $settingsasa->web_logo) }}"  name="web_logo" >
+        <input id="logo" class="form-control" type="text" value="{{ old('web_logo', $settingsa->web_logo) }}"  name="web_logo" >
         <span class="input-group-btn">
          <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
                 Choose
@@ -34,8 +34,8 @@
     </div>
 
     <div id="logo-holder" style="margin-top:15px;max-height:100px;">
-        @if($settingsasa->web_logo)
-            <img src="{{ $settingsasa->web_logo }}" width="80" class="mt-2">
+        @if($settingsa->web_logo)
+            <img src="{{ $settingsa->web_logo }}" width="80" class="mt-2">
         @endif
     </div>
 </div>
