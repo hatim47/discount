@@ -11,6 +11,7 @@ use App\Models\StoreTrend;
 use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Region;
+use App\Models\Setting;
 use Illuminate\Support\Str;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
@@ -440,9 +441,11 @@ $title = $store->m_tiitle;
        $categories = Store::where('store_region', $regionId)
                ->orderBy('name', 'asc')
                ->get();
-               $title = "All Stores in " . $regionTitle;
-    $meta_description = "Browse all stores available in " . $regionTitle . " on " . config('app.name') . ". Find the best deals and discounts from your favorite brands.";
-             return view('website.all_store', compact('categories','title','meta_description'));   
+        $setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->store_m_tiitle ;
+$meta_description = $setting->store_m_descrip ;
+    
+    return view('website.all_store', compact('categories','title','meta_description'));   
          }
 
     
@@ -465,9 +468,11 @@ $title = $store->m_tiitle;
     $regionTitle = $region->title;
     //  dd($slug,$regionId);
        $categories = Store::where('name', 'like', $slug . '%')->where('store_region', $regionId)->get();
-         $title = "All Stores in " . $regionTitle;
-    $meta_description = "Browse all stores available in " . $regionTitle . " on " . config('app.name') . ". Find the best deals and discounts from your favorite brands.";
-             return view('website.store_menu', compact('categories','slug','title','meta_description'));   
+       $setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->stores_m_tiitle ;
+$meta_description = $setting->stores_m_descrip ;
+       
+       return view('website.store_menu', compact('categories','slug','title','meta_description'));   
          }
 
       public function rate(Request $request, $storeId)

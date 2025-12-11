@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Region;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -100,9 +101,14 @@ $categories = Category::withCount('stores')
         $regionModel = Region::where('code', $region)->firstOrFail();
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
-    $meta_description ="s";
+
+$setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->cate_m_tiitle ;
+$meta_description = $setting->cate_m_descrip ;
+
+  
         $categories = Category::with('stores')->where('cate_region', $regionId)->get();
-        return view('website.categ_menu', compact('categories','meta_description'));
+        return view('website.categ_menu', compact('categories','title', 'meta_description'));
 }
 
 
@@ -127,16 +133,15 @@ $categories = Category::withCount('stores')
         $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
         $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
         $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
-$title = $store->m_title;
-    $meta_description = $store->m_descrip;
+$title = $store->m_title ?? null;
+    $meta_description = $store->m_descrip ?? null;
 
   $feature = Coupon::with('store') // eager load store
                           ->where('feature', true)
                           ->where('verified', true)
                           ->where('status', 'active')
                           ->get();
-$meta_description ="s";
-
+                          
    $coupons = Coupon::with('store')->
    whereIn('store_id', function ($query) use ($store) {
     $query->select('id')

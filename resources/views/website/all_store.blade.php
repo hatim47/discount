@@ -1,7 +1,7 @@
 @extends('website.layouts.app')
 
-@section('title', 'Welcome to ' . config('website.company.name'))
-@section('meta_description', 'Best marketing platform to grow your business.')
+@section('title', $title)
+@section('meta_description', $meta_description)
 @push('styles')
 
 

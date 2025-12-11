@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Region;
 use App\Models\Store;
 use App\Models\Coupon;
+use App\Models\Setting;
 class EventController extends Controller
 {
    public function index()
@@ -78,8 +79,9 @@ class EventController extends Controller
 
         $event = Event::where("event_region",$regionId)->get();
       
-        $meta_description = "fdsfdsf";
-        $title = "m_tiitle";
+        $meta_description = $event->m_descrip ?? null;
+        $title =$event->m_tiitle ?? null;
+        
         return view('website.event', compact('event','title','meta_description'));
     }
  public function subevent($regionOrSlug, $slug = null)
@@ -109,8 +111,8 @@ $trends = Store::where('trend', true)->get();
     $coupons = Coupon::with('store')->where('event_id', $event->id)
         ->latest()
         ->paginate(10);
-        $meta_description = $event->m_descrip;  
-        $title = $event->m_tiitle;       
+        $meta_description = $event->m_descrip ?? null;  
+        $title = $event->m_tiitle ?? null;       
         return view('website.eventsub', compact('event','trends','coupons','allevent','title','meta_description'));
     }
 

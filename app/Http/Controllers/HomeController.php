@@ -78,8 +78,11 @@ $meta_description = $setting->home_m_descrip ;
 
 public function contact()
     {   
-        $meta_description = 'meta_description';
-        return view('website.contact', compact('meta_description'));
+$setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->contact_m_tiitle ;
+$meta_description = $setting->contact_m_descrip ;
+
+        return view('website.contact', compact('$title','meta_description'));
     }
 
 
@@ -93,10 +96,12 @@ public function contact()
 
       public function advertise()
     {
+$setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->advertise_m_tiitle ;
+$meta_description = $setting->advertise_m_descrip ;
+            
 
-              $meta_description = 'meta_description';
-
-        return view('website.advers', compact('meta_description'));
+        return view('website.advers', compact('$title','meta_description'));
     } 
 
 

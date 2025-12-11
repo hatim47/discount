@@ -7,6 +7,7 @@ use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\DynaPage;
 use App\Models\Region;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -127,10 +128,10 @@ $data['view'] = rand(500, 9999);
    ->where('feature', 1)
     ->latest()
     ->paginate(10);
+$setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->featuer_m_tiitle;
+$meta_description = $setting->featuer_m_descrip;
 
-
-    $title = '$store->m_tiitle';
-    $meta_description = '$store->m_descrip';
     return view('website.feature', compact('coupons', 'title', 'meta_description'));
     }
 

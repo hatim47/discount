@@ -1,5 +1,6 @@
 @extends('website.layouts.app')
-
+@section('title', $title)
+@section('meta_description', $meta_description)
 @push('styles')
 
 @endpush
