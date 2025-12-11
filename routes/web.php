@@ -57,7 +57,7 @@ Route::post('admin/settings/update-field', [SettingController::class, 'updateFie
 Route::post('/settings/update-image', [SettingController::class, 'updateImage'])
     ->name('settings.update-image');
 Route::get('admin/settings', [SettingController::class, 'index'])->name('settings.index');
-Route::get('admin/advertises', [HomeController::class, 'adindex'])->name('advertise');
+
 
 
 
