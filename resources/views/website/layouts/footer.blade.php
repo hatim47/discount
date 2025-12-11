@@ -14,7 +14,7 @@
         ],
         'ABOUT' => [
             ['label' => 'About us', 'link' => region_route('aboutus')],
-            ['label' => 'Advertise With Us', 'link' => '/advertise'],
+            ['label' => 'Advertise With Us', 'link' => region_route('advertise')],
             ['label' => 'Privacy Policy', 'link' => '/privacy-policy'],
             ['label' => 'Contact us', 'link' => route('contact')],
         ],
