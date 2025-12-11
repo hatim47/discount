@@ -7,7 +7,7 @@
    <title>{{ $title ?? '' }}@yield('title'){{ (!isset($title) && !View::hasSection('title')) ? config('app.name', 'My Marketing Site') : '' }}</title>
 <meta name="description"
       content="{{ trim(($meta_description ?? '') . ' ' . (View::hasSection('meta_description') ? trim($__env->yieldContent('meta_description')) : '') . ' ' . date('F Y')) }}">
-    {{-- <meta name="keywords" content="{{ $meta_keywords ? $meta_keywords : $settings['config_meta_keywords']->value }}" /> --}}
+   <meta name="keywords" content="{{ $setting->web_name }}" /> 
 
     <link rel="icon" type="image/png" sizes="32x32" href="{{ env('APP_ASSETS') }}/img/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ env('APP_ASSETS') }}/img/favicon.ico">
@@ -16,10 +16,10 @@
     <link rel="canonical" href="{{url()->current()}}">
         <meta property="og:type" content="website">
     <meta property="og:image" content="{{ $og_image ?? env('APP_ASSETS') .'/img/favicon.ico' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="TopVouchersCode">
+    <meta property="og:url" content="{{url()->current()}}">
+    <meta property="og:site_name" content="{{ $setting->web_name }}">
     <meta name="og:title" content="{{ $title ?? '' }}@yield('title'){{ (!isset($title) && !View::hasSection('title')) ? config('app.name', 'My Marketing Site') : '' }} ">
-<meta name="og:description" content="{{ ($meta_description ?? '') }}@yield('meta_description') {{ date('F Y') }}">
+    <meta name="og:description" content="{{ ($meta_description ?? '') }}@yield('meta_description') {{ date('F Y') }}">
   @include('website.layouts.seoheader')
 
     {{-- Tailwind & Vite --}}
@@ -75,7 +75,7 @@ function decode(html) {
         // Fill modal fields
         if (data.title) {
             document.getElementById("couponTitle").textContent = data.title;
-        }
+        } 
 
         if (data.isCodeCoupon) {
             document.getElementById("couponCodeSection").classList.remove("hidden");
@@ -85,20 +85,11 @@ function decode(html) {
             document.getElementById("dealSection").classList.remove("hidden");
             document.getElementById("couponCodeSection").classList.add("hidden");
         }
-
         document.getElementById("couponTerms").innerHTML = decode(data.terms);
-
-
         // SHOW THE POPUP
         openModal();
     }
 });
-
-
-
-
-
-
 
     function megaMenu() {
     return {

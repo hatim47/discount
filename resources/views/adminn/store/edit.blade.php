@@ -24,7 +24,7 @@
 
         @method('PUT')
         <div class="row gy-3">
-            <h1>{{ old('id', $store->id) }} </h1>
+            {{-- <h1>{{ old('id', $store->id) }} </h1> --}}
 
             <div class="col-sm-2">
                 <div class="mb-3">
@@ -92,8 +92,8 @@
                     <div class="form-error"></div>
                 </div>
             </div>
-        <hr class=" border-4 ">
-         <hr class=" border-4 ">
+        {{-- <hr class=" border-4 ">
+         <hr class=" border-4 "> --}}
         </div>
            
 
@@ -101,8 +101,8 @@
         <div class="row gy-3">
             <h4 class="form-label ">Website Information</h4>
             
-               <hr class=" border-4 ">
-              <hr class=" border-4 ">
+               {{-- <hr class=" border-4 ">
+              <hr class=" border-4 "> --}}
             <div class="col-md-12  d-flex flex-column">
  <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
 
@@ -142,7 +142,7 @@
                                 </path>
                             </g>
                         </svg>
-                        <h5>{{ \Carbon\Carbon::now()->format('F Y') }}</h5>
+                        <h6>{{ \Carbon\Carbon::now()->format('F Y') }}</h6>
                     </div>
                     <div class="form-error"></div>
                 </div>
@@ -342,6 +342,88 @@
                     </ul>
                 </div>
             </div>
+ <div class="col-md-12"></div>
+  <div class="col-4">
+                            <label class="form-label">Tiwtter</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="mingcute:social-x-fill" ><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="twitter" value="{{ old('twitter', json_decode($store->socails, true)['twitter'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+ <div class="col-4">
+                            <label class="form-label">Youtube</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="typcn:social-youtube"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="youtube" value="{{ old('youtube', json_decode($setting->socails, true)['youtube'] ?? 'No URL') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Pinterest</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon  icon="ion:social-pinterest"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="pinterest" value="{{ old('pinterest', json_decode($store->socails, true)['pinterest'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Linkedin</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-linkedin"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="lnikedin" value="{{ old('linkedin', json_decode($store->socails, true)['linkedin'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Facebook</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-facebook"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="facebook" value="{{ old('facebook', json_decode($store->socails, true)['facebook'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+
+                         <div class="col-4">
+                            <label class="form-label">Instagram</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="typcn:social-instagram"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="instagram" value="{{ old('instagram', json_decode($store->socails, true)['instagram'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Tiktok</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="streamline-flex:tiktok-solid"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="tiktok" value="{{ old('tiktok', json_decode($store->socails, true)['tiktok'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div>
+                               
+                              
+                         <div class="col-4">
+                            <label class="form-label">snapchat</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-snapchat"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="snapchat" value="{{ old('snapchat', json_decode($store->socails, true)['snapchat'] ?? ' ') }}" class="form-control flex-grow-1" placeholder="No URL">
+                            </div>
+                        </div> 
 
             <div class="col-md-12">
                 <h4>Dynamic Sections below stores Coupons</h4>

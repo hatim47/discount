@@ -22,20 +22,19 @@
 
  <section class="bg-white text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-28 px-4 sm:px-6 md:gap-13 lg:gap-16 flex flex-row items-center md:items-start justify-center">
-    
     <div class="flex-1 md:flex hidden">
     <img src="{{asset('public/assets/images/all_image 1.png')}}" />
     </div>
     
-      <div class="flex-1 flex flex-col  gap-4 items-center text-center">
+      <div class="flex-1 flex flex-col  gap-4 items-center text-center sm:items-start sm:text-start">
          <div class="border w-fit lg:text-lg border-[#0B453C] py-1 px-5 rounded-full ">
       <p>Our Story, Your Savings </p>
       </div>
-      <h1 class="text-2xl lg:text-5xl pb-8  text-[#0B453C] font-bold ">  {{ $about->heading1 ?? 'Built to bring you the best offers, Shop more.' }}</h1>
-        
+      <h1 class="text-2xl lg:text-5xl pb-2 text-[#0B453C] font-bold ">  {{ $about->heading1 ?? 'Built to bring you the best offers, Shop more.' }}</h1>
+        <p class="pb-8 text-start">{{ $about->heading1 ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
          <div class="flex-1 flex md:hidden ">
-    <img src="{{asset('public/assets/images/all_image 1.png')}}" />
-    </div>
+          <img src="{{asset('public/assets/images/all_image 1.png')}}" />
+        </div>
         
         <div class="flex pt-5 sm:pt-0 items-center gap-2 pb-8">
  <div class="flex md:gap-2 lg:gap-3">
@@ -66,13 +65,11 @@
  <div class="flex items-center gap-4">
 <iconify-icon class="text-[#0B453C]" icon="charm:circle-tick"width="20" height="20"></iconify-icon>
 <p class="text-[#0B453C]">Verified Deals Daily</p>
-
      </div>
 
      <div class="flex items-center gap-4">
 <iconify-icon class="text-[#0B453C]" icon="charm:circle-tick" width="20" height="20"></iconify-icon>
 <p class="text-[#0B453C]">Fast Cashback System</p>
-
      </div>
 
 
@@ -80,13 +77,105 @@
 <iconify-icon class="text-[#0B453C]" icon="charm:circle-tick" width="20" height="20"></iconify-icon>
 <p class="text-[#0B453C]">User-Friendly Experience</p>
      </div>
-     
-     </div>
-
-
-      </div>
+  </div>
+ </div>
     
     </div>
+  </section>
+
+ <section class="bg-white  text-[#0F0F0F]">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <!-- Header Section -->
+    <div class="mb-12">
+        <h4 class="text-4xl md:text-5xl font-bold text-teal-900 mb-4">
+           {{ $about->heading5 ?? 'Who is FollowCoupons?' }}
+        </h4>
+        <p class="text-gray-700 text-base md:text-lg leading-relaxed">
+            {{ $about->heading5text ?? 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.' }}  
+        </p>
+    </div>
+
+    <!-- Accordion Section -->
+    <div class="space-y-4">
+        <!-- Our Team Accordion -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+                onclick="toggleAccordion('team')" 
+                class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors"
+            >
+                <h2 class="text-2xl md:text-3xl font-bold text-teal-900"> {{ $about->head5sub1 ?? 'Our Team' }}</h2>
+                <svg 
+                    id="team-icon" 
+                    class="w-6 h-6 text-teal-900 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 12H4"></path>
+                </svg>
+            </button>
+            <div id="team-content" class="bg-white transition-all duration-500 ease-in-out overflow-hidden" style="max-height: 500px;">
+                <div class="px-6 pb-6">
+                    <p class="text-gray-700 leading-relaxed">
+                   {{ $about->head5sub1text ?? 'At FollowCoupons, we have a dedicated and enthusiastic team with one clear objective: to make it easy for you to find and access the best deals. As shopping trends change, we adapt as well. Our team is dedicated to staying updated with the latest offers, carefully verifying each discount code, and promptly removing expired ones to ensure the reliability of our deals. We are constantly growing and always seeking motivated individuals who want to join us in our mission to reshape the retail landscape..' }}    
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What We Do Accordion -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+                onclick="toggleAccordion('what')" 
+                class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors"
+            >
+                <h2 class="text-2xl md:text-3xl font-bold text-teal-900">{{ $about->head5sub2 ?? 'What We Do' }}</h2>
+                <svg 
+                    id="what-icon" 
+                    class="w-6 h-6 text-teal-900 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+                </svg>
+            </button>
+            <div id="what-content" class="bg-white transition-all duration-500 ease-in-out overflow-hidden" style="max-height: 0;">
+                <div class="px-6 pb-6">
+                    <p class="text-gray-700 leading-relaxed">
+                   {{ $about->head5sub2text ?? 'At FollowCoupons, we have a dedicated and enthusiastic team with one clear objective: to make it easy for you to find and access the best deals. As shopping trends change, we adapt as well. Our team is dedicated to staying updated with the latest offers, carefully verifying each discount code, and promptly removing expired ones to ensure the reliability of our deals. We are constantly growing and always seeking motivated individuals who want to join us in our mission to reshape the retail landscape..' }}    
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How We Work Accordion -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <button 
+                onclick="toggleAccordion('how')" 
+                class="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors"
+            >
+                <h2 class="text-2xl md:text-3xl font-bold text-teal-900">{{ $about->head5sub3 ?? 'How We Work' }} </h2>
+                <svg 
+                    id="how-icon" 
+                    class="w-6 h-6 text-teal-900 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+                </svg>
+            </button>
+            <div id="how-content" class="bg-white transition-all duration-500 ease-in-out overflow-hidden" style="max-height: 0;">
+                <div class="px-6 pb-6">
+                    <p class="text-gray-700 leading-relaxed">
+                   {{ $about->head5sub3text ?? 'At FollowCoupons, we have a dedicated and enthusiastic team with one clear objective: to make it easy for you to find and access the best deals. As shopping trends change, we adapt as well. Our team is dedicated to staying updated with the latest offers, carefully verifying each discount code, and promptly removing expired ones to ensure the reliability of our deals. We are constantly growing and always seeking motivated individuals who want to join us in our mission to reshape the retail landscape..' }}    
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
   </section>
 
  <section class="bg-white  text-[#0F0F0F]">
@@ -198,6 +287,9 @@
   <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->head2sub3 ?? 'Our Promising Deals & Vouchers' }}</h4>
 <p>{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
   </div>
+
+
+
   <div class="max-w-7xl bg-[#F2FCFA] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-11  items-center py-16">
 
 <div class="flex flex-col items-center text-center gap-1 px-2 py-15 bg-[#0B453C] rounded-[30px]">
@@ -236,6 +328,23 @@
 @endsection
 @push('scripts')
 <script>
+
+function toggleAccordion(section) {
+    const content = document.getElementById(`${section}-content`);
+    const icon = document.getElementById(`${section}-icon`);
+    
+    if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+        // Open this accordion with smooth animation
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 12H4"></path>';
+    } else {
+        // Close this accordion with smooth animation
+        content.style.maxHeight = '0px';
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>';
+    }
+}
+
+
 const images = {
     1: "{{ asset('public/assets/images/Group 169.png') }}",
     2: "{{ asset('public/assets/images/Group 160.png') }}",

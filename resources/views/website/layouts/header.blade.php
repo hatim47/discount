@@ -16,12 +16,46 @@
         <div class="flex items-center space-x-4 text-sm text-gray-800">
 
             <!-- Social Icons -->
-            <div class="flex items-center space-x-3">
+            {{-- <div class="flex items-center space-x-3">
                 <a href="#" class="hover:opacity-70"><iconify-icon icon="entypo-social:facebook-with-circle" width="20" height="20"></iconify-icon></a>
                 <a href="#" class="hover:opacity-70"><iconify-icon icon="entypo-social:instagram-with-circle" width="20" height="20"></iconify-icon></a>
                 <a href="#" class="hover:opacity-70"><iconify-icon icon="entypo-social:linkedin-with-circle" width="20" height="20"></iconify-icon></a>
                 <a href="#" class="hover:opacity-70"><iconify-icon icon="entypo-social:youtube-with-circle" width="20" height="20"></iconify-icon></a>
-            </div>
+            </div> --}}
+@php
+    // Decode if stored as JSON string
+    $socials = is_string($setting->socails) ? json_decode($setting->socails, true) : $setting->socails;
+    
+    // Define social media platforms with Entypo circle icons
+    $socialPlatforms = [
+        'facebook' => ['icon' => 'entypo-social:facebook-with-circle'],
+        'instagram' => ['icon' => 'entypo-social:instagram-with-circle'],
+        'lnikedin' => ['icon' => 'entypo-social:linkedin-with-circle'],
+        'youtube' => ['icon' => 'entypo-social:youtube-with-circle'],
+        'twitter' => ['icon' => 'entypo-social:twitter-with-circle'],
+        'pinterest' => ['icon' => 'entypo-social:pinterest-with-circle'],
+        'snapchat' => ['icon' => 'entypo-social:qq-with-circle'],
+        'tiktok' => ['icon' => 'mage:tiktok-circle'], // Entypo doesn't have TikTok, using alternative
+    ];
+@endphp
+
+<div class="flex items-center space-x-3">
+    @foreach ($socialPlatforms as $platform => $details)
+        @if (!empty($socials[$platform]))
+            <a href="{{ $socials[$platform] }}" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="hover:opacity-70 transition-opacity"
+               title="{{ ucfirst($platform) }}">
+                <iconify-icon icon="{{ $details['icon'] }}"
+                 width="{{ $platform === 'tiktok' ? '24' : '20' }}" 
+                    height="{{ $platform === 'tiktok' ? '24' : '20' }}"
+                 ></iconify-icon>
+            </a>
+        @endif
+    @endforeach
+</div>
+
 
             <!-- Login -->
             <div class="flex items-center space-x-1 cursor-pointer hover:opacity-70">

@@ -8,6 +8,7 @@ class About extends Model
 {
     protected $fillable = [
     'heading1',
+     'head1text',
     'heading2',
     'head2sub1',
     'head2sub1text',
@@ -25,6 +26,16 @@ class About extends Model
     'head3sub3text',
     'heading4',
     'heading4text',
+    'heading5',
+    'heading5text',
+    'head5sub1',
+    'head5sub1text',
+    'head5sub2',
+    'head5sub2text',
+    'head5sub3',
+    'head5sub3text',
+
+
     'm_tiitle',
     'm_descrip',
     'about_region',

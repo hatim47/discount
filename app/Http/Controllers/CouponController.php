@@ -129,7 +129,7 @@ $data['view'] = rand(500, 9999);
     ->paginate(10);
 
 
-$title = '$store->m_tiitle';
+    $title = '$store->m_tiitle';
     $meta_description = '$store->m_descrip';
     return view('website.feature', compact('coupons', 'title', 'meta_description'));
     }

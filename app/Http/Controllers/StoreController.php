@@ -84,6 +84,19 @@ public function index_cat($categoryId = null)
     } catch (\Illuminate\Validation\ValidationException $e) {
         dd($e->errors()); // show validation errors directly
     }
+$socials = [
+    'youtube' => $request->youtube == "" ? null : $request->youtube,
+    'tiktok'      => $request->tiktok == "" ? null : $request->tiktok,
+    'snapchat'    => $request->snapchat == "" ? null : $request->snapchat,
+    'instagram'   => $request->instagram == "" ? null : $request->instagram,
+    'pinterest'   => $request->pinterest == "" ? null : $request->pinterest,
+    'twitter'     => $request->twitter == "" ? null : $request->twitter,
+    'facebook'    => $request->facebook == "" ? null : $request->facebook,
+    'lnikedin'   => $request->lnikedin == "" ? null : $request->lnikedin,
+];
+
+$data['socails'] = json_encode($socials);
+
 
   //  ✅ Create main store
     $store = Store::create([
@@ -105,6 +118,7 @@ public function index_cat($categoryId = null)
         'relat_store' => $request->has('relat_store'),
         'relat_cate'  => $request->has('relat_cate'),
         'like_store'  => $request->has('like_store'),
+        'socails'   => $data['socails'],
     ]);
 
     // ✅ Save dynamic content into dynacontent table
@@ -217,7 +231,18 @@ public function index_cat($categoryId = null)
 } catch (\Illuminate\Validation\ValidationException $e) {
     dd($e->errors()); // 👈 see exactly what fails
 }
+$socials = [
+    'youtube' => $request->youtube == "" ? null : $request->youtube,
+    'tiktok'      => $request->tiktok == "" ? null : $request->tiktok,
+    'snapchat'    => $request->snapchat == "" ? null : $request->snapchat,
+    'instagram'   => $request->instagram == "" ? null : $request->instagram,
+    'pinterest'   => $request->pinterest == "" ? null : $request->pinterest,
+    'twitter'     => $request->twitter == "" ? null : $request->twitter,
+    'facebook'    => $request->facebook == "" ? null : $request->facebook,
+    'lnikedin'   => $request->lnikedin == "" ? null : $request->lnikedin,
+];
 
+$data['socails'] = json_encode($socials);
     // ----------------------------
     // 2) UPDATE STORE CORE FIELDS
     // ----------------------------
@@ -240,6 +265,7 @@ public function index_cat($categoryId = null)
     'relat_cate'  => $request->has('relat_cate') ? 1 : 0,
     'like_store'  => $request->has('like_store') ? 1 : 0,
     'trend_store'  => $request->has('trend_store') ? 1 : 0,
+    'socails'   => $data['socails'],
 ]);
 
     // ----------------------------

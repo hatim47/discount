@@ -6,7 +6,7 @@ use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Region;
-
+use App\Models\Setting;
 
 use Illuminate\Http\Request;
 
@@ -60,20 +60,22 @@ class HomeController extends Controller
     })
         ->get();
  
-
-
+$setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->home_m_tiitle ;
+$meta_description = $setting->home_m_descrip ;
 
     // All events
     $events = Event::all();
 
 
-$meta_description = "Your meta description here";
+
     return view('website.home', compact(
         'feature',
         'categories',
         'stores',
         'events',
         'requirement',
+        'title',
         'meta_description'
     ));
 }

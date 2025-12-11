@@ -54,9 +54,19 @@ font-size:22px;
 h3{
 font-weight:700;
 font-size:30px;
+}
 
+.description p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.description p.expanded {
+    -webkit-line-clamp: unset;
 }
 </style>
+
 @endpush
 @section('content')
 @php
@@ -118,7 +128,7 @@ $jsonLd = json_encode(
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->
-            <div class="flex items-center gap-4 ms-3">
+            <div class="flex items-center gap-4 ms-3 w-10/12 ">
                 <!-- Logo -->
                 <div
                     class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border border-[#0B453C] flex items-center justify-center bg-white shadow-sm overflow-hidden">
@@ -126,7 +136,7 @@ $jsonLd = json_encode(
                 </div>
 
                 <!-- Text Content -->
-                <div>
+                <div class="flex flex-col  w-10/12 ">
                     <!-- Breadcrumb -->
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
@@ -139,9 +149,12 @@ $jsonLd = json_encode(
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900"> {{$store->heading}} </h1>
                     <!-- Description -->
-                    <p class="text-gray-600 text-sm mt-1">
+                    <div class="text-gray-600 text-sm mt-1 description">
                        {!! $store->description !!}
-                    </p>
+                    </div>
+                    @if ($store->description)
+                    <button id="readMoreBtn" class="text-gray-900 hover:text-[#0B453C] hover:underline text-left text-sm mt-1">Read More</button>
+                     @endif
                 </div>
             </div>
 
@@ -178,10 +191,10 @@ $jsonLd = json_encode(
      
      @if ($coupons->hasMorePages())
     <div class="text-center mt-6">
-        <button 
+    <button 
             id="loadMore" 
             data-next-page="{{ $coupons->nextPageUrl() }}" 
-            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
         >
             Load More
         </button>
@@ -245,6 +258,52 @@ $jsonLd = json_encode(
       </label>
     </div>
   </div>
+
+
+ 
+
+  <div class="bg-white w-full rounded-xl shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-semibold text-white">{{ $store->name }}'s Social Media!</div>
+   
+    {{-- Social Media Links Section --}}
+    @if ($store->socails)
+      @php
+        // Decode if stored as JSON string
+        $socials = is_string($store->socails) ? json_decode($store->socails, true) : $store->socails;
+        
+        // Define social media platforms with their Iconify icons and colors
+        $socialPlatforms = [
+          'youtube' => ['icon' => 'entypo-social:youtube-with-circle', 'color' => 'text-gray-800', 'label' => 'YouTube'],
+          'tiktok' => ['icon' => 'mage:tiktok-circle', 'color' => 'text-gray-800', 'label' => 'TikTok'],
+          'snapchat' => ['icon' => 'entypo-social:qq-with-circle', 'color' => 'text-gray-800', 'label' => 'Snapchat'],
+          'instagram' => ['icon' => 'entypo-social:instagram-with-circle', 'color' => 'text-gray-800', 'label' => 'Instagram'],
+          'pinterest' => ['icon' => 'entypo-social:pinterest-with-circle', 'color' => 'text-gray-800', 'label' => 'Pinterest'],
+          'twitter' => ['icon' => 'entypo-social:twitter-with-circle', 'color' => 'text-gray-800', 'label' => 'Twitter'],
+          'facebook' => ['icon' => 'entypo-social:facebook-with-circle', 'color' => 'text-gray-800', 'label' => 'Facebook'],
+          'lnikedin' => ['icon' => 'entypo-social:linkedin-with-circle', 'color' => 'text-gray-800', 'label' => 'LinkedIn'],
+        ];
+      @endphp
+      
+      <div class="px-4 py-3 border-t border-gray-200">
+        <div class="flex flex-wrap gap-3">
+          @foreach ($socialPlatforms as $platform => $details)
+            @if (!empty($socials[$platform]))
+              <a href="{{ $socials[$platform] }}" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="flex items-center gap-2   hover:text-[#0B453C] transition-colors"
+                 title="{{ $details['label'] }}">
+                <iconify-icon icon="{{ $details['icon'] }}" class="{{ $details['color'] }} hover:text-[#0B453C]" width="28" height="28"></iconify-icon>
+                
+              </a>
+            @endif
+          @endforeach
+        </div>
+      </div>
+    @endif
+  </div>
+
+
 
   <!-- Quick Links -->
    @if ( $store->dynacontents ->isNotEmpty() )
@@ -328,14 +387,23 @@ $jsonLd = json_encode(
 
   </section>
 
-
-
-
-
 @endsection
 @push('scripts')
 
 <script>
+
+
+const desc = document.querySelector('.description  p');
+const btn = document.getElementById('readMoreBtn');
+
+btn.addEventListener('click', () => {
+    desc.classList.toggle('expanded');
+    if(desc.classList.contains('expanded')){
+        btn.textContent = 'Read Less';
+    } else {
+        btn.textContent = 'Read More';
+    }
+});
 document.addEventListener("DOMContentLoaded", function () {
     let loadMoreBtn = document.getElementById("loadMore");
 

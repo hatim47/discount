@@ -271,8 +271,6 @@
 
                             <fieldset class="wizard-fieldset">
                                 <h6 class="text-md text-neutral-500">Website Information</h6>
-                        
-   
                                 <div class="row gy-3">
 <label class="form-label">Select one or more tags to highlight this coupon 
 (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
@@ -281,15 +279,10 @@
                                     
                                     <input type="checkbox" name="trend" class="btn-check" id="btncheck1">                        
                         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
-                       
                         <input type="checkbox" class="btn-check" name="feature" id="btncheck11">
                         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
-                        
                         <input type="checkbox" class="btn-check" name="recom" id="btncheck12">                        
                         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
-                       
-                
-
                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Heading *</label>
@@ -342,7 +335,6 @@
     data-bs-toggle="dropdown" 
     aria-expanded="false" 
     id="dropdown1-btn">
-    
     <span id="dropdown1-label">Select Stores</span>
     <span class="badge bg-secondary ms-2" id="dropdown1-count">0</span>
   </button>
@@ -467,11 +459,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-check-label">
-                                                <input type="checkbox" name="trend_store" class="form-check-input"
+         <input type="checkbox" name="trend_store" class="form-check-input"
                                                     onchange="toggleDropdown(this, 'dropdown4')">
                                                 Trending Brands
                                             </label>
-                                           <div class="dropdown w-100 mt-3" id="dropdown4" style="display:none;">
+      <div class="dropdown w-100 mt-3" id="dropdown4" style="display:none;">
   <!-- Button -->
   <button 
     class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" 
@@ -479,7 +471,6 @@
     data-bs-toggle="dropdown" 
     aria-expanded="false" 
     id="dropdown4-btn">
-
     <span id="dropdown4-label">Select Options</span>
     <span class="badge bg-secondary ms-2" id="dropdown4-count">0</span>
   </button>
@@ -504,8 +495,7 @@
         </div>
       </li>
      @endforeach
-     
-    
+
     </ul>
   </ul>
 </div>
@@ -597,8 +587,88 @@
                                             <div class="wizard-form-error"></div>
                                         </div>
                                     </div>
-                                
+                                <div class="row gy-3">
+                    <div class="col-4">
+                            <label class="form-label">Tiwtter</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="mingcute:social-x-fill" ><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="twitter" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
 
+ <div class="col-4">
+                            <label class="form-label">Youtube</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="typcn:social-youtube"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="youtube" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Pinterest</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon  icon="ion:social-pinterest"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="pinterest" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Linkedin</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-linkedin"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="lnikedin" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Facebook</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-facebook"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="facebook" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+
+
+                         <div class="col-4">
+                            <label class="form-label">Instagram</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="typcn:social-instagram"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="instagram" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+
+                         <div class="col-4">
+                            <label class="form-label">Tiktok</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="streamline-flex:tiktok-solid"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="tiktok" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>
+                               
+                         <div class="col-4">
+                            <label class="form-label">snapchat</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-base">
+                                    <iconify-icon icon="foundation:social-snapchat"><template shadowrootmode="open"><style data-style="data-style">:host{display:inline-block;vertical-align:0}span,svg{display:block}</style><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.357 7.714l6.98 4.654c.963.641 1.444.962 1.964 1.087c.46.11.939.11 1.398 0c.52-.125 1.001-.446 1.964-1.087l6.98-4.654M7.157 19.5h9.686c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.31-1.311c.328-.642.328-1.482.328-3.162V9.3c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311c-.642-.327-1.482-.327-3.162-.327H7.157c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.31 1.311c-.328.642-.328 1.482-.328 3.162v5.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311c.642.327 1.482.327 3.162.327"></path></svg></template></iconify-icon>
+                                </span>
+                                <input type="text" name="snapchat" class="form-control flex-grow-1" placeholder="info@gmail.com">
+                            </div>
+                        </div>   
+ </div>  
                                     <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                         <button type="button"
                                             class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>

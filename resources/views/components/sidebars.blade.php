@@ -47,8 +47,15 @@
             </li>
                <li>
                 <a href="{{ route('about.index') }}">
-                <iconify-icon icon="streamline:multiple-file-2-remix" class="menu-icon" ></iconify-icon>
+               <iconify-icon icon="mdi:about" class="menu-icon"></iconify-icon>
                     <span>About Pages List</span>
+                </a>
+            </li>
+ 
+             <li>
+                <a href="{{ route('settings.index') }}">
+                <iconify-icon icon="icon-park-outline:file-settings" class="menu-icon"></iconify-icon>
+                    <span>Setting Pages </span>
                 </a>
             </li>
             {{-- <li>

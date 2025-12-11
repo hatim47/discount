@@ -6,6 +6,7 @@
                     let table = new DataTable("#dataTable");
                </script>
 <script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
                ';
 @endphp
 
@@ -13,8 +14,8 @@
 
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Pages Datatables</h5>
-                    <a href="{{ route('dynapage.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Page</a>
+                    <h5 class="card-title mb-0">Setting Datatables</h5>
+                    <a href="{{ route('settings.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Setting</a>
                 </div> 
                 <div class="card-body">
                     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
@@ -24,45 +25,42 @@
                                     <div class="form-check style-check d-flex align-items-center">
                                         <input class="form-check-input" type="checkbox">
                                         <label class="form-check-label">
-                                            Id
+                                            S.L
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Name</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">page banner</th>
-                                <th scope="col">Staus</th>
-                                <th scope="col">Regoin</th>
+                            <th scope="col">Regoin</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">logo</th>
+                                <th scope="col">home_m_tiitle</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
                        
-                               @foreach ($events as $store)
+                               @foreach ($settings as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
-                    <td>{{ $store->name }}</td>
-                    <td>{{ $store->slug }}</td>
+                    <td> {{ $store->region->id == $store->setting_region  ? $store->region->title : '' }} </td>
+                    <td>{{ $store->web_name }}</td>
                     <td>
-                        @if($store->banner)
-                            <img src="{{$store->banner}}" alt="Logo" width="40">
+                        @if($store->web_logo)
+                            <img src="{{$store->web_logo}}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif
                     </td>
-                   <td> {{ $store->status == 1 ? 'Active' : 'Inactive' }} </td>
-                    <td> {{ $store->region->id == $store->dyna_region  ? $store->region->title : '' }} </td>
+                    <td>{{ $store->home_m_tiitle }}</td>
                     <td>
-                    <a href="javascript:void(0)" 
-           data-id="{{ $store->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+    <a href="javascript:void(0)" data-id="{{ $store->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
-        </a>
-                        <form action="{{ route('dynapage.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    </a>
+                        <form action="{{ route('settings.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this dynapage?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
+                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this settings?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
                         </form>
                         </td>
                 </tr>
@@ -76,7 +74,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit dynapage</h5>
+                <h5 class="modal-title">Edit settings</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="editCategoryBody">
@@ -104,7 +102,7 @@ function initLfmButtons() {
     // Initialize every LFM button inside the page
     $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
 }
-   function initEditor(selector) {
+function initEditor(selector) {
         ClassicEditor
             .create(document.querySelector(selector), {
                 toolbar: [
@@ -120,11 +118,12 @@ function initLfmButtons() {
             })
             .catch(error => console.error(error));
     }
+
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
- let url = "{{ route('dynapage.edit', ':id') }}";
+ let url = "{{ route('settings.edit', ':id') }}";
         url = url.replace(':id', id);
                 fetch(url)
                 .then(res => res.text())
@@ -135,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                      document.getElementById("editCategoryModal")
                         .addEventListener("shown.bs.modal", function () {
-                            initEditor('#editor1');
+                           
                             initEditor('#editor2');
                         }, { once: true });
                 })

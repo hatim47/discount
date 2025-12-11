@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Region;
 use App\Models\DynaPage;
+use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -46,13 +47,17 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('categoryies', $categories)->with('dynapage', $dynapage);
         });
-   View::composer('*', function ($view) {
-            $localeUrl = env('APP_URL');
-            $locales = ['au','ca'];            
-            if (in_array(app()->getLocale(), $locales)) {
-                $localeUrl = env('APP_URL'). app()->getLocale() . '/';
-            }
-            $view->with('localeUrl', $localeUrl);
+        View::composer('*', function ($view) {
+                    $localeUrl = env('APP_URL');
+                    $locales = ['au','ca'];            
+                    if (in_array(app()->getLocale(), $locales)) {
+                        $localeUrl = env('APP_URL'). app()->getLocale() . '/';
+                    }
+                    $setting = Setting::first();
+                    $view->with([
+                'localeUrl' => $localeUrl,
+                'setting'   => $setting,
+            ]);
         });
     
 

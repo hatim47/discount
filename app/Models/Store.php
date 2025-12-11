@@ -29,6 +29,7 @@ class Store extends Model
         'ismenu',
         'category_id',
         'm_tiitle',
+        'socails',
         'm_descrip',
 
     ];

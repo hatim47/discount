@@ -22,6 +22,7 @@ use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SettingController;
 use App\Models\Region;
 use App\Http\Controllers\DynapageController;
 
@@ -52,7 +53,10 @@ Route::get('admin/stores/category/{category}', [StoreController::class, 'index_c
     // Coupons filtered by category
 Route::get('admin/coupons/category/{category}', [CouponController::class, 'index_cat'])->name('coupons.index');
 Route::get('admin/coupons/store/{category}', [CouponController::class, 'index_Store'])->name('coupons.index_store');
-
+Route::post('admin/settings/update-field', [SettingController::class, 'updateField'])->name('settings.update-field');
+Route::post('/settings/update-image', [SettingController::class, 'updateImage'])
+    ->name('settings.update-image');
+Route::get('admin/settings', [SettingController::class, 'index'])->name('settings.index');
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
@@ -60,6 +64,7 @@ Route::resource('admin/event',EventController::class);
 Route::resource('admin/dynapage',DynapageController::class);
 Route::resource('admin/users', UsersController::class);
 Route::resource('admin/about', AboutController::class);
+Route::resource('admin/settings', SettingController::class);
 });
 Route::post('/logout', function() {
     Auth::logout();

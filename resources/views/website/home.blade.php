@@ -1,6 +1,6 @@
 @extends('website.layouts.app')
-@section('title', 'Welcome to ' . config('website.company.name'))
-@section('meta_description', 'Best marketing platform to grow your business.')
+@section('title', $title)
+@section('meta_description', $meta_description)
 @push("style")
 <link
   rel="stylesheet"
@@ -16,8 +16,8 @@
         Hunting for <span class="text-[#0B453C] font-bold">Discounts!</span></h1>
         <p class="text-xl mb-4">Get Free Voucher Codes & Promo Codes on Brands You Crave For.</p>  
        <div class="hidden max-[787px]:flex justify-around">
-<img src="{{asset('public/assets/images/Group 160.png')}}" class="w-10/12" />
-</div> 
+        <img src="{{asset('public/assets/images/Group 160.png')}}" class="w-10/12" />
+        </div> 
        <div class="relative">
         <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white"  @click="openSearch()" />
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold -top-1" @click="openSearch()" >
@@ -421,12 +421,11 @@
         </div>
 
 @if($loop->iteration == 3)
-
 <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-10  px-6 py-3 flex flex-col md:flex-row items-center gap-10 h-[70vh] md:h-[40vh]"> 
 <img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
 <div class="flex flex-col gap-3 text-left items-start py-6"> 
 <h4 class="text-3xl font-semibold text-white">The Search for Discount Codes Ends Here</h4> 
-<p class="text-white text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
+<p class="text-white text-xl ">By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
  <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
                 Get Deal
             </button>
@@ -446,22 +445,50 @@
  </div>
  @endif
   @endforeach 
-  <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-2 px-6 py-3 flex items-center justify-center gap-10 "> 
+  <div class="bg-[#0B453C] rounded-3xl mt-8 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
 
 <div class="flex flex-col gap-3 text-center items-center py-6"> 
 <h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
-<p class="text-white text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
+<p class="text-white text-baes lg:text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
    <div class="relative w-full">
   <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >
     <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div></div> 
-            <p class="text-white text-sm  md:text-base ">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
+            <p class="text-white text-sm md:text-base">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
 
 </div>
  </div>
     </section>
+
+ <section class="max-w-7xl mx-auto py-12 px-4 sm:px-6 text-center">
+<div class="flex justify-start gap-6">
+<h6 class="text-[#0B453C] font-bold  text-3xl lg:text-5xl pb-10">About Us</h6>
 </div>
+<div class="flex flex-col justify-between gap-6 sm:flex-row">
+    <!-- LEFT: TEXT -->
+    <div class="flex flex-col items-start  sm:w-3/6 lg:w-2/3"> 
+        <div class="pt-5 text-start w-12/12 lg:w-11/12 h-90 overflow-y-scroll">
+            {!! $setting->home_about !!}
+        </div>
+    </div>
+
+
+    <div class=" sm:w-3/6 lg:w-1/3 flex justify-center">
+        <img 
+            src="{{ asset('public/assets/images/Mask group (32).png') }}" 
+            alt="About Us Image"
+            class="w-full max-w-sm rounded-3xl object-cover"
+        >
+    </div>
+</div>
+ </section>
+</div>
+
+
+
+
+
 
 
 @endsection
