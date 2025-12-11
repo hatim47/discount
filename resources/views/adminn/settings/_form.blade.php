@@ -39,17 +39,15 @@
         @endif
     </div>
 </div>
-     <div class="col-sm-6">
-                                <label class="form-label">Website Name*</label>
-                                <div class="position-relative">   
-                                    <input type="text" class="form-control wizard-required"  value="{{ old('web_name', $settingsa->web_name) }}"  name="web_name" placeholder="Enter Heading " >
-                                        <div class="wizard-form-error"></div>
-                                </div>
-                                    </div>
+        <div class="col-sm-6">
+            <label class="form-label">Website Name*</label>
+                <div class="position-relative">   
+                    <input type="text" class="form-control wizard-required"  value="{{ old('web_name', $settingsa->web_name) }}"  name="web_name" placeholder="Enter Heading " >
+                    <div class="wizard-form-error"></div>
+                </div>
+        </div>
   <div class="col-sm-6"></div>
     <h6 class="text-md text-neutral-500">home page </h6>
-
-
      <div class="col-sm-12">
                                     <label class="form-label">Home About*</label>
                                     <div class="position-relative">
@@ -145,7 +143,30 @@
                             <input type="text" class="form-control wizard-required" name="featuer_m_descrip" value="{{ old('featuer_m_descrip', $settingsa->featuer_m_descrip) }}" placeholder="Enter Description" >
                             <div class="wizard-form-error"></div>
                         </div>
+                    </div> 
+                       <h6 class="text-md text-neutral-500">Advertise menu page </h6>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Title*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="advertise_m_tiitle" value="{{ old('advertise_m_tiitle', $settingsa->advertise_m_tiitle) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="advertise_m_descrip" value="{{ old('advertise_m_descrip', $settingsa->advertise_m_descrip) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
                     </div>
+                       <div class="col-sm-12">
+                        <label class="form-label">Advertise Contect*</label>
+                        <div class="position-relative">
+                         <textarea id="editor1" name="advertise_contect" class="form-control" rows="8">{{ $settingsa->advertise_contect }}</textarea>
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div>
+
  <div class="col-4">
                             <label class="form-label">Tiwtter</label>
                             <div class="input-group">

@@ -27,7 +27,12 @@ class Setting extends Model
         'seoheader',
         'keyword',
         'socails',
-        'seofooter'
+        'seofooter',
+        'advertise_m_tiitle',
+        'advertise_m_descrip',
+        'advertise_contect'
+          
+
     ];
      public function region()
     {

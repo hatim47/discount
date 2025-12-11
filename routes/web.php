@@ -57,6 +57,10 @@ Route::post('admin/settings/update-field', [SettingController::class, 'updateFie
 Route::post('/settings/update-image', [SettingController::class, 'updateImage'])
     ->name('settings.update-image');
 Route::get('admin/settings', [SettingController::class, 'index'])->name('settings.index');
+Route::get('admin/advertises', [HomeController::class, 'adindex'])->name('advertise');
+
+
+
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
@@ -65,6 +69,9 @@ Route::resource('admin/dynapage',DynapageController::class);
 Route::resource('admin/users', UsersController::class);
 Route::resource('admin/about', AboutController::class);
 Route::resource('admin/settings', SettingController::class);
+
+
+
 });
 Route::post('/logout', function() {
     Auth::logout();
@@ -88,6 +95,7 @@ Route::middleware('setregion')->group(function () {
       Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('dynapage');
       Route::get('about-us/', [DynapageController::class, 'about'])->name('aboutus');
         Route::get('featured', [CouponController::class, 'featureds'])->name('featured');
+        Route::get('advertise-with-us', [HomeController::class, 'advertise'])->name('advertise');
 });
 Route::prefix('{region}')
     ->where(['region' => $validRegions]) // Only match valid region codes
@@ -107,25 +115,13 @@ Route::prefix('{region}')
         Route::get('about-us/', [DynapageController::class, 'about'])->name('region.aboutus');
  Route::get('search', [StoreController::class, 'search'])->name('region.store.search');
  Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('region.categ.menusa');
+ Route::get('advertise-with-us', [HomeController::class, 'advertise'])->name('region.advertise');
     });
 
  Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 
 
 
-
-
-
-
-
-
-
-
-
-// Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-// Route::get('/portal', fn() => view('website.portal'))->middleware('auth:web')->name('user.portal');
-// Route::post('/register', [RegisterController::class, 'register'])->name('register');
-// ADMIN AUTH
 Route::controller(HomeController::class)->group(function () {
  
 

@@ -306,6 +306,29 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+  <h6 class="text-md text-neutral-500">Advertise Page</h6>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="advertise_m_tiitle" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="advertise_m_descrip" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Advertise Content*</label>
+                                                <div class="position-relative">
+                                    <textarea id="editor1" name="advertise_contect" class="form-control" rows="8"></textarea>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -427,7 +450,7 @@
                                         </div>
                                     </fieldset>
 
-     <fieldset class="wizard-fieldset">
+                            <fieldset class="wizard-fieldset">
                                        <h6 class="text-md text-neutral-500">Store Menu Page</h6>
                                   
                                         <div class="row gy-3">
@@ -516,5 +539,6 @@
 
    
     initEditor('#editor2');
+     initEditor('#editor1');
 </script>
 @endpush

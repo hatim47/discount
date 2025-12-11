@@ -11,9 +11,8 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
-{
-        
-    public function index($region = null)
+{ 
+   public function index($region = null)
     {
    $region = $region ?? config('app.default_region', 'usa');
            
@@ -66,9 +65,6 @@ $meta_description = $setting->home_m_descrip ;
 
     // All events
     $events = Event::all();
-
-
-
     return view('website.home', compact(
         'feature',
         'categories',
@@ -81,13 +77,27 @@ $meta_description = $setting->home_m_descrip ;
 }
 
 public function contact()
-    {
-              $meta_description = 'meta_description';
-
+    {   
+        $meta_description = 'meta_description';
         return view('website.contact', compact('meta_description'));
     }
 
-       
+
+
+
+
+
+
+    
+
+
+      public function advertise()
+    {
+
+              $meta_description = 'meta_description';
+
+        return view('website.advers', compact('meta_description'));
+    } 
 
 
 

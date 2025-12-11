@@ -67,16 +67,10 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 $setting = Setting::first();
             }
-
-
                     $view->with([
                 'localeUrl' => $localeUrl,
                 'setting'   => $setting,
             ]);
         });
-    
-
-
-
     }
 }

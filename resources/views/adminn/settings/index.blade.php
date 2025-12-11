@@ -118,7 +118,6 @@ function initEditor(selector) {
             })
             .catch(error => console.error(error));
     }
-
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                      document.getElementById("editCategoryModal")
                         .addEventListener("shown.bs.modal", function () {
-                           
+                           initEditor('#editor1');
                             initEditor('#editor2');
                         }, { once: true });
                 })
