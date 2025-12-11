@@ -1,4 +1,4 @@
-<form action="{{ route('settingsas.update', $settingsa->id) }}" method="POST">
+<form action="{{ route('settings.update', $settingsa->id) }}" method="POST">
     @csrf
     @method('PUT')
 
