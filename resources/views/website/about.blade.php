@@ -301,12 +301,10 @@
 
 </div>
 <div class="flex flex-col items-center text-center gap-1 px-2 py-15 bg-[#0B453C] rounded-[30px]">
-
      <div class="text-2xl lg:text-4xl text-white flex items-center justify-center font-extrabold">
         18
         </div>
  <p class="text-xl l-pt-2 lg:text-2xl text-white ">Offers used this week</p>
-
 </div>
 <div class="flex flex-col items-center text-center gap-1 px-2 py-15 bg-[#0B453C] rounded-[30px]">
 
@@ -317,12 +315,26 @@
 
 </div>
 
+</div>
+  <div class="max-w-7xl mx-auto py-10  flex ">
 
+ <div class="bg-[#0B453C] w-full rounded-3xl mt-2 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
 
-
-
+<div class="flex flex-col gap-3 text-center items-center py-6"> 
+<h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
+<p class="text-white text-baes lg:text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
+   <div class="relative w-full">
+  <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />
+  <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >
+    <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
+</div></div> 
+            <p class="text-white text-sm md:text-base">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
 
 </div>
+ </div>
+</div>
+
+
  </section>
 
 @endsection

@@ -8,9 +8,9 @@
     <div class="mb-3">
     <label class="form-label">Logo favicon</label>
     <div class="input-group">
-        <input id="logo" class="form-control" type="text" value="{{ old('favicon', $setting->favicon) }}"  name="favicon" >
+        <input id="favi" class="form-control" type="text" value="{{ old('favicon', $setting->favicon) }}"  name="favicon" >
         <span class="input-group-btn">
-         <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
+         <button id="lfm" data-input="favi" data-preview="holder" class="btn btn-primary">
                 Choose
             </button>
         </span>
