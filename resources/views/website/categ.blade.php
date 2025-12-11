@@ -133,7 +133,7 @@ font-size:30px;
         <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-2 my-5">
           <div class="relative p-4 w-full">
             <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" class="w-full rounded-3xl h-40 object-cover"/>
-          <img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-[#0B453C] shadow-md"/>
+           <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}"><img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-[#0B453C] shadow-md"/></a>
           </div>
 
           <div class="p-4 flex flex-col justify-between ">
@@ -144,7 +144,7 @@ font-size:30px;
               @endif
             </div>
             <h6 class="text-neutral-900 font-semibold text-sm mb-1">{{ $coupon['title'] }}</h6>
-            <p class="text-xs text-neutral-700">View all <span class="underline">{{ $coupon->store['name'] }} deals</span></p>
+            <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}" class="text-xs text-neutral-700">View all <span class="underline">{{ $coupon->store['name'] }} deals</span></a>
           </div>
         </article>
       </div>
