@@ -90,7 +90,7 @@ $categories = Category::withCount('stores')
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
-        $category->delete();
+        // $category->delete();
         return redirect()->route('categories.index')
                          ->with('success', 'Category deleted successfully.');
     }

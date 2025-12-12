@@ -96,11 +96,11 @@
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
         </a>
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                        {{-- <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this category?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
-                        </form>
+                        </form> --}}
 
 
                     </td>
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }, { once: true });
                 
                 })
-                .catch(err => console.error(err));
+         .catch(err => console.error(err));
         });
     });
 });

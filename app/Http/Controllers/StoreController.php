@@ -334,6 +334,8 @@ $data['socails'] = json_encode($socials);
     public function destroy($id)
     {
         $store = Store::findOrFail($id);
+        
+        
         $store->delete();
         return redirect()->route('store.index')
                          ->with('success', 'Store deleted successfully.');
