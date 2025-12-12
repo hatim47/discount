@@ -32,7 +32,7 @@
       <p>Our Story, Your Savings </p>
       </div>
       <h1 class="text-2xl lg:text-5xl pb-2 text-[#0B453C] font-bold ">  {{ $about->heading1 ?? 'Built to bring you the best offers, Shop more.' }}</h1>
-        <p class="pb-8 text-start">{{ $about->heading1 ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
+        <p class="pb-8 text-start">{{ $about->head1text ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
          <div class="flex-1 flex md:hidden ">
           <img src="{{asset('public/assets/images/all_image 1.png')}}" />
         </div>
@@ -240,8 +240,8 @@
 
  <section class="bg-white text-[#0F0F0F]">
   <div class="max-w-7xl mx-auto pt-22 px-4 sm:px-6 flex flex-col items-center text-center justify-center">
-  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->head2sub3 ?? 'How It`s Works' }}</h4>
-<p>{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
+  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->heading3 ?? 'How It`s Works' }}</h4>
+<p>{{ $about->heading3text ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
   </div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-18 items-center py-16">
 
@@ -250,8 +250,8 @@
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           01
         </div>
- <p class="text-xl l-pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Create an Account' }}</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
+ <p class="text-xl l-pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head3sub1 ?? 'Create an Account' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head3sub1text ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
 
 </div>
 
@@ -261,8 +261,8 @@
      <div class=" text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           02
         </div>
- <p class="text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Refer and Share' }}</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
+ <p class="text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head3sub2 ?? 'Refer and Share' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head3sub2text ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
 
 </div>
 
@@ -273,8 +273,8 @@
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           03
         </div>
- <p class=" text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head2sub3 ?? 'Get Earning' }}</p>
-           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
+ <p class=" text-xl -pt-2 lg:text-4xl text-[#0B453C] ">{{ $about->head3sub3 ?? 'Get Earning' }}</p>
+           <p class="text-base/5 lg:text-lg/5 text-gray-900 text-center">{{ $about->head3sub3text ?? 'It is a long established fact that a reader will be distracted by the readable content of a  page when looking at its layout.' }}</p>
 
 </div>
 
@@ -285,8 +285,8 @@
 
 <section class="bg-white text-[#0F0F0F]">
   <div class="max-w-7xl bg-[#F2FCFA] mx-auto pt-22 px-4 sm:px-6 flex flex-col items-center text-center justify-center">
-  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->head2sub3 ?? 'Our Promising Deals & Vouchers' }}</h4>
-<p>{{ $about->head2sub3 ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
+  <h4 class="text-2xl lg:text-5xl pb-8 text-[#0B453C] font-bold ">{{ $about->heading4 ?? 'Our Promising Deals & Vouchers' }}</h4>
+<p>{{ $about->heading4text ?? 'It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout.' }}</p>
   </div>
 
 
@@ -321,9 +321,10 @@
 
  <div class="bg-[#0B453C] w-full rounded-3xl mt-2 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
 
-<div class="flex flex-col gap-3 text-center items-center py-6"> 
-<h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
-<p class="text-white text-baes lg:text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
+<div class="max-w-4xl  flex flex-col gap-3 text-center items-center py-6"> 
+<h4 class="text-2xl lg:text-5xl font-semibold text-white">Get Exclusive Deals <br> Discounts & Daily Benefits</h4> 
+<p class="text-white text-baes lg:text-xl ">Vouchers Code  brings you the best savings on high-end designer brands by providing you with a wide range of verified discount deals, coupon code offers, and vouchers. Enjoy category-rich deals, effortless browsing, and trusted discounts designed to give you real value with every purchase you make.
+</p>
    <div class="relative w-full">
   <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >

@@ -445,11 +445,12 @@
  </div>
  @endif
   @endforeach 
-  <div class="bg-[#0B453C] rounded-3xl mt-8 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
+  <div class="bg-[#0B453C] w-full rounded-3xl mt-2 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
 
-<div class="flex flex-col gap-3 text-center items-center py-6"> 
-<h4 class="text-2xl lg:text-5xl font-semibold text-white">Sign-up To Get Latest <br> Voucher Codes First</h4> 
-<p class="text-white text-baes lg:text-xl ">Be the first one to get notified as soon as we update a new offer or discount.</p>
+<div class="max-w-4xl  flex flex-col gap-3 text-center items-center py-6"> 
+<h4 class="text-2xl lg:text-5xl font-semibold text-white">Get Exclusive Deals <br> Discounts & Daily Benefits</h4> 
+<p class="text-white text-baes lg:text-xl ">Vouchers Code  brings you the best savings on high-end designer brands by providing you with a wide range of verified discount deals, coupon code offers, and vouchers. Enjoy category-rich deals, effortless browsing, and trusted discounts designed to give you real value with every purchase you make.
+</p>
    <div class="relative w-full">
   <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >

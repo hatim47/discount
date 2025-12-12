@@ -59,85 +59,76 @@
                                             </div>
 
 
-                                            <div class="col-sm-6">
+                <div class="col-sm-6">
                                                 <label class="form-label">About Heading Main*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="heading1" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="heading1" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
+ <div class="col-sm-6">
+                                                <label class="form-label">About Heading Main text *</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="head1text"  placeholder="Enter Event Name" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-6">
                                                 <label class="form-label">About Heading Second*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="heading5" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"   name="heading5" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
-                                                                 <div class="col-sm-6">
-                                                <label class="form-label">About Heading Second  text *</label>
+                                              <div class="col-sm-6">
+                                                <label class="form-label">About Heading Second Text*</label>
                                                 <div class="position-relative">
-                                                  
-                                          <textarea  name="heading5text" class="form-control" required
-
-                                           rows="4"> </textarea>
-
+                                                    <input type="text" class="form-control wizard-required"   name="heading5text" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
                                              <div class="col-sm-6">
-                                                 <label class="form-label">About Heading Second Sub heading *</label>
+                                                 <label class="form-label">About Heading Second Sub heading*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head5sub1" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head5sub1" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
-                                                <label class="form-label">About Heading Second Sub text *</label>
-                                                <div class="position-relative">
-                                                  
-                                          <textarea  name="head5sub1text" class="form-control" required
-
-                                           rows="4"> </textarea>
-
+                                                <label class="form-label">About Heading Second Sub text*</label>
+                                                <div class="position-relative">                                                  
+                                                <textarea  name="head5sub1text" class="form-control" rows="4"> </textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
                                             <div class="col-sm-6">
-                                                 <label class="form-label">About Heading Second Sub heading 2 *</label>
+                                                 <label class="form-label">About Heading Second Sub heading 2*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head5sub2" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head5sub2" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
                                            <div class="col-sm-6">
-                                                <label class="form-label">About Heading Second Sub text 2 *</label>
-                                                <div class="position-relative">
-                                                  
-                                          <textarea  name="head5sub2text" class="form-control" required rows="4"> </textarea>
-
+                                                <label class="form-label">About Heading Second Sub text 2*</label>
+                                                <div class="position-relative">                                                  
+                                            <textarea  name="head5sub2text" class="form-control" rows="4"></textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                             
                                             
-                                            <div class="col-sm-6">
-                                                 <label class="form-label">About Heading Second Sub heading 3 *</label>
+ <div class="col-sm-6">
+                                                 <label class="form-label">About Heading Second Sub heading 3*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head5sub3" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head5sub3" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-
                                            <div class="col-sm-6">
                                                 <label class="form-label">About Heading Second Sub text 3*</label>
                                                 <div class="position-relative">
                                                   
-                                          <textarea  name="head5sub3text" class="form-control" required rows="4"> </textarea>
+                                          <textarea  name="head5sub3text" class="form-control" rows="4"> </textarea>
 
                                                     <div class="wizard-form-error"></div>
                                                 </div>
@@ -145,96 +136,81 @@
   <div class="col-sm-6">
                                                  <label class="form-label">About Heading third *</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="heading3" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="heading2" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                               <div class="col-sm-6">
-                                                <label class="form-label">About Heading third text *</label>
-                                                <div class="position-relative">
-                                                  
-                                          <textarea  name="heading3text" class="form-control" required rows="4"> </textarea>
-
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
+                                        
  <div class="col-sm-6">
-                                                 <label class="form-label">About Heading third Sub heading 1 *</label>
+                                                 <label class="form-label">About Heading third Sub heading 1*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head3sub1" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="head2sub1" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
                                                 <label class="form-label">About Heading third Sub text 1*</label>
                                                 <div class="position-relative">
-                                          <textarea  name="head3sub1text" class="form-control" required rows="4"> </textarea>
+                                          <textarea  name="head2sub1text" class="form-control" rows="4"> </textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
- <div class="col-sm-6">
-                                                 <label class="form-label">About Heading third Sub heading 2 *</label>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">About Heading third Sub heading 2*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head3sub2" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head2sub2" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
                                                 <label class="form-label">About Heading third Sub text 2*</label>
                                                 <div class="position-relative">
-                                          <textarea  name="head3sub2text" class="form-control" required rows="4"> </textarea>
+                                          <textarea  name="head2sub2text" class="form-control" rows="4"> </textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-sm-6">
-                                                 <label class="form-label">About Heading third Sub heading 3 *</label>
+                                                 <label class="form-label">About Heading third Sub heading 3*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head3sub3" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head2sub3" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
                                                 <label class="form-label">About Heading third Sub text 3*</label>
                                                 <div class="position-relative">
-                                          <textarea  name="head3sub3text" class="form-control" required rows="4"> </textarea>
+                                                 <textarea  name="head2sub3text" class="form-control" rows="4"> </textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                              <div class="col-sm-6">
                                                  <label class="form-label">About Heading Fourth heading *</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="heading4" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="heading3" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label class="form-label">About Heading Fourth text *</label>
                                                 <div class="position-relative">                                                  
-                                                <textarea  name="heading4text" class="form-control" required rows="4"> </textarea>
+                                                <textarea  name="heading3text" class="form-control" rows="4"> </textarea>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
 
-          <div class="col-sm-6">
-                                                <label class="form-label">About Heading fifth*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="heading2" placeholder="Enter Event Name" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
                                              <div class="col-sm-6">
-                                                 <label class="form-label">About Heading fifth Sub heading *</label>
+                                                 <label class="form-label">About Heading Fourth Sub heading *</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head2sub1" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required"  name="head3sub1" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
-                                                <label class="form-label">About Heading fifth Sub text *</label>
+                                                <label class="form-label">About Heading Fourth Sub text *</label>
                                                 <div class="position-relative">
                                                   
-                                          <textarea  name="head2sub1text" class="form-control" required
+                                          <textarea  name="head3sub1text" class="form-control" required
 
                                            rows="4"> </textarea>
 
@@ -243,18 +219,18 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                 <label class="form-label">About Heading fifth Sub heading 2 *</label>
+                                                 <label class="form-label">About Heading Fourth Sub heading 2 *</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head2sub2" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="head3sub2"  placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                             
                                            <div class="col-sm-6">
-                                                <label class="form-label">About Heading fifth Sub text 2 *</label>
+                                                <label class="form-label">About Heading Fourth Sub text 2 *</label>
                                                 <div class="position-relative">
                                                   
-                                          <textarea  name="head2sub2text" class="form-control" required rows="4"> </textarea>
+                                          <textarea  name="head3sub2text" class="form-control" required rows="4"> </textarea>
 
                                                     <div class="wizard-form-error"></div>
                                                 </div>
@@ -262,23 +238,40 @@
                                             
                                             
                                             <div class="col-sm-6">
-                                                 <label class="form-label">About Heading fifth Sub heading 3 *</label>
+                                                 <label class="form-label">About Heading Fourth Sub heading 3 *</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="head2sub3" placeholder="Enter Event Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="head3sub3"  placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
 
                                            <div class="col-sm-6">
-                                                <label class="form-label">About Heading fifth Sub text 3*</label>
+                                                <label class="form-label">About Heading Fourth Sub text 3*</label>
                                                 <div class="position-relative">
                                                   
-                                          <textarea  name="head2sub3text" class="form-control" required rows="4"> </textarea>
+                                          <textarea  name="head3sub3text" class="form-control" required rows="4"> </textarea>
 
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+                            
+                                            <div class="col-sm-6">
+                                                 <label class="form-label">About Heading fifth Sub heading 5 *</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="heading4"  placeholder="Enter Event Name" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
 
+                                           <div class="col-sm-6">
+                                                <label class="form-label">About Heading fifth Sub text 5*</label>
+                                                <div class="position-relative">
+                                                  
+                                          <textarea  name="heading4text" class="form-control" required rows="4"> </textarea>
+
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
 
 
 
