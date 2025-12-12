@@ -55,7 +55,7 @@
 
         <!-- Modal Footer -->
         <div class="border-t border-gray-200 px-6 py-4 bg-gray-50 text-center">
-            <img src="{{ env('APP_ASSETS')}}img/logo_yellow.webp" alt="Logo" class="h-8 mx-auto">
+            <img src="{{$setting->web_logo}}" alt="Logo" class="h-8 mx-auto">
         </div>
     </div>
 </div>
