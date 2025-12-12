@@ -90,7 +90,7 @@ $jsonLd = json_encode(
         <button 
             id="loadMore" 
             data-next-page="{{ $coupons->nextPageUrl() }}" 
-            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-green-600"
+            class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
         >
             Load More
         </button>

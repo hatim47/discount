@@ -446,7 +446,6 @@
  @endif
   @endforeach 
   <div class="bg-[#0B453C] w-full rounded-3xl mt-2 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
-
 <div class="max-w-4xl  flex flex-col gap-3 text-center items-center py-6"> 
 <h4 class="text-2xl lg:text-5xl font-semibold text-white">Get Exclusive Deals <br> Discounts & Daily Benefits</h4> 
 <p class="text-white text-baes lg:text-xl ">Vouchers Code  brings you the best savings on high-end designer brands by providing you with a wide range of verified discount deals, coupon code offers, and vouchers. Enjoy category-rich deals, effortless browsing, and trusted discounts designed to give you real value with every purchase you make.
@@ -457,7 +456,6 @@
     <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div></div> 
             <p class="text-white text-sm md:text-base">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
-
 </div>
  </div>
     </section>

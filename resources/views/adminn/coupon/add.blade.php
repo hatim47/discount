@@ -194,9 +194,9 @@
                                                 </div>
                                             </div>
                                              <div class="col-sm-6">
-                                                <label class="form-label">Coupon Link*</label>
+                                                <label class="form-label">Coupon Link</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter Coupon link" required>
+                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter Coupon link" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -224,16 +224,16 @@
                                                 </div>
                                             </div>
                                              <div class="col-sm-6">
-                                                <label class="form-label">Start Date*</label>
+                                                <label class="form-label">Start Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" required>
+                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
-                                                <label class="form-label">End Date*</label>
+                                                <label class="form-label">End Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" required>
+                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -295,7 +295,7 @@
                                             </div>
                                             
                                               <div class="col-sm-4">
-                                                <label class="form-label">Select Event Name*</label>
+                                                <label class="form-label">Select Event Name</label>
                                                 <div class="position-relative">
                                                     
                                             <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
@@ -310,7 +310,7 @@
                                                 </div>
                                             </div>
                                                <div class="col-sm-4">
-                                                <label class="form-label">Select Dynamic Page Name*</label>
+                                                <label class="form-label">Select Dynamic Page Name</label>
                                                 <div class="position-relative">
                                                     
                                             <select name="dyna_id" class="form-control radius-8 form-select wizard-required" id="dynapage" required>
@@ -324,7 +324,7 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                                   <div class="col-sm-6">
+                                                   {{-- <div class="col-sm-6">
                                                 <label class="form-label">Store Sort [  '0' consider to be first ] </label>
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control wizard-required" name="sort_store" placeholder="Enter Coupon Name" required>
@@ -337,8 +337,7 @@
                                                     <input type="number" class="form-control wizard-required" name="sort_cate" placeholder="Enter Coupon Code" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div>  
-
+                                            </div>   --}}
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
