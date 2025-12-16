@@ -47,9 +47,9 @@ $categories = Category::withCount('stores')
             'status' => 'required|boolean',
             'is_menu' => 'required|boolean',
             'm_title' => 'nullable|string',
-            'cate_region' => 'required|integer|exists:regions,id',
+            'cate_region' => 'required',
             'm_descrip' => 'nullable|string', 
-            'url' => 'nullable|string|max:255|unique:categories,url',   
+            'url' => 'nullable|string',   
         ]);
 
         Category::create($request->all());
