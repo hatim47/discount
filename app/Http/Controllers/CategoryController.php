@@ -164,7 +164,7 @@ $title = $store->m_title ?? null;
      ->latest()
       ->paginate(10);
 
-    dd($coupons , $feature);
+    
     return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores','title','meta_description'));
     }
 
