@@ -117,7 +117,7 @@ font-size:30px;
                 <div>
                     <!-- Breadcrumb -->
                     <nav class="text-sm mb-1 text-gray-500">
-                        <a href="{{ route('home') }}" class="hover:underline">Home</a>
+                        <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class=" sm:mx-2">&gt;</span>
                         <a href="{{region_route('categ.menu') }}"  class=" hover:underline">Categories</a>
                         <span class=" sm:mx-2">&gt;</span>
@@ -250,7 +250,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($relatedStores as $relateds )
-      <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug]) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
   
       {{$relateds->name}}
       </a></li>
@@ -265,7 +265,7 @@ font-size:30px;
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
        
     @foreach ($categories as $relateds )
-     <li><a href="#" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+     <li><a href="{{region_route('categ.page', ['slug' => $relateds->slug]) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
      
       {{$relateds->name}}
       </a></li>
@@ -282,7 +282,7 @@ font-size:30px;
 <ul class="flex flex-wrap text-sm text-gray-700 p-2">
     @foreach ($letters as $letter)
         <li>
-            <a href="{{route('store.menu', strtolower($letter))}}"
+            <a href="{{region_route('store.menu', ['slug' => strtolower($letter)])}}"
                class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#0B453C]/15 font-semibold">
                 {{ $letter }}
             </a>

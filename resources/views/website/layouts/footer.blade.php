@@ -10,11 +10,7 @@
         ]
     ],
 
-        'SAVING' => [
-            ['label' => 'Get Inspired', 'link' => ' '],
-            ['label' => 'Student Offers', 'link' => ' '],
-            ['label' => 'Deal Seeker', 'link' => ' '],
-        ],
+       
         'HELP' => [
             ['label' => 'All Events', 'link' => region_route('event.all')],
             ['label' => 'Black Friday Offers', 'link' =>  region_route('event', ['slug' => 'black-friday' ])],
@@ -38,7 +34,7 @@
 @endphp
 
 <footer class="bg-[#F2FCFA] pt-10">
-    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>

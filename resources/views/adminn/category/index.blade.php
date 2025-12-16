@@ -163,8 +163,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
-
-            fetch(`/discount/public/admin/categories/${id}/edit`)
+ let url = "{{ route('categories.edit', ':id') }}";
+        url = url.replace(':id', id);
+                fetch(url)
+            //fetch(`/discount/public/admin/categories/${id}/edit`)
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById("editCategoryBody").innerHTML = html;
