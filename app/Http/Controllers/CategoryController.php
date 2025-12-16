@@ -114,12 +114,25 @@ $meta_description = $setting->cate_m_descrip ;
 
     public function page($regionOrSlug, $slug = null)
     {
-    if ($slug === null) {
-        $slug = $regionOrSlug;
-        $region = config('app.default_region', 'usa');
-    } else {
-        $region = $regionOrSlug;
-    }
+   if ($slug === null) {
+            // URL: /store/abc (no region prefix)
+            $slug = $regionOrSlug;
+            $region = Region::where('code', config('app.default_region', 'usa'))->firstOrFail();
+        } else {
+            // URL: /au/store/abc (has region prefix)
+            $regionCode = $regionOrSlug;
+            $region = Region::where('code', $regionCode)->firstOrFail();
+        }
+    
+ 
+    
+   
+    $regionId = $region->id;
+    $regionTitle = $region->title;
+
+
+
+
         // $store = Store::where('slug', $slug)->firstOrFail();
          $store = Category::with([
     'stores' => function ($q) {
@@ -129,10 +142,10 @@ $meta_description = $setting->cate_m_descrip ;
 
          //dd($store);
         $stores = Store::where('category_id', $store->id)->get();
-        $categories = Category::all(); 
-        $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->get();
-        $likes = Store::where('category_id', $store->id)->where('feature', true)->get();  
-        $trendingWith = Store::where('category_id', $store->id)->where('trend', true)->get(); 
+        $categories = Category::where('cate_region', $regionId)->get(); 
+      $relatedStores = Store::where('category_id', $store->id)->where('recom', true)->where('store_region', $regionId)->get();
+$likes = Store::where('category_id', $store->id)->where('feature', true)->where('store_region', $regionId)->get();
+$trendingWith = Store::where('category_id', $store->id)->where('trend', true)->where('store_region', $regionId)->get(); 
 $title = $store->m_title ?? null;
     $meta_description = $store->m_descrip ?? null;
 
@@ -140,16 +153,21 @@ $title = $store->m_title ?? null;
                           ->where('feature', true)
                           ->where('verified', true)
                           ->where('status', 'active')
+                           ->whereHas('store', function ($query) use ($regionId) {
+        $query->where('store_region', $regionId);
+    })
                           ->get();
                           
-   $coupons = Coupon::with('store')->
-   whereIn('store_id', function ($query) use ($store) {
-    $query->select('id')
-          ->from('stores')
-          ->where('category_id', $store->id);
-})->orderByDesc('view') 
-->latest()
-        ->paginate(10);
+  $coupons = Coupon::with('store')
+    ->whereIn('store_id', function ($query) use ($store, $regionId) {
+        $query->select('id')
+            ->from('stores')
+            ->where('category_id', $store->id)
+            ->where('store_region', $regionId);
+    })
+    ->orderByDesc('view')
+    ->latest()
+    ->paginate(10);
     return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores','title','meta_description'));
     }
 
