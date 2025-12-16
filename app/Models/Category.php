@@ -44,10 +44,10 @@ class Category extends Model
         return $this->hasMany(Coupon::class);
     }
 
-      protected static function booted()
-    {
-        static::saving(function ($category) {
-            $category->slug = Str::slug($category->title);
-        });
-    }
+    //   protected static function booted()
+    // {
+    //     static::saving(function ($category) {
+    //         $category->slug = Str::slug($category->name);
+    //     });
+    // }
 }

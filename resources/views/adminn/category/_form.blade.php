@@ -49,25 +49,26 @@
 
     <div class="mb-3">
         <label class="form-label">Category Name</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $category->name) }}" required>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $category->name) }}" >
     </div>
 
     <div class="mb-3">
         <label class="form-label">Slug</label>
-        <input type="text" name="slug" class="form-control" value="{{ old('slug', $category->slug) }}" required>
+        
+        <input type="text" name="slug" class="form-control" value="{{ old('slug', $category->slug) }}" >
     </div>
  <div class="mb-3">
         <label class="form-label">SEO URL</label>
-        <input type="text" name="url" class="form-control" value="{{ old('url', $category->url) }}" required>
+        <input type="text" name="url" class="form-control" value="{{ old('url', $category->url) }}" >
     </div>
    
     <div class="mb-3">
         <label class="form-label">Meta Title</label>
-        <input type="text" name="m_title" class="form-control" value="{{ old('m_title', $category->m_title) }}" required>
+        <input type="text" name="m_title" class="form-control" value="{{ old('m_title', $category->m_title) }}" >
     </div>
      <div class="mb-3">
         <label class="form-label">Meta Description</label>
-        <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $category->m_descrip) }}" required>
+        <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $category->m_descrip) }}" >
     </div>
   <div class="position-relative">   
     <label class="form-label">Short Description</label>
