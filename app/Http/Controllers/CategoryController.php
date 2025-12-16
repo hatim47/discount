@@ -158,16 +158,13 @@ $title = $store->m_title ?? null;
     })
                           ->get();
                           
-  $coupons = Coupon::with('store')
-    ->whereIn('store_id', function ($query) use ($store, $regionId) {
-        $query->select('id')
-            ->from('stores')
-            ->where('category_id', $store->id)
-            ->where('store_region', $regionId);
-    })
-    ->orderByDesc('view')
-    ->latest()
-    ->paginate(10);
+ $coupons = Coupon::with('store')-> whereIn('store_id', function ($query) use ($store,$regionId) {
+     $query->select('id')->from('stores')->where('category_id', $store->id)->where('store_region', $regionId);
+    })->orderByDesc('view')
+     ->latest()
+      ->paginate(10);
+
+    dd($coupons , $feature);
     return view('website.categ', compact('store','coupons','feature','categories','trendingWith','stores','likes','relatedStores','title','meta_description'));
     }
 
