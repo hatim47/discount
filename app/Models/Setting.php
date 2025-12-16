@@ -28,6 +28,12 @@ class Setting extends Model
         'keyword',
         'socails',
         'seofooter',
+        'streetAddress',
+        'addressLocality',
+        'addressRegion',
+        'postalCode',
+        'addressCountry',
+        'lange',
         'advertise_m_tiitle',
         'advertise_m_descrip',
         'advertise_contect'

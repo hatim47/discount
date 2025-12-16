@@ -56,13 +56,13 @@ Setting::create($data);
         $data = $request->all();
         $socials = [
             'youtube' => $request->youtube == "" ? null : $request->youtube,
-            'tiktok'      => $request->tiktok == "" ? null : $request->tiktok,
-            'snapchat'    => $request->snapchat == "" ? null : $request->snapchat,
-            'instagram'   => $request->instagram == "" ? null : $request->instagram,
-            'pinterest'   => $request->pinterest == "" ? null : $request->pinterest,
-            'twitter'     => $request->twitter == "" ? null : $request->twitter,
-            'facebook'    => $request->facebook == "" ? null : $request->facebook,
-            'lnikedin'   => $request->lnikedin == "" ? null : $request->lnikedin,
+            'tiktok'  => $request->tiktok == "" ? null : $request->tiktok,
+            'snapchat'  => $request->snapchat == "" ? null : $request->snapchat,
+            'instagram'  => $request->instagram == "" ? null : $request->instagram,
+            'pinterest'  => $request->pinterest == "" ? null : $request->pinterest,
+            'twitter'   => $request->twitter == "" ? null : $request->twitter,
+            'facebook'   => $request->facebook == "" ? null : $request->facebook,
+            'lnikedin'  => $request->lnikedin == "" ? null : $request->lnikedin,
         ];
         $data['socails'] = json_encode($socials);
         // dd($request->all(), $data);

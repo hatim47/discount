@@ -1,44 +1,45 @@
 @php
+$socials = json_decode($setting->socails, true); // Your JSON data
+
+$sameAs = array_values(array_filter($socials));
+
+
+
 $schema = [
     "@context" => "https://schema.org",
     "@graph" => [
         [
             "@type" => "Organization",
-            "name" => "TopVouchersCode",
+            "name" => $setting->web_name,
             "url" => url()->current(),
             "description" => $meta_description,
             "address" => [
                 "@type" => "PostalAddress",
-                "streetAddress" => "31990 Nikita Drives Apt. 943",
-                "addressLocality" => "Beulah Wall",
-                "addressRegion" => "Nevada",
-                "postalCode" => "36632",
-                "addressCountry" => "UK"
+                "streetAddress" => $setting->streetAddress,
+                "addressLocality" => $setting->addressLocality,
+                "addressRegion" => $setting->addressRegion,
+                "postalCode" => $setting->postalCode,
+                "addressCountry" => $setting->addressCountry
             ],
             "logo" => [
                 "@type" => "ImageObject",
-                "name" => "TopVouchersCode",
+                "name" => $setting->web_name,
                 "width" => "230",
                 "height" => "67",
-                "url" => env('APP_ASSETS') . "img/logo_yellow.webp"
+                "url" => $setting->web_logo
             ],
-            "sameAs" => [
-                "https://www.facebook.com/#",
-                "https://x.com/TopVouchersCode",
-                "https://www.linkedin.com/in/TopVouchersCode/",
-                "https://www.pinterest.com/TopVouchersCode/_profile/"
-            ],
+            "sameAs" => [$sameAs],
         ],
         [
             "@type" => "WebSite",
-            "alternateName" => "TopVouchersCode",
+            "alternateName" => $setting->web_name,
             "url" => $localeUrl,
             "potentialAction" => [
                 "@type" => "SearchAction",
                 "target" => $localeUrl . "storesearch?q={search_term_string}",
                 "query-input" => "required name=search_term_string"
             ],
-            "inLanguage" => "en-GB"
+            "inLanguage" => $setting->lange
         ]
     ]
 ];

@@ -251,6 +251,50 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+ <div class="col-sm-4">
+                                                <label class="form-label">Street Address </label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="streetAddress" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                    <div class="col-sm-4">
+                                                <label class="form-label">Address Locality</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="addressLocality" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                 <div class="col-sm-4">
+                                                <label class="form-label">Address Region </label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="addressRegion" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                    <div class="col-sm-4">
+                                                <label class="form-label">Postal Code</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="postalCode" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                      <div class="col-sm-4">
+                                                <label class="form-label">Address Country</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="addressCountry" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                           <div class="col-sm-4">              
+                                                <label class="form-label">Language </label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="lange" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+
+
 
                                             
                                             <div class="form-group text-end">
