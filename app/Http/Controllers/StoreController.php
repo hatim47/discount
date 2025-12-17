@@ -393,12 +393,12 @@ $title = $store->m_tiitle;
     $meta_description = $store->m_descrip;
 
     // Get all stores, categories, and trending stores
-    $stores = Store::all();
-    $categories = Category::all();
-    $trends = Store::where('trend', true)->get();
+    $stores = Store::where('status', 1)->get();
+    $categories = Category::where('status', 1)->get();
+    $trends = Store::where('trend', true)->where('status', 1)->get();
 
     // Get coupons for this store
-    $coupons = Coupon::with('store')->where('store_id', $store->id)
+    $coupons = Coupon::with('store')->where('store_id', $store->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
   
@@ -444,6 +444,7 @@ $title = $store->m_tiitle;
     $regionTitle = $regionModel->title;
    
        $categories = Store::where('store_region', $regionId)
+                ->where('status', 1)
                ->orderBy('name', 'asc')
                ->get();
         $setting = Setting::where('setting_region', $regionId)->first();
@@ -472,7 +473,7 @@ $meta_description = $setting->store_m_descrip ;
     $regionId = $region->id;
     $regionTitle = $region->title;
     //  dd($slug,$regionId);
-       $categories = Store::where('name', 'like', $slug . '%')->where('store_region', $regionId)->get();
+       $categories = Store::where('name', 'like', $slug . '%')->where('store_region', $regionId)->where('status', 1)->get();
        $setting = Setting::where('setting_region', $regionId)->first();
 $title = $setting->stores_m_tiitle ;
 $meta_description = $setting->stores_m_descrip ;
@@ -539,6 +540,7 @@ public function popupsearch($region = null)
       $topStores = Store::withCount('coupons')
     ->orderBy('coupons_count', 'desc')
     ->where('store_region', $regionId)
+    ->where('status', 1)
     ->latest()
     ->take(5)
     ->get();
@@ -546,6 +548,7 @@ public function popupsearch($region = null)
 // 2. Get latest 5 coupons from these top 5 stores
 $trendingCoupons = Coupon::with('store')
     ->whereIn('store_id', $topStores->pluck('id'))
+    ->where('status', 'active')
     ->latest()
     ->take(5)
     ->get();
@@ -568,7 +571,7 @@ $trendingCoupons = Coupon::with('store')
 
     // Fetch stores filtered by region (optional: if your Store model has region_id)
     $stores = Store::when($regionId, function($q) use ($regionId) {
-        $q->where('store_region', $regionId);
+        $q->where('store_region', $regionId)->where('status', 1);
     })
     ->when($query, function($q) use ($query) {
         $q->where('name', 'like', "%{$query}%");

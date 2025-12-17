@@ -80,10 +80,10 @@ class DynapageController extends Controller
         }    
     $regionId = $region->id;
     $regionTitle = $region->title;
-        $event = DynaPage::where("dyna_region",$regionId)->where('slug', $slug)->firstOrFail();
-        $trends = Store::where('trend', true)->where("store_region",$regionId)->get();
+        $event = DynaPage::where("dyna_region",$regionId)->where('slug', $slug)->where('status', 1)->firstOrFail();
+        $trends = Store::where('trend', true)->where("store_region",$regionId)->where('status', 1)->get();
  
-    $coupons = Coupon::with('store')->where('dyna_id', $event->id)
+    $coupons = Coupon::with('store')->where('dyna_id', $event->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
         $meta_description = $event->m_descrip;  
@@ -94,20 +94,13 @@ class DynapageController extends Controller
      public function about($region = null)
     {
            $region = $region ?? config('app.default_region', 'usa');
-
          //dd($region);
-
         $regionModel = Region::where('code', $region)->firstOrFail();
         $regionId = $regionModel->id;
-    $regionTitle = $regionModel->title;
-
-  $about = About::where("about_region",$regionId)->first();
-
-        //  $meta_description =  '$about->m_descrip';  
-        //  $title =  '$about->m_tiitle';  
+        $regionTitle = $regionModel->title;
+        $about = About::where("about_region",$regionId)->first();  
         $meta_description = $about->m_descrip ?? null;
         $title = $about->m_tiitle ?? null;      
-
         return view('website.about', compact('about' ,'title','meta_description'));
     }
 

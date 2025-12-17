@@ -110,7 +110,7 @@ $title = $setting->cate_m_tiitle ;
 $meta_description = $setting->cate_m_descrip ;
 
   
-        $categories = Category::with('stores')->where('cate_region', $regionId)->get();
+ $categories = Category::with('stores')->where('cate_region', $regionId)->where('status', 1)->get();
         return view('website.categ_menu', compact('categories','title', 'meta_description'));
 }
 

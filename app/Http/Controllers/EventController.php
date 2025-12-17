@@ -77,7 +77,7 @@ class EventController extends Controller
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
 
-        $event = Event::where("event_region",$regionId)->get();
+        $event = Event::where("event_region",$regionId)->where('status', 1)->get();
       
         $meta_description = $event->m_descrip ?? null;
         $title =$event->m_tiitle ?? null;
@@ -104,11 +104,11 @@ class EventController extends Controller
 
         $event = Event::where("event_region",$regionId)->where('slug', $slug)->firstOrFail();
 
-        $allevent = Event::where("event_region",$regionId)->get();
-$trends = Store::where('trend', true)->get();
+        $allevent = Event::where("event_region",$regionId)->where('status', 1)->get();
+$trends = Store::where('trend', true)->where('status', 1)->get();
 
     // Get coupons for this store
-    $coupons = Coupon::with('store')->where('event_id', $event->id)
+    $coupons = Coupon::with('store')->where('event_id', $event->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
         $meta_description = $event->m_descrip ?? null;  
