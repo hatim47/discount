@@ -60,7 +60,7 @@
     </div>
      <div class="grid grid-cols-2 sm:grid-cols-3 auto-cols-min md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-y-3 gap-x-9">
         @foreach ($category->stores->take(56) as $store)
-            <a  href="{{route('store.website', $store->slug)}}"  class="text-sm text-gray-700 hover:text-[#0B453C] cursor-pointer">
+            <a  href="{{region_route('store.website',['slug' => $store->slug])}}"  class="text-sm text-gray-700 hover:text-[#0B453C] cursor-pointer">
                 {{ $store->name }}
             </a>
         @endforeach
