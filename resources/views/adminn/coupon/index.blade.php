@@ -118,27 +118,55 @@ function initLfmButtons() {
             })
             .catch(error => console.error(error));
     }
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-            let id = this.getAttribute("data-id");
- let url = "{{ route('coupon.edit', ':id') }}";
-        url = url.replace(':id', id);
-                fetch(url)
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById("editCategoryBody").innerHTML = html;
-                    initLfmButtons();
-                    new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
-                    document.getElementById("editCategoryModal")
-                        .addEventListener("shown.bs.modal", function () {
-                            initEditor('#editor1');
-                            initEditor('#editor2');
-                        }, { once: true });
-                })
-                .catch(err => console.error(err));
-        });
-    });
+//document.addEventListener("DOMContentLoaded", function() {
+ //   document.querySelectorAll(".edit-btn").forEach(btn => {
+//        btn.addEventListener("click", function() {
+//            let id = this.getAttribute("data-id");
+// let url = "{{ route('coupon.edit', ':id') }}";
+//        url = url.replace(':id', id);
+//                fetch(url)
+ //               .then(res => res.text())
+ //               .then(html => {
+ //                   document.getElementById("editCategoryBody").innerHTML = html;
+ //                   initLfmButtons();
+ //                   new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
+ //                   document.getElementById("editCategoryModal")
+  //                      .addEventListener("shown.bs.modal", function () {
+  //                          initEditor('#editor1');
+ //                           initEditor('#editor2');
+  //                      }, { once: true });
+ //               })
+ //               .catch(err => console.error(err));
+ //       });
+ //   });
+//});
+
+
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".edit-btn");
+    if (!btn) return;
+
+    let id = btn.getAttribute("data-id");
+
+    let url = "{{ route('coupon.edit', ':id') }}";
+    url = url.replace(':id', id);
+
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("editCategoryBody").innerHTML = html;
+            initLfmButtons();
+
+            const modalEl = document.getElementById("editCategoryModal");
+            const modal = new bootstrap.Modal(modalEl);
+            modal.show();
+
+            modalEl.addEventListener("shown.bs.modal", function () {
+                initEditor('#editor1');
+                initEditor('#editor2');
+            }, { once: true });
+        })
+        .catch(err => console.error(err));
 });
 </script>
 @endpush

@@ -196,7 +196,7 @@
                                              <div class="col-sm-6">
                                                 <label class="form-label">Coupon Link</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="link" placeholder="Enter Coupon link" >
+                                                    <input type="text" class="form-control " name="link" placeholder="Enter Coupon link" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -226,14 +226,14 @@
                                              <div class="col-sm-6">
                                                 <label class="form-label">Start Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" >
+                                                    <input type="date" class="form-control" name="start_date" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
                                                 <label class="form-label">End Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" >
+                                                    <input type="date" class="form-control" name="end_date" placeholder="Enter Event Name" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
@@ -299,8 +299,8 @@
                                                 <div class="position-relative">
                                                     
                                             <select name="event_id" class="form-control radius-8 form-select wizard-required" id="depart" required>
-                                                 @foreach($event as $category)
                                                   <option value="0">No Event</option>
+                                                 @foreach($event as $category)                                                 
                                                        <option value="{{ $category->id }}">
                                                             {{ $category->title }}
                                                          </option>

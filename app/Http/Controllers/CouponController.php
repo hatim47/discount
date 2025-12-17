@@ -54,8 +54,8 @@ public function create()
 
         $request->validate([
             'title' => 'required',
-            'code' => 'required|string|max:255|unique:coupons,code',
-            'link' => 'required|string|max:255',
+            'code' => 'required|string',
+            'link' => 'nullable|string|max:255',
             'trems' => 'nullable|string',
             'store_id' => 'required|exists:stores,id',   
         ]);
