@@ -202,20 +202,20 @@
                                                     
                                                 </div>
                                             </div>
-                                             <div class="col-sm-6">
-                                                <label class="form-label">Start Date*</label>
+                                             {{-- <div class="col-sm-6">
+                                                <label class="form-label">Start Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="start_date" placeholder="Enter Event Name" required>
+                                                    <input type="date" class="form-control" name="start_date" placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                            <div class="col-sm-6">
-                                                <label class="form-label">End Date*</label>
+                                                <label class="form-label">End Date</label>
                                                 <div class="position-relative">
-                                                    <input type="date" class="form-control wizard-required" name="end_date" placeholder="Enter Event Name" required>
+                                                    <input type="date" class="form-control " name="end_date" placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             
                                             <div class="form-group text-end">
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -342,9 +342,7 @@
                 }
             })
             .catch(error => console.error(error));
-    }
-
-   
+    }   
     initEditor('#editor2');
 </script>
 @endpush

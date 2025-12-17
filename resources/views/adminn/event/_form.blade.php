@@ -30,18 +30,17 @@
         <input type="text" name="m_descrip" class="form-control" value="{{ old('m_descrip', $event->m_descrip) }}" >
     </div>
 
-
-  <div class="position-relative"> 
-                         <label class="form-label"> Description</label>
-  
-                                 <textarea id="editor1" name="description" class="form-control" rows="4">{{ $event->description }} </textarea>
-                                                        <div class="wizard-form-error"></div>
-                                                </div>
+  <div class="mb-3">
+        <label class="form-label">Heading *</label>
+        <input type="text" name="heading" class="form-control" value="{{ old('heading', $event->heading) }}" >
+    </div>
 
 
-
-
-
+                <div class="position-relative"> 
+                <label class="form-label">Description</label>
+                <textarea id="editor1" name="description" class="form-control" rows="4">{{ $event->description }} </textarea>
+                <div class="wizard-form-error"></div>
+                </div>
     <div id="logo-holder" style="margin-top:15px;max-height:100px;">
         @if($event->banner)
             <img src="{{ $event->banner }}" width="80" class="mt-2">
