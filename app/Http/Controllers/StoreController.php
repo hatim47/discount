@@ -121,9 +121,12 @@ $data['socails'] = json_encode($socials);
         'like_store'  => $request->has('like_store'),
         'socails'   => $data['socails'],
     ]);
-
+// dd($request->dy_heading);
     // ✅ Save dynamic content into dynacontent table
-    if ($request->dy_heading && is_array($request->dy_heading)) {
+    if (!is_null($request->dy_heading) && (
+        is_string($request->dy_heading) ||
+        (is_array($request->dy_heading) && array_filter($request->dy_heading))
+    )) {
         foreach ($request->dy_heading as $index => $heading) {
             Dynacontent::create([
                 'store_id'    => $store->id,
@@ -171,10 +174,10 @@ $data['socails'] = json_encode($socials);
         $data['image'] = $request->file('image')->store('images', 'public');
     } 
 
-     $region = Region::all();
-        // dd($region[0]->code);
-     $stores = Store::all();
-     $trends = Store::where('trend', true)->get();    
+    $region = Region::all();
+     // dd($region[0]->code);
+    $stores = Store::all();
+    $trends = Store::where('trend', true)->get();    
     $categories = Category::all(); // Fetch categories for the dropdown
         return view('adminn.store.add', compact('categories', 'stores','trends','region'));
     }

@@ -507,7 +507,7 @@
                                                 <!-- First Block -->
                                                 <div class="input-block mb-3 p-3 border rounded">
                                                     <input type="text" name="dy_heading[]" class="form-control mb-2"
-                                                        placeholder="Enter name" required>
+                                                        placeholder="Enter name" >
 
                                                     <textarea class="editor form-control" name="dy_description[]" rows="5"></textarea>
 
