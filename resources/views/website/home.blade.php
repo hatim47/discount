@@ -289,7 +289,7 @@
         <div class="bg-[#0B453C] rounded-3xl p-10 text-white text-left relative overflow-hidden md:row-span-2 min-h-[300px] md:min-h-[620px]">
             <div class="relative z-10">
                 <h2 class="text-3xl font-normal mb-1">About</h2>
-                <h1 class="text-5xl/11 font-extrabold  mb-4">Top Vouchers<br>Code</h1>
+                <h1 class="text-5xl/11 font-extrabold  mb-4">codendiscount </h1>
                 <p class="text-sm lg:text-base leading-relaxed mb-8 opacity-90">
                  codendiscount contains affiliate links to products. We may receive a commission for purchases made through these links.
                 </p>
@@ -448,7 +448,7 @@
   <div class="bg-[#0B453C] w-full rounded-3xl mt-2 mb-2 px-[16%] lg:px-6 py-3 flex items-center justify-center gap-10 "> 
 <div class="max-w-4xl  flex flex-col gap-3 text-center items-center py-6"> 
 <h4 class="text-2xl lg:text-5xl font-semibold text-white">Get Exclusive Deals <br> Discounts & Daily Benefits</h4> 
-<p class="text-white text-baes lg:text-xl ">Vouchers Code  brings you the best savings on high-end designer brands by providing you with a wide range of verified discount deals, coupon code offers, and vouchers. Enjoy category-rich deals, effortless browsing, and trusted discounts designed to give you real value with every purchase you make.
+<p class="text-white text-baes lg:text-xl ">codendiscount   brings you the best savings on high-end designer brands by providing you with a wide range of verified discount deals, coupon code offers, and vouchers. Enjoy category-rich deals, effortless browsing, and trusted discounts designed to give you real value with every purchase you make.
 </p>
    <div class="relative w-full">
   <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white" placeholder="Enter your email address here" />

@@ -259,7 +259,7 @@ const HomePage = () => {
 
 </div>
 <div className="col-start-3 col-end-6 flex flex-col   gap-4 rounded-xl p-5 shadow-[0_0_5px_3px_rgba(0,0,0,0.07)]">
-  <div className='flex items-start' > <h4 className='font-bold text-2xl  text-[#0F0F0F]'>About Top Vouchers Code</h4></div>
+  <div className='flex items-start' > <h4 className='font-bold text-2xl  text-[#0F0F0F]'>About codendiscount </h4></div>
 <div className='h-50 overflow-auto'>
   <p className=''> <b>codendiscount contains affiliate links to products. We may receive a commission for purchases made through these links.</b>
   <br />
