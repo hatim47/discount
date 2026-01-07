@@ -16,7 +16,7 @@
         Hunting for <span class="text-[#0B453C] font-bold">Discounts!</span></h1>
         <p class="text-xl mb-4">Get Free Voucher Codes & Promo Codes on Brands You Crave For.</p>  
        <div class="hidden max-[787px]:flex justify-around">
-        <img src="{{asset('public/assets/images/Group 160.png')}}" class="w-10/12" />
+        <img src="{{asset('public/assets/images/Group 160.webp')}}" class="w-10/12" />
         </div> 
        <div class="relative">
         <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white"  @click="openSearch()" />
@@ -53,7 +53,7 @@
 </div>
    </div>
 <div class="hidden min-[787px]:flex justify-end">
-<img src="{{asset('public/assets/images/Group 160.png')}}" class="w-10/12" />
+<img src="{{asset('public/assets/images/Group 160.webp')}}" class="w-10/12" />
 </div>   
     </div>
 </section>
@@ -304,7 +304,7 @@
 
         <!-- Style Drop Card -->
         <div class="bg-gradient-to-br from-orange-400 to-amber-300 rounded-3xl overflow-hidden relative min-h-[300px]">
-            <img src="{{asset('public/assets/images/Mask group (13).png')}}" 
+            <img src="{{asset('public/assets/images/Mask group (13).webp')}}" 
                  alt="Style drop promotion" 
                  class="w-full h-full object-cover">
         </div>
