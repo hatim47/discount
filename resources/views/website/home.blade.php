@@ -304,7 +304,7 @@
 
         <!-- Style Drop Card -->
         <div class="bg-gradient-to-br from-orange-400 to-amber-300 rounded-3xl overflow-hidden relative min-h-[300px]">
-            <img src="{{asset('public/assets/images/Mask group (13).webp')}}" 
+        <img src="{{asset('public/assets/images/Mask group (13).webp')}}" 
                  alt="Style drop promotion" 
                  class="w-full h-full object-cover">
         </div>
@@ -325,7 +325,7 @@
             <div class=" rounded-r-3xl p-0 m-0 overflow-hidden w-full h-full">
             <img src="{{asset('public/assets/images/Mask group (14).png')}}" 
                  alt="Happy shopping woman" 
-                 class="relative left-6  w-full h-full object-cover ">
+                 class="relative left-6  w-full h-full object-cover">
         </div>
         </div>
 
@@ -455,7 +455,7 @@
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >
     <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div></div> 
-            <p class="text-white text-sm md:text-base">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
+            <p class="text-white text-sm md:text-base">By signing up I agree to codendiscount's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
 </div>
  </div>
     </section>

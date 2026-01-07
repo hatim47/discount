@@ -112,7 +112,7 @@
     </div> --}}
 <div class="flex justify-center py-6  border-t-1 border-t-black/10 ">
     <p class="text-center text-gray-400 text-xs ">
-        Copyright Topvoucherscode.co.uk. All rights reserved.
+        Copyright codendiscount.com. All rights reserved.
     </p>
      </div>
 </footer>

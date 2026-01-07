@@ -83,7 +83,7 @@ export default function Footer() {
       </div>
 
       <p className="text-center text-gray-400 text-xs pb-6">
-        Copyright Topvoucherscode.co.uk. All rights reserved.
+        Copyright codendiscount.com. All rights reserved.
       </p>
     </footer>
   );

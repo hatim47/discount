@@ -159,7 +159,7 @@ const [activeIndex, setActiveIndex] = useState(0);
             </form>
 
             <p className="text-xs text-gray-500 text-center  leading-relaxed">
-              By signing up I agree to topvoucherscode's{' '}
+              By signing up I agree to codendiscount's{' '}
               <a href="#" className="text-red-500 hover:text-red-600 underline">
                 Privacy Policy
               </a>{' '}

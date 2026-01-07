@@ -330,7 +330,7 @@
   <div class="text-[#0B453C] w-15 h-15 rounded-full absolute flex justify-center items-center font-semibold top-0 right-1"  >
     <iconify-icon icon="system-uicons:paper-plane-alt" width="34" height="34" class="text-[#0B453C] absolute z-2"></iconify-icon>
 </div></div> 
-            <p class="text-white text-sm md:text-base">By signing up I agree to topvoucherscode's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
+            <p class="text-white text-sm md:text-base">By signing up I agree to codendiscount's <a href="" class="underline">Privacy Policy </a>and consent to receive emails about offers.</p>
 
 </div>
  </div>
