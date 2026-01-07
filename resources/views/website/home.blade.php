@@ -291,7 +291,7 @@
                 <h2 class="text-3xl font-normal mb-1">About</h2>
                 <h1 class="text-5xl/11 font-extrabold  mb-4">Top Vouchers<br>Code</h1>
                 <p class="text-sm lg:text-base leading-relaxed mb-8 opacity-90">
-                 Top Vouchers Code contains affiliate links to products. We may receive a commission for purchases made through these links.
+                 codendiscount contains affiliate links to products. We may receive a commission for purchases made through these links.
                 </p>
                 <button class="bg-[#F2FCFA] text-[#0B453C] px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform">
                     Get Deal
@@ -316,7 +316,7 @@
                 Enjoy 55% off limited time
             </h1>
             <p class="text-sm lg:text-base text-black mb-6 leading-relaxed">
-                Top Vouchers Code contains affiliate links to products.
+                codendiscount contains affiliate links to products.
             </p>
             <button class="bg-[#0B453C] text-white px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
                 Get Deal

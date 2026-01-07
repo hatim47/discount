@@ -261,7 +261,7 @@ const HomePage = () => {
 <div className="col-start-3 col-end-6 flex flex-col   gap-4 rounded-xl p-5 shadow-[0_0_5px_3px_rgba(0,0,0,0.07)]">
   <div className='flex items-start' > <h4 className='font-bold text-2xl  text-[#0F0F0F]'>About Top Vouchers Code</h4></div>
 <div className='h-50 overflow-auto'>
-  <p className=''> <b>Top Vouchers Code contains affiliate links to products. We may receive a commission for purchases made through these links.</b>
+  <p className=''> <b>codendiscount contains affiliate links to products. We may receive a commission for purchases made through these links.</b>
   <br />
 
 For most of us, going out to a crowded shopping mall to buy anything is too much of a hassle. You have to waste an entire day, miss work, and then the aggravation of finding a car parking adds up to the troubles. This is where useful websites like TopVouchersCode come in. Here, you can shop for all that you want at steep discounts from the comfort of your home. Use this super-simple yet unique platform to avail great deals on your favourite products & services 24/7. 
