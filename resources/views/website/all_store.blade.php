@@ -25,7 +25,7 @@
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
-                       Browse By Categories
+                     All Brands
                     </h1>
                 </div>
             </div>

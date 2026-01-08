@@ -20,12 +20,12 @@
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="Categories"  class="text-[#0B453C]  hover:font-medium hover:underline">Categories</a>
+                        <a href="#"  class="text-[#0B453C]  hover:font-medium hover:underline">All Events</a>
                       
                     </nav>
                     <!-- Title -->
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
-                       Browse By Categories
+                        All Event
                     </h1>
                 </div>
             </div>
@@ -33,10 +33,7 @@
     </section>
 
  <section class="bg-[#F2FCFA] py-10 text-[#0F0F0F]">
-
-<div class="max-w-7xl mx-auto  flex flex-col p-6">
-
- <h1 class="text-2xl my-4 uppercase font-bold text-[#0F0F0F] ">Event</h1>
+<div class="max-w-7xl mx-auto flex flex-col p-6">
  <div class="grid grid-cols-1 sm:grid-cols-2 auto-cols-min md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-y-6 gap-x-6 ">
 {{-- @foreach ($categories as $category)
  <div class="flex flex-col items-start   ">
@@ -50,7 +47,6 @@
  <a href="{{ region_route('event', ['slug' => $category->slug]) }}" class="inline-block bg-[#0B453C] text-white text-center w-full px-4 py-2 rounded hover:bg-[#0B453C]">View</a>
 </div>
 @endforeach 
-
 </div>     
   </div> 
     </section>
