@@ -172,6 +172,7 @@
       </div>
     </div>
   </div>
+  
   <div x-data="megaMenu()" x-init="init()" class="relative">
     <!-- Trigger -->
     <a href="{{ url('/categories') }}"
