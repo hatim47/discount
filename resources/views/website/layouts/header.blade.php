@@ -130,7 +130,7 @@
 
               <div class="flex flex-col space-y-1">
                 @foreach ($category->stores->where('ismenu', 1)->take(3) as $store)
-                  @if ($store->ismenu === 1)
+                  @if ($store->ismenu == 1)
                     <a href="{{region_route('store.website', ['slug' => $store->slug ]) }}"
                       class="block text-gray-700 hover:text-[#0B453C] rounded-md text-sm">
                       {{ $store->name }}

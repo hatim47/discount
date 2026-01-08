@@ -41,7 +41,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], funct
 Route::controller(DashboardController::class)->group(function () {
     // Route::get('admin', 'index')->name('index');
 });
-// Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+ Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
 
 
