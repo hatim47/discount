@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Region;
+use App\Models\Store;
 use App\Models\DynaPage;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
@@ -40,12 +41,19 @@ class AppServiceProvider extends ServiceProvider
                                      ->where('cate_region', $regionId)
                                      ->orderBy('name', 'asc') // Optional: order by name
                                      ->get();
+                $trending  = Store::where('trend', 1)
+                                     ->where('store_region', $regionId)
+                                     ->orderBy('created_at', 'desc')
+                                     ->get();
+
+
+
              $dynapage = DynaPage::where('ismenu', '1')->where('dyna_region', $regionId)->get();
             } else {
                 $categories = collect(); // Empty collection if no region
                 $dynapage = collect();
             }
-            $view->with('categoryies', $categories)->with('dynapage', $dynapage);
+            $view->with('categoryies', $categories)->with('trending', $trending)->with('dynapage', $dynapage);
         });
         View::composer('*', function ($view) {
 

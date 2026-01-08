@@ -172,7 +172,48 @@
       </div>
     </div>
   </div>
+  <div x-data="megaMenu()" x-init="init()" class="relative">
+    <!-- Trigger -->
+    <a href="{{ url('/categories') }}"
+      @mouseenter="openWithCancel()"
+      @mouseleave="startCloseTimer()"
+      class="text-gray-600 hover:text-[#0B453C] transition font-semibold flex items-center">
+      Trending <iconify-icon icon="lsicon:down-outline" width="16" height="16"></iconify-icon>
+    </a>
 
+    <!-- FULLSCREEN MODAL OVERLAY -->
+    <!-- Important: overlay is fixed and listens for mouseenter/mouseleave -->
+    <div
+      x-show="open"
+      x-transition.opacity.duration.200ms
+      @mouseenter="clearCloseTimer()"
+      @mouseleave="startCloseTimer()"
+      class="fixed inset-0 z-[9999] bg-black/20 flex items-start justify-center pointer-events-auto"
+      x-cloak
+    >
+      <!-- Panel -->
+      <div
+        class="bg-white w-full max-w-6xl mt-24 rounded-lg border-t-4 border-[#0B453C] shadow-2xl p-6 overflow-y-auto"
+        @mouseenter="clearCloseTimer()"
+        @mouseleave="startCloseTimer()"
+        role="region"
+        aria-label="Categories"
+      >
+        <!-- Content: your grid -->
+        <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+          @foreach($trending as $category)
+            <li>
+              <a href="{{ region_route('store.website', ['slug' => $category->slug]) }}"
+                class="block text-gray-900 hover:text-[#0B453C] rounded-md text-sm mb-2">
+                {{ $category->name }}
+              </a>
+            </li>
+          @endforeach
+
+        </ul>
+      </div>
+    </div>
+  </div>
 <div class="relative inline-block text-left">
     <!-- Button -->
     <a 
