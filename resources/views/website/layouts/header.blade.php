@@ -89,9 +89,7 @@
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between py-3">
       <div class="flex items-center space-x-6">
-       <a href="{{ url('/') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
-          Home
-        </a>
+
   <div x-data="megaMenu()" x-init="init()" class="relative">
     <!-- Trigger -->
     <a href="{{ url('/categories') }}"
@@ -172,7 +170,7 @@
       </div>
     </div>
   </div>
-  
+
   <div x-data="megaMenu()" x-init="init()" class="relative">
     <!-- Trigger -->
     <a href="{{ url('/categories') }}"
@@ -248,9 +246,9 @@
         <a href="{{region_route('featured') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
           Featured Deals
         </a>
-        <a href="{{region_route('aboutus') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
+        {{-- <a href="{{region_route('aboutus') }}" class="text-gray-600 hover:text-[#0B453C] transition font-semibold">
           About Us
-        </a>
+        </a> --}}
 
       </div>
     </div>
