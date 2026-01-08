@@ -350,6 +350,21 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+                                               <h6 class="text-md text-neutral-500">Event Page</h6>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="event_m_tiitle" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="event_m_descrip" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
   <h6 class="text-md text-neutral-500">Advertise Page</h6>
                                             <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>

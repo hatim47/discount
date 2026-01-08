@@ -78,9 +78,10 @@ class EventController extends Controller
     $regionTitle = $regionModel->title;
 
         $event = Event::where("event_region",$regionId)->where('status', 1)->get();
+      $setting = Setting::where('setting_region', $regionId)->first();
+$title = $setting->event_m_tiitle ;
+$meta_description = $setting->event_m_descrip ;
       
-        $meta_description = $event->m_descrip ?? null;
-        $title =$event->m_tiitle ?? null;
         
         return view('website.event', compact('event','title','meta_description'));
     }

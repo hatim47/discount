@@ -79,12 +79,7 @@ $jsonLd = json_encode(
 </div>
       </div> 
  
-
   </section>
-
-
-
-
 
 @endsection
 @push('scripts')

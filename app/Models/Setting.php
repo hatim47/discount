@@ -24,6 +24,8 @@ class Setting extends Model
         'setting_region',
         'featuer_m_tiitle',
         'featuer_m_descrip',
+        'event_m_tiitle',
+        'event_m_descrip',
         'seoheader',
         'keyword',
         'socails',

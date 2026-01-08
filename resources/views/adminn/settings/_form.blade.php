@@ -190,6 +190,25 @@
                             <div class="wizard-form-error"></div>
                         </div>
                     </div> 
+  <h6 class="text-md text-neutral-500">event menu page</h6>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Title*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="event_m_tiitle" value="{{ old('event_m_tiitle', $settingsa->event_m_tiitle) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="event_m_tiitle" value="{{ old('event_m_tiitle', $settingsa->event_m_tiitle) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div> 
+
+
+
+
                        <h6 class="text-md text-neutral-500">Advertise menu page </h6>
                     <div class="col-sm-6">
                         <label class="form-label">Meta Title*</label>
