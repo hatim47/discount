@@ -116,7 +116,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 
 <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">{{$event->title}} Event</div>
+    <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">{{$event->title}} Event</div>
    <div class="flex flex-wrap text-sm text-gray-700 p-2">
         {!! $event->description !!}
      
@@ -134,7 +134,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
   <p>Voucher Codes: <span id="voucher-count" class="font-semibold">2</span></p>
 <p>Deals: <span id="deal-count" class="font-semibold">4</span></p>
     </div>
-    <div class="mt-3 bg-green-100 px-3 py-2 rounded-md font-semibold text-gray-900">
+    <div class="mt-3 bg-[#0B453C] px-3 py-2 rounded-md font-semibold text-white">
       Total Offers: <span id="total-count" class="ml-1">6</span>
     </div>
   </div>
@@ -165,7 +165,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
  
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Events</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Events</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($allevent as $relateds )
