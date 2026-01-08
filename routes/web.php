@@ -41,7 +41,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], funct
 Route::controller(DashboardController::class)->group(function () {
     // Route::get('admin', 'index')->name('index');
 });
-Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+// Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
 
 
@@ -58,9 +58,6 @@ Route::post('/settings/update-image', [SettingController::class, 'updateImage'])
     ->name('settings.update-image');
 Route::get('admin/settings', [SettingController::class, 'index'])->name('settings.index');
 
-
-
-
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
@@ -69,8 +66,6 @@ Route::resource('admin/dynapage',DynapageController::class);
 Route::resource('admin/users', UsersController::class);
 Route::resource('admin/about', AboutController::class);
 Route::resource('admin/settings', SettingController::class);
-
-
 
 });
 Route::post('/logout', function() {
