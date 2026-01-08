@@ -159,6 +159,7 @@ font-size:30px;
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6  gap-6  grid grid-cols-1 lg:grid-cols-10">
      {{-- column one start  --}}
     <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
+    <h1 class="text-lg sm:text-2xl font-bold text-gray-900">{{ $store->name }}</h1>
      <div id="coupon-list"  class="flex flex-col ms-3 gap-6  lg:col-span-7"> 
     @foreach($coupons as $coupon)
         @include('website.couponspart', ['coupon' => $coupon])
@@ -364,7 +365,7 @@ font-size:30px;
     {{-- column two end --}} 
     </div>
   </section>
-  {{-- <h1 class="text-5xl font-medium">{{ $store->name }}</h1> --}}
+ 
 @endsection
 @push('scripts')
  <script src="{{ asset('public/assets/js/lib/jquery-3.7.1.min.js') }}"></script>
