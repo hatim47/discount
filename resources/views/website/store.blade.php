@@ -157,10 +157,9 @@ $jsonLd = json_encode(
             <!-- Left Section -->
             <div class="flex items-center gap-4 ms-3 w-10/12 ">
                 <!-- Logo -->
-                <div
-                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border border-[#0B453C] flex items-center justify-center bg-white shadow-sm overflow-hidden">
+               <div class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border border-[#0B453C] flex items-center justify-center bg-white shadow-sm overflow-hidden">
                     <img src="{{ $store->logo }}" alt="Clarks" class="w-full h-full rounded-full object-contain " />
-                </div>
+               </div>
 
                 <!-- Text Content -->
                 <div class="flex flex-col  w-10/12 ">
