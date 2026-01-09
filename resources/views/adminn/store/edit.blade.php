@@ -425,17 +425,52 @@
                             </div>
                         </div> 
 
+                             <div class="col-md-12">
+                                        <h6>What Makes Store Special?</h6> 
+                             </div>
+
+                             {{-- {{ dd($store->specail)}} --}}
+@php
+    $specail = is_string($store->specail)
+        ? json_decode($store->specail, true)
+        : (array) $store->specail;
+@endphp
+                           <div class="col-md-6">
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+           <input
+            type="checkbox"
+            name="free_deals"
+            class="btn-check"
+            id="btncheck7"
+            value="on"
+            {{ old('specail.free_deals', $specail['free_deals'] ?? null) == 'on' ? 'checked' : '' }}
+        >                      
+         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck7">Free Deals </label>
+         <input
+            type="checkbox"
+            name="free_delivery"
+            class="btn-check"
+            id="btncheck77"
+            value="on"
+            {{ old('specail.free_delivery', $specail['free_delivery'] ?? null) == 'on' ? 'checked' : '' }}
+        >
+         <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck77"> Free Delivery </label> 
+                    </div>
+       </div>
+
+ <div class="col-md-12">
+                     <h4>Dynamic Sections Sidebar stores Coupons</h4>
+                      <textarea class="editor form-control" name="hintip" rows="5">{{ $store->hintip }} </textarea>
+                    </div>
+
             <div class="col-md-12">
                 <h4>Dynamic Sections below stores Coupons</h4>
-
                 <div id="input-wrapper">
                     @foreach ($store->dynacontents as $dynacontent)
                         <div class="input-block mb-3 p-3 border rounded">
                             <input type="text" name="dy_heading[]" class="form-control mb-2" placeholder="Enter name"
                                 value="{{ $dynacontent->heading }}">
-
                             <textarea id="editor{{ $loop->index }}" class="editor form-control" name="dy_description[]" rows="5">{{ $dynacontent->description }}</textarea>
-
                             <button type="button"
                                 class="btn btn-danger btn-sm mt-2 d-flex align-items-center justify-content-center remove-block w-50-px h-50-px">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -447,7 +482,6 @@
                         </div>
                     @endforeach
                 </div>
-
                 <button type="button" id="add-block" class="btn btn-primary mt-3 w-50-px h-50-px">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
                         <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
@@ -457,38 +491,33 @@
                     </svg>
                 </button>
             </div>
-
-
             <div class="row gy-3">
                 <div class="mb-3">
                     <label class="form-label">Slug</label>
                     <input type="text" name="slug" class="form-control" value="{{ old('slug', $store->slug) }}">
                 </div>
-     <div class="mb-3">
+                <div class="mb-3">
                     <label class="form-label">Link</label>
                     <input type="text" name="link" class="form-control" value="{{ old('link', $store->link) }}">
                 </div>
-  <div class="row gy-3">
-                                    <div class="col-sm-6">
-                                        <label class="form-label">(META) Title*</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control wizard-required"  value="{{ old('m_tiitle', $store->m_tiitle) }}" name="m_tiitle"
-                                                 >
-                                            <div class="wizard-form-error"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">(META) Description*</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control wizard-required"  value="{{ old('m_descrip', $store->m_descrip) }}" name="m_descrip"
-                                                 style="height: 60px; line-height: 20px; overflow-y: auto;" >
-                                            <div class="wizard-form-error"></div>
-                                        </div>
-                                    </div>
-                                
-
-                                </div>
-
+            <div class="row gy-3">
+            <div class="col-sm-6">
+                <label class="form-label">(META) Title*</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control wizard-required"  value="{{ old('m_tiitle', $store->m_tiitle) }}" name="m_tiitle"
+                            >
+                    <div class="wizard-form-error"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">(META) Description*</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control wizard-required"  value="{{ old('m_descrip', $store->m_descrip) }}" name="m_descrip"
+                            style="height: 60px; line-height: 20px; overflow-y: auto;" >
+                    <div class="wizard-form-error"></div>
+                </div>
+            </div>
+            </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </div>
     </form>

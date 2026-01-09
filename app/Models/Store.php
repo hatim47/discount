@@ -31,9 +31,12 @@ class Store extends Model
         'm_tiitle',
         'socails',
         'm_descrip',
-
+        'specail',
+        'hintip',
     ];
-
+protected $casts = [
+    'specail' => 'array', // use your real column name
+];
     // Relationships
      public function region()
     {

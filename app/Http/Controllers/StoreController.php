@@ -74,6 +74,9 @@ public function index_cat($categoryId = null)
             'dy_description' => 'nullable|array',
             'dy_description.*'=> 'nullable|string',
 
+            'hintip'=> 'nullable|string',
+     
+
             // relations
             'stores'             => 'nullable|array',
             'stores.*'           => 'nullable|integer|exists:stores,id',
@@ -85,6 +88,10 @@ public function index_cat($categoryId = null)
     } catch (\Illuminate\Validation\ValidationException $e) {
         dd($e->errors()); // show validation errors directly
     }
+        $specail = [
+'free_deals' => $request->free_deals == "" ? null : $request->free_deals,
+'free_delivery' => $request->free_delivery == "" ? null : $request->free_delivery,
+        ]; 
 $socials = [
     'youtube' => $request->youtube == "" ? null : $request->youtube,
     'tiktok'      => $request->tiktok == "" ? null : $request->tiktok,
@@ -97,7 +104,7 @@ $socials = [
 ];
 
 $data['socails'] = json_encode($socials);
-
+$data['specail'] = json_encode($specail);
 
   //  ✅ Create main store
     $store = Store::create([
@@ -110,7 +117,7 @@ $data['socails'] = json_encode($socials);
         'link'        => $request->link,
         'category_id' => $request->category_id,
         'status'      => $request->status ?? 1,
-            'm_tiitle' => $request->m_tiitle,
+        'm_tiitle' => $request->m_tiitle,
     'm_descrip' => $request->m_descrip,
     'store_region' => $request->store_region,
         // on/off toggles
@@ -119,7 +126,9 @@ $data['socails'] = json_encode($socials);
         'relat_store' => $request->has('relat_store'),
         'relat_cate'  => $request->has('relat_cate'),
         'like_store'  => $request->has('like_store'),
-        'socails'   => $data['socails'],
+        'socails' => $data['socails'],
+        'specail' => $data['specail'],
+        'hintip'  => $request->hintip,
     ]);
 // dd($request->dy_heading);
     // ✅ Save dynamic content into dynacontent table
@@ -235,6 +244,13 @@ $data['socails'] = json_encode($socials);
 } catch (\Illuminate\Validation\ValidationException $e) {
     dd($e->errors()); // 👈 see exactly what fails
 }
+ $specail = [
+'free_deals' => $request->free_deals == "" ? null : $request->free_deals,
+'free_delivery' => $request->free_delivery == "" ? null : $request->free_delivery,
+ ];
+// dd($specail);
+
+
 $socials = [
     'youtube' => $request->youtube == "" ? null : $request->youtube,
     'tiktok'      => $request->tiktok == "" ? null : $request->tiktok,
@@ -247,6 +263,7 @@ $socials = [
 ];
 
 $data['socails'] = json_encode($socials);
+$data['specail'] = json_encode($specail);
     // ----------------------------
     // 2) UPDATE STORE CORE FIELDS
     // ----------------------------
@@ -270,6 +287,8 @@ $data['socails'] = json_encode($socials);
     'like_store'  => $request->has('like_store') ? 1 : 0,
     'trend_store'  => $request->has('trend_store') ? 1 : 0,
     'socails'   => $data['socails'],
+    'specail' => $data['specail'],
+    'hintip'  => $request->hintip,
 ]);
 
     // ----------------------------
@@ -355,10 +374,6 @@ $data['socails'] = json_encode($socials);
             $regionCode = $regionOrSlug;
             $region = Region::where('code', $regionCode)->firstOrFail();
         }
-    
- 
-    
-   
     $regionId = $region->id;
     $regionTitle = $region->title;
        $store = Store::with([
@@ -384,34 +399,26 @@ if (!$store) {
         return redirect()->route('home')
             ->with('error', 'Store not found in this region.');
     }
-    
     return redirect()->route('region.home', ['region' => $region->code])
         ->with('error', 'Store not found in this region.');
 }
     // $titel=$store->name . " Coupons & Deals - " . config('app.name');
 $title = $store->m_tiitle;
     $meta_description = $store->m_descrip;
-
     // Get all stores, categories, and trending stores
     $stores = Store::where('status', 1)->get();
     $categories = Category::where('status', 1)->get();
     $trends = Store::where('trend', true)->where('status', 1)->get();
-
     // Get coupons for this store
     $coupons = Coupon::with('store')->where('store_id', $store->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
-  
-
-
     // --- Ratings Section ---
     $average = round($store->ratings->avg('rating'), 1);
     $count = $store->ratings->count();
-
     // Check if logged-in user or guest already rated
     $user = Auth::user();
     $existingRating = null;
-
     if ($user) {
         $existingRating = Rating::where('store_id', $store->id)
             ->where('user_id', $user->id)
@@ -421,6 +428,8 @@ $title = $store->m_tiitle;
             ->where('ip_address', \request()->ip())
             ->first();
     }
+
+
     // Pass everything to the view
     return view('website.store', compact(
         'store',

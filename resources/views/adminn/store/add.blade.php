@@ -501,6 +501,22 @@
 </div>
                                         </div>
 
+                                     <div class="col-md-12">
+                                        <h6>What Makes Store Special?</h6> 
+                                        </div>
+                                        <div class="col-md-6">
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" name="free_deals" class="btn-check" id="btncheck7">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck7">Free Deals </label>
+                        <input type="checkbox" class="btn-check" name="free_delivery" id="btncheck77">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck77"> Free Delivery </label> 
+                    </div>
+                                    </div>
+                    <div class="col-md-12">
+                     <h4>Dynamic Sections Sidebar stores Coupons</h4>
+                         <textarea class="editor form-control" name="hintip" rows="5"></textarea>
+
+                    </div>
                                         <div class="col-md-12">
                                             <h4>Dynamic Sections below stores Coupons </h4>
                                             <div id="input-wrapper">
