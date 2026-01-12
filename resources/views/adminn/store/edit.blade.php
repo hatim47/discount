@@ -151,8 +151,7 @@
             <div class="col-12">
                 <label class="form-label">Description Content*</label>
                 <div class="position-relative">
-                    <textarea id="editor2" name="description" class="form-control" rows="8">{{ old('description', $store->description) }}</textarea>
-
+                    <textarea id="" name="description" class="editor form-control" rows="8">{{ old('description', $store->description) }}</textarea>
                     <div class="form-error"></div>
                 </div>
             </div>
