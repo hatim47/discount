@@ -177,22 +177,15 @@ font-size:30px;
     </div>
 @endif
 
-
+  @if ($store->long_content)
 <div class="card">
-  {{-- @foreach ($store->dynacontents as $index => $relateds)
- <div class="bg-white rounded-xl w-full my-5 shadow overflow-hidden" id="{{$index}}">
-    <h3 class="border-gray-800/20 border-b px-8 text-xl py-4 font-bold text-[#0f0f0f0] ">{{$relateds->heading}} 
-</h3>
+ <div class="bg-white rounded-xl w-full my-5 shadow overflow-hidden">
     <div class="flex flex-col  text-[#0f0f0f0] p-8">
-       
-
-{!! $relateds->description !!}
-
+{!! $store->long_content !!}
     </div>
   </div>
-    @endforeach --}}
 </div> 
-
+@endif
      </div> 
 
     
