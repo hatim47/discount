@@ -315,7 +315,15 @@ $jsonLd = json_encode(
   </div>
   </div>
  @endif
-
+  @if ( $store->dynacontents ->isNotEmpty() )
+  <div class="bg-white w-full rounded-xl shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-semibold text-white">Quick Links</div>
+    <ul class="divide-y divide-gray-200 text-sm text-gray-700">
+  @foreach ($store->dynacontents as $index => $relateds)
+      <li><a href="#{{$index}}" class="block px-4 py-2 hover:bg-gray-50">{{$relateds->heading }}</a></li>
+      @endforeach  
+  </div>
+@endif
 
 
   <div class="bg-white w-full rounded-xl shadow overflow-hidden">
@@ -410,15 +418,7 @@ $jsonLd = json_encode(
 </div>
 
   <!-- Quick Links -->
-   @if ( $store->dynacontents ->isNotEmpty() )
-  <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-[#0B453C] px-4 py-2 font-semibold text-white">Quick Links</div>
-    <ul class="divide-y divide-gray-200 text-sm text-gray-700">
-  @foreach ($store->dynacontents as $index => $relateds)
-      <li><a href="#{{$index}}" class="block px-4 py-2 hover:bg-gray-50">{{$relateds->heading }}</a></li>
-      @endforeach  
-  </div>
-@endif
+ 
 
 
   @if ( $store->relatedStores ->isNotEmpty())
