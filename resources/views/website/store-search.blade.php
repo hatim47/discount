@@ -155,7 +155,7 @@
                     <template x-for="offer in offers" :key="offer.id">
                         <a :href="`{{ $routePattern }}`.replace('__SLUG__', offer.store.slug)" class="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg border border-gray-100">
                            <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
-    <img :src="offer.store.logo" alt="" class="w-full h-full object-cover">
+    <img :src="offer.store.logo" alt="logo" class="w-full h-full object-cover">
 </div>
                             <div class="flex-1">
                                 <h3 class="text-[#0B453C] font-bold text-sm mb-1" x-text="offer.brand"></h3>
@@ -184,7 +184,7 @@
                   <a :href="`{{ $routePattern }}`.replace('__SLUG__', store.slug)" class="flex items-center gap-4 p-4 border rounded hover:bg-gray-50 cursor-pointer">
     <!-- Logo Thumbnail -->
     <div class="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
-        <img :src="store.logo" alt="" class="w-full h-full object-cover" />
+        <img :src="store.logo" alt="logo" class="w-full h-full object-cover" />
     </div>
 
     <!-- Store Info -->
@@ -236,9 +236,9 @@ function storeSearch(currentRegion = null, defaultRegion = 'usa', regions = []) 
 
         // 🔹 Fetch data for popup (Trending Offers + Brands)
         loadPopupData() {
-            let url = '/discount/popupsearch';
+            let url = '/popupsearch';
             if (this.selectedRegion && this.selectedRegion !== this.defaultRegion) {
-                url = '/discount/' + this.selectedRegion + '/popupsearch';
+                url = '/' + this.selectedRegion + '/popupsearch';
             }
             fetch(url)
                 .then(res => res.json())
@@ -252,9 +252,9 @@ function storeSearch(currentRegion = null, defaultRegion = 'usa', regions = []) 
         // 🔹 Fetch stores when user types
         searchStores() {
             if(!this.searchQuery.length) return; // skip if empty
-            let url = '/discount/search?query=' + encodeURIComponent(this.searchQuery);
+            let url = '/search?query=' + encodeURIComponent(this.searchQuery);
             if (this.selectedRegion && this.selectedRegion !== this.defaultRegion) {
-                url = '/discount/' + this.selectedRegion + '/search?query=' + encodeURIComponent(this.searchQuery);
+                url = '/' + this.selectedRegion + '/search?query=' + encodeURIComponent(this.searchQuery);
             }
             fetch(url)
                 .then(res => res.json())

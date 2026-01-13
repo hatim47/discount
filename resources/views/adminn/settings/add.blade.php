@@ -388,6 +388,70 @@
                                                 </div>
                                             </div>
 
+                                          <h4 class="text-xl text-neutral-500">Student Offer Page</h4>
+
+                                                 <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="inspired_m_tiitle" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="inspired_m_descrip" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="inspired_heading" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="inspired_subheading" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                          <h4 class="text-xl text-neutral-500">Student Offer Page</h4>
+
+                                               <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="studentt_m_tiitle" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="studentt_m_descrip" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Meta Title*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="studentt_heading" placeholder="Enter Title" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="form-label">Meta Description*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="studentt_subheading" placeholder="Enter Description" required>
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>    
+
+
+
+
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>

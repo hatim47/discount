@@ -569,7 +569,7 @@ $trendingCoupons = Coupon::with('store')
     }
 
 
-    public function search(Request $request, $region = null)
+public function search(Request $request, $region = null)
 {
     // Use region from URL or fallback to session/default
     $region = $region ?? session('region', config('app.default_region', 'usa'));

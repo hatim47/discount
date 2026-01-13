@@ -96,25 +96,36 @@ $meta_description = $setting->event_m_descrip ;
             $regionCode = $regionOrSlug;
             $region = Region::where('code', $regionCode)->firstOrFail();
         }
-    
- 
-    
-   
     $regionId = $region->id;
     $regionTitle = $region->title;
-
-        $event = Event::where("event_region",$regionId)->where('slug', $slug)->firstOrFail();
-
-        $allevent = Event::where("event_region",$regionId)->where('status', 1)->get();
-$trends = Store::where('trend', true)->where('status', 1)->get();
-
+    $event = Event::where("event_region",$regionId)->where('slug', $slug)->firstOrFail();
+    $allevent = Event::where("event_region",$regionId)->where('status', 1)->get();
+    $trends = Store::where('trend', true)->where('status', 1)->get();
     // Get coupons for this store
     $coupons = Coupon::with('store')->where('event_id', $event->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
+
+ $feature = Coupon::with('store') // eager load store
+                          ->where('feature', true)
+                          ->where('verified', true)
+                          ->where('event_id', $event->id)
+                          ->where('status', 'active')
+                           ->whereHas('store', function ($query) use ($regionId) {
+        $query->where('store_region', $regionId);
+    })
+->get();
+
+$trendingWith = Store::where('trend', true)
+    ->where('store_region', $regionId)
+    ->latest()
+    ->limit(20)
+    ->get();
+
+
         $meta_description = $event->m_descrip ?? null;  
         $title = $event->m_tiitle ?? null;       
-        return view('website.eventsub', compact('event','trends','coupons','allevent','title','meta_description'));
+        return view('website.eventsub', compact('event','feature','trends','trendingWith','coupons','allevent','title','meta_description'));
     }
 
 }

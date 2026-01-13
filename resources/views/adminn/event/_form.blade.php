@@ -39,8 +39,18 @@
                 <div class="position-relative"> 
                 <label class="form-label">Description</label>
                 <textarea id="editor1" name="description" class="form-control" rows="4">{{ $event->description }} </textarea>
-                <div class="wizard-form-error"></div>
+              
                 </div>
+    <div class="position-relative"> 
+            <label class="form-label">Description Below of coupons</label>
+                <textarea id="editor3" name="top_events" class="form-control" rows="4">{{ $event->top_events }} </textarea>
+              
+                </div>
+
+
+
+
+
     <div id="logo-holder" style="margin-top:15px;max-height:100px;">
         @if($event->banner)
             <img src="{{ $event->banner }}" width="80" class="mt-2">

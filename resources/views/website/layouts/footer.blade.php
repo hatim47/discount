@@ -9,7 +9,10 @@
             'text' => 'Disclosure: If you buy a product or service after clicking one of our links, we may be paid a commission.'
         ]
     ],
-
+     'SAVING' => [
+            ['label' => 'Student Offer', 'link' => region_route('studentt')],
+            ['label' => 'Get Inspired', 'link' =>  region_route('inspired')],
+        ],
        
         'HELP' => [
             ['label' => 'All Events', 'link' => region_route('event.all')],
@@ -34,7 +37,7 @@
 @endphp
 
 <footer class="bg-[#F2FCFA] pt-10">
-    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-5 gap-8">
         {{-- Dynamic Sections --}}
         @foreach($footerData as $section => $items)
             <div>

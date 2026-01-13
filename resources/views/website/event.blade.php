@@ -8,6 +8,40 @@
 @endpush
 
 @section('content')
+@php
+// Build 3-level breadcrumbs (always present)
+$breadcrumbs = [
+    [
+        "@type" => "ListItem",
+        "position" => 1,
+        "name" => "Home",
+        "item" => url('/')
+    ],
+    [
+        "@type" => "ListItem",
+        "position" => 2,
+        "name" => "All Events",
+        "item" => url()->current()
+    ]
+];
+// Store + Breadcrumb schema
+$schema = [
+    "@context" => "https://schema.org",
+    "@graph" => [
+        [
+            "@type" => "BreadcrumbList",
+            "itemListElement" => $breadcrumbs
+        ]
+    ]
+];
+$jsonLd = json_encode(
+    $schema,
+    JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+);
+@endphp
+<script type="application/ld+json">
+{!! $jsonLd !!}
+</script>
     <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -41,10 +75,10 @@
    </div>    
 @endforeach --}}
  @foreach ($event as $category)
-<div class="flex bg-[#F2FCFA] flex-col items-center justify-between gap-6 shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-5">
+<div class="flex bg-white flex-col items-center justify-between gap-6 shadow-[0_0_5px_3px_rgba(0,0,0,0.07)] rounded-xl p-5">
 <h3 class="text-xl font-semibold">{{$category->title}}</h3>
 <img class="w-12/12 shadow-sm rounded-3xl" src="{{ $category['banner'] }}" alt="{{ $category->title }}" loading="lazy">
- <a href="{{ region_route('event', ['slug' => $category->slug]) }}" class="inline-block bg-[#0B453C] text-white text-center w-full px-4 py-2 rounded hover:bg-[#0B453C]">View</a>
+ <a href="{{ region_route('event', ['slug' => $category->slug]) }}" class="inline-block bg-[#0B453C] text-white text-center w-full px-4 py-2 rounded hover:bg-[#0b554a]">View</a>
 </div>
 @endforeach 
 </div>     

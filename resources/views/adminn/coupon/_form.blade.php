@@ -105,10 +105,35 @@
 
     <input type="checkbox" class="btn-check" name="exclusive" id="btncheck31"
         {{ $coupon->exclusive ? 'checked' : '' }}>
-    <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck31">Exclusive</label>
+    <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck31">Student</label>
 
 </div>
 
+
+  <div class="col-6">
+                    <label class="form-label">Gender</label>
+                    <select name="gender" class="form-control radius-8 form-select wizard-required" id="depart" required>
+                                                  
+                                                       <option value="0" {{ isset($coupon) && $coupon->gender == 0 ? 'selected' : '' }}>Male</option>
+        <option value="1" {{ isset($coupon) && $coupon->gender == 1 ? 'selected' : '' }}>Female</option>
+    
+                                            </select> 
+                    </div> 
+ 
+
+
+
+
+                     <div class="col-6">
+                     <label class="form-label">Age</label>
+                    <select name="age" class="form-control radius-8 form-select wizard-required" id="depart" required>
+        <option value="1" {{ isset($coupon) && $coupon->age == 1 ? 'selected' : '' }}>18-24</option>
+        <option value="2" {{ isset($coupon) && $coupon->age == 2 ? 'selected' : '' }}>25-34</option>
+        <option value="3" {{ isset($coupon) && $coupon->age == 3 ? 'selected' : '' }}>35-44</option>
+        <option value="4" {{ isset($coupon) && $coupon->age == 4 ? 'selected' : '' }}>45+</option>
+    
+                     </select> 
+                    </div> 
   <div class="col-12">
                                                 <label class="form-label">Terms Conditions</label>
                                                 <div class="position-relative">

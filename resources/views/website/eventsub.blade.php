@@ -2,6 +2,7 @@
 @section('title', $title)
 @section('meta_description', $meta_description)
 @push('styles')
+<link rel="stylesheet"  href="{{ asset('public/assets/css/lib/slick.css') }}">
 <style>
  {
     overflow-x: auto;
@@ -57,30 +58,171 @@ font-weight:700;
 font-size:30px;
 
 }
+.hiptip h3{
+font-size:20px;
+}
+.hiptip ul li::marker {
+    color: #0B453C;
+}
+
+.hiptip ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.hiptip ul li {
+    position: relative;
+}
+
+.hiptip ul li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #0B453C;
+    border-radius: 50%;
+    position: absolute;
+    left: -18px;
+    top: 0.4em;
+}
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row !important;
+  list-style: none;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+  padding: 0;
+  position: static !important;
+}
+
+/* Each dot wrapper */
+.slick-dots li {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide the number text inside buttons */
+.slick-dots li button {
+  font-size: 0; /* hides 1, 2, 3... */
+  line-height: 0;
+  color: transparent;
+  background: #d1d5db; /* gray-300 */
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Active dot style */
+.slick-dots li.slick-active button {
+  background: #0B453C; /* your brand green */
+  
+  border-radius: 12px;
+}
+
+/* Hover effect */
+.slick-dots li button:hover {
+  background: #6ee7b7; /* lighter green */
+}
 </style>
 @endpush
 
 @section('content')
+@php
+// Build 3-level breadcrumbs (always present)
+$breadcrumbs = [
+    [
+        "@type" => "ListItem",
+        "position" => 1,
+        "name" => "Home",
+        "item" => url('/')
+    ],
+    [
+        "@type" => "ListItem",
+        "position" => 2,
+        "name" => "All Events",
+        "item" =>  region_route('event.all') 
+    ],
+    [
+        "@type" => "ListItem",
+        "position" => 3,
+        "name" => ($event->title),
+        "item" => url()->current()
+    ]
+];
+// Store + Breadcrumb schema
+$schema = [
+    "@context" => "https://schema.org",
+    "@graph" => [
+        [
+            "@type" => "BreadcrumbList",
+            "itemListElement" => $breadcrumbs
+        ]
+    ]
+];
+$jsonLd = json_encode(
+    $schema,
+    JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+);
+@endphp
+<script type="application/ld+json">
+{!! $jsonLd !!}
+</script>
 
     <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
-            class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <!-- Left Section -->
-            <div class="flex items-center gap-4 ms-3">
-                <!-- Logo -->
+            class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col  items-start justify-between gap-6">
+            <div class="flex items-center  gap-4 ms-3">
                 <div
                     class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
                     <img src="{{ $event->banner }}" alt="Clarks" class="w-full h-full object-contain p-2" />
                 </div>
-                <!-- Text Content -->
-                <div>
-                    <!-- Breadcrumb -->                 
-                    <!-- Title -->
+                
+                <div class="flex flex-col justify-between">
+                 <nav class="text-sm mb-1 text-gray-500">
+                        <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
+                        <span class="sm:mx-2">&gt;</span>
+                        <a href="{{ region_route('event.all') }}"  class="text-[#0B453C]  hover:font-medium hover:underline">All Events</a>
+                       <span class="sm:mx-2">&gt;</span>
+                         <a href="#"  class="text-[#0B453C]  hover:font-medium hover:underline">{{$event->title}}</h1>
+               </a>
+                    </nav>
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">{{$event->heading}}</h1>
-                    <!-- Description -->
                 </div>
+           </div>
+            <!-- Right Section -->    
+
+
+ <div class="container mx-auto px-4 ">
+  <div id="store-slider" class="slick-slider">
+    @foreach($feature as $coupon)
+      <div>
+        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 mx-2 my-5">
+          <div class="relative p-4 w-full">
+            <img src="{{ $coupon['image'] }}" alt="{{ $coupon->store['name'] }}" class="w-full rounded-3xl h-40 object-cover"/>
+           <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}"><img src="{{ $coupon->store['logo'] }}" alt="{{ $coupon->store['name'] }}" class="w-12 h-12 rounded-full absolute bottom-3 left-3 border-2 border-[#0B453C] shadow-md"/></a>
+          </div>
+
+          <div class="p-4 flex flex-col justify-between ">
+            <div class="flex justify-between items-center mb-1">
+              <h2 class="text-gray-900 font-semibold py-2 text-sm">{{ $coupon->store['name'] }}</h2>
+              @if($coupon->verified)
+                 <iconify-icon icon="bitcoin-icons:verify-filled" width="32" height="32" class="text-[#0B453C]"></iconify-icon>
+              @endif
             </div>
-            <!-- Right Section -->         
+            <h6 class="text-neutral-900 font-semibold text-sm mb-1">{{ $coupon['title'] }}</h6>
+            <a href="{{region_route('store.website', ['slug' => $coupon->store['slug'] ]) }}" class="text-xs text-neutral-700">View all <span class="underline">{{ $coupon->store['name'] }} deals</span></a>
+          </div>
+        </article>
+      </div>
+    @endforeach
+  </div>
+</div>
+
+
         </div>
     </section>
 
@@ -103,12 +245,17 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
         >            Load More        </button>
     </div>
 @endif
-     </div> 
+  
+@if  ($event->top_events)
+  <div class="bg-white w-full rounded-xl shadow overflow-hidden">
+   <div class="flex flex-col flex-wrap gap-2 text-sm hiptip text-gray-700 py-6 px-4">
+        {!! $event->top_events !!}
+  </div>
+  </div>
+@endif
+    </div> 
 
-    
-          {{-- column one end  --}}
 
-          {{-- column two start --}}
     <div class="inline-flex flex-wrap me-3 gap-x-0 gap-y-5 content-start lg:col-span-3 ">
     
     
@@ -117,7 +264,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 <div class="bg-white w-full rounded-xl shadow overflow-hidden">
     <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">{{$event->title}} Event</div>
-   <div class="flex flex-wrap text-sm text-gray-700 p-2">
+   <div class="flex flex-col flex-wrap text-sm gap-2  text-gray-700 p-2">
         {!! $event->description !!}
      
   </div>
@@ -139,7 +286,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
     </div>
   </div>
 
-  <!-- Filter Section -->
+  
     <div class="bg-white w-full rounded-xl shadow p-4" id="filter-options">
     <h6 class="font-bold text-lg text-gray-900 mb-2">Filter by</h6>
 
@@ -174,9 +321,9 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
       {{$relateds->title}}
       </a></li>
   @endforeach
-
     </ul>
   </div>
+
    <div class="flex items-center justify-center rounded-xl w-full  overflow-hidden">
   <div class="max-w-md w-full text-center space-y-6">
     
@@ -218,7 +365,47 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
     </p>
 
   </div>
-</div>
+  </div>
+
+
+
+<div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Browse By Store</div>
+    @php
+    $letters = array_merge(range('A', 'Z'), ['0-9']);
+@endphp
+
+<ul class="flex flex-wrap text-sm text-gray-700 p-2">
+    @foreach ($letters as $letter)
+        <li>
+            <a href="{{region_route('store.menu', ['slug' => strtolower($letter)])}}"
+               class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#0B453C]/15 font-semibold">
+                {{ $letter }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+ </div>
+ 
+  
+
+    @if ( $trendingWith->isNotEmpty() )
+   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Trending Brands</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+     
+    @foreach ($trendingWith as $relateds )
+      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+      {{$relateds->name}}
+      </a></li>
+    @endforeach
+
+    </ul>
+ 
+  </div>
+@endif
+
+
  
 
   
@@ -237,7 +424,71 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 @endsection
 @push('scripts')
+ <script src="{{ asset('public/assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+ <script src="{{ asset('public/assets/js/lib/slick.min.js') }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let loadMoreBtn = document.getElementById("loadMore");
 
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", function () {
+            let url = this.getAttribute("data-next-page");
+
+            if (!url) return;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    let parser = new DOMParser();
+                    let html = parser.parseFromString(data, "text/html");
+
+                    let newCoupons = html.querySelectorAll("#coupon-list article");
+                    newCoupons.forEach(coupon => {
+                        document.getElementById("coupon-list").appendChild(coupon);
+                    });
+
+                    // Update next page URL
+                    let newBtn = html.querySelector("#loadMore");
+                    if (newBtn) {
+                        loadMoreBtn.setAttribute("data-next-page", newBtn.getAttribute("data-next-page"));
+                    } else {
+                        loadMoreBtn.remove(); // remove button if no more pages
+                    }
+                })
+                .catch(error => console.error(error));
+        });
+    }
+});
+$(document).ready(function(){
+  $('#store-slider').slick({
+    slidesToShow: 4,          // Large screens default
+    arrows: false,             // show next/prev arrows
+    dots: true,               // show pagination dots
+    infinite: false,          // set true if you want looping
+    draggable: true,
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1024,     // large screens
+        settings: { slidesToShow: 4 }
+      },
+      {
+        breakpoint: 768,      // medium screens
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 640,      // small screens
+        settings: { slidesToShow: 2 }
+      },
+      {
+        breakpoint: 480,      // mobile
+        settings: { slidesToShow: 1 }
+      }
+    ]
+  });
+});
+
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     let loadMoreBtn = document.getElementById("loadMore");
@@ -323,80 +574,7 @@ function updateCounts() {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const starContainer = document.getElementById("stars");
-    const ratingText = document.getElementById("rating-text");
 
-    let currentRating = 0; // current selected rating
-    let hoverRating = 0; // hover rating
-
-    // Function to render stars
-    function renderStars() {
-        starContainer.innerHTML = '';
-        for (let i = 1; i <= 5; i++) {
-            const star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            star.setAttribute("viewBox", "0 0 24 24");
-            star.setAttribute("class", "w-6 h-6 text-gray-300");
-            star.innerHTML = `
-                <defs>
-                    <linearGradient id="grad-${i}">
-                        <stop offset="0%" stop-color="gold"/>
-                        <stop offset="100%" stop-color="gold"/>
-                    </linearGradient>
-                </defs>
-                <path fill="currentColor" d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.174L12 18.897l-7.334 3.857 1.4-8.174L.132 9.21l8.2-1.192z"/>
-            `;
-
-            // Determine fill width (half/full)
-            let fill = 0;
-            if (hoverRating > 0) {
-                fill = Math.min(Math.max(hoverRating - (i - 1), 0), 1);
-            } else {
-                fill = Math.min(Math.max(currentRating - (i - 1), 0), 1);
-            }
-
-            // Create overlay for filled part
-            const wrapper = document.createElement("div");
-            wrapper.classList.add("relative");
-            wrapper.style.width = "24px"; // match svg width
-            wrapper.style.height = "30px";
-            const emptyStar = star.cloneNode(true);
-            emptyStar.classList.remove("text-yellow-400");
-            emptyStar.classList.add("text-gray-300");
-            const fullStar = star.cloneNode(true);
-            fullStar.classList.remove("text-gray-300");
-            fullStar.classList.add("text-yellow-400");
-            fullStar.style.position = "absolute";
-            fullStar.style.top = "0";
-            fullStar.style.left = "0";
-            fullStar.style.width = `${fill * 100}%`;
-            fullStar.style.overflow = "hidden";
-            fullStar.style.clipPath = `inset(0 ${100 - fill * 100}% 0 0)`;
-            wrapper.appendChild(emptyStar);
-            wrapper.appendChild(fullStar);
-            // Mouse events
-            wrapper.addEventListener("mousemove", e => {
-                const rect = wrapper.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const newHover = x < rect.width / 2 ? i - 0.5 : i;
-                hoverRating = newHover;
-                renderStars();
-            });
-            wrapper.addEventListener("mouseleave", () => {
-                hoverRating = 0;
-                renderStars();
-            });
-            wrapper.addEventListener("click", () => {
-                currentRating = hoverRating || i;
-                ratingText.textContent = `Rated ${currentRating} from 1 vote`; // replace vote count with dynamic
-                // Here you can send AJAX to store rating
-                console.log("Rating selected:", currentRating);
-            });
-            starContainer.appendChild(wrapper);
-        }
-    }
-    renderStars();
-});
 
 </script>
 @endpush

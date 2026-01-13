@@ -83,12 +83,17 @@ class DynapageController extends Controller
         $event = DynaPage::where("dyna_region",$regionId)->where('slug', $slug)->where('status', 1)->firstOrFail();
         $trends = Store::where('trend', true)->where("store_region",$regionId)->where('status', 1)->get();
  
+        $trendingWith = Store::where('trend', true)
+    ->where('store_region', $regionId)
+    ->latest()
+    ->limit(20)
+    ->get();
     $coupons = Coupon::with('store')->where('dyna_id', $event->id)->where('status', 'active')
         ->latest()
         ->paginate(10);
         $meta_description = $event->m_descrip;  
         $title = $event->m_tiitle;       
-        return view('website.dynacpage', compact('event','trends','coupons','title','meta_description'));
+        return view('website.dynacpage', compact('event','trendingWith','trends','coupons','title','meta_description'));
     }
 
      public function about($region = null)

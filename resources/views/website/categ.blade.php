@@ -59,7 +59,32 @@ font-weight:700;
 font-size:30px;
 
 }
+.hiptip h3{
+font-size:20px;
+}
+.hiptip ul li::marker {
+    color: #0B453C;
+}
 
+.hiptip ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.hiptip ul li {
+    position: relative;
+}
+
+.hiptip ul li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #0B453C;
+    border-radius: 50%;
+    position: absolute;
+    left: -18px;
+    top: 0.4em;
+}
 .slick-dots {
   display: flex !important;
   justify-content: center;
@@ -180,7 +205,7 @@ font-size:30px;
   @if ($store->long_content)
 <div class="card">
  <div class="bg-white rounded-xl w-full my-5 shadow overflow-hidden">
-    <div class="flex flex-col  text-[#0f0f0f0] p-8">
+    <div class="flex flex-col hiptip text-[#0f0f0f0] p-8">
 {!! $store->long_content !!}
     </div>
   </div>
@@ -188,17 +213,7 @@ font-size:30px;
 @endif
      </div> 
 
-    
-          {{-- column one end  --}}
-
-          {{-- column two start --}}
     <div class="inline-flex flex-wrap me-3 gap-x-0 gap-y-5 content-start lg:col-span-3 ">
-    
-    
-
-
-
-  
 
   <!-- Filter Section -->
   <div class="bg-white w-full rounded-xl shadow p-4" id="filter-options">
@@ -223,7 +238,7 @@ font-size:30px;
   <!-- Quick Links -->
   <div class="bg-white w-full rounded-xl shadow overflow-hidden">
     <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">About {{$store->name}}</div>
-   <div class="flex flex-wrap text-sm text-gray-700 p-2">
+   <div class="flex flex-wrap text-sm hiptip text-gray-700 p-2">
         {!! $store->shrt_content !!}
      
   </div>
@@ -343,7 +358,7 @@ font-size:30px;
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($likes as $relateds )
     <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">
-      <img class="w-16 rounded-lg border border-[#0B453C]" src="{{$relateds->logo}}" />
+      <img class="w-16 rounded-lg border border-[#0B453C]" alt="{{$relateds->name}}"src="{{$relateds->logo}}" />
        <div class="flex flex-col items-start  " >
         <p>{{$relateds->name}}</p>
         <span class="font-bold text-[#0B453C]">{{$relateds->coupons_with_code_count}}Discount Available</span>

@@ -231,6 +231,67 @@
                             <div class="wizard-form-error"></div>
                         </div>
                     </div>
+<h4 class="text-md text-neutral-500">Inspired page</h4>
+<div class="col-sm-6">
+                        <label class="form-label">Meta Title*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="inspired_m_tiitle" value="{{ old('inspired_m_tiitle', $settingsa->inspired_m_tiitle) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="inspired_m_descrip" value="{{ old('inspired_m_descrip', $settingsa->inspired_m_descrip) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Heading *</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="inspired_heading" value="{{ old('inspired_heading', $settingsa->inspired_heading) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Heading Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="inspired_subheading" value="{{ old('inspired_subheading', $settingsa->inspired_subheading) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-md text-neutral-500">Student Offer Page</h4>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Title*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="studentt_m_tiitle" value="{{ old('studentt_m_tiitle', $settingsa->studentt_m_tiitle) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="studentt_m_descrip" value="{{ old('studentt_m_descrip', $settingsa->studentt_m_descrip) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Title*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="studentt_heading" value="{{ old('studentt_heading', $settingsa->studentt_heading) }}" placeholder="Enter Title" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                     </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Meta Description*</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control wizard-required" name="studentt_subheading" value="{{ old('studentt_subheading', $settingsa->studentt_subheading) }}" placeholder="Enter Description" >
+                            <div class="wizard-form-error"></div>
+                        </div>
+                    </div>
+
+
 
  <div class="col-4">
                             <label class="form-label">Tiwtter</label>

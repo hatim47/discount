@@ -117,7 +117,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 
 <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">{{$event->title}} Event</div>
+    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">{{$event->name}} Discount</div>
    <div class="flex flex-wrap text-sm text-gray-700 p-2">
         {!! $event->longdiscription !!}
      
@@ -166,8 +166,40 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
     </ul>
   </div>
+<div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Browse By Store</div>
+    @php
+    $letters = array_merge(range('A', 'Z'), ['0-9']);
+@endphp
 
+<ul class="flex flex-wrap text-sm text-gray-700 p-2">
+    @foreach ($letters as $letter)
+        <li>
+            <a href="{{region_route('store.menu', ['slug' => strtolower($letter)])}}"
+               class="flex items-center justify-center px-3 py-2 m-1 bg-gray-100 rounded-md hover:bg-[#0B453C]/15 font-semibold">
+                {{ $letter }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+ </div>
+
+
+     @if ( $trendingWith->isNotEmpty() )
+   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Trending Brands</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+     
+    @foreach ($trendingWith as $relateds )
+      <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+      {{$relateds->name}}
+      </a></li>
+    @endforeach
+
+    </ul>
  
+  </div>
+@endif
 
   
     

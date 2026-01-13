@@ -60,8 +60,8 @@ class HomeController extends Controller
         ->get();
  
 $setting = Setting::where('setting_region', $regionId)->first();
-$title = $setting->home_m_tiitle ;
-$meta_description = $setting->home_m_descrip ;
+$title = $setting->home_m_tiitle;
+$meta_description = $setting->home_m_descrip;
 
     // All events
     $events = Event::all();
@@ -75,6 +75,35 @@ $meta_description = $setting->home_m_descrip ;
         'meta_description'
     ));
 }
+public function students($region = null)
+{
+    $region = $region ?? config('app.default_region', 'usa');           
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+$setting = Setting::where('setting_region', $regionId)->first();
+       $categories = Category::where('status', 1)->where('cate_region', $regionId)
+        ->with([
+            'stores' => function ($q) use ($regionId) {
+                $q->where('store_region', $regionId)
+                ->limit(4);
+            },
+            'stores.coupons' => function ($q)  {
+                $q->where('status', 'active')
+                ->where('status', 'active')
+                  ->limit(1);
+            }
+        ])->get();
+          $title = $setting->studentt_m_tiitle ;
+    $meta_description = $setting->studentt_m_descrip;
+    $heading = $setting->studentt_heading;
+    $subheading = $setting->studentt_subheading;
+
+
+  return view('website.studen_discont', compact('categories','heading','subheading','title','meta_description' ));
+}
+
+
 
 public function contact()
     {   
@@ -92,13 +121,79 @@ $meta_description = $setting->contact_m_descrip ;
     }
 
 
+ public function Inspired( $region = null) {
+
+     $region = $region ?? config('app.default_region', 'usa');           
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+    $setting = Setting::where('setting_region', $regionId)->first();
+    $title = $setting->inspired_m_tiitle ;
+    $meta_description = $setting->inspired_m_descrip;
+    $heading = $setting->inspired_heading;
+    $subheading = $setting->inspired_subheading;
+    $categories = Category::whereIn('id', [12, 13, 20, 21])
+    ->with(['stores' => function ($query) {
+        $query->limit(20);
+    }])
+    ->get();
+
+    $feature = Coupon::with('store')
+        ->where('feature', true)
+        ->where('verified', true)
+        ->where('status', 'active')
+         ->whereHas('store', function ($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+        ->get();
+    $setting = Setting::where('setting_region', $regionId)->first();
+    $title = $setting->advertise_m_tiitle;
+    $meta_description = $setting->advertise_m_descrip;
+
+        return view('website.inspired', compact('categories','heading','subheading', 'feature','title','meta_description'));
+
+ }
+ public function Inspiredpost($gender , $age)
+{
+    $region = null;
+$region = $region ?? config('app.default_region', 'usa');           
+    $regionModel = Region::where('code', $region)->firstOrFail();
+    $regionId = $regionModel->id;
+    $regionTitle = $regionModel->title;
+
+     $genderMap = ['male'=>0,'female'=>1];
+    $ageMap    = ['18-24'=>1,'25-34'=>2,'35-44'=>3,'45+'=>4];
+
+    $genderValue = $genderMap[$gender] ?? null;
+    $ageValue    = $ageMap[$age] ?? null;
 
 
+    if (is_null($genderValue) || is_null($ageValue)) abort(404);
 
+       $feature = Coupon::with('store')
+            ->where('gender', $genderValue)
+            ->where('age', $ageValue)
+            ->where('status', 'active')
+               ->whereHas('store', function ($q) use ($regionId) {
+        $q->where('store_region', $regionId);
+    })
+            ->get();
 
+            // dd($genderValue,$ageValue, $feature);
+               $categories = Category::whereIn('id', [12, 13, 20, 21])
+    ->with(['stores' => function ($query) {
+        $query->limit(20);
+    }])
+    ->get();
+          
+      $setting = Setting::where('setting_region', $regionId)->first();
+   $title = $setting->inspired_m_tiitle ;
+    $meta_description = $setting->inspired_m_descrip;
+    $heading = $setting->inspired_heading;
+    $subheading = $setting->inspired_subheading;
 
-    
-
+ return view('website.inspiredpost', compact('categories','heading','subheading','feature','title','meta_description'));
+ }
 
       public function advertise($region = null)
     {

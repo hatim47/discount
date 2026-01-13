@@ -74,7 +74,7 @@ $jsonLd = json_encode(
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 gap-6 flex flex-col sm:flex-row ">
     
     <div class="flex w-full justify-center md:w-1/2">
-   <img class="w-full lg:w-7/12" src="{{asset('public/assets/images/all_image 1.png')}}" />
+   <img class="w-full lg:w-7/12" alt="discount offers" src="{{asset('public/assets/images/all_image 1.png')}}" />
     </div>
 
   <div class="flex w-full md:w-1/2">

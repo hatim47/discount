@@ -16,7 +16,7 @@
         Hunting for <span class="text-[#0B453C] font-bold">Discounts!</span></h1>
         <p class="text-xl mb-4">Get Free Voucher Codes & Promo Codes on Brands You Crave For.</p>  
        <div class="hidden max-[787px]:flex justify-around">
-        <img src="{{asset('public/assets/images/Group 160.webp')}}" class="w-10/12" />
+        <img src="{{asset('public/assets/images/Group 160.webp')}}" alt="Exclusive discount offers banner" class="w-10/12" />
         </div> 
        <div class="relative">
         <input type="text" class="h-14 w-full px-4 rounded-full border-2 relative border-[#0B453C] bg-white"  @click="openSearch()" />
@@ -53,7 +53,7 @@
 </div>
    </div>
 <div class="hidden min-[787px]:flex justify-end">
-<img src="{{asset('public/assets/images/Group 160.webp')}}" class="w-10/12" />
+<img src="{{asset('public/assets/images/Group 160.webp')}}" alt="Exclusive discount offers banner" class="w-10/12" />
 </div>   
     </div>
 </section>
@@ -422,7 +422,7 @@
 
 @if($loop->iteration == 3)
 <div class="bg-[#0B453C] rounded-3xl  mt-8 mb-10  px-6 py-3 flex flex-col md:flex-row items-center gap-10 h-[70vh] md:h-[40vh]"> 
-<img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
+<img class="object-cover px-auto w-7/12 md:w-5/12" alt="Exclusive discount offers banner" src="{{asset('public/assets/images/image 2.png')}}" />
 <div class="flex flex-col gap-3 text-left items-start py-6"> 
 <h4 class="text-3xl font-semibold text-white">The Search for Discount Codes Ends Here</h4> 
 <p class="text-white text-xl ">By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>
@@ -434,7 +434,7 @@
 @endif
 @if($loop->remaining == 2) 
 <div class="bg-[#F2FCFA] rounded-3xl  mt-8 mb-10  px-6 py-3 flex flex-col   md:flex-row-reverse  items-center gap-10 h-[70vh] md:h-[40vh]"> 
-<img class="object-cover px-auto w-7/12 md:w-5/12" src="{{asset('public/assets/images/image 2.png')}}" />
+<img class="object-cover px-auto w-7/12 md:w-5/12" alt="Exclusive discount offers banner" src="{{asset('public/assets/images/image 2.png')}}" />
 <div class="flex flex-col gap-3 text-left items-start py-6"> 
 <h4 class="text-3xl font-semibold text-[#0B453C]">The Search for Discount Codes Ends Here</h4> 
 <p class="text-[#0B453C] text-xl "> By adding thousands of store in a single place the Deal Seeker extension by TopVouchersCode, is the perfect haven for all the smart shoppers that love to save big on their sprees.</p>

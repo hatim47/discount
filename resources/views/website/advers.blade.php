@@ -72,7 +72,7 @@ $jsonLd = json_encode(
  <section class="bg-[#F2FCFA] text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 gap-6 flex flex-col lg:flex-row ">
   <div class="flex w-full justify-center  lg:w-1/2">
-   <img class="w-full h-fit md:w-8/12 " src="{{asset('public/assets/images/all_image 1.png')}}" />
+   <img class="w-full h-fit md:w-8/12 " alt="discount offers" src="{{asset('public/assets/images/all_image 1.png')}}" />
   </div>
   <div class="flex flex-col gap-5 w-full lg:w-1/2 text-lg ">
       {!! $setting->advertise_contect !!}

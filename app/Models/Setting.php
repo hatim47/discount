@@ -38,8 +38,15 @@ class Setting extends Model
         'lange',
         'advertise_m_tiitle',
         'advertise_m_descrip',
-        'advertise_contect'
-          
+        'advertise_contect',
+        'inspired_m_tiitle',
+        'inspired_m_descrip',
+        'inspired_heading',
+        'inspired_subheading',
+        'studentt_m_tiitle',
+        'studentt_m_descrip',
+        'studentt_heading',
+        'studentt_subheading',
 
     ];
      public function region()

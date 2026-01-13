@@ -88,14 +88,16 @@ Route::middleware('setregion')->group(function () {
     Route::get('all-store', [StoreController::class, 'store_menu'])->name('store.menusa');
     Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('store.menu');
     Route::get('categories', [CategoryController::class, 'categmenu'])->name('categ.menu');
-    Route::get('{slug}', [CategoryController::class, 'page'])->name('categ.page');
     Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('store.rate');
  Route::get('search', [StoreController::class, 'search'])->name('store.search');
-     Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('categ.menusa');
-      Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('dynapage');
-      Route::get('about-us/', [DynapageController::class, 'about'])->name('aboutus');
-        Route::get('featured', [CouponController::class, 'featureds'])->name('featured');
-        Route::get('advertise-with-us', [HomeController::class, 'advertise'])->name('advertise');
+ Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('dynapage');
+ Route::get('about-us/', [DynapageController::class, 'about'])->name('aboutus');
+ Route::get('featured', [CouponController::class, 'featureds'])->name('featured');
+ Route::get('advertise-with-us', [HomeController::class, 'advertise'])->name('advertise');
+ Route::get('student-discount', [HomeController::class, 'students'])->name('studentt');
+ Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('categ.menusa');
+ Route::get('smash-voucher-codes', [HomeController::class, 'inspired'])->name('inspired');
+ Route::get('{slug}', [CategoryController::class, 'page'])->name('categ.page');
 });
 Route::prefix('{region}')
     ->where(['region' => $validRegions]) // Only match valid region codes
@@ -108,7 +110,6 @@ Route::prefix('{region}')
         Route::get('event/{slug}', [EventController::class, 'subevent'])->name('region.event');
         Route::get('all-store/{slug}', [StoreController::class, 'menu'])->name('region.store.menu');
         Route::get('categories', [CategoryController::class, 'categmenu'])->name('region.categ.menu');
-        Route::get('{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
         Route::post('stores/{storeId}/rate', [StoreController::class, 'rate'])->name('region.store.rate');
         Route::get('discount/{slug}', [DynapageController::class, 'dynamic'])->name('region.dynapage');
           Route::get('featured', [CouponController::class, 'featureds'])->name('region.featured');
@@ -116,14 +117,15 @@ Route::prefix('{region}')
  Route::get('search', [StoreController::class, 'search'])->name('region.store.search');
  Route::get('popupsearch', [StoreController::class, 'popupsearch'])->name('region.categ.menusa');
  Route::get('advertise-with-us', [HomeController::class, 'advertise'])->name('region.advertise');
-    });
+Route::get('student-discount', [HomeController::class, 'students'])->name('region.studentt');
+Route::get('smash-voucher-codes', [HomeController::class, 'inspired'])->name('region.inspired');
 
+  Route::get('{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
+    });
+Route::get('smash-voucher-codes/{gender}/{age}', [HomeController::class, 'Inspiredpost'])->name('inspiring');
  Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 
-
-
 Route::controller(HomeController::class)->group(function () {
-
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');
     Route::get('chatempty','chatempty')->name('chatempty');
@@ -300,7 +302,8 @@ Route::prefix('cryptocurrency')->group(function () {
         Route::get('/wallet', 'wallet')->name('wallet');
     });
 });
-Route::fallback(function () {
-    return redirect('/');
-});
+
+// Route::fallback(function () {
+//     return redirect('/');
+// });
 

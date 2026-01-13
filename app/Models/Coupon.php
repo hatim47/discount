@@ -34,6 +34,8 @@ class Coupon extends Model
         'status',
         'event_id',
          'dyna_id',
+         'age',
+         'gender'
     ];
 
     protected $casts = [

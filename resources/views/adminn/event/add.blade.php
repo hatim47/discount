@@ -248,7 +248,14 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-        
+                    <div class="col-12">
+                                                <label class="form-label">Description Below of coupons*</label>
+                                                <div class="position-relative">
+                                                        <textarea id="editor3" name="top_events" class="form-control" rows="8"></textarea>
+
+                                                    <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
 
    
                                             
@@ -344,5 +351,6 @@
             .catch(error => console.error(error));
     }   
     initEditor('#editor2');
+     initEditor('#editor3');
 </script>
 @endpush

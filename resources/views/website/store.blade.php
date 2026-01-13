@@ -375,6 +375,8 @@ $jsonLd = json_encode(
     </div>
   </div>
  @endif
+  
+  
    <div class="flex items-center justify-center rounded-xl w-full  overflow-hidden">
   <div class="max-w-md w-full text-center space-y-6">
     
@@ -409,7 +411,7 @@ $jsonLd = json_encode(
 
     <!-- Footer text -->
     <p class="text-xs text-gray-600">
-      By signing up I agree to topvoucherscode's
+      By signing up I agree to Codendiscount's
       <a href="#" class="text-[#0B453C] underline">Privacy Policy</a>
       and consent to receive emails about offers.
     </p>
@@ -474,7 +476,7 @@ $jsonLd = json_encode(
     <ul class="flex flex-col  text-gray-700 py-2">
     @foreach ($store->likes as $relateds )
     <li><a href="{{region_route('store.website', ['slug' => $relateds->slug] ) }}" class="flex  items-center gap-5 px-4 py-2 rounded-md hover:bg-gray-50">    
-      <img class="w-16 rounded-lg border border-[#0B453C] " src="{{$relateds->logo}}" />
+      <img class="w-16 rounded-lg border border-[#0B453C]" alt="{{$relateds->name}}" src="{{$relateds->logo}}" />
        <div class="flex flex-col items-start  " >
         <p>{{$relateds->name}}</p>
         <span class="font-bold text-[#0B453C]">{{$relateds->coupons_with_code_count}} Discount Available</span>

@@ -24,7 +24,7 @@
  <section class="bg-white text-[#0F0F0F]">
     <div class="max-w-7xl mx-auto py-28 px-4 sm:px-6 md:gap-13 lg:gap-16 flex flex-row items-center md:items-start justify-center">
     <div class="flex-1 md:flex hidden">
-    <img src="{{asset('public/assets/images/all_image 1.png')}}" />
+    <img src="{{asset('public/assets/images/all_image 1.png')}}" alt="Exclusive discount offers banner" />
     </div>
     
       <div class="flex-1 flex flex-col  gap-4 items-center text-center sm:items-start sm:text-start">
@@ -34,13 +34,13 @@
       <h1 class="text-2xl lg:text-5xl pb-2 text-[#0B453C] font-bold ">  {{ $about->heading1 ?? 'Built to bring you the best offers, Shop more.' }}</h1>
         <p class="pb-8 text-start">{{ $about->head1text ?? 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' }}</p>
          <div class="flex-1 flex md:hidden ">
-          <img src="{{asset('public/assets/images/all_image 1.png')}}" />
+          <img src="{{asset('public/assets/images/all_image 1.png')}}" alt="Exclusive  banner" />
         </div>
         
         <div class="flex pt-5 sm:pt-0 items-center gap-2 pb-8">
  <div class="flex md:gap-2 lg:gap-3">
  <div class="flex  md:w-3/12 lg:w-full">
-<img class="w-10/12" src="{{asset('public/assets/images/icon.svg1.svg')}}" />
+<img class="w-10/12" src="{{asset('public/assets/images/icon.svg1.svg')}}" alt="Exclusive discount"/>
         </div>
  <div class="flex flex-col">
  <h5 class="md:text-xl lg:text-4xl text-[#0B453C] font-bold">654.5K</h5>
@@ -51,7 +51,7 @@
 <div class="w-px h-14 mx-2 lg:mx-10 bg-[#0B453C]"> </div>
  <div class="flex md:gap-2 lg:gap-3">
  <div class="flex md:w-3/12 lg:w-full">
-<img class="w-10/12" src="{{asset('public/assets/images/Group.svg')}}" />
+<img class="w-10/12" src="{{asset('public/assets/images/Group.svg')}}" alt="Exclusive  offers "/>
         </div>
  <div class="flex flex-col">
  <h5 class="md:text-xl lg:text-4xl text-[#0B453C] font-bold">458.5K</h5>
@@ -228,7 +228,7 @@
     <img id="tab-image" 
       src="{{asset('public/assets/images/Group 169.png')}}"
       class="w-10/12 lg:w-full h-auto   transition-all duration-300 opacity-100"
-      alt=""
+      alt=" discount offers "
     />
   </div>
 
@@ -246,7 +246,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-18 items-center py-16">
 
 <div class="flex flex-col items-center text-center gap-4">
-<img class="w-2/12" src="{{asset('public/assets/images/Group.png')}}" />
+<img class="w-2/12" src="{{asset('public/assets/images/Group.png')}}" alt="discount offers"/>
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           01
         </div>
@@ -257,7 +257,7 @@
 
 
 <div class="flex flex-col items-center text-center gap-5 pt-3">
-<img class="w-2/12" src="{{asset('public/assets/images/icon.svg - 2025-1.png')}}" />
+<img class="w-2/12" src="{{asset('public/assets/images/icon.svg - 2025-1.png')}}" alt="discount offers"/>
      <div class=" text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           02
         </div>
@@ -269,7 +269,7 @@
 
 
 <div class="flex flex-col items-center text-center gap-5 pt-3">
-<img class="w-2/12" src="{{asset('public/assets/images/icon.svg - 20251.png')}}" />
+<img class="w-2/12" src="{{asset('public/assets/images/icon.svg - 20251.png')}}" alt="discount offers"/>
      <div class="text-2xl lg:text-6xl text-[#0B453C] flex items-center justify-center font-extrabold">
           03
         </div>
