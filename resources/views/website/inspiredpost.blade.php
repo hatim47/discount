@@ -139,7 +139,7 @@ $jsonLd = json_encode(
     <div class="flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-5 gap-3"> 
       <h3 class="text-xl">3. Age </h3>
  <div class="flex-1 flex gap-3">
-<button class="bg-[#0B453C] text-white px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start">
+<button type="button" id="goDeal" class="bg-[#0B453C] text-white px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start" disabled>
                 Get Deal
             </button>
  </div>
