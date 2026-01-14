@@ -327,5 +327,52 @@ function openTab(index) {
     .classList.add('ring-2','ring-[#0B453C]');
 }
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    const button = document.getElementById('goDeal');
+
+    function toggleButton() {
+        const genderSelected = document.querySelector('input[name="gender"]:checked');
+        const ageSelected = document.querySelector('input[name="age"]:checked');
+
+        if (genderSelected && ageSelected) {
+            button.disabled = false;
+            button.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            button.disabled = true;
+            button.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    }
+
+    // Watch radio changes
+    document.querySelectorAll('input[name="gender"], input[name="age"]').forEach(radio => {
+        radio.addEventListener('change', toggleButton);
+    });
+
+    // Redirect on click
+    button.addEventListener('click', () => {
+        const gender = document.querySelector('input[name="gender"]:checked')?.value;
+        const age = document.querySelector('input[name="age"]:checked')?.value;
+
+        if (!gender || !age) return;
+
+  let url = window.voucherRouteTemplate
+            .replace('__GENDER__', gender)
+            .replace('__AGE__', age);
+
+        window.location.href = url;
+
+        //window.location.href = `/voucher-codes/${gender}/${age}`;
+    });
+
+});
+
+
+</script>
+<script>
+    window.voucherRouteTemplate = @json(
+        route('inspiring', ['gender' => '__GENDER__', 'age' => '__AGE__'])
+    );
+</script>
 @endpush
