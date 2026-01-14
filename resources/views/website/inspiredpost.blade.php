@@ -68,20 +68,20 @@ $jsonLd = json_encode(
  <section class="bg-[#F2FCFA] py-10 px-4 sm:px-6 text-[#0F0F0F]">
 <div class=" max-w-7xl mx-auto flex  justify-center items-center flex-wrap gap-10">
    
-   <div class="flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-5 gap-3"> <h3 class="text-xl">1. Gender </h3>
+    <div class="flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-5 gap-3"> <h3 class="text-xl">1. Gender </h3>
     <div class="flex-1 flex gap-3">
    <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="gender" value="male" class="sr-only peer" />
     <div class="border rounded-lg p-4 w-36 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
-                hover:border-[#0B453C] hover:bg-[#b2f0e6]">
+                  hover:border-[#0B453C] hover:bg-[#b2f0e6]">
       <h3 class="font-semibold">Male</h3>
     </div>
   </label>
 
   <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="gender" value="female"  class="sr-only peer" />
     <div class="border rounded-lg p-4 w-36 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
@@ -97,7 +97,7 @@ $jsonLd = json_encode(
      <h3 class="text-xl">2. Age </h3>
       <div class="flex-1 flex gap-3">
    <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="age" value="18-24" class="sr-only peer" />
     <div class="border rounded-lg p-3 w-18 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
@@ -107,30 +107,30 @@ $jsonLd = json_encode(
   </label>
 
     <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="age" value="25-34" class="sr-only peer" />
     <div class="border rounded-lg p-3 w-18 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
-                  hover:border-[#0B453C] hover:bg-[#b2f0e6]">
+                 hover:border-[#0B453C] hover:bg-[#b2f0e6]">
       <h3 class="font-semibold">25-34</h3>
     </div>
   </label>
     <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="age" value="35-44" class="sr-only peer" />
     <div class="border rounded-lg p-3 w-18 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
-                  hover:border-[#0B453C] hover:bg-[#b2f0e6]">
+                 hover:border-[#0B453C] hover:bg-[#b2f0e6]">
       <h3 class="font-semibold">35-44</h3>
     </div>
   </label>
 
   <label class="cursor-pointer">
-    <input type="radio" name="card" class="sr-only peer" />
+    <input type="radio" name="age" value="45+" class="sr-only peer" />
     <div class="border rounded-lg p-3 w-18 text-center
                 transition-all duration-300
                 peer-checked:border-blue-500 peer-checked:bg-blue-50
-                hover:border-[#0B453C] hover:bg-[#b2f0e6]">
+                 hover:border-[#0B453C] hover:bg-[#b2f0e6]">
       <h3 class="font-semibold">45+</h3>
     </div>
   </label>
