@@ -28,7 +28,7 @@
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Name</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Img</th>
                                 <th scope="col">Status</th>
@@ -118,55 +118,47 @@ function initLfmButtons() {
             })
             .catch(error => console.error(error));
     }
-//document.addEventListener("DOMContentLoaded", function() {
- //   document.querySelectorAll(".edit-btn").forEach(btn => {
-//        btn.addEventListener("click", function() {
-//            let id = this.getAttribute("data-id");
-// let url = "{{ route('coupon.edit', ':id') }}";
-//        url = url.replace(':id', id);
-//                fetch(url)
- //               .then(res => res.text())
- //               .then(html => {
- //                   document.getElementById("editCategoryBody").innerHTML = html;
- //                   initLfmButtons();
- //                   new bootstrap.Modal(document.getElementById("editCategoryModal")).show();
- //                   document.getElementById("editCategoryModal")
-  //                      .addEventListener("shown.bs.modal", function () {
-  //                          initEditor('#editor1');
- //                           initEditor('#editor2');
-  //                      }, { once: true });
- //               })
- //               .catch(err => console.error(err));
- //       });
- //   });
-//});
 
+document.addEventListener('DOMContentLoaded', function () {
 
-document.addEventListener("click", function (e) {
-    const btn = e.target.closest(".edit-btn");
-    if (!btn) return;
+    let editModalEl = document.getElementById('editCategoryModal');
+    let editModal = new bootstrap.Modal(editModalEl);
 
-    let id = btn.getAttribute("data-id");
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.edit-btn');
+        if (!btn) return;
 
-    let url = "{{ route('coupon.edit', ':id') }}";
-    url = url.replace(':id', id);
+        e.preventDefault();
 
-    fetch(url)
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById("editCategoryBody").innerHTML = html;
-            initLfmButtons();
+        let id = btn.dataset.id;
 
-            const modalEl = document.getElementById("editCategoryModal");
-            const modal = new bootstrap.Modal(modalEl);
-            modal.show();
+        let url = "{{ route('coupon.edit', ':id') }}".replace(':id', id);
 
-            modalEl.addEventListener("shown.bs.modal", function () {
-                initEditor('#editor1');
-                initEditor('#editor2');
-            }, { once: true });
-        })
-        .catch(err => console.error(err));
+        fetch(url)
+            .then(res => res.text())
+            .then(html => {
+
+                document.getElementById('editCategoryBody').innerHTML = html;
+
+                // Re-init dynamic components
+                if (typeof initLfmButtons === 'function') {
+                    initLfmButtons();
+                }
+
+                editModal.show();
+
+                // Init editors ONLY ONCE after modal opens
+                editModalEl.addEventListener('shown.bs.modal', function () {
+                    if (typeof initEditor === 'function') {
+                        initEditor('#editor1');
+                        initEditor('#editor2');
+                    }
+                }, { once: true });
+
+            })
+            .catch(err => console.error('Edit fetch error:', err));
+    });
+
 });
 </script>
 @endpush
