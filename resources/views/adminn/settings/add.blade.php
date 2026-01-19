@@ -237,6 +237,15 @@
                                         <div class="wizard-form-error"></div>
                                     </div>
                                     </div>
+
+
+                                       <div class="col-sm-12">
+                                    <label class="form-label">Home  Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor4" name="home_m_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
                                         <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
                                                 <div class="position-relative">
@@ -320,6 +329,14 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+
+                                             <div class="col-sm-12">
+                                    <label class="form-label">Category Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor5" name="cate_m_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
                             <h6 class="text-md text-neutral-500">Contact Page</h6>
                                             <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
@@ -335,21 +352,14 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                         <h6 class="text-md text-neutral-500">Feature Page</h6>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="featuer_m_tiitle" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="featuer_m_descrip" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
+                                             <div class="col-sm-12">
+                                    <label class="form-label">Contact Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor9" name="contact_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
+
                                                <h6 class="text-md text-neutral-500">Event Page</h6>
                                             <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
@@ -365,89 +375,19 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-  <h6 class="text-md text-neutral-500">Advertise Page</h6>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="advertise_m_tiitle" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="advertise_m_descrip" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Advertise Content*</label>
-                                                <div class="position-relative">
-                                    <textarea id="editor1" name="advertise_contect" class="form-control" rows="8"></textarea>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-12">
+                                    <label class="form-label">Event Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor6" name="event_m_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
 
-                                          <h4 class="text-xl text-neutral-500">Student Offer Page</h4>
-
-                                                 <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="inspired_m_tiitle" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="inspired_m_descrip" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                             <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="inspired_heading" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="inspired_subheading" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                          <h4 class="text-xl text-neutral-500">Student Offer Page</h4>
-
-                                               <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="studentt_m_tiitle" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="studentt_m_descrip" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                             <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="studentt_heading" placeholder="Enter Title" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="studentt_subheading" placeholder="Enter Description" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>    
+                                        
+                                         
+                                           
+                                          
+                                              
 
 
 
@@ -591,6 +531,15 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+                                             <div class="col-sm-12">
+                                    <label class="form-label">Store Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor7" name="store_m_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
+
+
                                 <h6 class="text-md text-neutral-500">store Menu filter Page</h6>
                                               <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
@@ -606,7 +555,14 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                          
+                                            
+                                          <div class="col-sm-12">
+                                    <label class="form-label">Store Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor8" name="stores_m_content" class="form-control" rows="8"></textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -660,8 +616,13 @@
             .catch(error => console.error(error));
     }
 
-   
+    initEditor('#editor4');
     initEditor('#editor2');
      initEditor('#editor1');
+    initEditor('#editor5');
+    initEditor('#editor6');
+    initEditor('#editor7');
+    initEditor('#editor8');
+initEditor('#editor9');
 </script>
 @endpush

@@ -2,7 +2,79 @@
 @section('title', $title)
 @section('meta_description', $meta_description)
 @push('styles')
+<style>
+ {
+    overflow-x: auto;
+}
 
+/* Base table styling */
+ table {
+    width: 100%;
+    border-collapse: collapse; /* Essential for clean borders */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Header row styling */
+ thead {
+    background-color: #FAF9F5; /* Light gray background */
+    border-bottom: 2px solid #0B453C; /* Separator line below header */
+}
+
+/* Header cell styling */
+ th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+/* Data cell styling */
+ td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #0B453C; /* Light separator line for rows */
+}
+
+/* Alternating row colors (zebra stripping) */
+ tbody tr:nth-child(even) {
+    background-color: #FAF9F5; /* Very light subtle contrast */
+}
+
+/* Hover effect for rows */
+ tbody tr:hover {   
+    cursor: default; /* Optional: indicates interactivity */
+}
+
+.hiptip h3{
+font-size:30px;
+}
+.hiptip h4{
+font-weight:600;
+font-size:25px;
+}
+.hiptip ul li::marker {
+    color: #0B453C;
+}
+.hiptip ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.hiptip ul li {
+    position: relative;
+}
+.hiptip ul li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #0B453C;
+    border-radius: 50%;
+    position: absolute;
+    left: -18px;
+    top: 0.4em;
+}
+</style>
 @endpush
 @section('content')
 @php
@@ -63,6 +135,11 @@ $jsonLd = json_encode(
                     {{-- <p class="text-gray-600 text-sm mt-1">
                        {!! $store->description !!}
                     </p> --}}
+
+                  <div class="flex py-12 flex-col hiptip items-start ">
+                        {!! $setting->contact_content !!}  
+                  </div>
+
                 </div>
             </div>
 

@@ -5,6 +5,7 @@
     $script = '<script>
                     let table = new DataTable("#dataTable");
                </script>
+                                 <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 <script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
                ';
 @endphp
@@ -137,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         .addEventListener("shown.bs.modal", function () {
                             initEditor('#editor1');
                             initEditor('#editor2');
+                            initEditor('#editor3');
                         }, { once: true });
                 })
                 .catch(err => console.error(err));

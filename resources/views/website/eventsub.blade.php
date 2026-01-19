@@ -47,20 +47,10 @@
  tbody tr:hover {   
     cursor: default; /* Optional: indicates interactivity */
 }
-
-h4{
-font-weight:600;
-font-size:22px;
-}
-
-h3{
-font-weight:700;
-font-size:30px;
-
-}
 .hiptip h3{
 font-size:20px;
 }
+
 .hiptip ul li::marker {
     color: #0B453C;
 }
@@ -231,10 +221,18 @@ $jsonLd = json_encode(
      {{-- column one start  --}}
     <div class="flex flex-col ms-3 gap-6 lg:col-span-7">
      <div id="coupon-list" class="flex flex-col ms-3 gap-6  lg:col-span-7"> 
-
+    @if($coupons->isNotEmpty())
     @foreach($coupons as $coupon)
         @include('website.couponspart', ['coupon' => $coupon])
     @endforeach
+    @else
+    <div class="bg-white w-full rounded-xl shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">{{$event->title}} Event</div>
+   <div class="flex flex-col flex-wrap text-sm gap-2  text-gray-700 p-2">
+        {!! $event->description !!}
+  </div>
+  </div>
+    @endif
     </div> 
     
      
@@ -261,15 +259,18 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
     
 
 
-
+ @if($coupons ->isNotEmpty()) 
 <div class="bg-white w-full rounded-xl shadow overflow-hidden">
     <div class="bg-[#0B453C] px-4 text py-2 font-bold text-white">{{$event->title}} Event</div>
    <div class="flex flex-col flex-wrap text-sm gap-2  text-gray-700 p-2">
         {!! $event->description !!}
-     
+  </div>
   </div>
 
-  </div>
+   @else
+
+  @endif
+
 
   <!-- Offer Summary -->
   <div class="bg-white w-full rounded-xl shadow p-4">

@@ -14,6 +14,7 @@ class DynaPage extends Model
         'heading',
         'shortdiscription',
         'longdiscription',
+        'belowdiscrp',
           'status',
         'm_tiitle',
         'm_descrip',

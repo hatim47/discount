@@ -5,8 +5,8 @@
     $script = '<script>
                     let table = new DataTable("#dataTable");
                </script>
+                  <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 <script src="'.asset('vendor/laravel-filemanager/js/stand-alone-button.js').'"></script>
- <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
                ';
 @endphp
 
@@ -14,8 +14,8 @@
 
             <div class="card basic-data-table">
                 <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Setting Datatables</h5>
-                    <a href="{{ route('settings.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Setting</a>
+                <h5 class="card-title mb-0">Inspired Page Datatables</h5>
+                <a href="{{ route('inspired.create') }}" class="btn btn-success-900  radius-8 px-16 py-9" style="max-width: fit-content;">Add Inspired Page</a>
                 </div> 
                 <div class="card-body">
                     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
@@ -29,10 +29,8 @@
                                         </label>
                                     </div>
                                 </th>
-                            <th scope="col">Regoin</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">logo</th>
-                                <th scope="col">home_m_tiitle</th>
+                                <th scope="col">Regoin</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -42,25 +40,19 @@
                                @foreach ($settings as $store)
                 <tr>
                     <td>{{ $store->id }}</td>
-                    <td> {{ $store->region->id == $store->setting_region  ? $store->region->title : '' }} </td>
-                    <td>{{ $store->web_name }}</td>
+                    <td>{{ $store->titel }}</td>
+                 
+                    <td> {{ $store->region->id == $store->regions  ? $store->region->title : '' }} </td>
                     <td>
-                        @if($store->web_logo)
-                            <img src="{{$store->web_logo}}" alt="Logo" width="40">
-                        @else
-                            No Image
-                        @endif
-                    </td>
-                    <td>{{ $store->home_m_tiitle }}</td>
-                    <td>
-    <a href="javascript:void(0)" data-id="{{ $store->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                    <a href="javascript:void(0)" 
+           data-id="{{ $store->id }}" class="edit-btn w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
                                         <iconify-icon icon="lucide:edit"></iconify-icon>
            
-                    </a>
-                        <form action="{{ route('settings.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+        </a>
+                        <form action="{{ route('inspired.destroy', $store->id) }}" method="POST" style="display:inline" class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this settings?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
+                            <button class="btn btn-sm w-32-px h-32-px bg-danger-focus text-danger-main d-inline-flex align-items-center justify-content-center" onclick="return confirm('Delete this event?')"> <iconify-icon icon="mingcute:delete-2-line"></iconify-icon></button>
                         </form>
                         </td>
                 </tr>
@@ -74,7 +66,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit settings</h5>
+                <h5 class="modal-title">Edit Inspired Page</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="editCategoryBody">
@@ -88,21 +80,7 @@
 
 <script>
 var route_prefix = "{{ url('/laravel-filemanager') }}";
-
-function initLfmButtons() {
-    if (typeof $ === "undefined") {
-        console.error("jQuery not loaded.");
-        return;
-    }
-    if (typeof $.fn.filemanager !== "function") {
-        console.error("stand-alone-button.js not loaded.");
-        return;
-    }
-
-    // Initialize every LFM button inside the page
-    $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
-}
-function initEditor(selector) {
+   function initEditor(selector) {
         ClassicEditor
             .create(document.querySelector(selector), {
                 toolbar: [
@@ -118,11 +96,25 @@ function initEditor(selector) {
             })
             .catch(error => console.error(error));
     }
+function initLfmButtons() {
+    if (typeof $ === "undefined") {
+        console.error("jQuery not loaded.");
+        return;
+    }
+    if (typeof $.fn.filemanager !== "function") {
+        console.error("stand-alone-button.js not loaded.");
+        return;
+    }
+
+    // Initialize every LFM button inside the page
+    $("[id^='lfm']").filemanager("image", { prefix: route_prefix });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function() {
             let id = this.getAttribute("data-id");
- let url = "{{ route('settings.edit', ':id') }}";
+ let url = "{{ route('inspired.edit', ':id') }}";
         url = url.replace(':id', id);
                 fetch(url)
                 .then(res => res.text())
@@ -133,14 +125,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                      document.getElementById("editCategoryModal")
                         .addEventListener("shown.bs.modal", function () {
-                           initEditor('#editor1');
+                            initEditor('#editor1');
                             initEditor('#editor2');
-                            initEditor('#editor5');
-                            initEditor('#editor6');
-                            initEditor('#editor7');
-                            initEditor('#editor8');
-                            initEditor('#editor9');
-                            initEditor('#editor10');
+                            initEditor('#editor3');
                         }, { once: true });
                 })
                 .catch(err => console.error(err));

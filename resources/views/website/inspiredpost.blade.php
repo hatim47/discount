@@ -3,8 +3,79 @@
 @section('title', $title)
 @section('meta_description', $meta_description)
 @push('styles')
+<style>
+ {
+    overflow-x: auto;
+}
 
+/* Base table styling */
+ table {
+    width: 100%;
+    border-collapse: collapse; /* Essential for clean borders */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
 
+/* Header row styling */
+ thead {
+    background-color: #FAF9F5; /* Light gray background */
+    border-bottom: 2px solid #0B453C; /* Separator line below header */
+}
+
+/* Header cell styling */
+ th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+/* Data cell styling */
+ td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #0B453C; /* Light separator line for rows */
+}
+
+/* Alternating row colors (zebra stripping) */
+ tbody tr:nth-child(even) {
+    background-color: #FAF9F5; /* Very light subtle contrast */
+}
+
+/* Hover effect for rows */
+ tbody tr:hover {   
+    cursor: default; /* Optional: indicates interactivity */
+}
+
+.hiptip h3{
+font-size:30px;
+}
+.hiptip h4{
+font-weight:600;
+font-size:25px;
+}
+.hiptip ul li::marker {
+    color: #0B453C;
+}
+.hiptip ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.hiptip ul li {
+    position: relative;
+}
+.hiptip ul li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #0B453C;
+    border-radius: 50%;
+    position: absolute;
+    left: -18px;
+    top: 0.4em;
+}
+</style>
 @endpush
 
 @section('content')
@@ -20,7 +91,7 @@ $breadcrumbs = [
     [
         "@type" => "ListItem",
         "position" => 2,
-        "name" => ($heading),
+        "name" => ($settings->heading),
         "item" => url()->current()
     ]
 ];
@@ -54,12 +125,16 @@ $jsonLd = json_encode(
                     <nav class="text-sm mb-1 text-gray-500">
                         <a href="{{ region_route('home') }}" class="hover:underline">Home</a>
                         <span class="sm:mx-2">&gt;</span>
-                        <a href="#"  class="text-[#0B453C]  hover:font-medium hover:underline"> {{$heading}}</a>
+                        <a href="#"  class="text-[#0B453C]  hover:font-medium hover:underline"> {{$settings->heading}}</a>
                     </nav>
                     <h1 class="text-lg sm:text-2xl font-bold text-gray-900">
-                     {{$heading}}
+                     {{$settings->heading}}
                     </h1>
-                    <p>  {{$subheading}}</p>
+
+                       <div class=" flex flex-col hiptip items-start">
+        {!! $settings->subheading !!}  
+        </div>
+                  
                 </div>
             </div>
         </div>
@@ -137,7 +212,7 @@ $jsonLd = json_encode(
    </div>  
    </div>
     <div class="flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-5 gap-3"> 
-      <h3 class="text-xl">3. Age </h3>
+      <h3 class="text-xl">3. Result </h3>
  <div class="flex-1 flex gap-3">
 <button type="button" id="goDeal" class="bg-[#0B453C] text-white px-10 lg:px-16 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform self-start" disabled>
                 Get Deal
@@ -220,13 +295,12 @@ $jsonLd = json_encode(
                 </div>
     </article>
 
-        {{-- <div class="bg-white rounded-xl shadow-md p-4">
-            <h3 class="font-bold text-lg">{{ $coupon['store'] }}</h3>
-            <p class="text-sm">{{ $coupon['discount'] }} - {{ $coupon['category'] }}</p>
-            <span class="font-semibold">Code: {{ $coupon['code'] }}</span>
-        </div>--}}
         @endforeach 
         </div> 
+
+         <div class="px-6 flex flex-col hiptip items-start">
+        {!! $settings->longdiscription !!}  
+        </div>
 </section>
 
  <section class="bg-white py-10 text-[#0F0F0F]">
@@ -246,21 +320,22 @@ $jsonLd = json_encode(
     @endforeach
   </div>
 
-  <div class="flex-1 bg-[#F2FCFA] rounded-xl py-2 px-7 ring ring-[#b1bdba]">
+  <div class="flex-1 bg-[#F2FCFA] rounded-xl py-2 ps-5 pe-15 ring ring-[#b1bdba]">
     @foreach($categories as $index => $category)
       <ul id="tab-{{ $index }}"
-          class="tab-content grid grid-cols-2 gap-x-10 space-y-1 text-sm 
+          class="tab-content grid grid-cols-2 gap-x-12 space-y-1 text-sm 
           {{ $index === 0 ? '' : 'hidden' }}">
         @foreach($category->stores as $store)
           <li class="hover:underline cursor-pointer text-nowrap">
-          <a href="">   {{ $store->name }} </a>
+          <a href=" {{ region_route('store.website', ['slug' => $store->slug]) }}" class="indent-2">   {{ $store->name }} </a>
           </li>
         @endforeach
          <li class="hover:underline cursor-pointer">
             
           </li>
          <li class="hover:underline cursor-pointer">
-            View All
+           <a href="{{ region_route('dynapage', ['slug' => $category->slug]) }}" >View All
+          </a>
           </li>
       </ul>
     @endforeach

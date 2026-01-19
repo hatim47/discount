@@ -22,8 +22,6 @@ class Setting extends Model
         'contact_m_tiitle',
         'contact_m_descrip',
         'setting_region',
-        'featuer_m_tiitle',
-        'featuer_m_descrip',
         'event_m_tiitle',
         'event_m_descrip',
         'seoheader',
@@ -36,20 +34,15 @@ class Setting extends Model
         'postalCode',
         'addressCountry',
         'lange',
-        'advertise_m_tiitle',
-        'advertise_m_descrip',
-        'advertise_contect',
-        'inspired_m_tiitle',
-        'inspired_m_descrip',
-        'inspired_heading',
-        'inspired_subheading',
-        'studentt_m_tiitle',
-        'studentt_m_descrip',
-        'studentt_heading',
-        'studentt_subheading',
-
+        'cate_m_content',
+        'store_m_content',
+        'stores_m_content',
+        'contact_content',
+        'event_m_content',
+        'home_m_content',
     ];
      public function region()
+     
     {
         return $this->belongsTo(Region::class, 'setting_region');
     }

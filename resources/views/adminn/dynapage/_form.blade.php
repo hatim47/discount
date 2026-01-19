@@ -62,6 +62,12 @@
                                  <textarea id="editor2" name="longdiscription" class="form-control" rows="4">{{ $event->longdiscription }} </textarea>
                                                         <div class="wizard-form-error"></div>
                                                 </div>
+<div class="position-relative">   
+                       <label class="form-label">Below Description</label>
+
+                                 <textarea id="editor3" name="belowdiscrp" class="form-control" rows="4">{{ $event->belowdiscrp }} </textarea>
+                                                        <div class="wizard-form-error"></div>
+                                                </div>
 
 
 

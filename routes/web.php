@@ -22,10 +22,13 @@ use App\Http\Controllers\RoleandaccessController;
 use App\Http\Controllers\CryptocurrencyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\advertiseController;
+use App\Http\Controllers\inspiredController;
+use App\Http\Controllers\featuerController;
+use App\Http\Controllers\studenttController;
 use App\Http\Controllers\SettingController;
 use App\Models\Region;
 use App\Http\Controllers\DynapageController;
-
 try {
     $validRegions = Region::where('status', 1)
                          ->pluck('code')
@@ -62,7 +65,6 @@ Route::post('admin/settings/update-field', [SettingController::class, 'updateFie
 Route::post('/settings/update-image', [SettingController::class, 'updateImage'])
     ->name('settings.update-image');
 Route::get('admin/settings', [SettingController::class, 'index'])->name('settings.index');
-
 Route::resource('admin/categories',CategoryController::class);
 Route::resource('admin/store',StoreController::class);
 Route::resource('admin/coupon',CouponController::class);
@@ -71,7 +73,10 @@ Route::resource('admin/dynapage',DynapageController::class);
 Route::resource('admin/users', UsersController::class);
 Route::resource('admin/about', AboutController::class);
 Route::resource('admin/settings', SettingController::class);
-
+Route::resource('admin/advertise', advertiseController::class);
+Route::resource('admin/inspired', inspiredController::class);
+Route::resource('admin/featuer', featuerController::class);
+Route::resource('admin/studentt', studenttController::class);
 });
 Route::post('/logout', function() {
     Auth::logout();
@@ -79,7 +84,7 @@ Route::post('/logout', function() {
     request()->session()->regenerateToken();
     return redirect()->route('admin.login');
 })->name('logout');
-
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::middleware('setregion')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('all-event', [EventController::class, 'event'])->name('event.all');
@@ -123,8 +128,7 @@ Route::get('smash-voucher-codes', [HomeController::class, 'inspired'])->name('re
   Route::get('{slug}', [CategoryController::class, 'page'])->name('region.categ.page');
     });
 Route::get('smash-voucher-codes/{gender}/{age}', [HomeController::class, 'Inspiredpost'])->name('inspiring');
- Route::get('contact', [HomeController::class, 'contact'])->name('contact');
-
+ 
 Route::controller(HomeController::class)->group(function () {
     Route::get('calendar','calendar')->name('calendar');
     Route::get('chatmessage','chatMessage')->name('chatMessage');

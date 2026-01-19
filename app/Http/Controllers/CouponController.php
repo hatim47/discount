@@ -62,7 +62,6 @@ public function create()
 
 
 $data = $request->all();
-
 $data['event_id'] = $request->event_id == 0 ? null : $request->event_id;      
 $data['dyna_id'] = $request->dyna_id == 0 ? null : $request->dyna_id;
 $data['view'] = rand(500, 9999);

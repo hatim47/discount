@@ -121,23 +121,14 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                         <form action="{{ route('dynapage.store') }}" method="POST" enctype="multipart/form-data">
+                         <form action="{{ route('inspired.store') }}" method="POST" enctype="multipart/form-data">
                                          @csrf
                         <div class="d-flex justify-content-between " >
                          <div class="" >
-                            <h6 class="mb-4 text-xl">Dynamic Pages  adding</h6>
+                            <h6 class="mb-4 text-xl">inspired adding</h6>
                             <p class="text-neutral-500">Fill up your details and proceed next steps.</p>
                             </div>
- <div class="form-switch switch-primary d-flex align-items-center gap-3">
-                         <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1">Hide</label>
-<input type="hidden" name="status" value="0">
 
-<!-- Checkbox overrides hidden value when checked -->
-<input class="form-check-input" type="checkbox" role="switch" 
-       name="status" id="switch1" value="1" checked>
-                                    
-                                    <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch1"> Show / Active</label>
-                                </div>
                              </div>
                             <!-- Form Wizard Start -->
                             <div class="form-wizard">                              
@@ -147,7 +138,7 @@
                                                 <div class="form-wizard-list__line">
                                                     <span class="count">1</span>
                                                 </div>
-                                                <span class="text text-xs fw-semibold">Page start </span>
+                                                <span class="text text-xs fw-semibold">inspired start </span>
                                             </li>
                                             <li class="form-wizard-list__item">
                                                 <div class="form-wizard-list__line">
@@ -159,52 +150,28 @@
                                                 <div class="form-wizard-list__line">
                                                     <span class="count">3</span>
                                                 </div>
-                                                <span class="text text-xs fw-semibold">Seo Data </span>
-                                            </li>
-                                            <li class="form-wizard-list__item">
-                                                <div class="form-wizard-list__line">
-                                                    <span class="count">4</span>
-                                                </div>
                                                 <span class="text text-xs fw-semibold">Completed</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <fieldset class="wizard-fieldset show">
-                                        <h6 class="text-md text-neutral-500"> Information</h6>
+                                        <h6 class="text-md text-neutral-500">Inspired Page Information</h6>
                                         <div class="row gy-3">
                                             <div class="col-sm-6">
-                                                <label class="form-label">Page Name*</label>
+                                                <label class="form-label">Inspired Page Name*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="name" placeholder="Enter Page Name" required>
+                                                    <input type="text" class="form-control wizard-required" name="titel" placeholder="Enter Inspired Page Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
                                   
-                                        
-
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Page banner *</label>
-                                                <div class="position-relative"> 
-                                              <div class="mb-3">
-  
-    <div class="input-group">
-        <input id="logo" class="form-control wizard-required" type="text" name="banner" required>
-        <span class="input-group-btn">
-            <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
-                Choose
-            </button>
-        </span>
-    </div>
-     <div class="wizard-form-error"></div>
-    <img id="holder" style="margin-top:15px;max-height:100px;">
-</div>
-                                                    {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
-                                                    
+                                           <div class="col-sm-6">
+                                                <label class="form-label">Inspired Page Name*</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control wizard-required" name="descr" placeholder="Enter Inspired Page descr" required>
+                                                    <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            
-
-                                            
                                             <div class="form-group text-end">
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
                                             </div>
@@ -214,102 +181,38 @@
                                     <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
-                                        <div class="col-12">
-    <div class="form-switch switch-primary d-flex align-items-center gap-3">
-
-        <!-- Always sends 0 if not checked -->
-        <input type="hidden" name="ismenu" value="0">
-
-        <!-- Sends 1 if checked -->
-        <input 
-            class="form-check-input" 
-            type="checkbox" 
-            role="switch" 
-            id="switch2" 
-            name="ismenu"
-            value="1"
-        >
-
-        <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch2">
-            Menu Active
-        </label>
-    </div>
-</div>
-                                         <div class="col-12">
-                                                <label class="form-label">Heading *</label>
-                                                <div class="position-relative">   
-                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Category Name" required>
-                                                        <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Short Content*</label>
-                                                <div class="position-relative">   
-                                 <textarea id="editor1" name="shortdiscription" class="form-control" rows="4"> </textarea>
-                                                        <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Long Description Content*</label>
-                                                <div class="position-relative">
-                                                        <textarea id="editor2" name="longdiscription" class="form-control" rows="8"></textarea>
-
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                              <div class="col-12">
-                                                <label class="form-label">Below Description Content*</label>
-                                                <div class="position-relative">
-                                                        <textarea id="editor3" name="belowdiscrp" class="form-control" rows="8"></textarea>
-
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-
-   
-                                            
-                                         
-                                            <div class="form-group d-flex align-items-center justify-content-end gap-8">
-                                                <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
-                                                <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-
-                                    <fieldset class="wizard-fieldset">
-                                        <h6 class="text-md text-neutral-500">SEO Information</h6>
-                                        <div class="row gy-3">
-                                            <div class="col-sm-6">
-                                                <label class="form-label">URL SLUG*</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="slug" placeholder="Enter Slug" required>
-                                                    <div class="wizard-form-error"></div>
-                                                </div>
-                                            </div>
-                                          
-      <div class="col-6">
+                                          <div class="col-6">
       <label class="form-label">Select Region</label>
-<select class="form-control radius-8 form-select wizard-required" name="dyna_region" id="region" style="">
-{{-- {{dd($region)}} --}}
+<select class="form-control radius-8 form-select wizard-required" name="regions" id="region" style="">
     @foreach ($region as $trend)
         <option value="{{ $trend->id }}">{{ $trend->title }}</option>
     @endforeach
 </select> </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Title*</label>
+                                         <div class="col-12">
+                                                <label class="form-label">Heading *</label>
+                                                <div class="position-relative">   
+                                                    <input type="text" class="form-control wizard-required" name="heading" placeholder="Enter Heading " required>
+                                                        <div class="wizard-form-error"></div>
+                                                </div>
+                                            </div>
+                                         
+                                            <div class="col-12">
+                                                <label class="form-label">Description Content*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="m_tiitle" placeholder="Enter Title" required>
+                                                        <textarea id="editor2" name="subheading" class="form-control" rows="8"></textarea>
+
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <label class="form-label">Meta Description*</label>
+                                            <div class="col-12">
+                                                <label class="form-label">Description Below of coupons*</label>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control wizard-required" name="m_descrip" placeholder="Enter Description" required>
+                                                        <textarea id="editor3" name="longdiscription" class="form-control" rows="8"></textarea>
+
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
-                                          
+                                         
                                             <div class="form-group d-flex align-items-center justify-content-end gap-8">
                                                 <button type="button" class="form-wizard-previous-btn btn btn-neutral-500 border-neutral-100 px-32">Back</button>
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>
@@ -359,10 +262,8 @@
                 }
             })
             .catch(error => console.error(error));
-    }
-
-    initEditor('#editor1');
+    }   
     initEditor('#editor2');
-    initEditor('#editor3'); 
+     initEditor('#editor3');
 </script>
 @endpush

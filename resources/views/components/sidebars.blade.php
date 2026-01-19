@@ -51,7 +51,30 @@
                     <span>About Pages List</span>
                 </a>
             </li>
- 
+             <li>
+                <a href="{{ route('studentt.index') }}">
+               <iconify-icon icon="mdi:about" class="menu-icon"></iconify-icon>
+                    <span>studentt Pages List</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{ route('inspired.index') }}">
+               <iconify-icon icon="mdi:about" class="menu-icon"></iconify-icon>
+                    <span>inspired Pages List</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{ route('featuer.index') }}">
+               <iconify-icon icon="mdi:about" class="menu-icon"></iconify-icon>
+                    <span>featuer Pages List</span>
+                </a>
+            </li>
+                <li>
+                <a href="{{ route('advertise.index') }}">
+               <iconify-icon icon="mdi:about" class="menu-icon"></iconify-icon>
+                    <span>advertise Pages List</span>
+                </a>
+            </li>
              <li>
                 <a href="{{ route('settings.index') }}">
                 <iconify-icon icon="icon-park-outline:file-settings" class="menu-icon"></iconify-icon>

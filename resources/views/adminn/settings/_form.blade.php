@@ -55,6 +55,13 @@
                                         <div class="wizard-form-error"></div>
                                     </div>
                                     </div>
+                                       <div class="col-sm-12">
+                                    <label class="form-label">Home Page Description*</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor9" name="home_m_content" class="form-control" rows="8">{{ $settingsa->home_m_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
                                          <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
                                                 <div class="position-relative">
@@ -130,6 +137,14 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+
+                                             <div class="col-sm-12">
+                                    <label class="form-label">Category Page Description *</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor8" name="cate_m_content" class="form-control" rows="8">{{ $settingsa->cate_m_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
                                             <h6 class="text-md text-neutral-500">Contact page </h6>
                                     <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
@@ -145,6 +160,15 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>
+
+                                                     <div class="col-sm-12">
+                                    <label class="form-label">Contact Page Description *</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor7" name="contact_content" class="form-control" rows="8">{{ $settingsa->contact_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
+
                                              <h6 class="text-md text-neutral-500">store menu page </h6>
                                     <div class="col-sm-6">
                                                 <label class="form-label">Meta Title*</label>
@@ -160,6 +184,13 @@
                                                     <div class="wizard-form-error"></div>
                                                 </div>
                                   </div>
+                                           <div class="col-sm-12">
+                                    <label class="form-label">store Page Description *</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor6" name="store_m_content" class="form-control" rows="8">{{ $settingsa->store_m_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
 
    <div class="col-sm-6">  <h6 class="text-md text-neutral-500">store filtter menu page </h6>
                                                 <label class="form-label">Meta Title*</label>
@@ -174,21 +205,17 @@
                                                     <input type="text" class="form-control wizard-required" value="{{ old('stores_m_descrip', $settingsa->stores_m_descrip) }}"  name="stores_m_descrip" placeholder="Enter Description" >
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                   </div>                   
-                   <h6 class="text-md text-neutral-500">Feature menu page </h6>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Title*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="featuer_m_tiitle" value="{{ old('featuer_m_tiitle', $settingsa->featuer_m_tiitle) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="featuer_m_descrip" value="{{ old('featuer_m_descrip', $settingsa->featuer_m_descrip) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
+                   </div>
+
+
+                    <div class="col-sm-12">
+                                    <label class="form-label">store Page Description *</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor5" name="stores_m_content" class="form-control" rows="8">{{ $settingsa->stores_m_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>                   
+                </div>
                     </div> 
   <h6 class="text-md text-neutral-500">event menu page</h6>
                     <div class="col-sm-6">
@@ -200,96 +227,22 @@
                      </div>
                     <div class="col-sm-6">
                         <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="event_m_tiitle" value="{{ old('event_m_tiitle', $settingsa->event_m_tiitle) }}" placeholder="Enter Description" >
+                        <div class="position-relative">event_m_tiitle
+                            <input type="text" class="form-control wizard-required" name="" value="{{ old('event_m_tiitle', $settingsa->event_m_tiitle) }}" placeholder="Enter Description" >
                             <div class="wizard-form-error"></div>
                         </div>
                     </div> 
+                     <div class="col-sm-12">
+                                    <label class="form-label">event Page Description *</label>
+                                    <div class="position-relative">
+                                    <textarea id="editor10" name="event_m_content" class="form-control" rows="8">{{ $settingsa->event_m_content }}</textarea>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    </div>
 
 
 
-
-                       <h6 class="text-md text-neutral-500">Advertise menu page </h6>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Title*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="advertise_m_tiitle" value="{{ old('advertise_m_tiitle', $settingsa->advertise_m_tiitle) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="advertise_m_descrip" value="{{ old('advertise_m_descrip', $settingsa->advertise_m_descrip) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
-                       <div class="col-sm-12">
-                        <label class="form-label">Advertise Contect*</label>
-                        <div class="position-relative">
-                         <textarea id="editor1" name="advertise_contect" class="form-control" rows="8">{{ $settingsa->advertise_contect }}</textarea>
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
-<h4 class="text-md text-neutral-500">Inspired page</h4>
-<div class="col-sm-6">
-                        <label class="form-label">Meta Title*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="inspired_m_tiitle" value="{{ old('inspired_m_tiitle', $settingsa->inspired_m_tiitle) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="inspired_m_descrip" value="{{ old('inspired_m_descrip', $settingsa->inspired_m_descrip) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Heading *</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="inspired_heading" value="{{ old('inspired_heading', $settingsa->inspired_heading) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Heading Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="inspired_subheading" value="{{ old('inspired_subheading', $settingsa->inspired_subheading) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
-
-                    <h4 class="text-md text-neutral-500">Student Offer Page</h4>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Title*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="studentt_m_tiitle" value="{{ old('studentt_m_tiitle', $settingsa->studentt_m_tiitle) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="studentt_m_descrip" value="{{ old('studentt_m_descrip', $settingsa->studentt_m_descrip) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Title*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="studentt_heading" value="{{ old('studentt_heading', $settingsa->studentt_heading) }}" placeholder="Enter Title" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                     </div>
-                    <div class="col-sm-6">
-                        <label class="form-label">Meta Description*</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control wizard-required" name="studentt_subheading" value="{{ old('studentt_subheading', $settingsa->studentt_subheading) }}" placeholder="Enter Description" >
-                            <div class="wizard-form-error"></div>
-                        </div>
-                    </div>
+               
 
 
 

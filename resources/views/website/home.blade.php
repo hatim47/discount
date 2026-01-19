@@ -481,7 +481,13 @@
         >
     </div>
 </div>
+
+<div class="max-w-7xl mx-auto px-6 flex flex-col hiptip items-start">
+        {!! $setting->home_m_content !!}  
+        </div>
  </section>
+
+
 </div>
 
 

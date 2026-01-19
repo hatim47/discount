@@ -7,6 +7,10 @@ use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Region;
 use App\Models\Setting;
+use App\Models\advertise;
+use App\Models\featuer;
+use App\Models\inspired;
+use App\Models\studentt;
 
 use Illuminate\Http\Request;
 
@@ -81,7 +85,7 @@ public function students($region = null)
     $regionModel = Region::where('code', $region)->firstOrFail();
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
-$setting = Setting::where('setting_region', $regionId)->first();
+$settings = studentt::where('regions', $regionId)->first();
        $categories = Category::where('status', 1)->where('cate_region', $regionId)
         ->with([
             'stores' => function ($q) use ($regionId) {
@@ -94,13 +98,11 @@ $setting = Setting::where('setting_region', $regionId)->first();
                   ->limit(1);
             }
         ])->get();
-          $title = $setting->studentt_m_tiitle ;
-    $meta_description = $setting->studentt_m_descrip;
-    $heading = $setting->studentt_heading;
-    $subheading = $setting->studentt_subheading;
+          $title = $settings->titel;
+    $meta_description = $settings->descr;
 
 
-  return view('website.studen_discont', compact('categories','heading','subheading','title','meta_description' ));
+  return view('website.studen_discont', compact('categories','settings','title','meta_description' ));
 }
 
 
@@ -127,11 +129,7 @@ $meta_description = $setting->contact_m_descrip ;
     $regionModel = Region::where('code', $region)->firstOrFail();
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
-    $setting = Setting::where('setting_region', $regionId)->first();
-    $title = $setting->inspired_m_tiitle ;
-    $meta_description = $setting->inspired_m_descrip;
-    $heading = $setting->inspired_heading;
-    $subheading = $setting->inspired_subheading;
+ 
     $categories = Category::whereIn('id', [12, 13, 20, 21])
     ->with(['stores' => function ($query) {
         $query->limit(20);
@@ -146,11 +144,12 @@ $meta_description = $setting->contact_m_descrip ;
         $q->where('store_region', $regionId);
     })
         ->get();
-    $setting = Setting::where('setting_region', $regionId)->first();
-    $title = $setting->advertise_m_tiitle;
-    $meta_description = $setting->advertise_m_descrip;
+         
+        $settings = inspired::where('regions', $regionId)->first();
+        $title = $settings->titel;
+        $meta_description = $settings->descr;
 
-        return view('website.inspired', compact('categories','heading','subheading', 'feature','title','meta_description'));
+        return view('website.inspired', compact('categories','settings', 'feature','title','meta_description'));
 
  }
  public function Inspiredpost($gender , $age)
@@ -186,13 +185,12 @@ $region = $region ?? config('app.default_region', 'usa');
     }])
     ->get();
           
-      $setting = Setting::where('setting_region', $regionId)->first();
-   $title = $setting->inspired_m_tiitle ;
-    $meta_description = $setting->inspired_m_descrip;
-    $heading = $setting->inspired_heading;
-    $subheading = $setting->inspired_subheading;
+      $settings = inspired::where('regions', $regionId)->first();
+   $title = $settings->titel;
+    $meta_description = $settings->descr;
+    
 
- return view('website.inspiredpost', compact('categories','heading','subheading','feature','title','meta_description'));
+ return view('website.inspiredpost', compact('categories','settings', 'feature','title','meta_description'));
  }
 
       public function advertise($region = null)
@@ -203,12 +201,12 @@ $region = $region ?? config('app.default_region', 'usa');
     $regionModel = Region::where('code', $region)->firstOrFail();
     $regionId = $regionModel->id;
     $regionTitle = $regionModel->title;
-$setting = Setting::where('setting_region', $regionId)->first();
-$title = $setting->advertise_m_tiitle ;
-$meta_description = $setting->advertise_m_descrip ;
+$settings = advertise::where('regions', $regionId)->first();
+$title = $settings->titel ;
+$meta_description = $settings->descr ;
             
 
-        return view('website.advers', compact('title','meta_description'));
+        return view('website.advers', compact('settings', 'title','meta_description'));
     } 
 
 
