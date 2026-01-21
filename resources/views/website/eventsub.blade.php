@@ -165,6 +165,30 @@ $jsonLd = json_encode(
     <section class="bg-[#F2FCFA] text-[#0F0F0F]">
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col  items-start justify-between gap-6">
+<div class="w-full flex flex-col justify-center">
+<div id="label" class="text-center mb-4 text-lg font-semibold text-gray-700">
+  
+</div>
+<div class="flex gap-4 justify-center text-center" id="countdown">
+    <div class="bg-[#0B453C] text-white p-4 rounded-lg w-20">
+        <div class="text-2xl font-bold" id="days">00</div>
+        <div class="text-xs uppercase">Days</div>
+    </div>
+    <div class="bg-[#0B453C] text-white p-4 rounded-lg w-20">
+        <div class="text-2xl font-bold" id="hours">00</div>
+        <div class="text-xs uppercase">Hours</div>
+    </div>
+    <div class="bg-[#0B453C] text-white p-4 rounded-lg w-20">
+        <div class="text-2xl font-bold" id="minutes">00</div>
+        <div class="text-xs uppercase">Minutes</div>
+    </div>
+    <div class="bg-[#0B453C] text-white p-4 rounded-lg w-20">
+        <div class="text-2xl font-bold" id="seconds">00</div>
+        <div class="text-xs uppercase">Seconds</div>
+    </div>
+</div>
+
+</div>
             <div class="flex items-center  gap-4 ms-3">
                 <div
                     class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
@@ -577,5 +601,45 @@ function updateCounts() {
 
 
 
+</script>
+<script>
+    
+  const startDate = new Date("{{ $event->start_date }}").getTime();
+    const endDate   = new Date("{{ $event->end_date }}").getTime();
+  const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        let distance;
+        let message = '';
+
+        // BEFORE EVENT START
+        if (now < startDate) {
+            distance = startDate - now;
+            message = 'Event Starts In';
+
+        // EVENT LIVE
+        } else if (now >= startDate && now <= endDate) {
+            distance = endDate - now;
+            message = 'Event Ends In';
+
+        // EVENT ENDED
+        } else {
+            clearInterval(countdown);
+            document.getElementById("countdown").innerHTML =
+                '<span class=""></span>';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("label").innerText = message;
+        document.getElementById("days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+    }, 1000);
 </script>
 @endpush

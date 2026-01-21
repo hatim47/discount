@@ -8,6 +8,7 @@ use App\Models\Region;
 use App\Models\Store;
 use App\Models\About;
 use App\Models\Coupon;
+use App\Models\Category;
 class DynapageController extends Controller
 {
     //
@@ -92,8 +93,16 @@ class DynapageController extends Controller
         ->latest()
         ->paginate(10);
         $meta_description = $event->m_descrip;  
-        $title = $event->m_tiitle;       
-        return view('website.dynacpage', compact('event','trendingWith','trends','coupons','title','meta_description'));
+        $title = $event->m_tiitle;   
+        
+        $categories = Category::where('trend', 1)
+                      ->orWhere('recom', 1)
+                        ->where('cate_region', $regionId)
+                        ->where('status', 1)
+                      ->get();
+
+
+        return view('website.dynacpage', compact('event','trendingWith','categories','trends','coupons','title','meta_description'));
     }
 
      public function about($region = null)

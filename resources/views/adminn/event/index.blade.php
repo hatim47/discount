@@ -31,7 +31,7 @@
                                 </th>
                             <th scope="col">Name</th>
                                 <th scope="col">slug</th>
-                                <th scope="col">banner</th>
+                                <th scope="col">thumbnail</th>
                                 <th scope="col">sataus</th>
                                 <th scope="col">Regoin</th>
                                 <th scope="col">Action</th>
@@ -46,8 +46,8 @@
                     <td>{{ $store->title }}</td>
                     <td>{{ $store->slug }}</td>
                     <td>
-                        @if($store->banner)
-                            <img src="{{$store->banner}}" alt="Logo" width="40">
+                        @if($store->thumbnail)
+                            <img src="{{$store->thumbnail}}" alt="Logo" width="40">
                         @else
                             No Image
                         @endif

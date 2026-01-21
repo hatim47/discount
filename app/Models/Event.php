@@ -13,6 +13,7 @@ class Event extends Model
         'slug',
         'heading',
         'description',
+        'thumbnail',
         'banner',
         'start_date',
         'end_date',

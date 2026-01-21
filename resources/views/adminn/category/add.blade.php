@@ -218,15 +218,26 @@
                                     <fieldset class="wizard-fieldset">
                                         <h6 class="text-md text-neutral-500">Website  Information</h6>
                                         <div class="row gy-3">
-                                 
+                                 <label class="form-label">Select one or more tags to highlight this coupon 
+(e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
+                            
+                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    
+                                    <input type="checkbox" name="trend" class="btn-check" id="btncheck1">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
+                        <input type="checkbox" class="btn-check" name="feature" id="btncheck11">
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
+                        <input type="checkbox" class="btn-check" name="recom" id="btncheck12">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+                        <input type="checkbox" class="btn-check" name="relat" id="btnheck12">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btnheck12">Related</label>
+                        <input type="checkbox" class="btn-check" name="like" id="btnchec12">                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btnchec12">like</label>
+                    </div>
 
 <div class="col-12">
     <div class="form-switch switch-primary d-flex align-items-center gap-3">
-
-        <!-- Always sends 0 if not checked -->
         <input type="hidden" name="is_menu" value="0">
-
-        <!-- Sends 1 if checked -->
         <input 
             class="form-check-input" 
             type="checkbox" 
@@ -235,7 +246,6 @@
             name="is_menu"
             value="1"
         >
-
         <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="switch2">
             Menu Active
         </label>
@@ -244,7 +254,7 @@
                                             <div class="col-12">
                                                 <label class="form-label">Short Content*</label>
                                                 <div class="position-relative">   
-                                 <textarea id="editor1" name="shrt_content" class="form-control" rows="4"> </textarea>
+                                                <textarea id="editor1" name="shrt_content" class="form-control" rows="4"> </textarea>
                                                         <div class="wizard-form-error"></div>
                                                 </div>
                                             </div>

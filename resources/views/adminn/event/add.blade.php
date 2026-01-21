@@ -180,8 +180,8 @@
                                                 </div>
                                             </div>
                                   
-                                        
-
+                                          <div class="col-sm-6">
+</div>
                                             <div class="col-sm-6">
                                                 <label class="form-label">Event banner *</label>
                                                 <div class="position-relative"> 
@@ -202,7 +202,27 @@
                                                     
                                                 </div>
                                             </div>
-                                             {{-- <div class="col-sm-6">
+                                             <div class="col-sm-6">
+                                                <label class="form-label">Event banner *</label>
+                                                <div class="position-relative"> 
+                                              <div class="mb-3">
+  
+    <div class="input-group">
+        <input id="logo" class="form-control wizard-required" type="text" name="banner" required>
+        <span class="input-group-btn">
+            <button id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary">
+                Choose
+            </button>
+        </span>
+    </div>
+     <div class="wizard-form-error"></div>
+    <img id="holder" style="margin-top:15px;max-height:100px;">
+</div>
+                                                    {{-- <input  class="form-control wizard-required" type="file" placeholder="Enter Last Name" required> --}}
+                                                    
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
                                                 <label class="form-label">Start Date</label>
                                                 <div class="position-relative">
                                                     <input type="date" class="form-control" name="start_date" placeholder="Enter Event Name" required>
@@ -215,7 +235,7 @@
                                                     <input type="date" class="form-control " name="end_date" placeholder="Enter Event Name" required>
                                                     <div class="wizard-form-error"></div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             
                                             <div class="form-group text-end">
                                                 <button type="button" class="form-wizard-next-btn btn btn-primary-600 px-32">Next</button>

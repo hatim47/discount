@@ -83,17 +83,17 @@ font-size:25px;
         <div
             class="max-w-7xl mx-auto py-12 px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <!-- Left Section -->
-            <div class="flex items-center gap-4 ms-3">
+            <div class="flex items-center gap-4 ms-3 relative">
                 <!-- Logo -->
                 <div
-                    class="w-20 sm:w-24 md:w-28 lg:w-32 aspect-square rounded-full border flex items-center justify-center bg-white shadow-sm overflow-hidden">
-                    <img src="{{ $event->banner }}" alt="Clarks" class="w-full h-full object-contain p-2" />
+                    class="w-full flex items-center justify-center inset-shadow-sm ">
+                    <img src="{{ $event->banner }}" id="eventBanner" alt="Clarks" class="w-full h-full object-contain rounded-xl " />
                 </div>
                 <!-- Text Content -->
-                <div>
+                <div class="w-full absolute text-center  text-white" id="textContainer">
                     <!-- Breadcrumb -->                 
                     <!-- Title -->
-                    <h1 class="text-lg sm:text-2xl font-bold text-gray-900">{{$event->heading}}</h1>
+                    <h1 class="text-lg sm:text-2xl font-bold ">{{$event->heading}}</h1>
                     <p>  {!! $event->shortdiscription !!} </p>
                     <!-- Description -->
                 </div>
@@ -142,7 +142,7 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 
 <div class="bg-white w-full rounded-xl shadow overflow-hidden">
-    <div class="bg-green-100 px-4 text py-2 font-bold text-gray-900">{{$event->name}} Discount</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">{{$event->name}} Discount</div>
    <div class="flex flex-wrap text-sm text-gray-700 p-2">
         {!! $event->longdiscription !!}
      
@@ -176,10 +176,22 @@ class="bg-[#0B453C] text-white px-6 py-2 rounded-lg hover:bg-[#3c6a63]"
 
 
 
+  <div class="bg-white rounded-xl w-full shadow overflow-hidden">
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Trending Category</div>
+    <ul class="flex flex-wrap text-sm text-gray-700 p-2">
+        {{-- {{dd ($store->relatedStores);}} --}}
+    @foreach ($categories as $relateds )
+     <li><a href="{{ region_route('store.website', ['slug' => $relateds->slug]) }}" class="flex items-center bg-gray-100 p-2 rounded-md m-1 hover:bg-[#0B453C]/15">
+      {{-- <img class="w-16 rounded-lg border border-[#0B453C] " src="{{$relateds->logo}}" /> --}}
+      {{$relateds->name}}
+      </a></li>
+  @endforeach
 
+    </ul>
+  </div>
  
   <div class="bg-white rounded-xl w-full shadow overflow-hidden">
-    <div class="bg-green-100 px-4 py-2 font-bold text-[#0f0f0f0]">Related Store</div>
+    <div class="bg-[#0B453C] px-4 py-2 font-bold text-white">Related Store</div>
     <ul class="flex flex-wrap text-sm text-gray-700 p-2">
         {{-- {{dd ($store->relatedStores);}} --}}
     @foreach ($trends as $relateds )
@@ -297,7 +309,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     let parser = new DOMParser();
                     let html = parser.parseFromString(data, "text/html");
                     let newCoupons = html.querySelectorAll("#coupon-list article");
-
                     newCoupons.forEach(coupon => {
                         document.getElementById("coupon-list").appendChild(coupon);
                     });
@@ -309,8 +320,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         loadMoreBtn.remove(); // remove button if no more pages
                     }
-
-                    // 🔔 Trigger event so filters & counts update
                     document.dispatchEvent(new Event('couponsLoaded'));
                 })
                 .catch(error => console.error(error));
@@ -441,5 +450,50 @@ document.addEventListener("DOMContentLoaded", function () {
     renderStars();
 });
 
+
+   document.addEventListener('DOMContentLoaded', function() {
+        const img = document.getElementById('eventBanner');
+        const textContainer = document.getElementById('textContainer');
+
+        function getImageBrightness() {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            let brightness = 0;
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                brightness += (r * 299 + g * 587 + b * 114) / 1000;
+            }
+            brightness = brightness / (data.length / 4);
+            return brightness;
+        }
+
+        if (img.complete) {
+            // Image already loaded
+            const brightness = getImageBrightness();
+            if (brightness > 128) {
+                textContainer.classList.remove('text-white');
+                textContainer.classList.add('text-gray-900');
+            }
+        } else {
+            // Wait for image to load
+            img.onload = function() {
+                const brightness = getImageBrightness();
+                if (brightness > 128) {
+                    textContainer.classList.remove('text-white');
+                    textContainer.classList.add('text-gray-900');
+                }
+            };
+        }
+    });
 </script>
 @endpush

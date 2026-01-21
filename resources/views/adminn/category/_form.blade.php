@@ -44,7 +44,30 @@
 </div>
 </div>
 
+   <div class="col-md-12  d-flex flex-column">
+ <label class="form-label">Select one or more tags to highlight this coupon (e.g., Trending, Featured, Recommended, Deals, Verified, Exclusive).</label>
 
+                                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    
+                        <input type="checkbox" name="trend" class="btn-check" id="btncheck1" value="1" {{ old('trend', $category->trend) ? 'checked' : '' }}>                       
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck1">Trending </label>
+                       
+                        <input type="checkbox" class="btn-check" name="feature" id="btncheck11" value="1" {{ old('feature', $category->feature) ? 'checked' : '' }}>
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck11">Featured </label> 
+                        
+                        <input type="checkbox" class="btn-check" name="recom" id="btncheck12" value="1" {{ old('recom', $category->recom) ? 'checked' : '' }}>                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btncheck12">Recommended</label>
+
+      <input type="checkbox" class="btn-check" name="relat" id="btnchck12" value="1" {{ old('relat', $category->relat) ? 'checked' : '' }}>                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btnchck12">Related</label>
+
+                              <input type="checkbox" class="btn-check" name="like" id="btnchec12" value="1" {{ old('like', $category->like) ? 'checked' : '' }}>                        
+                        <label class="btn btn-outline-primary-600 px-20 py-11 radius-8" for="btnchec12">Like</label>
+                    
+                       
+                
+</div>
+                    </div>
 </div>
 
     <div class="mb-3">

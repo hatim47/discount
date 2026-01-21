@@ -52,7 +52,16 @@ $categories = Category::withCount('stores')
             'url' => 'nullable|string',   
         ]);
 
-        Category::create($request->all());
+       Category::create(array_merge(
+    $request->all(),
+    [
+        'trend'       => $request->has('trend'),
+        'recom'       => $request->has('recom'),
+        'feature' => $request->has('feature'),
+        'relat'  => $request->has('relat'),
+        'like'  => $request->has('like'),
+    ]
+));
     if($request->hasFile('images')){
         foreach($request->file('images') as $file){
             $store->addMedia($file)->toMediaCollection('images');
@@ -84,7 +93,16 @@ $categories = Category::withCount('stores')
 
         ]);
         //  dd($id,$request->all());
-        $category->update($request->all());
+      $category->update(array_merge(
+    $request->all(),
+    [
+        'trend'   => $request->has('trend'),
+        'recom'   => $request->has('recom'),
+        'feature' => $request->has('feature'),
+        'relat'   => $request->has('relat'),
+        'like'    => $request->has('like'),
+    ]
+));
 
         return redirect()->route('categories.index')
                          ->with('success', 'Category updated successfully.');
